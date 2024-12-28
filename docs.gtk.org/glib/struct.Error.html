@@ -1,0 +1,290 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Error.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Error</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Error">
+  <meta property="og:description" content="Reference for GLib.Error">
+  <meta name="twitter:title" content="GLib.Error">
+  <meta name="twitter:description" content="Reference for GLib.Error">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>Error</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gerror.h#L34">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GError</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">GQuark</span><span class="w"> </span><span class="n">domain</span><span class="p">;</span>
+<span class="w">  </span><span class="n">gint</span><span class="w"> </span><span class="n">code</span><span class="p">;</span>
+<span class="w">  </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">message</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GError</code> structure contains information about
+an error that has&nbsp;occurred.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>domain</code></dt>
+              <dd><p>Error domain, e.g. <code>G_FILE_ERROR</code>.</p></dd>
+            
+              <dt><code>code</code></dt>
+              <dd><p>Error code, e.g. <code>G_FILE_ERROR_NOENT</code>.</p></dd>
+            
+              <dt><code>message</code></dt>
+              <dd><p>Human-readable informative error&nbsp;message.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.Error.new.html">g_error_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GError</code> with the given <code>domain</code> and <code>code</code>,
+and a message formatted with <code>format</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Error.new_literal.html">g_error_new_literal</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GError</code>; unlike g_error_new(), <code>message</code> is
+not a printf()-style format string. Use this function if
+<code>message</code> contains text you don’t have control over,
+that could include <code>printf()</code> escape&nbsp;sequences.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Error.new_valist.html">g_error_new_valist</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GError</code> with the given <code>domain</code> and <code>code</code>,
+and a message formatted with <code>format</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.22</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.Error.domain_register.html">g_error_domain_register</a></h6>
+        <div class="docblock">
+          <p>This function registers an extended <code>GError</code> domain.
+<code>error_type_name</code> will be duplicated. Otherwise does the same as&nbsp;g_error_domain_register_static().</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.68</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Error.domain_register_static.html">g_error_domain_register_static</a></h6>
+        <div class="docblock">
+          <p>This function registers an extended <code>GError</code> domain.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.68</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Error.copy.html">g_error_copy</a></h6>
+          <div class="docblock">
+            <p>Makes a copy of <code>error</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Error.free.html">g_error_free</a></h6>
+          <div class="docblock">
+            <p>Frees a <code>GError</code> and associated&nbsp;resources.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Error.matches.html">g_error_matches</a></h6>
+          <div class="docblock">
+            <p>Returns <code>TRUE</code> if <code>error</code> matches <code>domain</code> and <code>code</code>, <code>FALSE</code>
+otherwise. In particular, when <code>error</code> is <code>NULL</code>, <code>FALSE</code> will
+be&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Error.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

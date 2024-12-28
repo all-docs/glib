@@ -1,0 +1,210 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.ascii_strup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.ascii_strup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.ascii_strup">
+  <meta property="og:description" content="Reference for GLib.ascii_strup">
+  <meta name="twitter:title" content="GLib.ascii_strup">
+  <meta name="twitter:description" content="Reference for GLib.ascii_strup">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>ascii_strup</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstrfuncs.h#L261">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gchar</span><span class="o">*</span>
+<span class="n">g_ascii_strup</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">str</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gssize</span><span class="w"> </span><span class="n">len</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstrfuncs.c#L1576">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Converts all lower case <span class="caps">ASCII</span> letters to upper case <span class="caps">ASCII</span> letters, with
+semantics that exactly match <a href="func.ascii_toupper.html"><code>g_ascii_toupper()</code></a>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>str</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>A&nbsp;string.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>len</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gssize</code></p>
+            <p>Length of <code>str</code> in bytes, or <code>-1</code> if <code>str</code> is&nbsp;nul-terminated.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gchar*</code></p>
+            <p>A newly-allocated string, with all the lower case characters
+  in <code>str</code> converted to upper case. (Note that this is unlike the old
+  <a href="func.strup.html"><code>g_strup()</code></a>, which modified the string in&nbsp;place.).</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
+            
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.ascii_strup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

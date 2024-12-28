@@ -1,0 +1,214 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/type_func.PtrArray.sort.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.PtrArray.sort</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.PtrArray.sort">
+  <meta property="og:description" content="Reference for GLib.PtrArray.sort">
+  <meta name="twitter:title" content="GLib.PtrArray.sort">
+  <meta name="twitter:description" content="Reference for GLib.PtrArray.sort">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.PtrArray.html">PtrArray</a><span class="sep"></span>sort</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/garray.h#L239">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_ptr_array_sort</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GPtrArray</span><span class="o">*</span><span class="w"> </span><span class="n">array</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GCompareFunc</span><span class="w"> </span><span class="n">compare_func</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/garray.c#L2364">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Sorts the array, using <code>compare_func</code> which should be a qsort()-style
+comparison function (returns less than zero for first arg is less
+than second arg, zero for equal, greater than zero if first arg is
+greater than second&nbsp;arg).</p>
+<p>Note that the comparison function for <code>g_ptr_array_sort()</code> doesn’t
+take the pointers from the array as arguments, it takes pointers to
+the pointers in the&nbsp;array.</p>
+<p>Use <code>g_ptr_array_sort_values()</code> if you want to use normal
+<code>GCompareFuncs</code>, otherwise here is a full example of&nbsp;use:</p>
+<div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">gchar</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">;</span>
+<span class="w">  </span><span class="n">gint</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">FileListEntry</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">gint</span>
+<span class="nf">sort_filelist</span><span class="w"> </span><span class="p">(</span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">FileListEntry</span><span class="w"> </span><span class="o">*</span><span class="n">entry1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">((</span><span class="n">FileListEntry</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">FileListEntry</span><span class="w"> </span><span class="o">*</span><span class="n">entry2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">((</span><span class="n">FileListEntry</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">g_ascii_strcasecmp</span><span class="w"> </span><span class="p">(</span><span class="n">entry1</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">entry2</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="err">…</span>
+<span class="n">g_autoptr</span><span class="w"> </span><span class="p">(</span><span class="n">GPtrArray</span><span class="p">)</span><span class="w"> </span><span class="n">file_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="c1">// initialize file_list array and load with many FileListEntry entries</span>
+<span class="p">...</span>
+<span class="c1">// now sort it with</span>
+<span class="n">g_ptr_array_sort</span><span class="w"> </span><span class="p">(</span><span class="n">file_list</span><span class="p">,</span><span class="w"> </span><span class="n">sort_filelist</span><span class="p">);</span>
+</pre></div>
+
+<p>This is guaranteed to be a stable sort since version&nbsp;2.32.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>array</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>gpointer</code></p>
+            <p>A <code>GPtrArray</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>compare_func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.CompareFunc.html"><code>GCompareFunc</code></a></p>
+            <p>Comparison&nbsp;function.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/type_func.PtrArray.sort.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

@@ -1,0 +1,159 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/warnings.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Warnings and Assertions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Warnings and Assertions">
+  <meta property="og:description" content="Reference for GLib-2.0: Warnings and Assertions">
+  <meta name="twitter:title" content="GLib: Warnings and Assertions">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Warnings and Assertions">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Warnings and Assertions
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="warnings-and-assertions">Warnings and Assertions<a class="md-anchor" href="#warnings-and-assertions" title="Permanent link"></a></h1>
+<p>GLib defines several warning functions and assertions which can be used to
+warn of programmer errors when calling functions, and print error messages
+from command line&nbsp;programs.</p>
+<h2 id="pre-condition-assertions">Pre-condition Assertions<a class="md-anchor" href="#pre-condition-assertions" title="Permanent link"></a></h2>
+<p>The <a href="func.return_if_fail.html"><code>g_return_if_fail()</code></a>, <a href="func.return_val_if_fail.html"><code>g_return_val_if_fail()</code></a>,
+<a href="func.return_if_reached.html"><code>g_return_if_reached()</code></a> and <a href="func.return_val_if_reached.html"><code>g_return_val_if_reached()</code></a> macros are
+intended as pre-condition assertions, to be used at the top of a public function
+to check that the function’s arguments are acceptable. Any failure of such a
+pre-condition assertion is considered a programming error on the part of the
+caller of the public <span class="caps">API</span>, and the program is considered to be in an undefined
+state afterwards. They are similar to the libc <a href="man:assert(3)"><code>assert()</code></a>
+function, but provide more context on&nbsp;failures.</p>
+<p>For&nbsp;example:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">gboolean</span>
+<span class="nf">g_dtls_connection_shutdown</span><span class="w"> </span><span class="p">(</span><span class="n">GDtlsConnection</span><span class="w">  </span><span class="o">*</span><span class="n">conn</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">gboolean</span><span class="w">          </span><span class="n">shutdown_read</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">gboolean</span><span class="w">          </span><span class="n">shutdown_write</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">GCancellable</span><span class="w">     </span><span class="o">*</span><span class="n">cancellable</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">GError</span><span class="w">          </span><span class="o">**</span><span class="n">error</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="c1">// local variable declarations</span>
+
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">G_IS_DTLS_CONNECTION</span><span class="w"> </span><span class="p">(</span><span class="n">conn</span><span class="p">),</span><span class="w"> </span><span class="n">FALSE</span><span class="p">);</span>
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">cancellable</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">G_IS_CANCELLABLE</span><span class="w"> </span><span class="p">(</span><span class="n">cancellable</span><span class="p">),</span><span class="w"> </span><span class="n">FALSE</span><span class="p">);</span>
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// function body</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">return_val</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><a href="func.warn_if_fail.html"><code>g_warn_if_fail()</code></a> and <a href="func.warn_if_reached.html"><code>g_warn_if_reached()</code></a> behave similarly, but
+they will not abort the program on failure. The program should be considered to
+be in an undefined state if they fail,&nbsp;however.</p>
+<h2 id="messages">Messages<a class="md-anchor" href="#messages" title="Permanent link"></a></h2>
+<p><a href="func.print.html"><code>g_print()</code></a> and <a href="func.printerr.html"><code>g_printerr()</code></a> are intended to be used for
+output from command line applications, since they output to standard output
+and standard error by default — whereas functions like <a href="func.message.html"><code>g_message()</code></a> and
+<a href="func.log.html"><code>g_log()</code></a> may be redirected to special purpose message windows, files, or
+the system&nbsp;journal.</p>
+<p>The default print handlers may be overridden with <a href="func.set_print_handler.html"><code>g_set_print_handler()</code></a>
+and <a href="func.set_printerr_handler.html"><code>g_set_printerr_handler()</code></a>.</p>
+<h3 id="encoding">Encoding<a class="md-anchor" href="#encoding" title="Permanent link"></a></h3>
+<p>If the console encoding is not <span class="caps">UTF</span>-8 (as specified by
+<a href="func.get_console_charset.html"><code>g_get_console_charset()</code></a>) then these functions convert the message first.
+Any Unicode characters not defined by that charset are replaced by <code>'?'</code>. On
+Linux, <a href="man:setlocale(3)"><code>setlocale()</code></a> must be called early in <code>main()</code> to
+load the encoding. This behaviour can be changed by providing custom handlers to
+<a href="func.set_print_handler.html"><code>g_set_print_handler()</code></a>, <a href="func.set_printerr_handler.html"><code>g_set_printerr_handler()</code></a> and
+<a href="func.log_set_handler.html"><code>g_log_set_handler()</code></a>.</p>
+<h2 id="debugging-utilities">Debugging Utilities<a class="md-anchor" href="#debugging-utilities" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.on_error_query.html"><code>g_on_error_query()</code></a></li>
+<li><a href="func.on_error_stack_trace.html"><code>g_on_error_stack_trace()</code></a></li>
+<li><a href="func.BREAKPOINT.html"><code>G_BREAKPOINT()</code></a></li>
+</ul>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#pre-condition-assertions"><span class="link-text">Pre-condition Assertions</span></a></li>
+        
+        <li class="toc-list-item"><a href="#messages"><span class="link-text">Messages</span></a></li>
+        
+        <li class="toc-list-item"><a href="#debugging-utilities"><span class="link-text">Debugging Utilities</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/warnings.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

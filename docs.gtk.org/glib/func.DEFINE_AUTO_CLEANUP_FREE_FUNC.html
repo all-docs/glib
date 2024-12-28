@@ -1,0 +1,212 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.DEFINE_AUTO_CLEANUP_FREE_FUNC.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.DEFINE_AUTO_CLEANUP_FREE_FUNC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.DEFINE_AUTO_CLEANUP_FREE_FUNC">
+  <meta property="og:description" content="Reference for GLib.DEFINE_AUTO_CLEANUP_FREE_FUNC">
+  <meta name="twitter:title" content="GLib.DEFINE_AUTO_CLEANUP_FREE_FUNC">
+  <meta name="twitter:description" content="Reference for GLib.DEFINE_AUTO_CLEANUP_FREE_FUNC">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function Macro</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>DEFINE_AUTO_CLEANUP_FREE_FUNC</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.44</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmacros.h#L1389">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="cp">#define G_DEFINE_AUTO_CLEANUP_FREE_FUNC (</span>
+<span class="w">  </span><span class="n">TypeName</span><span class="p">,</span>
+<span class="w">  </span><span class="n">func</span><span class="p">,</span>
+<span class="w">  </span><span class="n">none</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/docs.c#L1797">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Defines the appropriate cleanup function for a&nbsp;type.</p>
+<p>With this definition, it will be possible to use <code>g_auto()</code> with
+<code>TypeName</code>.</p>
+<p>This function will be rarely used.  It is used with pointer-based
+typedefs and non-pointer types where the value of the variable
+represents a resource that must be freed.  Two examples are <code>GStrv</code>
+and file&nbsp;descriptors.</p>
+<p><code>none</code> specifies the “none” value for the type in question.  It is
+probably something like <code>NULL</code> or <code>-1</code>.  If the variable is found to
+contain this value then the free function will not be&nbsp;called.</p>
+<div class="codehilite"><pre><span></span><code>G_DEFINE_AUTO_CLEANUP_FREE_FUNC(GStrv, g_strfreev, NULL)
+</code></pre></div>
+
+<p>This macro should be used unconditionally; it is a no-op on compilers
+where cleanup is not&nbsp;supported.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.44</p>
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>TypeName</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>A type name to define a <code>g_auto()</code> cleanup function&nbsp;for.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>The free&nbsp;function.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>none</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>The “none” value for the&nbsp;type.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.DEFINE_AUTO_CLEANUP_FREE_FUNC.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

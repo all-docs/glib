@@ -1,0 +1,178 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.VARIANT_DICT_INIT.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.VARIANT_DICT_INIT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.VARIANT_DICT_INIT">
+  <meta property="og:description" content="Reference for GLib.VARIANT_DICT_INIT">
+  <meta name="twitter:title" content="GLib.VARIANT_DICT_INIT">
+  <meta name="twitter:description" content="Reference for GLib.VARIANT_DICT_INIT">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function Macro</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>VARIANT_DICT_INIT</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.50</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.h#L527">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="cp">#define G_VARIANT_DICT_INIT (</span>
+<span class="w">  </span><span class="n">asv</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.h#L499">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>A stack-allocated <code>GVariantDict</code> must be initialized if it is used
+together with <code>g_auto()</code> to avoid warnings or crashes if function
+returns before <code>g_variant_dict_init()</code> is called on the&nbsp;builder.</p>
+<p>This macro can be used as initializer instead of an explicit
+zeroing a variable when declaring it and a following
+g_variant_dict_init(), but it cannot be assigned to a&nbsp;variable.</p>
+<p>The passed <code>asv</code> has to live long enough for <code>GVariantDict</code> to gather
+the entries from, as the gathering does not happen in the
+G_VARIANT_DICT_INIT() call, but rather in functions that make sure
+that <code>GVariantDict</code> is valid.  In context where the initialization
+value has to be a constant expression, the only possible value of
+<code>asv</code> is <code>NULL</code>.  It is still possible to call <code>g_variant_dict_init()</code>
+safely with a different <code>asv</code> right after the variable was
+initialized with&nbsp;G_VARIANT_DICT_INIT().</p>
+<div class="highlight"><pre><span></span><span class="w">  </span><span class="n">g_autoptr</span><span class="p">(</span><span class="n">GVariant</span><span class="p">)</span><span class="w"> </span><span class="n">variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_asv_variant</span><span class="w"> </span><span class="p">();</span>
+<span class="w">  </span><span class="n">g_auto</span><span class="p">(</span><span class="n">GVariantDict</span><span class="p">)</span><span class="w"> </span><span class="n">dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">G_VARIANT_DICT_INIT</span><span class="w"> </span><span class="p">(</span><span class="n">variant</span><span class="p">);</span>
+</pre></div>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.50</p>
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>asv</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>A&nbsp;GVariant*.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.VARIANT_DICT_INIT.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

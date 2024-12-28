@@ -1,0 +1,256 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.main_depth.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.main_depth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.main_depth">
+  <meta property="og:description" content="Reference for GLib.main_depth">
+  <meta name="twitter:title" content="GLib.main_depth">
+  <meta name="twitter:description" content="Reference for GLib.main_depth">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>main_depth</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L567">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gint</span>
+<span class="n">g_main_depth</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="kt">void</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.c#L3006">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Returns the depth of the stack of calls to
+<a href="method.MainContext.dispatch.html"><code>g_main_context_dispatch()</code></a> on any <code>GMainContext</code> in the current thread.
+That is, when called from the toplevel, it gives 0. When
+called from within a callback from <a href="method.MainContext.iteration.html"><code>g_main_context_iteration()</code></a>
+(or <a href="method.MainLoop.run.html"><code>g_main_loop_run()</code></a>, etc.) it returns 1. When called from within
+a callback to a recursive call to <a href="method.MainContext.iteration.html"><code>g_main_context_iteration()</code></a>,
+it returns 2. And so&nbsp;forth.</p>
+<p>This function is useful in a situation like the following:
+Imagine an extremely simple “garbage collected”&nbsp;system.</p>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">GList</span><span class="w"> </span><span class="o">*</span><span class="n">free_list</span><span class="p">;</span>
+
+<span class="n">gpointer</span>
+<span class="nf">allocate_memory</span><span class="w"> </span><span class="p">(</span><span class="n">gsize</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_malloc</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="w">  </span><span class="n">free_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_list_prepend</span><span class="w"> </span><span class="p">(</span><span class="n">free_list</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span>
+<span class="nf">free_allocated_memory</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">GList</span><span class="w"> </span><span class="o">*</span><span class="n">l</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">free_list</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_free</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span>
+<span class="w">  </span><span class="n">g_list_free</span><span class="w"> </span><span class="p">(</span><span class="n">free_list</span><span class="p">);</span>
+<span class="w">  </span><span class="n">free_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w"> </span><span class="p">}</span>
+
+<span class="p">[...]</span>
+
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">TRUE</span><span class="p">);</span>
+<span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="n">g_main_context_iteration</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+<span class="w">   </span><span class="n">free_allocated_memory</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+
+<p>This works from an application, however, if you want to do the same
+thing from a library, it gets more difficult, since you no longer
+control the main loop. You might think you can simply use an idle
+function to make the call to free_allocated_memory(), but that
+doesn’t work, since the idle function could be called from a
+recursive callback. This can be fixed by using <a href="func.main_depth.html"><code>g_main_depth()</code></a></p>
+<div class="highlight"><pre><span></span><span class="n">gpointer</span>
+<span class="nf">allocate_memory</span><span class="w"> </span><span class="p">(</span><span class="n">gsize</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">FreeListBlock</span><span class="w"> </span><span class="o">*</span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_new</span><span class="w"> </span><span class="p">(</span><span class="n">FreeListBlock</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">block</span><span class="o">-&gt;</span><span class="n">mem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_malloc</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="w">  </span><span class="n">block</span><span class="o">-&gt;</span><span class="n">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_main_depth</span><span class="w"> </span><span class="p">();</span>
+<span class="w">  </span><span class="n">free_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_list_prepend</span><span class="w"> </span><span class="p">(</span><span class="n">free_list</span><span class="p">,</span><span class="w"> </span><span class="n">block</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">block</span><span class="o">-&gt;</span><span class="n">mem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span>
+<span class="nf">free_allocated_memory</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">GList</span><span class="w"> </span><span class="o">*</span><span class="n">l</span><span class="p">;</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_main_depth</span><span class="w"> </span><span class="p">();</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">free_list</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="p">;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">GList</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">      </span><span class="n">FreeListBlock</span><span class="w"> </span><span class="o">*</span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">block</span><span class="o">-&gt;</span><span class="n">depth</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">depth</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="n">g_free</span><span class="w"> </span><span class="p">(</span><span class="n">block</span><span class="o">-&gt;</span><span class="n">mem</span><span class="p">);</span>
+<span class="w">          </span><span class="n">g_free</span><span class="w"> </span><span class="p">(</span><span class="n">block</span><span class="p">);</span>
+<span class="w">          </span><span class="n">free_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_list_delete_link</span><span class="w"> </span><span class="p">(</span><span class="n">free_list</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">              </span>
+<span class="w">      </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+
+<p>There is a temptation to use <a href="func.main_depth.html"><code>g_main_depth()</code></a> to solve
+problems with reentrancy. For instance, while waiting for data
+to be received from the network in response to a menu item,
+the menu item might be selected again. It might seem that
+one could make the menu item’s callback return immediately
+and do nothing if <a href="func.main_depth.html"><code>g_main_depth()</code></a> returns a value greater than 1.
+However, this should be avoided since the user then sees selecting
+the menu item do nothing. Furthermore, you’ll find yourself adding
+these checks all over your code, since there are doubtless many,
+many things that the user could do. Instead, you can use the
+following&nbsp;techniques:</p>
+<ol>
+<li>
+<p>Use <code>gtk_widget_set_sensitive()</code> or modal dialogs to prevent
+   the user from interacting with elements while the main
+   loop is&nbsp;recursing.</p>
+</li>
+<li>
+<p>Avoid main loop recursion in situations where you can’t handle
+   arbitrary  callbacks. Instead, structure your code so that you
+   simply return to the main loop and then get called again when
+   there is more work to&nbsp;do.</p>
+</li>
+</ol>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint</code></p>
+            <p>The main loop recursion level in the current&nbsp;thread.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.main_depth.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

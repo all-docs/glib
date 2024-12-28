@@ -1,0 +1,175 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.log_writer_default_set_use_stderr.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.log_writer_default_set_use_stderr</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.log_writer_default_set_use_stderr">
+  <meta property="og:description" content="Reference for GLib.log_writer_default_set_use_stderr">
+  <meta name="twitter:title" content="GLib.log_writer_default_set_use_stderr">
+  <meta name="twitter:description" content="Reference for GLib.log_writer_default_set_use_stderr">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>log_writer_default_set_use_stderr</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.68</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.h#L254">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_log_writer_default_set_use_stderr</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">gboolean</span><span class="w"> </span><span class="n">use_stderr</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.c#L1032">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Configure whether the built-in log functions will output all log messages to
+<code>stderr</code>.</p>
+<p>The built-in log functions are <a href="func.log_default_handler.html"><code>g_log_default_handler()</code></a> for the
+old-style <span class="caps">API</span>, and both <a href="func.log_writer_default.html"><code>g_log_writer_default()</code></a> and
+<a href="func.log_writer_standard_streams.html"><code>g_log_writer_standard_streams()</code></a> for the structured <span class="caps">API</span>.</p>
+<p>By default, log messages of levels <a href="flags.LogLevelFlags.html"><code>G_LOG_LEVEL_INFO</code></a> and
+<a href="flags.LogLevelFlags.html"><code>G_LOG_LEVEL_DEBUG</code></a> are sent to <code>stdout</code>, and other log messages are
+sent to <code>stderr</code>. This is problematic for applications that intend
+to reserve <code>stdout</code> for structured output such as <span class="caps">JSON</span> or <span class="caps">XML</span>.</p>
+<p>This function sets global state. It is not thread-aware, and should be
+called at the very start of a program, before creating any other threads
+or creating objects that could create worker threads of their&nbsp;own.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.68</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>use_stderr</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p>If <code>TRUE</code>, use <code>stderr</code> for log messages that would
+ normally have appeared on <code>stdout</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.log_writer_default_set_use_stderr.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

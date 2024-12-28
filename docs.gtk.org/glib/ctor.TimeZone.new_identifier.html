@@ -1,0 +1,242 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/ctor.TimeZone.new_identifier.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.TimeZone.new_identifier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.TimeZone.new_identifier">
+  <meta property="og:description" content="Reference for GLib.TimeZone.new_identifier">
+  <meta name="twitter:title" content="GLib.TimeZone.new_identifier">
+  <meta name="twitter:description" content="Reference for GLib.TimeZone.new_identifier">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.TimeZone.html">TimeZone</a><span class="sep"></span>new_identifier</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.68</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtimezone.h#L61">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GTimeZone</span><span class="o">*</span>
+<span class="n">g_time_zone_new_identifier</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">identifier</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtimezone.c#L1756">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Creates a <code>GTimeZone</code> corresponding to <code>identifier</code>. If <code>identifier</code> cannot be
+parsed or loaded, <code>NULL</code> is&nbsp;returned.</p>
+<p><code>identifier</code> can either be an <span class="caps">RFC3339</span>/<span class="caps">ISO</span> 8601 time offset or
+something that would pass as a valid value for the <code>TZ</code> environment
+variable (including <code>NULL</code>).</p>
+<p>In Windows, <code>identifier</code> can also be the unlocalized name of a time
+zone for standard time, for example “Pacific Standard&nbsp;Time”.</p>
+<p>Valid <span class="caps">RFC3339</span> time offsets are <code>"Z"</code> (for <span class="caps">UTC</span>) or
+<code>"±hh:mm"</code>.  <span class="caps">ISO</span> 8601 additionally specifies
+<code>"±hhmm"</code> and <code>"±hh"</code>.  Offsets are
+time values to be added to Coordinated Universal Time (<span class="caps">UTC</span>) to get
+the local&nbsp;time.</p>
+<p>In <span class="caps">UNIX</span>, the <code>TZ</code> environment variable typically corresponds
+to the name of a file in the zoneinfo database, an absolute path to a file
+somewhere else, or a string in
+“std offset [dst [offset],start[/time],end[/time]]” (<span class="caps">POSIX</span>) format.
+There  are  no spaces in the specification. The name of standard
+and daylight savings time zone must be three or more alphabetic
+characters. Offsets are time values to be added to local time to
+get Coordinated Universal Time (<span class="caps">UTC</span>) and should be
+<code>"[±]hh[[:]mm[:ss]]"</code>.  Dates are either
+<code>"Jn"</code> (Julian day with n between 1 and 365, leap
+years not counted), <code>"n"</code> (zero-based Julian day
+with n between 0 and 365) or <code>"Mm.w.d"</code> (day d
+(0 &lt;= d &lt;= 6) of week w (1 &lt;= w &lt;= 5) of month m (1 &lt;= m &lt;= 12), day
+0 is a Sunday).  Times are in local wall clock time, the default is&nbsp;02:00:00.</p>
+<p>In Windows, the “tzn[+|–]hh[:mm[:ss]][dzn]” format is used, but also
+accepts <span class="caps">POSIX</span> format.  The Windows format uses <span class="caps">US</span> rules for all time
+zones; daylight savings time is 60 minutes behind the standard time
+with date and time of change taken from Pacific Standard Time.
+Offsets are time values to be added to the local time to get
+Coordinated Universal Time (<span class="caps">UTC</span>).</p>
+<p><code>g_time_zone_new_local()</code> calls this function with the value of the
+<code>TZ</code> environment variable. This function itself is independent of
+the value of <code>TZ</code>, but if <code>identifier</code> is <code>NULL</code> then <code>/etc/localtime</code>
+will be consulted to discover the correct time zone on <span class="caps">UNIX</span> and the
+registry will be consulted or GetTimeZoneInformation() will be used
+to get the local time zone on&nbsp;Windows.</p>
+<p>If intervals are not available, only time zone rules from <code>TZ</code>
+environment variable or other means, then they will be computed
+from year 1900 to 2037.  If the maximum year for the rules is
+available and it is greater than 2037, then it will followed&nbsp;instead.</p>
+<p>See
+<a href="http://tools.ietf.org/html/rfc3339#section-5.6"><span class="caps">RFC3339</span> §5.6</a>
+for a precise definition of valid <span class="caps">RFC3339</span> time offsets
+(the <code>time-offset</code> expansion) and <span class="caps">ISO</span> 8601 for the
+full list of valid time offsets.  See
+<a href="http://www.gnu.org/s/libc/manual/html_node/TZ-Variable.html">The <span class="caps">GNU</span> C Library manual</a>
+for an explanation of the possible
+values of the <code>TZ</code> environment variable. See
+<a href="http://msdn.microsoft.com/en-us/library/ms912391(v=winembedded.11).aspx">Microsoft Time Zone Index Values</a>
+for the list of time zones on&nbsp;Windows.</p>
+<p>You should release the return value by calling <code>g_time_zone_unref()</code>
+when you are done with&nbsp;it.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.68</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>identifier</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>A timezone&nbsp;identifier.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.TimeZone.html"><code>GTimeZone</code></a></p>
+            <p>The requested timezone, or <code>NULL</code> on&nbsp;failure.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
+            <tr><td>The return value can be <code>NULL</code>.</td></tr>
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/ctor.TimeZone.new_identifier.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --></html>

@@ -1,0 +1,212 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/flags.TestSubprocessFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.TestSubprocessFlags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.TestSubprocessFlags">
+  <meta property="og:description" content="Reference for GLib.TestSubprocessFlags">
+  <meta name="twitter:title" content="GLib.TestSubprocessFlags">
+  <meta name="twitter:description" content="Reference for GLib.TestSubprocessFlags">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>TestSubprocessFlags</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>flags GLib.TestSubprocessFlags</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.c#L194">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Flags to pass to <a href="func.test_trap_subprocess.html"><code>g_test_trap_subprocess()</code></a> to control input and&nbsp;output.</p>
+<p>Note that in contrast with <a href="func.test_trap_fork.html"><code>g_test_trap_fork()</code></a>, the default
+behavior of <a href="func.test_trap_subprocess.html"><code>g_test_trap_subprocess()</code></a> is to not show stdout
+and&nbsp;stderr.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="default">G_TEST_SUBPROCESS_DEFAULT</code>
+            <a class="anchor" href="#default"></a>
+          </dt>
+          <dd>
+            <div><p>Default behaviour. Since:&nbsp;2.74.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="inherit_stdin">G_TEST_SUBPROCESS_INHERIT_STDIN</code>
+            <a class="anchor" href="#inherit_stdin"></a>
+          </dt>
+          <dd>
+            <div><p>If this flag is given, the child
+  process will inherit the parent’s stdin. Otherwise, the child’s
+  stdin is redirected to <code>/dev/null</code>.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="inherit_stdout">G_TEST_SUBPROCESS_INHERIT_STDOUT</code>
+            <a class="anchor" href="#inherit_stdout"></a>
+          </dt>
+          <dd>
+            <div><p>If this flag is given, the child
+  process will inherit the parent’s stdout. Otherwise, the child’s
+  stdout will not be visible, but it will be captured to allow
+  later tests with <a href="func.test_trap_assert_stdout.html"><code>g_test_trap_assert_stdout()</code></a>.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="inherit_stderr">G_TEST_SUBPROCESS_INHERIT_STDERR</code>
+            <a class="anchor" href="#inherit_stderr"></a>
+          </dt>
+          <dd>
+            <div><p>If this flag is given, the child
+  process will inherit the parent’s stderr. Otherwise, the child’s
+  stderr will not be visible, but it will be captured to allow
+  later tests with <a href="func.test_trap_assert_stderr.html"><code>g_test_trap_assert_stderr()</code></a>.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      <li class="toc-list-item"><a href="#members"><span class="link-text">Members</span></a></li>
+      
+
+      
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/flags.TestSubprocessFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

@@ -1,0 +1,196 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.GNUC_SCANF.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.GNUC_SCANF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.GNUC_SCANF">
+  <meta property="og:description" content="Reference for GLib.GNUC_SCANF">
+  <meta name="twitter:title" content="GLib.GNUC_SCANF">
+  <meta name="twitter:description" content="Reference for GLib.GNUC_SCANF">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function Macro</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>GNUC_SCANF</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmacros.h#L591">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="cp">#define G_GNUC_SCANF (</span>
+<span class="w">  </span><span class="n">format_idx</span><span class="p">,</span>
+<span class="w">  </span><span class="n">arg_idx</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmacros.h#L437">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Expands to the <span class="caps">GNU</span> C <code>format</code> function attribute if the compiler is gcc.
+This is used for declaring functions which take a variable number of
+arguments, with the same syntax as <code>scanf()</code>. It allows the compiler
+to type-check the arguments passed to the&nbsp;function.</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">my_scanf</span><span class="w"> </span><span class="p">(</span><span class="n">MyStream</span><span class="w"> </span><span class="o">*</span><span class="n">stream</span><span class="p">,</span>
+<span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span>
+<span class="w">              </span><span class="p">...)</span><span class="w"> </span><span class="n">G_GNUC_SCANF</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">my_vscanf</span><span class="w"> </span><span class="p">(</span><span class="n">MyStream</span><span class="w"> </span><span class="o">*</span><span class="n">stream</span><span class="p">,</span>
+<span class="w">               </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span>
+<span class="w">               </span><span class="kt">va_list</span><span class="w"> </span><span class="n">ap</span><span class="p">)</span><span class="w"> </span><span class="n">G_GNUC_SCANF</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+
+<p>See the
+<a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-Wformat-3288"><span class="caps">GNU</span> C documentation</a>
+for&nbsp;details.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>format_idx</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>The index of the argument corresponding to
+    the format string (the arguments are numbered from&nbsp;1).</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>arg_idx</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>The index of the first of the format arguments, or 0 if
+    there are no format&nbsp;arguments.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.GNUC_SCANF.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

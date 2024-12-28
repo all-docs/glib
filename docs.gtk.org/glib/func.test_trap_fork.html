@@ -1,0 +1,235 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.test_trap_fork.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.test_trap_fork</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.test_trap_fork">
+  <meta property="og:description" content="Reference for GLib.test_trap_fork">
+  <meta name="twitter:title" content="GLib.test_trap_fork">
+  <meta name="twitter:description" content="Reference for GLib.test_trap_fork">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>test_trap_fork</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem deprecated">deprecated: Unknown</span>&nbsp;<span class="emblem available">since: 2.16</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.h#L534">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gboolean</span>
+<span class="n">g_test_trap_fork</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">guint64</span><span class="w"> </span><span class="n">usec_timeout</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GTestTrapFlags</span><span class="w"> </span><span class="n">test_trap_flags</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.c#L3882">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Forks the current test program to execute a test case that might
+not return or that might&nbsp;abort.</p>
+<p>If <code>usec_timeout</code> is non-0, the forked test case is aborted and
+considered failing if its run time exceeds&nbsp;it.</p>
+<p>The forking behavior can be configured with <a href="flags.TestTrapFlags.html"><code>GTestTrapFlags</code></a>&nbsp;flags.</p>
+<p>In the following example, the test code forks, the forked child
+process produces some sample output and exits successfully.
+The forking parent process then asserts successful child program
+termination and validates child program&nbsp;outputs.</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="w">  </span><span class="nf">test_fork_patterns</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_test_trap_fork</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">G_TEST_TRAP_SILENCE_STDOUT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">G_TEST_TRAP_SILENCE_STDERR</span><span class="p">))</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">g_print</span><span class="w"> </span><span class="p">(</span><span class="s">"some stdout text: somagic17</span>
+<span class="s">");</span>
+<span class="w">        </span><span class="n">g_printerr</span><span class="w"> </span><span class="p">(</span><span class="s">"some stderr text: semagic43</span>
+<span class="s">");</span>
+<span class="w">        </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// successful test run</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="n">g_test_trap_assert_passed</span><span class="w"> </span><span class="p">();</span>
+<span class="w">    </span><span class="n">g_test_trap_assert_stdout</span><span class="w"> </span><span class="p">(</span><span class="s">"*somagic17*"</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_test_trap_assert_stderr</span><span class="w"> </span><span class="p">(</span><span class="s">"*semagic43*"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.16</p>
+        <div class="admonition deprecation">
+          <p class="admonition-title">Deprecated since: Unknown</p><p>This function is implemented only on Unix platforms,
+is not always reliable due to problems inherent in fork-without-exec
+and doesn’t set close-on-exec flag on its file descriptors.
+Use func@GLib.test_trap_subprocess]&nbsp;instead.</p></div>
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>usec_timeout</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>guint64</code></p>
+            <p>Timeout for the forked test in&nbsp;microseconds.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>test_trap_flags</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="flags.TestTrapFlags.html"><code>GTestTrapFlags</code></a></p>
+            <p>Flags to modify forking&nbsp;behaviour.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p>True for the forked child and false for the executing parent&nbsp;process.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.test_trap_fork.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

@@ -1,0 +1,287 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Rand.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Rand</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Rand">
+  <meta property="og:description" content="Reference for GLib.Rand">
+  <meta name="twitter:title" content="GLib.Rand">
+  <meta name="twitter:description" content="Reference for GLib.Rand">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>Rand</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/grand.c#L65">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GRand</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The GRand struct is an opaque data structure. It should only be
+accessed through the g_rand_*&nbsp;functions.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.Rand.new.html">g_rand_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new random number generator initialized with a seed taken
+either from <code>/dev/urandom</code> (if existing) or from the current time
+(as a&nbsp;fallback).</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Rand.new_with_seed.html">g_rand_new_with_seed</a></h6>
+          <div class="docblock">
+            <p>Creates a new random number generator initialized with <code>seed</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Rand.new_with_seed_array.html">g_rand_new_with_seed_array</a></h6>
+          <div class="docblock">
+            <p>Creates a new random number generator initialized with <code>seed</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.4</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Rand.copy.html">g_rand_copy</a></h6>
+          <div class="docblock">
+            <p>Copies a <code>GRand</code> into a new one with the same exact state as before.
+This way you can take a snapshot of the random number generator for
+replaying&nbsp;later.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.4</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Rand.double.html">g_rand_double</a></h6>
+          <div class="docblock">
+            <p>Returns the next random #gdouble from <code>rand_</code> equally distributed over
+the range&nbsp;[0..1).</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Rand.double_range.html">g_rand_double_range</a></h6>
+          <div class="docblock">
+            <p>Returns the next random #gdouble from <code>rand_</code> equally distributed over
+the range [<code>begin</code>..<code>end</code>).</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Rand.free.html">g_rand_free</a></h6>
+          <div class="docblock">
+            <p>Frees the memory allocated for the <code>GRand</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Rand.int.html">g_rand_int</a></h6>
+          <div class="docblock">
+            <p>Returns the next random #guint32 from <code>rand_</code> equally distributed over
+the range&nbsp;[0..2^32-1].</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Rand.int_range.html">g_rand_int_range</a></h6>
+          <div class="docblock">
+            <p>Returns the next random #gint32 from <code>rand_</code> equally distributed over
+the range [<code>begin</code>..<code>end</code>-1].</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Rand.set_seed.html">g_rand_set_seed</a></h6>
+          <div class="docblock">
+            <p>Sets the seed for the random number generator <code>GRand</code> to <code>seed</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Rand.set_seed_array.html">g_rand_set_seed_array</a></h6>
+          <div class="docblock">
+            <p>Initializes the random number generator by an array of longs.
+Array can be of arbitrary size, though only the first 624 values
+are taken.  This function is useful if you have many low entropy
+seeds, or if you require more then 32 bits of actual entropy for
+your&nbsp;application.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.4</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Rand.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

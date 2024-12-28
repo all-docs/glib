@@ -1,0 +1,211 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/file-utils.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: File Utilities</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: File Utilities">
+  <meta property="og:description" content="Reference for GLib-2.0: File Utilities">
+  <meta name="twitter:title" content="GLib: File Utilities">
+  <meta name="twitter:description" content="Reference for GLib-2.0: File Utilities">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    File Utilities
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="file-utilities">File Utilities<a class="md-anchor" href="#file-utilities" title="Permanent link"></a></h1>
+<p>Do not use these APIs unless you are porting a <span class="caps">POSIX</span> application to Windows.
+A more high-level file access <span class="caps">API</span> is provided as <span class="caps">GIO</span>; see the documentation
+for <a href="https://docs.gtk.org/gio/iface.File.html"><code>GFile</code></a>.</p>
+<h2 id="posix-file-wrappers">POSIX File Wrappers<a class="md-anchor" href="#posix-file-wrappers" title="Permanent link"></a></h2>
+<p>There is a group of functions which wrap the common <span class="caps">POSIX</span> functions
+dealing with&nbsp;filenames:</p>
+<ul>
+<li><a href="func.access.html"><code>g_access()</code></a></li>
+<li><a href="func.chdir.html"><code>g_chdir()</code></a></li>
+<li><a href="func.chmod.html"><code>g_chmod()</code></a></li>
+<li><a href="func.close.html"><code>g_close()</code></a></li>
+<li><a href="func.creat.html"><code>g_creat()</code></a></li>
+<li><a href="func.fopen.html"><code>g_fopen()</code></a>,</li>
+<li><a href="func.freopen.html"><code>g_freopen()</code></a></li>
+<li><a href="func.fsync.html"><code>g_fsync()</code></a></li>
+<li><a href="func.lstat.html"><code>g_lstat()</code></a></li>
+<li><a href="func.mkdir.html"><code>g_mkdir()</code></a></li>
+<li><a href="func.open.html"><code>g_open()</code></a></li>
+<li><a href="func.remove.html"><code>g_remove()</code></a></li>
+<li><a href="func.rename.html"><code>g_rename()</code></a></li>
+<li><a href="func.rmdir.html"><code>g_rmdir()</code></a></li>
+<li><a href="func.stat.html"><code>g_stat()</code></a></li>
+<li><a href="func.unlink.html"><code>g_unlink()</code></a></li>
+<li><a href="func.utime.html"><code>g_utime()</code></a></li>
+</ul>
+<p>The point of these wrappers is to make it possible to handle file names with any
+Unicode characters in them on Windows without having to use <code>#ifdef</code>s and the
+wide character <span class="caps">API</span> in the application&nbsp;code.</p>
+<p>On some Unix systems, these APIs may be defined as identical to their <span class="caps">POSIX</span>
+counterparts. For this reason, you must check for and include the necessary
+header files (such as <code>fcntl.h</code>) before using functions like <a href="func.creat.html"><code>g_creat()</code></a>.
+You must also define the relevant feature test&nbsp;macros.</p>
+<p>The pathname argument should be in the GLib file name encoding.
+On <span class="caps">POSIX</span> this is the actual on-disk encoding which might correspond
+to the locale settings of the process (or the <code>G_FILENAME_ENCODING</code>
+environment variable), or&nbsp;not.</p>
+<p>On Windows the GLib file name encoding is <span class="caps">UTF</span>-8. Note that the
+Microsoft C library does not use <span class="caps">UTF</span>-8, but has separate APIs for
+current system code page and wide characters (<span class="caps">UTF</span>-16). The GLib
+wrappers call the wide character <span class="caps">API</span> if present (on modern Windows
+systems), otherwise convert to/from the system code&nbsp;page.</p>
+<h2 id="posix-directory-wrappers">POSIX Directory Wrappers<a class="md-anchor" href="#posix-directory-wrappers" title="Permanent link"></a></h2>
+<p>Another group of functions allows to open and read directories
+in the GLib file name&nbsp;encoding:</p>
+<ul>
+<li><a href="ctor.Dir.open.html"><code>g_dir_open()</code></a></li>
+<li><a href="method.Dir.read_name.html"><code>g_dir_read_name()</code></a></li>
+<li><a href="method.Dir.rewind.html"><code>g_dir_rewind()</code></a></li>
+<li><a href="method.Dir.close.html"><code>g_dir_close()</code></a></li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="md-anchor" href="#error-handling" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.file_error_from_errno.html"><code>g_file_error_from_errno()</code></a></li>
+</ul>
+<h2 id="settinggetting-file-contents">Setting/Getting File Contents<a class="md-anchor" href="#settinggetting-file-contents" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.file_get_contents.html"><code>g_file_get_contents()</code></a></li>
+<li><a href="func.file_set_contents.html"><code>g_file_set_contents()</code></a></li>
+<li><a href="func.file_set_contents_full.html"><code>g_file_set_contents_full()</code></a></li>
+</ul>
+<h2 id="file-tests">File Tests<a class="md-anchor" href="#file-tests" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.file_test.html"><code>g_file_test()</code></a></li>
+<li><a href="func.file_read_link.html"><code>g_file_read_link()</code></a></li>
+</ul>
+<h2 id="temporary-file-handling">Temporary File Handling<a class="md-anchor" href="#temporary-file-handling" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.mkdtemp.html"><code>g_mkdtemp()</code></a></li>
+<li><a href="func.mkdtemp_full.html"><code>g_mkdtemp_full()</code></a></li>
+<li><a href="func.mkstemp.html"><code>g_mkstemp()</code></a></li>
+<li><a href="func.mkstemp_full.html"><code>g_mkstemp_full()</code></a></li>
+<li><a href="func.file_open_tmp.html"><code>g_file_open_tmp()</code></a></li>
+<li><a href="method.Dir.g_make_tmp.html"><code>g_dir_make_tmp()</code></a></li>
+</ul>
+<h2 id="building-and-manipulating-paths">Building and Manipulating Paths<a class="md-anchor" href="#building-and-manipulating-paths" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.build_path.html"><code>g_build_path()</code></a></li>
+<li><a href="func.build_pathv.html"><code>g_build_pathv()</code></a></li>
+<li><a href="func.build_filename.html"><code>g_build_filename()</code></a></li>
+<li><a href="func.build_filenamev.html"><code>g_build_filenamev()</code></a></li>
+<li><a href="func.build_filename_valist.html"><code>g_build_filename_valist()</code></a></li>
+<li><a href="func.IS_DIR_SEPARATOR.html"><code>G_IS_DIR_SEPARATOR()</code></a></li>
+<li><a href="func.path_is_absolute.html"><code>g_path_is_absolute()</code></a></li>
+<li><a href="func.path_skip_root.html"><code>g_path_skip_root()</code></a></li>
+<li><a href="func.get_current_dir.html"><code>g_get_current_dir()</code></a></li>
+<li><a href="func.path_get_basename.html"><code>g_path_get_basename()</code></a></li>
+<li><a href="func.path_get_dirname.html"><code>g_path_get_dirname()</code></a></li>
+<li><a href="func.canonicalize_filename.html"><code>g_canonicalize_filename()</code></a></li>
+</ul>
+<h2 id="creating-directories">Creating Directories<a class="md-anchor" href="#creating-directories" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.mkdir_with_parents.html"><code>g_mkdir_with_parents()</code></a></li>
+</ul>
+<h2 id="deprecated-api">Deprecated API<a class="md-anchor" href="#deprecated-api" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.basename.html"><code>g_basename()</code></a></li>
+</ul>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#posix-file-wrappers"><span class="link-text">POSIX File Wrappers</span></a></li>
+        
+        <li class="toc-list-item"><a href="#posix-directory-wrappers"><span class="link-text">POSIX Directory Wrappers</span></a></li>
+        
+        <li class="toc-list-item"><a href="#error-handling"><span class="link-text">Error Handling</span></a></li>
+        
+        <li class="toc-list-item"><a href="#settinggetting-file-contents"><span class="link-text">Setting/Getting File Contents</span></a></li>
+        
+        <li class="toc-list-item"><a href="#file-tests"><span class="link-text">File Tests</span></a></li>
+        
+        <li class="toc-list-item"><a href="#temporary-file-handling"><span class="link-text">Temporary File Handling</span></a></li>
+        
+        <li class="toc-list-item"><a href="#building-and-manipulating-paths"><span class="link-text">Building and Manipulating Paths</span></a></li>
+        
+        <li class="toc-list-item"><a href="#creating-directories"><span class="link-text">Creating Directories</span></a></li>
+        
+        <li class="toc-list-item"><a href="#deprecated-api"><span class="link-text">Deprecated API</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/file-utils.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

@@ -1,0 +1,268 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.OptionGroup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.OptionGroup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.OptionGroup">
+  <meta property="og:description" content="Reference for GLib.OptionGroup">
+  <meta name="twitter:title" content="GLib.OptionGroup">
+  <meta name="twitter:description" content="Reference for GLib.OptionGroup">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>OptionGroup</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/goption.h#L42">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GOptionGroup</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>A <code>GOptionGroup</code> struct defines the options in a single
+group. The struct has only private fields and should not be directly&nbsp;accessed.</p>
+<p>All options in a group share the same translation function. Libraries which
+need to parse commandline options are expected to provide a function for
+getting a <code>GOptionGroup</code> holding their options, which
+the application can then add to its <code>GOptionContext</code>.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.OptionGroup.new.html">g_option_group_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GOptionGroup</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.OptionGroup.add_entries.html">g_option_group_add_entries</a></h6>
+          <div class="docblock">
+            <p>Adds the options specified in <code>entries</code> to <code>group</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.OptionGroup.free.html">g_option_group_free</a></h6>
+          <div class="docblock">
+            <p>Frees a <code>GOptionGroup</code>. Note that you must not free groups
+which have been added to a <code>GOptionContext</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.44</span>&nbsp;<span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionGroup.ref.html">g_option_group_ref</a></h6>
+          <div class="docblock">
+            <p>Increments the reference count of <code>group</code> by&nbsp;one.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.44</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionGroup.set_error_hook.html">g_option_group_set_error_hook</a></h6>
+          <div class="docblock">
+            <p>Associates a function with <code>group</code> which will be called
+from <code>g_option_context_parse()</code> when an error&nbsp;occurs.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionGroup.set_parse_hooks.html">g_option_group_set_parse_hooks</a></h6>
+          <div class="docblock">
+            <p>Associates two functions with <code>group</code> which will be called
+from <code>g_option_context_parse()</code> before the first option is parsed
+and after the last option has been parsed,&nbsp;respectively.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionGroup.set_translate_func.html">g_option_group_set_translate_func</a></h6>
+          <div class="docblock">
+            <p>Sets the function which is used to translate user-visible strings,
+for <code>--help</code> output. Different groups can use different
+<code>GTranslateFuncs</code>. If <code>func</code> is <code>NULL</code>, strings are not&nbsp;translated.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionGroup.set_translation_domain.html">g_option_group_set_translation_domain</a></h6>
+          <div class="docblock">
+            <p>A convenience function to use <code>gettext()</code> for translating
+user-visible&nbsp;strings.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionGroup.unref.html">g_option_group_unref</a></h6>
+          <div class="docblock">
+            <p>Decrements the reference count of <code>group</code> by one.
+If the reference count drops to 0, the <code>group</code> will be freed.
+and all memory allocated by the <code>group</code> is&nbsp;released.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.44</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.OptionGroup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

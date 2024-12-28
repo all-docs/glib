@@ -1,0 +1,225 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.pointer_bit_unlock_and_set.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.pointer_bit_unlock_and_set</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.pointer_bit_unlock_and_set">
+  <meta property="og:description" content="Reference for GLib.pointer_bit_unlock_and_set">
+  <meta name="twitter:title" content="GLib.pointer_bit_unlock_and_set">
+  <meta name="twitter:description" content="Reference for GLib.pointer_bit_unlock_and_set">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>pointer_bit_unlock_and_set</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.80</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gbitlock.h#L68">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_pointer_bit_unlock_and_set</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">address</span><span class="p">,</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">lock_bit</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">ptr</span><span class="p">,</span>
+<span class="w">  </span><span class="n">guintptr</span><span class="w"> </span><span class="n">preserve_mask</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gbitlock.c#L649">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>This is equivalent to <code>g_pointer_bit_unlock()</code> and atomically setting
+the pointer&nbsp;value.</p>
+<p>Note that the lock bit will be cleared from the pointer. If the unlocked
+pointer that was set is not identical to <code>ptr</code>, an assertion fails. In other
+words, <code>ptr</code> must have <code>lock_bit</code> unset. This also means, you usually can
+only use this on the lowest&nbsp;bits.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.80</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>address</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>void*</code></p>
+            <p>A pointer to a #gpointer-sized&nbsp;value.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>lock_bit</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>guint</code></p>
+            <p>A bit value between 0 and&nbsp;31.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>ptr</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>The new pointer value to&nbsp;set.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>preserve_mask</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>guintptr</code></p>
+            <p>If non-zero, those bits of the current pointer in <code>address</code>
+  are preserved.
+  Note that the <code>lock_bit</code> bit will be always set according to <code>set</code>,
+  regardless of <code>preserve_mask</code> and the currently set value in <code>address</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.pointer_bit_unlock_and_set.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

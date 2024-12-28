@@ -1,0 +1,132 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/version.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Version Information</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Version Information">
+  <meta property="og:description" content="Reference for GLib-2.0: Version Information">
+  <meta name="twitter:title" content="GLib: Version Information">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Version Information">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Version Information
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="version-information">Version Information<a class="md-anchor" href="#version-information" title="Permanent link"></a></h1>
+<p>GLib provides version information, primarily useful in configure
+checks for builds that have a configure script. Applications will
+not typically use the features described&nbsp;here.</p>
+<h2 id="run-time-version-numbers">Run-time Version Numbers<a class="md-anchor" href="#run-time-version-numbers" title="Permanent link"></a></h2>
+<p>The variables <code>glib_major_version</code>, <code>glib_minor_version</code>, <code>glib_micro_version</code>,
+<code>glib_binary_age</code> and <code>glib_interface_age</code> are all available to&nbsp;check.</p>
+<p>They can be compared using the function <a href="func.check_version.html"><code>glib_check_version()</code></a>.</p>
+<h2 id="compile-time-version-numbers">Compile-time Version Numbers<a class="md-anchor" href="#compile-time-version-numbers" title="Permanent link"></a></h2>
+<ul>
+<li><a href="const.MAJOR_VERSION.html"><code>GLIB_MAJOR_VERSION</code></a></li>
+<li><a href="const.MINOR_VERSION.html"><code>GLIB_MINOR_VERSION</code></a></li>
+<li><a href="const.MICRO_VERSION.html"><code>GLIB_MICRO_VERSION</code></a></li>
+<li><a href="func.CHECK_VERSION-2.html"><code>GLIB_CHECK_VERSION()</code></a></li>
+</ul>
+<h2 id="version-numbers">Version Numbers<a class="md-anchor" href="#version-numbers" title="Permanent link"></a></h2>
+<p>The GLib headers annotate deprecated APIs in a way that produces
+compiler warnings if these deprecated APIs are used. The warnings
+can be turned off by defining the macro <code>GLIB_DISABLE_DEPRECATION_WARNINGS</code>
+before including the <code>glib.h</code> header.</p>
+<p>GLib also provides support for building applications against
+defined subsets of deprecated or new GLib APIs. Define the macro
+<code>GLIB_VERSION_MIN_REQUIRED</code> to specify up to what version of GLib
+you want to receive warnings about deprecated APIs. Define the
+macro <code>GLIB_VERSION_MAX_ALLOWED</code> to specify the newest version of
+GLib whose <span class="caps">API</span> you want to&nbsp;use.</p>
+<p>The macros <code>GLIB_VERSION_2_2</code>, <code>GLIB_VERSION_2_4</code>, …, <code>GLIB_VERSION_2_80</code>, etc.
+are defined automatically in each release, and can be used to set the value
+of macros like <code>GLIB_VERSION_MIN_REQUIRED</code>.</p>
+<p>The macros <code>GLIB_VERSION_CUR_STABLE</code> and <code>GLIB_VERSION_PREV_STABLE</code> are also
+automatically defined to point to the right version&nbsp;definitions.</p>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#run-time-version-numbers"><span class="link-text">Run-time Version Numbers</span></a></li>
+        
+        <li class="toc-list-item"><a href="#compile-time-version-numbers"><span class="link-text">Compile-time Version Numbers</span></a></li>
+        
+        <li class="toc-list-item"><a href="#version-numbers"><span class="link-text">Version Numbers</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/version.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

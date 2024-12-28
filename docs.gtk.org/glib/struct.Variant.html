@@ -1,0 +1,1360 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Variant.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Variant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Variant">
+  <meta property="og:description" content="Reference for GLib.Variant">
+  <meta name="twitter:title" content="GLib.Variant">
+  <meta name="twitter:description" content="Reference for GLib.Variant">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>Variant</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem available">since: 2.24</span></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.c#L38">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GVariant</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p><code>GVariant</code> is a variant datatype; it can contain one or more values
+along with information about the type of the&nbsp;values.</p>
+<p>A <code>GVariant</code> may contain simple types, like an integer, or a boolean value;
+or complex types, like an array of two strings, or a dictionary of key
+value pairs. A <code>GVariant</code> is also immutable: once it’s been created neither
+its type nor its content can be modified&nbsp;further.</p>
+<p><code>GVariant</code> is useful whenever data needs to be serialized, for example when
+sending method parameters in D-Bus, or when saving settings using
+<a href="https://docs.gtk.org/gio/class.Settings.html"><code>GSettings</code></a>.</p>
+<p>When creating a new <code>GVariant</code>, you pass the data you want to store in it
+along with a string representing the type of data you wish to pass to&nbsp;it.</p>
+<p>For instance, if you want to create a <code>GVariant</code> holding an integer value you
+can&nbsp;use:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">GVariant</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_variant_new</span><span class="w"> </span><span class="p">(</span><span class="s">"u"</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">);</span>
+</code></pre></div>
+
+<p>The string <code>u</code> in the first argument tells <code>GVariant</code> that the data passed to
+the constructor (<code>40</code>) is going to be an unsigned&nbsp;integer.</p>
+<p>More advanced examples of <code>GVariant</code> in use can be found in documentation for
+<a href="gvariant-format-strings.html#pointers"><code>GVariant</code> format strings</a>.</p>
+<p>The range of possible values is determined by the&nbsp;type.</p>
+<p>The type system used by <code>GVariant</code> is <a href="struct.VariantType.html"><code>GVariantType</code></a>.</p>
+<p><code>GVariant</code> instances always have a type and a value (which are given
+at construction time).  The type and value of a <code>GVariant</code> instance
+can never change other than by the <code>GVariant</code> itself being
+destroyed.  A <code>GVariant</code> cannot contain a&nbsp;pointer.</p>
+<p><code>GVariant</code> is reference counted using <a href="method.Variant.ref.html"><code>g_variant_ref()</code></a> and
+<a href="method.Variant.unref.html"><code>g_variant_unref()</code></a>.  <code>GVariant</code> also has floating reference counts —
+see <a href="method.Variant.ref_sink.html"><code>g_variant_ref_sink()</code></a>.</p>
+<p><code>GVariant</code> is completely threadsafe.  A <code>GVariant</code> instance can be
+concurrently accessed in any way from any number of threads without&nbsp;problems.</p>
+<p><code>GVariant</code> is heavily optimised for dealing with data in serialized
+form.  It works particularly well with data located in memory-mapped
+files.  It can perform nearly all deserialization operations in a
+small constant time, usually touching only a single memory page.
+Serialized <code>GVariant</code> data can also be sent over the&nbsp;network.</p>
+<p><code>GVariant</code> is largely compatible with D-Bus.  Almost all types of
+<code>GVariant</code> instances can be sent over D-Bus.  See <a href="struct.VariantType.html"><code>GVariantType</code></a> for
+exceptions.  (However, <code>GVariant</code>’s serialization format is not the same
+as the serialization format of a D-Bus message body: use
+<a href="https://docs.gtk.org/gio/class.DBusMessage.html">GDBusMessage</a>, in the <span class="caps">GIO</span> library, for&nbsp;those.)</p>
+<p>For space-efficiency, the <code>GVariant</code> serialization format does not
+automatically include the variant’s length, type or endianness,
+which must either be implied from context (such as knowledge that a
+particular file format always contains a little-endian
+<code>G_VARIANT_TYPE_VARIANT</code> which occupies the whole length of the file)
+or supplied out-of-band (for instance, a length, type and/or endianness
+indicator could be placed at the beginning of a file, network message
+or network&nbsp;stream).</p>
+<p>A <code>GVariant</code>’s size is limited mainly by any lower level operating
+system constraints, such as the number of bits in <code>gsize</code>.  For
+example, it is reasonable to have a <span class="caps">2GB</span> file mapped into memory
+with <a href="struct.MappedFile.html"><code>GMappedFile</code></a>, and call <a href="ctor.Variant.new_from_data.html"><code>g_variant_new_from_data()</code></a> on&nbsp;it.</p>
+<p>For convenience to C programmers, <code>GVariant</code> features powerful
+varargs-based value construction and destruction.  This feature is
+designed to be embedded in other&nbsp;libraries.</p>
+<p>There is a Python-inspired text language for describing <code>GVariant</code>
+values.  <code>GVariant</code> includes a printer for this language and a parser
+with type&nbsp;inferencing.</p>
+<h2 id="memory-use">Memory Use<a class="md-anchor" href="#memory-use" title="Permanent link"></a></h2>
+<p><code>GVariant</code> tries to be quite efficient with respect to memory use.
+This section gives a rough idea of how much memory is used by the
+current implementation.  The information here is subject to change
+in the&nbsp;future.</p>
+<p>The memory allocated by <code>GVariant</code> can be grouped into 4 broad
+purposes: memory for serialized data, memory for the type
+information cache, buffer management memory and memory for the
+<code>GVariant</code> structure&nbsp;itself.</p>
+<h2 id="serialized-data-memory">Serialized Data Memory<a class="md-anchor" href="#serialized-data-memory" title="Permanent link"></a></h2>
+<p>This is the memory that is used for storing <code>GVariant</code> data in
+serialized form.  This is what would be sent over the network or
+what would end up on disk, not counting any indicator of the
+endianness, or of the length or type of the top-level&nbsp;variant.</p>
+<p>The amount of memory required to store a boolean is 1 byte. 16,
+32 and 64 bit integers and double precision floating point numbers
+use their ‘natural’ size.  Strings (including object path and
+signature strings) are stored with a nul terminator, and as such
+use the length of the string plus 1&nbsp;byte.</p>
+<p>‘Maybe’ types use no space at all to represent the null value and
+use the same amount of space (sometimes plus one byte) as the
+equivalent non-maybe-typed value to represent the non-null&nbsp;case.</p>
+<p>Arrays use the amount of space required to store each of their
+members, concatenated.  Additionally, if the items stored in an
+array are not of a fixed-size (ie: strings, other arrays, etc)
+then an additional framing offset is stored for each item.  The
+size of this offset is either 1, 2 or 4 bytes depending on the
+overall size of the container.  Additionally, extra padding bytes
+are added as required for alignment of child&nbsp;values.</p>
+<p>Tuples (including dictionary entries) use the amount of space
+required to store each of their members, concatenated, plus one
+framing offset (as per arrays) for each non-fixed-sized item in
+the tuple, except for the last one.  Additionally, extra padding
+bytes are added as required for alignment of child&nbsp;values.</p>
+<p>Variants use the same amount of space as the item inside of the
+variant, plus 1 byte, plus the length of the type string for the
+item inside the&nbsp;variant.</p>
+<p>As an example, consider a dictionary mapping strings to variants.
+In the case that the dictionary is empty, 0 bytes are required for
+the&nbsp;serialization.</p>
+<p>If we add an item ‘width’ that maps to the int32 value of 500 then
+we will use 4 bytes to store the int32 (so 6 for the variant
+containing it) and 6 bytes for the string.  The variant must be
+aligned to 8 after the 6 bytes of the string, so that’s 2 extra
+bytes.  6 (string) + 2 (padding) + 6 (variant) is 14 bytes used
+for the dictionary entry.  An additional 1 byte is added to the
+array as a framing offset making a total of 15&nbsp;bytes.</p>
+<p>If we add another entry, ‘title’ that maps to a nullable string
+that happens to have a value of null, then we use 0 bytes for the
+null value (and 3 bytes for the variant to contain it along with
+its type string) plus 6 bytes for the string.  Again, we need 2
+padding bytes.  That makes a total of 6 + 2 + 3 = 11&nbsp;bytes.</p>
+<p>We now require extra padding between the two items in the array.
+After the 14 bytes of the first item, that’s 2 bytes required.
+We now require 2 framing offsets for an extra two
+bytes. 14 + 2 + 11 + 2 = 29 bytes to encode the entire two-item&nbsp;dictionary.</p>
+<h2 id="type-information-cache">Type Information Cache<a class="md-anchor" href="#type-information-cache" title="Permanent link"></a></h2>
+<p>For each <code>GVariant</code> type that currently exists in the program a type
+information structure is kept in the type information cache.  The
+type information structure is required for rapid&nbsp;deserialization.</p>
+<p>Continuing with the above example, if a <code>GVariant</code> exists with the
+type <code>a{sv}</code> then a type information struct will exist for
+<code>a{sv}</code>, <code>{sv}</code>, <code>s</code>, and <code>v</code>.  Multiple uses of the same type
+will share the same type information.  Additionally, all
+single-digit types are stored in read-only static memory and do
+not contribute to the writable memory footprint of a program using
+<code>GVariant</code>.</p>
+<p>Aside from the type information structures stored in read-only
+memory, there are two forms of type information.  One is used for
+container types where there is a single element type: arrays and
+maybe types.  The other is used for container types where there
+are multiple element types: tuples and dictionary&nbsp;entries.</p>
+<p>Array type info structures are <code>6 * sizeof (void *)</code>, plus the
+memory required to store the type string itself.  This means that
+on 32-bit systems, the cache entry for <code>a{sv}</code> would require 30
+bytes of memory (plus allocation&nbsp;overhead).</p>
+<p>Tuple type info structures are <code>6 * sizeof (void *)</code>, plus <code>4 *
+sizeof (void *)</code> for each item in the tuple, plus the memory
+required to store the type string itself.  A 2-item tuple, for
+example, would have a type information structure that consumed
+writable memory in the size of <code>14 * sizeof (void *)</code> (plus type
+string)  This means that on 32-bit systems, the cache entry for
+<code>{sv}</code> would require 61 bytes of memory (plus allocation&nbsp;overhead).</p>
+<p>This means that in total, for our <code>a{sv}</code> example, 91 bytes of
+type information would be&nbsp;allocated.</p>
+<p>The type information cache, additionally, uses a <a href="struct.HashTable.html"><code>GHashTable</code></a> to
+store and look up the cached items and stores a pointer to this
+hash table in static storage.  The hash table is freed when there
+are zero items in the type&nbsp;cache.</p>
+<p>Although these sizes may seem large it is important to remember
+that a program will probably only have a very small number of
+different types of values in it and that only one type information
+structure is required for many different values of the same&nbsp;type.</p>
+<h2 id="buffer-management-memory">Buffer Management Memory<a class="md-anchor" href="#buffer-management-memory" title="Permanent link"></a></h2>
+<p><code>GVariant</code> uses an internal buffer management structure to deal
+with the various different possible sources of serialized data
+that it uses.  The buffer is responsible for ensuring that the
+correct call is made when the data is no longer in use by
+<code>GVariant</code>.  This may involve a <a href="func.free.html"><code>g_free()</code></a> or
+even <a href="method.MappedFile.unref.html"><code>g_mapped_file_unref()</code></a>.</p>
+<p>One buffer management structure is used for each chunk of
+serialized data.  The size of the buffer management structure
+is <code>4 * (void *)</code>.  On 32-bit systems, that’s 16&nbsp;bytes.</p>
+<h2 id="gvariant-structure">GVariant structure<a class="md-anchor" href="#gvariant-structure" title="Permanent link"></a></h2>
+<p>The size of a <code>GVariant</code> structure is <code>6 * (void *)</code>.  On 32-bit
+systems, that’s 24&nbsp;bytes.</p>
+<p><code>GVariant</code> structures only exist if they are explicitly created
+with <span class="caps">API</span> calls.  For example, if a <code>GVariant</code> is constructed out of
+serialized data for the example given above (with the dictionary)
+then although there are 9 individual values that comprise the
+entire dictionary (two keys, two values, two variants containing
+the values, two dictionary entries, plus the dictionary itself),
+only 1 <code>GVariant</code> instance exists — the one referring to the&nbsp;dictionary.</p>
+<p>If calls are made to start accessing the other values then
+<code>GVariant</code> instances will exist for those values only for as long
+as they are in use (ie: until you call <a href="method.Variant.unref.html"><code>g_variant_unref()</code></a>).  The
+type information is shared.  The serialized data and the buffer
+management structure for that serialized data is shared by the&nbsp;child.</p>
+<h2 id="summary">Summary<a class="md-anchor" href="#summary" title="Permanent link"></a></h2>
+<p>To put the entire example together, for our dictionary mapping
+strings to variants (with two entries, as given above), we are
+using 91 bytes of memory for type information, 29 bytes of memory
+for the serialized data, 16 bytes for buffer management and 24
+bytes for the <code>GVariant</code> instance, or a total of 160 bytes, plus
+allocation overhead.  If we were to use <a href="method.Variant.get_child_value.html"><code>g_variant_get_child_value()</code></a>
+to access the two dictionary entries, we would use an additional 48
+bytes.  If we were to have other dictionaries of the same type, we
+would use more memory for the serialized data and buffer
+management for those dictionaries, but the type information would
+be&nbsp;shared.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          <p>Available since: 2.24</p>
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new.html">g_variant_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_array.html">g_variant_new_array</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GVariant</code> array from <code>children</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_boolean.html">g_variant_new_boolean</a></h6>
+          <div class="docblock">
+            <p>Creates a new boolean <code>GVariant</code> instance — either <code>TRUE</code> or <code>FALSE</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_byte.html">g_variant_new_byte</a></h6>
+          <div class="docblock">
+            <p>Creates a new byte <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_bytestring.html">g_variant_new_bytestring</a></h6>
+          <div class="docblock">
+            <p>Creates an array-of-bytes <code>GVariant</code> with the contents of <code>string</code>.
+This function is just like <code>g_variant_new_string()</code> except that the
+string need not be valid <span class="caps">UTF</span>-8.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_bytestring_array.html">g_variant_new_bytestring_array</a></h6>
+          <div class="docblock">
+            <p>Constructs an array of bytestring <code>GVariant</code> from the given array of&nbsp;strings.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_dict_entry.html">g_variant_new_dict_entry</a></h6>
+          <div class="docblock">
+            <p>Creates a new dictionary entry <code>GVariant</code>. <code>key</code> and <code>value</code> must be
+non-<code>NULL</code>. <code>key</code> must be a value of a basic type (ie: not a&nbsp;container).</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_double.html">g_variant_new_double</a></h6>
+          <div class="docblock">
+            <p>Creates a new double <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_fixed_array.html">g_variant_new_fixed_array</a></h6>
+          <div class="docblock">
+            <p>Constructs a new array <code>GVariant</code> instance, where the elements are
+of <code>element_type</code> type.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_from_bytes.html">g_variant_new_from_bytes</a></h6>
+          <div class="docblock">
+            <p>Constructs a new serialized-mode <code>GVariant</code> instance.  This is the
+inner interface for creation of new serialized values that gets
+called from various functions in&nbsp;gvariant.c.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.36</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_from_data.html">g_variant_new_from_data</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GVariant</code> instance from serialized&nbsp;data.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_handle.html">g_variant_new_handle</a></h6>
+          <div class="docblock">
+            <p>Creates a new handle <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_int16.html">g_variant_new_int16</a></h6>
+          <div class="docblock">
+            <p>Creates a new int16 <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_int32.html">g_variant_new_int32</a></h6>
+          <div class="docblock">
+            <p>Creates a new int32 <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_int64.html">g_variant_new_int64</a></h6>
+          <div class="docblock">
+            <p>Creates a new int64 <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_maybe.html">g_variant_new_maybe</a></h6>
+          <div class="docblock">
+            <p>Depending on if <code>child</code> is <code>NULL</code>, either wraps <code>child</code> inside of a
+maybe container or creates a Nothing instance for the given <code>type</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_object_path.html">g_variant_new_object_path</a></h6>
+          <div class="docblock">
+            <p>Creates a D-Bus object path <code>GVariant</code> with the contents of <code>object_path</code>.
+<code>object_path</code> must be a valid D-Bus object path.  Use
+<code>g_variant_is_object_path()</code> if you’re not&nbsp;sure.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_objv.html">g_variant_new_objv</a></h6>
+          <div class="docblock">
+            <p>Constructs an array of object paths <code>GVariant</code> from the given array of&nbsp;strings.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_parsed.html">g_variant_new_parsed</a></h6>
+          <div class="docblock">
+            <p>Parses <code>format</code> and returns the&nbsp;result.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_parsed_va.html">g_variant_new_parsed_va</a></h6>
+          <div class="docblock">
+            <p>Parses <code>format</code> and returns the&nbsp;result.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_printf.html">g_variant_new_printf</a></h6>
+          <div class="docblock">
+            <p>Creates a string-type GVariant using printf&nbsp;formatting.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.38</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_signature.html">g_variant_new_signature</a></h6>
+          <div class="docblock">
+            <p>Creates a D-Bus type signature <code>GVariant</code> with the contents of
+<code>string</code>.  <code>string</code> must be a valid D-Bus type signature.  Use
+<code>g_variant_is_signature()</code> if you’re not&nbsp;sure.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_string.html">g_variant_new_string</a></h6>
+          <div class="docblock">
+            <p>Creates a string <code>GVariant</code> with the contents of <code>string</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_strv.html">g_variant_new_strv</a></h6>
+          <div class="docblock">
+            <p>Constructs an array of strings <code>GVariant</code> from the given array of&nbsp;strings.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_take_string.html">g_variant_new_take_string</a></h6>
+          <div class="docblock">
+            <p>Creates a string <code>GVariant</code> with the contents of <code>string</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.38</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_tuple.html">g_variant_new_tuple</a></h6>
+          <div class="docblock">
+            <p>Creates a new tuple <code>GVariant</code> out of the items in <code>children</code>.  The
+type is determined from the types of <code>children</code>.  No entry in the
+<code>children</code> array may be <code>NULL</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_uint16.html">g_variant_new_uint16</a></h6>
+          <div class="docblock">
+            <p>Creates a new uint16 <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_uint32.html">g_variant_new_uint32</a></h6>
+          <div class="docblock">
+            <p>Creates a new uint32 <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_uint64.html">g_variant_new_uint64</a></h6>
+          <div class="docblock">
+            <p>Creates a new uint64 <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_va.html">g_variant_new_va</a></h6>
+          <div class="docblock">
+            <p>This function is intended to be used by libraries based on
+<code>GVariant</code> that want to provide g_variant_new()-like functionality
+to their&nbsp;users.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Variant.new_variant.html">g_variant_new_variant</a></h6>
+          <div class="docblock">
+            <p>Boxes <code>value</code>.  The result is a <code>GVariant</code> instance representing a
+variant containing the original&nbsp;value.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.Variant.is_object_path.html">g_variant_is_object_path</a></h6>
+        <div class="docblock">
+          <p>Determines if a given string is a valid D-Bus object path.  You
+should ensure that a string is a valid D-Bus object path before
+passing it to&nbsp;g_variant_new_object_path().</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.24</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Variant.is_signature.html">g_variant_is_signature</a></h6>
+        <div class="docblock">
+          <p>Determines if a given string is a valid D-Bus type signature.  You
+should ensure that a string is a valid D-Bus type signature before
+passing it to&nbsp;g_variant_new_signature().</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.24</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Variant.parse.html">g_variant_parse</a></h6>
+        <div class="docblock">
+          <p>Parses a <code>GVariant</code> from a text&nbsp;representation.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Variant.parse_error_print_context.html">g_variant_parse_error_print_context</a></h6>
+        <div class="docblock">
+          <p>Pretty-prints a message showing the context of a <code>GVariant</code> parse
+error within the string for which parsing was&nbsp;attempted.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.40</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Variant.parse_error_quark.html">g_variant_parse_error_quark</a></h6>
+        <div class="docblock">
+          No description available.
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="deprecated">
+        <h6><a href="type_func.Variant.parser_get_error_quark.html">g_variant_parser_get_error_quark</a></h6>
+        <div class="docblock">
+          <p>Same as&nbsp;g_variant_error_quark().</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: Unknown</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Variant.byteswap.html">g_variant_byteswap</a></h6>
+          <div class="docblock">
+            <p>Performs a byteswapping operation on the contents of <code>value</code>.  The
+result is that all multi-byte numeric data contained in <code>value</code> is
+byteswapped.  That includes 16, 32, and 64bit signed and unsigned
+integers as well as file handles and double precision floating point&nbsp;values.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.check_format_string.html">g_variant_check_format_string</a></h6>
+          <div class="docblock">
+            <p>Checks if calling <code>g_variant_get()</code> with <code>format_string</code> on <code>value</code> would
+be valid from a type-compatibility standpoint.  <code>format_string</code> is
+assumed to be a valid format string (from a syntactic&nbsp;standpoint).</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.34</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.classify.html">g_variant_classify</a></h6>
+          <div class="docblock">
+            <p>Classifies <code>value</code> according to its top-level&nbsp;type.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.compare.html">g_variant_compare</a></h6>
+          <div class="docblock">
+            <p>Compares <code>one</code> and <code>two</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.dup_bytestring.html">g_variant_dup_bytestring</a></h6>
+          <div class="docblock">
+            <p>Similar to <code>g_variant_get_bytestring()</code> except that instead of
+returning a constant string, the string is&nbsp;duplicated.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.dup_bytestring_array.html">g_variant_dup_bytestring_array</a></h6>
+          <div class="docblock">
+            <p>Gets the contents of an array of array of bytes <code>GVariant</code>.  This call
+makes a deep copy; the return result should be released with&nbsp;g_strfreev().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.dup_objv.html">g_variant_dup_objv</a></h6>
+          <div class="docblock">
+            <p>Gets the contents of an array of object paths <code>GVariant</code>.  This call
+makes a deep copy; the return result should be released with&nbsp;g_strfreev().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.dup_string.html">g_variant_dup_string</a></h6>
+          <div class="docblock">
+            <p>Similar to <code>g_variant_get_string()</code> except that instead of returning
+a constant string, the string is&nbsp;duplicated.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.dup_strv.html">g_variant_dup_strv</a></h6>
+          <div class="docblock">
+            <p>Gets the contents of an array of strings <code>GVariant</code>.  This call
+makes a deep copy; the return result should be released with&nbsp;g_strfreev().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.equal.html">g_variant_equal</a></h6>
+          <div class="docblock">
+            <p>Checks if <code>one</code> and <code>two</code> have the same type and&nbsp;value.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get.html">g_variant_get</a></h6>
+          <div class="docblock">
+            <p>Deconstructs a <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_boolean.html">g_variant_get_boolean</a></h6>
+          <div class="docblock">
+            <p>Returns the boolean value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_byte.html">g_variant_get_byte</a></h6>
+          <div class="docblock">
+            <p>Returns the byte value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_bytestring.html">g_variant_get_bytestring</a></h6>
+          <div class="docblock">
+            <p>Returns the string value of a <code>GVariant</code> instance with an
+array-of-bytes type.  The string has no particular&nbsp;encoding.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_bytestring_array.html">g_variant_get_bytestring_array</a></h6>
+          <div class="docblock">
+            <p>Gets the contents of an array of array of bytes <code>GVariant</code>.  This call
+makes a shallow copy; the return result should be released with
+g_free(), but the individual strings must not be&nbsp;modified.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_child.html">g_variant_get_child</a></h6>
+          <div class="docblock">
+            <p>Reads a child item out of a container <code>GVariant</code> instance and
+deconstructs it according to <code>format_string</code>.  This call is
+essentially a combination of <code>g_variant_get_child_value()</code> and&nbsp;g_variant_get().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_child_value.html">g_variant_get_child_value</a></h6>
+          <div class="docblock">
+            <p>Reads a child item out of a container <code>GVariant</code> instance.  This
+includes variants, maybes, arrays, tuples and dictionary
+entries.  It is an error to call this function on any other type of
+<code>GVariant</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_data.html">g_variant_get_data</a></h6>
+          <div class="docblock">
+            <p>Returns a pointer to the serialized form of a <code>GVariant</code> instance.
+The returned data may not be in fully-normalised form if read from an
+untrusted source.  The returned data must not be freed; it remains
+valid for as long as <code>value</code> exists.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_data_as_bytes.html">g_variant_get_data_as_bytes</a></h6>
+          <div class="docblock">
+            <p>Returns a pointer to the serialized form of a <code>GVariant</code> instance.
+The semantics of this function are exactly the same as
+g_variant_get_data(), except that the returned <code>GBytes</code> holds
+a reference to the variant&nbsp;data.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.36</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_double.html">g_variant_get_double</a></h6>
+          <div class="docblock">
+            <p>Returns the double precision floating point value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_fixed_array.html">g_variant_get_fixed_array</a></h6>
+          <div class="docblock">
+            <p>Provides access to the serialized data for an array of fixed-sized&nbsp;items.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_handle.html">g_variant_get_handle</a></h6>
+          <div class="docblock">
+            <p>Returns the 32-bit signed integer value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_int16.html">g_variant_get_int16</a></h6>
+          <div class="docblock">
+            <p>Returns the 16-bit signed integer value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_int32.html">g_variant_get_int32</a></h6>
+          <div class="docblock">
+            <p>Returns the 32-bit signed integer value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_int64.html">g_variant_get_int64</a></h6>
+          <div class="docblock">
+            <p>Returns the 64-bit signed integer value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_maybe.html">g_variant_get_maybe</a></h6>
+          <div class="docblock">
+            <p>Given a maybe-typed <code>GVariant</code> instance, extract its value.  If the
+value is Nothing, then this function returns <code>NULL</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_normal_form.html">g_variant_get_normal_form</a></h6>
+          <div class="docblock">
+            <p>Gets a <code>GVariant</code> instance that has the same value as <code>value</code> and is
+trusted to be in normal&nbsp;form.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_objv.html">g_variant_get_objv</a></h6>
+          <div class="docblock">
+            <p>Gets the contents of an array of object paths <code>GVariant</code>.  This call
+makes a shallow copy; the return result should be released with
+g_free(), but the individual strings must not be&nbsp;modified.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_size.html">g_variant_get_size</a></h6>
+          <div class="docblock">
+            <p>Determines the number of bytes that would be required to store <code>value</code>
+with&nbsp;g_variant_store().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_string.html">g_variant_get_string</a></h6>
+          <div class="docblock">
+            <p>Returns the string value of a <code>GVariant</code> instance with a string
+type.  This includes the types <code>G_VARIANT_TYPE_STRING</code>,
+<code>G_VARIANT_TYPE_OBJECT_PATH</code> and <code>G_VARIANT_TYPE_SIGNATURE</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_strv.html">g_variant_get_strv</a></h6>
+          <div class="docblock">
+            <p>Gets the contents of an array of strings <code>GVariant</code>.  This call
+makes a shallow copy; the return result should be released with
+g_free(), but the individual strings must not be&nbsp;modified.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_type.html">g_variant_get_type</a></h6>
+          <div class="docblock">
+            <p>Determines the type of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_type_string.html">g_variant_get_type_string</a></h6>
+          <div class="docblock">
+            <p>Returns the type string of <code>value</code>.  Unlike the result of calling
+g_variant_type_peek_string(), this string is nul-terminated.  This
+string belongs to <code>GVariant</code> and must not be&nbsp;freed.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_uint16.html">g_variant_get_uint16</a></h6>
+          <div class="docblock">
+            <p>Returns the 16-bit unsigned integer value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_uint32.html">g_variant_get_uint32</a></h6>
+          <div class="docblock">
+            <p>Returns the 32-bit unsigned integer value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_uint64.html">g_variant_get_uint64</a></h6>
+          <div class="docblock">
+            <p>Returns the 64-bit unsigned integer value of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_va.html">g_variant_get_va</a></h6>
+          <div class="docblock">
+            <p>This function is intended to be used by libraries based on <code>GVariant</code>
+that want to provide g_variant_get()-like functionality to their&nbsp;users.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.get_variant.html">g_variant_get_variant</a></h6>
+          <div class="docblock">
+            <p>Unboxes <code>value</code>.  The result is the <code>GVariant</code> instance that was
+contained in <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.hash.html">g_variant_hash</a></h6>
+          <div class="docblock">
+            <p>Generates a hash value for a <code>GVariant</code> instance.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.is_container.html">g_variant_is_container</a></h6>
+          <div class="docblock">
+            <p>Checks if <code>value</code> is a&nbsp;container.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.is_floating.html">g_variant_is_floating</a></h6>
+          <div class="docblock">
+            <p>Checks whether <code>value</code> has a floating reference&nbsp;count.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.is_normal_form.html">g_variant_is_normal_form</a></h6>
+          <div class="docblock">
+            <p>Checks if <code>value</code> is in normal&nbsp;form.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.is_of_type.html">g_variant_is_of_type</a></h6>
+          <div class="docblock">
+            <p>Checks if a value has a type matching the provided&nbsp;type.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.iter_new.html">g_variant_iter_new</a></h6>
+          <div class="docblock">
+            <p>Creates a heap-allocated <code>GVariantIter</code> for iterating over the items
+in <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.lookup.html">g_variant_lookup</a></h6>
+          <div class="docblock">
+            <p>Looks up a value in a dictionary <code>GVariant</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.28</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.lookup_value.html">g_variant_lookup_value</a></h6>
+          <div class="docblock">
+            <p>Looks up a value in a dictionary <code>GVariant</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.28</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.n_children.html">g_variant_n_children</a></h6>
+          <div class="docblock">
+            <p>Determines the number of children in a container <code>GVariant</code> instance.
+This includes variants, maybes, arrays, tuples and dictionary
+entries.  It is an error to call this function on any other type of
+<code>GVariant</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.print.html">g_variant_print</a></h6>
+          <div class="docblock">
+            <p>Pretty-prints <code>value</code> in the format understood by&nbsp;g_variant_parse().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.print_string.html">g_variant_print_string</a></h6>
+          <div class="docblock">
+            <p>Behaves as g_variant_print(), but operates on a <code>GString</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.ref.html">g_variant_ref</a></h6>
+          <div class="docblock">
+            <p>Increases the reference count of <code>value</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.ref_sink.html">g_variant_ref_sink</a></h6>
+          <div class="docblock">
+            <p><code>GVariant</code> uses a floating reference count system.  All functions with
+names starting with <code>g_variant_new_</code> return floating&nbsp;references.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.store.html">g_variant_store</a></h6>
+          <div class="docblock">
+            <p>Stores the serialized form of <code>value</code> at <code>data</code>.  <code>data</code> should be
+large enough.  See&nbsp;g_variant_get_size().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.take_ref.html">g_variant_take_ref</a></h6>
+          <div class="docblock">
+            <p>If <code>value</code> is floating, sink it.  Otherwise, do&nbsp;nothing.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Variant.unref.html">g_variant_unref</a></h6>
+          <div class="docblock">
+            <p>Decreases the reference count of <code>value</code>.  When its reference count
+drops to 0, the memory used by the variant is&nbsp;freed.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.24</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      <ul class="toc-list">
+      
+      
+        <li class="toc-list-item"><a href="#memory-use"><span class="link-text">Memory Use</span></a></li>
+      
+        <li class="toc-list-item"><a href="#serialized-data-memory"><span class="link-text">Serialized Data Memory</span></a></li>
+      
+        <li class="toc-list-item"><a href="#type-information-cache"><span class="link-text">Type Information Cache</span></a></li>
+      
+        <li class="toc-list-item"><a href="#buffer-management-memory"><span class="link-text">Buffer Management Memory</span></a></li>
+      
+        <li class="toc-list-item"><a href="#gvariant-structure"><span class="link-text">GVariant structure</span></a></li>
+      
+        <li class="toc-list-item"><a href="#summary"><span class="link-text">Summary</span></a></li>
+      
+      
+      </ul>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Variant.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

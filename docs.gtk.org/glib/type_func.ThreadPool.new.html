@@ -1,0 +1,291 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/type_func.ThreadPool.new.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.ThreadPool.new</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.ThreadPool.new">
+  <meta property="og:description" content="Reference for GLib.ThreadPool.new">
+  <meta name="twitter:title" content="GLib.ThreadPool.new">
+  <meta name="twitter:description" content="Reference for GLib.ThreadPool.new">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.ThreadPool.html">ThreadPool</a><span class="sep"></span>new</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gthreadpool.h#L51">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GThreadPool</span><span class="o">*</span>
+<span class="n">g_thread_pool_new</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GFunc</span><span class="w"> </span><span class="n">func</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">user_data</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="w"> </span><span class="n">max_threads</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gboolean</span><span class="w"> </span><span class="n">exclusive</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GError</span><span class="o">**</span><span class="w"> </span><span class="n">error</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gthreadpool.c#L489">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>This function creates a new thread&nbsp;pool.</p>
+<p>Whenever you call g_thread_pool_push(), either a new thread is
+created or an unused one is reused. At most <code>max_threads</code> threads
+are running concurrently for this thread pool. <code>max_threads</code> = -1
+allows unlimited threads to be created for this thread pool. The
+newly created or reused thread now executes the function <code>func</code>
+with the two arguments. The first one is the parameter to
+<code>g_thread_pool_push()</code> and the second one is <code>user_data</code>.</p>
+<p>Pass <code>g_get_num_processors()</code> to <code>max_threads</code> to create as many threads as
+there are logical processors on the system. This will not pin each thread to
+a specific&nbsp;processor.</p>
+<p>The parameter <code>exclusive</code> determines whether the thread pool owns
+all threads exclusive or shares them with other thread pools.
+If <code>exclusive</code> is <code>TRUE</code>, <code>max_threads</code> threads are started
+immediately and they will run exclusively for this thread pool
+until it is destroyed by g_thread_pool_free(). If <code>exclusive</code> is
+<code>FALSE</code>, threads are created when needed and shared between all
+non-exclusive thread pools. This implies that <code>max_threads</code> may
+not be -1 for exclusive thread pools. Besides, exclusive thread
+pools are not affected by <code>g_thread_pool_set_max_idle_time()</code>
+since their threads are never considered idle and returned to the
+global&nbsp;pool.</p>
+<p>Note that the threads used by exclusive thread pools will all inherit the
+scheduler settings of the current thread while the threads used by
+non-exclusive thread pools will inherit the scheduler settings from the
+first thread that created such a thread&nbsp;pool.</p>
+<p>At least one thread will be spawned when this function is called, either to
+create the <code>max_threads</code> exclusive threads, or to preserve the scheduler
+settings of the current thread for future&nbsp;spawns.</p>
+<p><code>error</code> can be <code>NULL</code> to ignore errors, or non-<code>NULL</code> to report
+errors. An error can only occur when <code>exclusive</code> is set to <code>TRUE</code>
+and not all <code>max_threads</code> threads could be created.
+See <code>GThreadError</code> for possible errors that may occur.
+Note, even in case of error a valid <code>GThreadPool</code> is&nbsp;returned.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.Func.html"><code>GFunc</code></a></p>
+            <p>A function to execute in the threads of the new thread&nbsp;pool.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>user_data</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>User data that is handed over to <code>func</code> every time it
+    is&nbsp;called.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>max_threads</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint</code></p>
+            <p>The maximal number of threads to execute concurrently
+    in  the new thread pool, -1 means no&nbsp;limit.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>exclusive</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p>Should this thread pool be&nbsp;exclusive?</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+          <dt class="arg-name"><code>error</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="javascript:void(0)" data-namespace="GLib" data-link="struct.Error.html" class="external"><code>GError **</code></a></p>
+            <p>The return location for <a href="error-reporting.html#rules-for-use-of-gerror">a recoverable error</a>.</p>
+            <table>
+              <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+              <tr><td>If the return location is not <code>NULL</code>, then you must initialize it to a <code>NULL</code> <code>GError*</code>.</td></tr>
+              <tr><td>The argument will be left initialized to <code>NULL</code> by the function if there are no errors.</td></tr>
+              <tr><td>In case of error, the argument will be set to a newly allocated <code>GError</code>; the caller will take ownership of the data, and be responsible for freeing it.</td></tr>
+            </tbody></table>
+          </dd>
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.ThreadPool.html"><code>GThreadPool</code></a></p>
+            <p>The new <code>GThreadPool</code>.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the called function.</td></tr>
+            
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/type_func.ThreadPool.new.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --></html>

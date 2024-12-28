@@ -1,0 +1,225 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.stat.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.stat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.stat">
+  <meta property="og:description" content="Reference for GLib.stat">
+  <meta name="twitter:title" content="GLib.stat">
+  <meta name="twitter:description" content="Reference for GLib.stat">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>stat</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.6</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstdio.h#L140">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">int</span>
+<span class="n">g_stat</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GStatBuf</span><span class="o">*</span><span class="w"> </span><span class="n">buf</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstdio.c#L1292">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>A wrapper for the <span class="caps">POSIX</span> <code>stat()</code> function. The <code>stat()</code> function
+returns information about a file. On Windows the <code>stat()</code> function in
+the C library checks only the <span class="caps">FAT</span>-style <span class="caps">READONLY</span> attribute and does
+not look at the <span class="caps">ACL</span> at all. Thus on Windows the protection bits in
+the <code>st_mode</code> field are a fabrication of little&nbsp;use.</p>
+<p>On Windows the Microsoft C libraries have several variants of the
+stat struct and <code>stat()</code> function with names like _stat(), _stat32(),
+_stat32i64() and _stat64i32(). The one used here is for 32-bit code
+the one with 32-bit size and time fields, specifically called&nbsp;_stat32().</p>
+<p>In Microsoft’s compiler, by default struct stat means one with
+64-bit time fields while in MinGW struct stat is the legacy one
+with 32-bit fields. To hopefully clear up this messs, the gstdio.h
+header defines a type <code>GStatBuf</code> which is the appropriate struct type
+depending on the platform and/or compiler being used. On <span class="caps">POSIX</span> it
+is just struct stat, but note that even on <span class="caps">POSIX</span> platforms, <code>stat()</code>
+might be a&nbsp;macro.</p>
+<p>See your C library manual for more details about&nbsp;stat().</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.6</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>filename</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>A pathname in the GLib file name encoding
+    (<span class="caps">UTF</span>-8 on&nbsp;Windows).</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a platform-native string, using the preferred OS encoding on Unix and UTF-8 on Windows.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>buf</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.StatBuf.html"><code>GStatBuf</code></a></p>
+            <p>A pointer to a stat struct, which will be filled with the file&nbsp;information.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>int</code></p>
+            <p>0 if the information was successfully retrieved,
+    -1 if an error&nbsp;occurred.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.stat.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

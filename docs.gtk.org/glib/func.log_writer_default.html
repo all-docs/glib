@@ -1,0 +1,260 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.log_writer_default.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.log_writer_default</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.log_writer_default">
+  <meta property="og:description" content="Reference for GLib.log_writer_default">
+  <meta name="twitter:title" content="GLib.log_writer_default">
+  <meta name="twitter:description" content="Reference for GLib.log_writer_default">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>log_writer_default</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.50</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.h#L248">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GLogWriterOutput</span>
+<span class="n">g_log_writer_default</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GLogLevelFlags</span><span class="w"> </span><span class="n">log_level</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">GLogField</span><span class="o">*</span><span class="w"> </span><span class="n">fields</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gsize</span><span class="w"> </span><span class="n">n_fields</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">user_data</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.c#L2840">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Format a structured log message and output it to the default log destination
+for the&nbsp;platform.</p>
+<p>On Linux, this is typically the systemd journal, falling
+back to <code>stdout</code> or <code>stderr</code> if running from the terminal or if output is
+being redirected to a&nbsp;file.</p>
+<p>Support for other platform-specific logging mechanisms may be added in
+future. Distributors of GLib may modify this function to impose their own
+(documented) platform-specific log writing&nbsp;policies.</p>
+<p>This is suitable for use as a <a href="callback.LogWriterFunc.html"><code>GLogWriterFunc</code></a>, and is the default writer used
+if no other is set using <a href="func.log_set_writer_func.html"><code>g_log_set_writer_func()</code></a>.</p>
+<p>As with <a href="func.log_default_handler.html"><code>g_log_default_handler()</code></a>, this function drops debug and informational
+messages unless their log domain (or <code>all</code>) is listed in the space-separated
+<code>G_MESSAGES_DEBUG</code> environment variable, or set at runtime by <a href="func.log_writer_default_set_debug_domains.html"><code>g_log_writer_default_set_debug_domains()</code></a>.</p>
+<p><a href="func.log_writer_default.html"><code>g_log_writer_default()</code></a> uses the mask set by <a href="func.log_set_always_fatal.html"><code>g_log_set_always_fatal()</code></a> to
+determine which messages are fatal. When using a custom writer function instead it is
+up to the writer function to determine which log messages are&nbsp;fatal.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.50</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>log_level</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="flags.LogLevelFlags.html"><code>GLogLevelFlags</code></a></p>
+            <p>Log level, either from <a href="flags.LogLevelFlags.html"><code>GLogLevelFlags</code></a>, or a user-defined&nbsp;level.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>fields</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>GLogField</code></p>
+            <p>Key–value pairs of structured data forming
+   the log&nbsp;message.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td>The length of the array is specified in the <code>n_fields</code> argument.</td></tr>
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>n_fields</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gsize</code></p>
+            <p>Number of elements in the <code>fields</code> array.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>user_data</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>User data passed to <a href="func.log_set_writer_func.html"><code>g_log_set_writer_func()</code></a>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="enum.LogWriterOutput.html"><code>GLogWriterOutput</code></a></p>
+            <p><a href="enum.LogWriterOutput.html"><code>G_LOG_WRITER_HANDLED</code></a> on success,
+  <a href="enum.LogWriterOutput.html"><code>G_LOG_WRITER_UNHANDLED</code></a>&nbsp;otherwise.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.log_writer_default.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

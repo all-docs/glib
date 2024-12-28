@@ -1,0 +1,261 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.VariantIter.loop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.VariantIter.loop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.VariantIter.loop">
+  <meta priority="og:description" content="Reference for GLib.VariantIter.loop">
+  <meta name="twitter:title" content="GLib.VariantIter.loop">
+  <meta name="twitter:description" content="Reference for GLib.VariantIter.loop">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.VariantIter.html">VariantIter</a><span class="sep"></span>loop</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.24</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.h#L294">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gboolean</span>
+<span class="n">g_variant_iter_loop</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GVariantIter</span><span class="o">*</span><span class="w"> </span><span class="n">iter</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">format_string</span><span class="p">,</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.c#L5828">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Gets the next item in the container and unpacks it into the variable
+argument list according to <code>format_string</code>, returning <code>TRUE</code>.</p>
+<p>If no more items remain then <code>FALSE</code> is&nbsp;returned.</p>
+<p>On the first call to this function, the pointers appearing on the
+variable argument list are assumed to point at uninitialised memory.
+On the second and later calls, it is assumed that the same pointers
+will be given and that they will point to the memory as set by the
+previous call to this function.  This allows the previous values to
+be freed, as&nbsp;appropriate.</p>
+<p>This function is intended to be used with a while loop as
+demonstrated in the following example.  This function can only be
+used when iterating over an array.  It is only valid to call this
+function with a string constant for the format string and the same
+string constant must be used each time.  Mixing calls to this
+function and <code>g_variant_iter_next()</code> or <code>g_variant_iter_next_value()</code> on
+the same iterator causes undefined&nbsp;behavior.</p>
+<p>If you break out of a such a while loop using <code>g_variant_iter_loop()</code> then
+you must free or unreference all the unpacked values as you would with
+g_variant_get(). Failure to do so will cause a memory&nbsp;leak.</p>
+<p>Here is an example for memory management with&nbsp;g_variant_iter_loop():</p>
+<div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// Iterates a dictionary of type 'a{sv}'</span>
+<span class="w">  </span><span class="kt">void</span>
+<span class="w">  </span><span class="nf">iterate_dictionary</span><span class="w"> </span><span class="p">(</span><span class="n">GVariant</span><span class="w"> </span><span class="o">*</span><span class="n">dictionary</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">GVariantIter</span><span class="w"> </span><span class="n">iter</span><span class="p">;</span>
+<span class="w">    </span><span class="n">GVariant</span><span class="w"> </span><span class="o">*</span><span class="n">value</span><span class="p">;</span>
+<span class="w">    </span><span class="n">gchar</span><span class="w"> </span><span class="o">*</span><span class="n">key</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">g_variant_iter_init</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="n">dictionary</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">g_variant_iter_loop</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="s">"{sv}"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">value</span><span class="p">))</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">g_print</span><span class="w"> </span><span class="p">(</span><span class="s">"Item '%s' has type '%s'</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">g_variant_get_type_string</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// no need to free 'key' and 'value' here</span>
+<span class="w">        </span><span class="c1">// unless breaking out of this loop</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+
+<p>For most cases you should use&nbsp;g_variant_iter_next().</p>
+<p>This function is really only useful when unpacking into <code>GVariant</code> or
+<code>GVariantIter</code> in order to allow you to skip the call to
+<code>g_variant_unref()</code> or&nbsp;g_variant_iter_free().</p>
+<p>For example, if you are only looping over simple integer and string
+types, <code>g_variant_iter_next()</code> is definitely preferred.  For string
+types, use the ‘&amp;’ prefix to avoid allocating any memory at all (and
+thereby avoiding the need to free anything as&nbsp;well).</p>
+<p><code>format_string</code> determines the C types that are used for unpacking
+the values and also determines if the values are copied or&nbsp;borrowed.</p>
+<p>See the section on
+<a href="gvariant-format-strings.html#pointers"><code>GVariant</code> format strings</a>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.24</p>
+        
+        
+        <p>This method is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>format_string</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>A GVariant format&nbsp;string.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the method.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>...</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code></code></p>
+            <p>The arguments to unpack the value&nbsp;into.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p><code>TRUE</code> if a value was unpacked, or <code>FALSE</code> if there was no&nbsp;value.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.VariantIter.loop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --></html>

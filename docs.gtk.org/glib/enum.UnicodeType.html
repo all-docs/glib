@@ -1,0 +1,541 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/enum.UnicodeType.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.UnicodeType</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.UnicodeType">
+  <meta property="og:description" content="Reference for GLib.UnicodeType">
+  <meta name="twitter:title" content="GLib.UnicodeType">
+  <meta name="twitter:description" content="Reference for GLib.UnicodeType">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>UnicodeType</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>enum GLib.UnicodeType</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gunicode.h#L81">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>These are the possible character classifications from the
+Unicode specification.
+See <a href="http://www.unicode.org/reports/tr44/#General_Category_Values">Unicode Character Database</a>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="control">G_UNICODE_CONTROL</code>
+            <a class="anchor" href="#control"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Other, Control”&nbsp;(Cc).</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="format">G_UNICODE_FORMAT</code>
+            <a class="anchor" href="#format"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Other, Format”&nbsp;(Cf).</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unassigned">G_UNICODE_UNASSIGNED</code>
+            <a class="anchor" href="#unassigned"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Other, Not Assigned”&nbsp;(Cn).</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="private_use">G_UNICODE_PRIVATE_USE</code>
+            <a class="anchor" href="#private_use"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Other, Private Use”&nbsp;(Co).</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="surrogate">G_UNICODE_SURROGATE</code>
+            <a class="anchor" href="#surrogate"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Other, Surrogate”&nbsp;(Cs).</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="lowercase_letter">G_UNICODE_LOWERCASE_LETTER</code>
+            <a class="anchor" href="#lowercase_letter"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Letter, Lowercase”&nbsp;(Ll).</p></div>
+            <ul>
+              <li>Value: <code>5</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="modifier_letter">G_UNICODE_MODIFIER_LETTER</code>
+            <a class="anchor" href="#modifier_letter"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Letter, Modifier”&nbsp;(Lm).</p></div>
+            <ul>
+              <li>Value: <code>6</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="other_letter">G_UNICODE_OTHER_LETTER</code>
+            <a class="anchor" href="#other_letter"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Letter, Other”&nbsp;(Lo).</p></div>
+            <ul>
+              <li>Value: <code>7</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="titlecase_letter">G_UNICODE_TITLECASE_LETTER</code>
+            <a class="anchor" href="#titlecase_letter"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Letter, Titlecase”&nbsp;(Lt).</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="uppercase_letter">G_UNICODE_UPPERCASE_LETTER</code>
+            <a class="anchor" href="#uppercase_letter"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Letter, Uppercase”&nbsp;(Lu).</p></div>
+            <ul>
+              <li>Value: <code>9</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="spacing_mark">G_UNICODE_SPACING_MARK</code>
+            <a class="anchor" href="#spacing_mark"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Mark, Spacing”&nbsp;(Mc).</p></div>
+            <ul>
+              <li>Value: <code>10</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="enclosing_mark">G_UNICODE_ENCLOSING_MARK</code>
+            <a class="anchor" href="#enclosing_mark"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Mark, Enclosing”&nbsp;(Me).</p></div>
+            <ul>
+              <li>Value: <code>11</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="non_spacing_mark">G_UNICODE_NON_SPACING_MARK</code>
+            <a class="anchor" href="#non_spacing_mark"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Mark, Nonspacing”&nbsp;(Mn).</p></div>
+            <ul>
+              <li>Value: <code>12</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="decimal_number">G_UNICODE_DECIMAL_NUMBER</code>
+            <a class="anchor" href="#decimal_number"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Number, Decimal Digit”&nbsp;(Nd).</p></div>
+            <ul>
+              <li>Value: <code>13</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="letter_number">G_UNICODE_LETTER_NUMBER</code>
+            <a class="anchor" href="#letter_number"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Number, Letter”&nbsp;(Nl).</p></div>
+            <ul>
+              <li>Value: <code>14</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="other_number">G_UNICODE_OTHER_NUMBER</code>
+            <a class="anchor" href="#other_number"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Number, Other”&nbsp;(No).</p></div>
+            <ul>
+              <li>Value: <code>15</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="connect_punctuation">G_UNICODE_CONNECT_PUNCTUATION</code>
+            <a class="anchor" href="#connect_punctuation"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Punctuation, Connector”&nbsp;(Pc).</p></div>
+            <ul>
+              <li>Value: <code>16</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="dash_punctuation">G_UNICODE_DASH_PUNCTUATION</code>
+            <a class="anchor" href="#dash_punctuation"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Punctuation, Dash”&nbsp;(Pd).</p></div>
+            <ul>
+              <li>Value: <code>17</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="close_punctuation">G_UNICODE_CLOSE_PUNCTUATION</code>
+            <a class="anchor" href="#close_punctuation"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Punctuation, Close”&nbsp;(Pe).</p></div>
+            <ul>
+              <li>Value: <code>18</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="final_punctuation">G_UNICODE_FINAL_PUNCTUATION</code>
+            <a class="anchor" href="#final_punctuation"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Punctuation, Final quote”&nbsp;(Pf).</p></div>
+            <ul>
+              <li>Value: <code>19</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="initial_punctuation">G_UNICODE_INITIAL_PUNCTUATION</code>
+            <a class="anchor" href="#initial_punctuation"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Punctuation, Initial quote”&nbsp;(Pi).</p></div>
+            <ul>
+              <li>Value: <code>20</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="other_punctuation">G_UNICODE_OTHER_PUNCTUATION</code>
+            <a class="anchor" href="#other_punctuation"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Punctuation, Other”&nbsp;(Po).</p></div>
+            <ul>
+              <li>Value: <code>21</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="open_punctuation">G_UNICODE_OPEN_PUNCTUATION</code>
+            <a class="anchor" href="#open_punctuation"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Punctuation, Open”&nbsp;(Ps).</p></div>
+            <ul>
+              <li>Value: <code>22</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="currency_symbol">G_UNICODE_CURRENCY_SYMBOL</code>
+            <a class="anchor" href="#currency_symbol"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Symbol, Currency”&nbsp;(Sc).</p></div>
+            <ul>
+              <li>Value: <code>23</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="modifier_symbol">G_UNICODE_MODIFIER_SYMBOL</code>
+            <a class="anchor" href="#modifier_symbol"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Symbol, Modifier”&nbsp;(Sk).</p></div>
+            <ul>
+              <li>Value: <code>24</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="math_symbol">G_UNICODE_MATH_SYMBOL</code>
+            <a class="anchor" href="#math_symbol"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Symbol, Math”&nbsp;(Sm).</p></div>
+            <ul>
+              <li>Value: <code>25</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="other_symbol">G_UNICODE_OTHER_SYMBOL</code>
+            <a class="anchor" href="#other_symbol"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Symbol, Other”&nbsp;(So).</p></div>
+            <ul>
+              <li>Value: <code>26</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="line_separator">G_UNICODE_LINE_SEPARATOR</code>
+            <a class="anchor" href="#line_separator"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Separator, Line”&nbsp;(Zl).</p></div>
+            <ul>
+              <li>Value: <code>27</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="paragraph_separator">G_UNICODE_PARAGRAPH_SEPARATOR</code>
+            <a class="anchor" href="#paragraph_separator"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Separator, Paragraph”&nbsp;(Zp).</p></div>
+            <ul>
+              <li>Value: <code>28</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="space_separator">G_UNICODE_SPACE_SEPARATOR</code>
+            <a class="anchor" href="#space_separator"></a>
+          </dt>
+          <dd>
+            <div><p>General category “Separator, Space”&nbsp;(Zs).</p></div>
+            <ul>
+              <li>Value: <code>29</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      <li class="toc-list-item"><a href="#members"><span class="link-text">Members</span></a></li>
+      
+
+      
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/enum.UnicodeType.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

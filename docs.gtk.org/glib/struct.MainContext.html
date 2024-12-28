@@ -1,0 +1,564 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.MainContext.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.MainContext</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.MainContext">
+  <meta property="og:description" content="Reference for GLib.MainContext">
+  <meta name="twitter:title" content="GLib.MainContext">
+  <meta name="twitter:description" content="Reference for GLib.MainContext">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>MainContext</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L64">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GMainContext</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GMainContext</code> struct is an opaque data
+type representing a set of sources to be handled in a main&nbsp;loop.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.MainContext.new.html">g_main_context_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GMainContext</code> structure.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.MainContext.new_with_flags.html">g_main_context_new_with_flags</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GMainContext</code> structure.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.72</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.MainContext.default.html">g_main_context_default</a></h6>
+        <div class="docblock">
+          <p>Returns the global-default main context. This is the main context
+used for main loop functions when a main loop is not explicitly
+specified, and corresponds to the “main” main loop. See also
+<code>g_main_context_get_thread_default()</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.MainContext.get_thread_default.html">g_main_context_get_thread_default</a></h6>
+        <div class="docblock">
+          <p>Gets the thread-default <code>GMainContext</code> for this thread. Asynchronous
+operations that want to be able to be run in contexts other than
+the default one should call this method or
+<code>g_main_context_ref_thread_default()</code> to get a
+<code>GMainContext</code> to add their <code>GSource</code>s to. (Note that
+even in single-threaded programs applications may sometimes want to
+temporarily push a non-default context, so it is not safe to assume that
+this will always return <code>NULL</code> if you are running in the default&nbsp;thread.).</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.22</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.MainContext.pusher_free.html">g_main_context_pusher_free</a></h6>
+        <div class="docblock">
+          <p>Pop <code>pusher</code>’s main context as the thread default main context.
+See <code>g_main_context_pusher_new()</code> for&nbsp;details.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.64</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.MainContext.ref_thread_default.html">g_main_context_ref_thread_default</a></h6>
+        <div class="docblock">
+          <p>Gets the thread-default <code>GMainContext</code> for this thread, as with
+<code>g_main_context_get_thread_default()</code>, but also adds a reference to
+it with <code>g_main_context_ref()</code>. In addition, unlike
+<code>g_main_context_get_thread_default()</code>, if the thread-default context
+is the global-default context, this will return that
+<code>GMainContext</code> (with a ref added to it) rather than returning
+<code>NULL</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.32</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.MainContext.acquire.html">g_main_context_acquire</a></h6>
+          <div class="docblock">
+            <p>Tries to become the owner of the specified context.
+If some other thread is the owner of the context,
+returns <code>FALSE</code> immediately. Ownership is properly
+recursive: the owner can require ownership again
+and will release ownership when <code>g_main_context_release()</code>
+is called as many times as <code>g_main_context_acquire()</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.add_poll.html">g_main_context_add_poll</a></h6>
+          <div class="docblock">
+            <p>Adds a file descriptor to the set of file descriptors polled for
+this context. This will very seldom be used directly. Instead
+a typical event source will use <code>g_source_add_unix_fd</code> instead.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.check.html">g_main_context_check</a></h6>
+          <div class="docblock">
+            <p>Passes the results of polling back to the main loop. You should be
+careful to pass <code>fds</code> and its length <code>n_fds</code> as received from
+<code>g_main_context_query()</code>, as this functions relies on assumptions
+on how <code>fds</code> is&nbsp;filled.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.dispatch.html">g_main_context_dispatch</a></h6>
+          <div class="docblock">
+            <p>Dispatches all pending&nbsp;sources.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.find_source_by_funcs_user_data.html">g_main_context_find_source_by_funcs_user_data</a></h6>
+          <div class="docblock">
+            <p>Finds a source with the given source functions and user data.  If
+multiple sources exist with the same source function and user data,
+the first one found will be&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.find_source_by_id.html">g_main_context_find_source_by_id</a></h6>
+          <div class="docblock">
+            <p>Finds a <code>GSource</code> given a pair of context and <span class="caps">ID</span>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.find_source_by_user_data.html">g_main_context_find_source_by_user_data</a></h6>
+          <div class="docblock">
+            <p>Finds a source with the given user data for the callback.  If
+multiple sources exist with the same user data, the first
+one found will be&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.get_poll_func.html">g_main_context_get_poll_func</a></h6>
+          <div class="docblock">
+            <p>Gets the poll function set by <code>g_main_context_set_poll_func()</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.invoke.html">g_main_context_invoke</a></h6>
+          <div class="docblock">
+            <p>Invokes a function in such a way that <code>context</code> is owned during the
+invocation of <code>function</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.28</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.invoke_full.html">g_main_context_invoke_full</a></h6>
+          <div class="docblock">
+            <p>Invokes a function in such a way that <code>context</code> is owned during the
+invocation of <code>function</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.28</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.is_owner.html">g_main_context_is_owner</a></h6>
+          <div class="docblock">
+            <p>Determines whether this thread holds the (recursive)
+ownership of this <code>GMainContext</code>. This is useful to
+know before waiting on another thread that may be
+blocking to get ownership of <code>context</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.10</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.iteration.html">g_main_context_iteration</a></h6>
+          <div class="docblock">
+            <p>Runs a single iteration for the given main loop. This involves
+checking to see if any event sources are ready to be processed,
+then if no events sources are ready and <code>may_block</code> is <code>TRUE</code>, waiting
+for a source to become ready, then dispatching the highest priority
+events sources that are ready. Otherwise, if <code>may_block</code> is <code>FALSE</code>
+sources are not waited to become ready, only those highest priority
+events sources will be dispatched (if any), that are ready at this
+given moment without further&nbsp;waiting.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.pending.html">g_main_context_pending</a></h6>
+          <div class="docblock">
+            <p>Checks if any sources have pending events for the given&nbsp;context.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.pop_thread_default.html">g_main_context_pop_thread_default</a></h6>
+          <div class="docblock">
+            <p>Pops <code>context</code> off the thread-default context stack (verifying that
+it was on the top of the&nbsp;stack).</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.22</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.prepare.html">g_main_context_prepare</a></h6>
+          <div class="docblock">
+            <p>Prepares to poll sources within a main loop. The resulting information
+for polling is determined by calling <code>g_main_context_query()</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.push_thread_default.html">g_main_context_push_thread_default</a></h6>
+          <div class="docblock">
+            <p>Acquires <code>context</code> and sets it as the thread-default context for the
+current thread. This will cause certain asynchronous operations
+(such as most [gio][gio]-based I/O) which are
+started in this thread to run under <code>context</code> and deliver their
+results to its main loop, rather than running under the global
+default main context in the main thread. Note that calling this function
+changes the context returned by <code>g_main_context_get_thread_default()</code>,
+not the one returned by <code>g_main_context_default()</code>, so it does not
+affect the context used by functions like <code>g_idle_add()</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.22</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.pusher_new.html">g_main_context_pusher_new</a></h6>
+          <div class="docblock">
+            <p>Push <code>main_context</code> as the new thread-default main context for the current
+thread, using <code>g_main_context_push_thread_default()</code>, and return a
+new <code>GMainContextPusher</code>. Pop with g_main_context_pusher_free().
+Using <code>g_main_context_pop_thread_default()</code> on <code>main_context</code> while a
+<code>GMainContextPusher</code> exists for it can lead to undefined&nbsp;behaviour.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.64</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.query.html">g_main_context_query</a></h6>
+          <div class="docblock">
+            <p>Determines information necessary to poll this main loop. You should
+be careful to pass the resulting <code>fds</code> array and its length <code>n_fds</code>
+as is when calling <code>g_main_context_check()</code>, as this function relies
+on assumptions made when the array is&nbsp;filled.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.ref.html">g_main_context_ref</a></h6>
+          <div class="docblock">
+            <p>Increases the reference count on a <code>GMainContext</code> object by&nbsp;one.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.release.html">g_main_context_release</a></h6>
+          <div class="docblock">
+            <p>Releases ownership of a context previously acquired by this thread
+with <code>g_main_context_acquire()</code>. If the context was acquired multiple
+times, the ownership will be released only when <code>g_main_context_release()</code>
+is called as many times as it was&nbsp;acquired.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.remove_poll.html">g_main_context_remove_poll</a></h6>
+          <div class="docblock">
+            <p>Removes file descriptor from the set of file descriptors to be
+polled for a particular&nbsp;context.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.set_poll_func.html">g_main_context_set_poll_func</a></h6>
+          <div class="docblock">
+            <p>Sets the function to use to handle polling of file descriptors. It
+will be used instead of the <code>poll()</code> system call
+(or GLib’s replacement function, which is used where
+<code>poll()</code> isn’t&nbsp;available).</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.unref.html">g_main_context_unref</a></h6>
+          <div class="docblock">
+            <p>Decreases the reference count on a <code>GMainContext</code> object by one.
+If
+the result is zero, free the context and free all associated&nbsp;memory.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.MainContext.wait.html">g_main_context_wait</a></h6>
+          <div class="docblock">
+            <p>Tries to become the owner of the specified context,
+as with <code>g_main_context_acquire()</code>. But if another thread
+is the owner, atomically drop <code>mutex</code> and wait on <code>cond</code> until
+that owner releases ownership or until <code>cond</code> is signaled, then
+try again (once) to become the&nbsp;owner.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.58</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MainContext.wakeup.html">g_main_context_wakeup</a></h6>
+          <div class="docblock">
+            <p>If <code>context</code> is currently blocking in <code>g_main_context_iteration()</code>
+waiting for a source to become ready, cause it to stop blocking
+and return.  Otherwise, cause the next invocation of
+<code>g_main_context_iteration()</code> to return without&nbsp;blocking.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.MainContext.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

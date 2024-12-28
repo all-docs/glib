@@ -1,0 +1,497 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/data-structures.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Data Structures</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Data Structures">
+  <meta property="og:description" content="Reference for GLib-2.0: Data Structures">
+  <meta name="twitter:title" content="GLib: Data Structures">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Data Structures">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Data Structures
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="data-structures">Data Structures<a class="md-anchor" href="#data-structures" title="Permanent link"></a></h1>
+<p>GLib includes a number of basic data structures, such as arrays, linked lists, hash tables,
+queues, trees,&nbsp;etc.</p>
+<h2 id="arrays">Arrays<a class="md-anchor" href="#arrays" title="Permanent link"></a></h2>
+<p>GLib arrays (<a href="struct.Array.html"><code>GArray</code></a>) are similar to standard C arrays, except that they grow
+automatically as elements are&nbsp;added.</p>
+<p>Array elements can be of any size (though all elements of one array are the same size),
+and the array can be automatically cleared to ‘0’s and&nbsp;zero-terminated.</p>
+<p>To create a new array use <a href="type_func.Array.new.html"><code>g_array_new()</code></a>.</p>
+<p>To add elements to an array with a cost of O(n) at worst, use
+<a href="func.array_append_val.html"><code>g_array_append_val()</code></a>,
+<a href="type_func.Array.append_vals.html"><code>g_array_append_vals()</code></a>,
+<a href="func.array_prepend_val.html"><code>g_array_prepend_val()</code></a>,
+<a href="type_func.Array.prepend_vals.html"><code>g_array_prepend_vals()</code></a>,
+<a href="func.array_insert_val.html"><code>g_array_insert_val()</code></a> and
+<a href="type_func.Array.insert_vals.html"><code>g_array_insert_vals()</code></a>.</p>
+<p>To access an element of an array in O(1) (to read it or to write it),
+use <a href="func.array_index.html"><code>g_array_index()</code></a>.</p>
+<p>To set the size of an array, use <a href="type_func.Array.set_size.html"><code>g_array_set_size()</code></a>.</p>
+<p>To free an array, use <a href="type_func.Array.unref.html"><code>g_array_unref()</code></a> or <a href="type_func.Array.free.html"><code>g_array_free()</code></a>.</p>
+<p>All the sort functions are internally calling a quick-sort (or similar)
+function with an average cost of O(n log(n)) and a worst case cost of&nbsp;O(n^2).</p>
+<p>Here is an example that stores integers in a <a href="struct.Array.html"><code>GArray</code></a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">GArray</span><span class="w"> </span><span class="o">*</span><span class="n">array</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="c1">// We create a new array to store int values.</span>
+<span class="c1">// We don't want it zero-terminated or cleared to 0's.</span>
+<span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_array_new</span><span class="w"> </span><span class="p">(</span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g_array_append_val</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_array_index</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+<span class="w">      </span><span class="n">g_print</span><span class="w"> </span><span class="p">(</span><span class="s">"ERROR: got %d instead of %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+<span class="w">               </span><span class="n">g_array_index</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="n">g_array_free</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="pointer-arrays">Pointer Arrays<a class="md-anchor" href="#pointer-arrays" title="Permanent link"></a></h2>
+<p>Pointer Arrays (<a href="struct.PtrArray.html"><code>GPtrArray</code></a>) are similar to Arrays but are used
+only for storing&nbsp;pointers.</p>
+<p>If you remove elements from the array, elements at the end of the
+array are moved into the space previously occupied by the removed
+element. This means that you should not rely on the index of particular
+elements remaining the same. You should also be careful when deleting
+elements while iterating over the&nbsp;array.</p>
+<p>To create a pointer array, use <a href="type_func.PtrArray.new.html"><code>g_ptr_array_new()</code></a>.</p>
+<p>To add elements to a pointer array, use <a href="type_func.PtrArray.add.html"><code>g_ptr_array_add()</code></a>.</p>
+<p>To remove elements from a pointer array, use
+<a href="type_func.PtrArray.remove.html"><code>g_ptr_array_remove()</code></a>,
+<a href="type_func.PtrArray.remove_index.html"><code>g_ptr_array_remove_index()</code></a> or
+<a href="type_func.PtrArray.remove_index_fast.html"><code>g_ptr_array_remove_index_fast()</code></a>.</p>
+<p>To access an element of a pointer array, use <a href="func.ptr_array_index.html"><code>g_ptr_array_index()</code></a>.</p>
+<p>To set the size of a pointer array, use <a href="type_func.PtrArray.set_size.html"><code>g_ptr_array_set_size()</code></a>.</p>
+<p>To free a pointer array, use <a href="type_func.PtrArray.unref.html"><code>g_ptr_array_unref()</code></a> or <a href="type_func.PtrArray.free.html"><code>g_ptr_array_free()</code></a>.</p>
+<p>An example using a <a href="struct.PtrArray.html"><code>GPtrArray</code></a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">GPtrArray</span><span class="w"> </span><span class="o">*</span><span class="n">array</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"one"</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"two"</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">string3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"three"</span><span class="p">;</span>
+
+<span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_ptr_array_new</span><span class="w"> </span><span class="p">();</span>
+<span class="n">g_ptr_array_add</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">gpointer</span><span class="p">)</span><span class="w"> </span><span class="n">string1</span><span class="p">);</span>
+<span class="n">g_ptr_array_add</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">gpointer</span><span class="p">)</span><span class="w"> </span><span class="n">string2</span><span class="p">);</span>
+<span class="n">g_ptr_array_add</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">gpointer</span><span class="p">)</span><span class="w"> </span><span class="n">string3</span><span class="p">);</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_ptr_array_index</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">gpointer</span><span class="p">)</span><span class="w"> </span><span class="n">string1</span><span class="p">)</span>
+<span class="w">  </span><span class="n">g_print</span><span class="w"> </span><span class="p">(</span><span class="s">"ERROR: got %p instead of %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+<span class="w">           </span><span class="n">g_ptr_array_index</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">string1</span><span class="p">);</span>
+
+<span class="n">g_ptr_array_free</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="byte-arrays">Byte Arrays<a class="md-anchor" href="#byte-arrays" title="Permanent link"></a></h2>
+<p><a href="struct.ByteArray.html"><code>GByteArray</code></a> is a mutable array of bytes based on <a href="struct.Array.html"><code>GArray</code></a>,
+to provide arrays of bytes which grow automatically as elements are&nbsp;added.</p>
+<p>To create a new <code>GByteArray</code> use <a href="type_func.ByteArray.new.html"><code>g_byte_array_new()</code></a>.</p>
+<p>To add elements to a <code>GByteArray</code>, use
+<a href="type_func.ByteArray.append.html"><code>g_byte_array_append()</code></a> and <a href="type_func.ByteArray.prepend.html"><code>g_byte_array_prepend()</code></a>.</p>
+<p>To set the size of a <code>GByteArray</code>, use <a href="type_func.ByteArray.set_size.html"><code>g_byte_array_set_size()</code></a>.</p>
+<p>To free a <code>GByteArray</code>, use <a href="type_func.ByteArray.unref.html"><code>g_byte_array_unref()</code></a> or <a href="type_func.ByteArray.free.html"><code>g_byte_array_free()</code></a>.</p>
+<p>An example for using a <code>GByteArray</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">GByteArray</span><span class="w"> </span><span class="o">*</span><span class="n">array</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_byte_array_new</span><span class="w"> </span><span class="p">();</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g_byte_array_append</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">guint8</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s">"abcd"</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g_assert</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'a'</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_assert</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'b'</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_assert</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'c'</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_assert</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'d'</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="n">g_byte_array_free</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+</code></pre></div>
+
+<p>See <a href="struct.Bytes.html"><code>GBytes</code></a> if you are interested in an immutable object representing a
+sequence of&nbsp;bytes.</p>
+<h2 id="singly-linked-lists">Singly-linked Lists<a class="md-anchor" href="#singly-linked-lists" title="Permanent link"></a></h2>
+<p>The <a href="struct.SList.html"><code>GSList</code></a> structure and its associated functions provide a standard
+singly-linked list data structure. The benefit of this data structure is to provide
+insertion/deletion operations in O(1) complexity where access/search operations are
+in O(n). The benefit of <code>GSList</code> over <a href="struct.List.html"><code>GList</code></a> (doubly-linked list) is that
+they are lighter in space as they only need to retain one pointer but it double the
+cost of the worst case access/search&nbsp;operations.</p>
+<p>Each element in the list contains a piece of data, together with a pointer which links
+to the next element in the list. Using this pointer it is possible to move through the
+list in one direction only (unlike the <a href="#doubly-linked-lists">doubly-linked lists</a>,
+which allow movement in both&nbsp;directions).</p>
+<p>The data contained in each element can be either integer values, by
+using one of the <a href="conversion-macros.html">Type Conversion Macros</a>,
+or simply pointers to any type of&nbsp;data.</p>
+<p>Note that most of the <code>GSList</code> functions expect to be passed a pointer to the first element
+in the list. The functions which insert elements return the new start of the list, which
+may have&nbsp;changed.</p>
+<p>There is no function to create a <code>GSList</code>. <code>NULL</code> is considered to be the empty list so you
+simply set a <code>GSList*</code> to <code>NULL</code>.</p>
+<p>To add elements, use <a href="type_func.SList.append.html"><code>g_slist_append()</code></a>, <a href="type_func.SList.prepend.html"><code>g_slist_prepend()</code></a>,
+<a href="type_func.SList.insert.html"><code>g_slist_insert()</code></a> and <a href="type_func.SList.insert_sorted.html"><code>g_slist_insert_sorted()</code></a>.</p>
+<p>To remove elements, use <a href="type_func.SList.remove.html"><code>g_slist_remove()</code></a>.</p>
+<p>To find elements in the list use <a href="type_func.SList.last.html"><code>g_slist_last()</code></a>, <a href="func.slist_next.html"><code>g_slist_next()</code></a>,
+<a href="type_func.SList.nth.html"><code>g_slist_nth()</code></a>, <a href="type_func.SList.nth_data.html"><code>g_slist_nth_data()</code></a>, <a href="type_func.SList.find.html"><code>g_slist_find()</code></a> and
+<a href="type_func.SList.find_custom.html"><code>g_slist_find_custom()</code></a>.</p>
+<p>To find the index of an element use <a href="type_func.SList.position.html"><code>g_slist_position()</code></a> and <a href="type_func.SList.index.html"><code>g_slist_index()</code></a>.</p>
+<p>To call a function for each element in the list use <a href="type_func.SList.foreach.html"><code>g_slist_foreach()</code></a>.</p>
+<p>To free the entire list, use <a href="type_func.SList.free.html"><code>g_slist_free()</code></a>.</p>
+<h2 id="doubly-linked-lists">Doubly-linked Lists<a class="md-anchor" href="#doubly-linked-lists" title="Permanent link"></a></h2>
+<p>The <a href="struct.List.html"><code>GList</code></a> structure and its associated functions provide a standard
+doubly-linked list data structure. The benefit of this data-structure is to provide
+insertion/deletion operations in O(1) complexity where access/search operations are in O(n).
+The benefit of <code>GList</code> over <a href="struct.SList.html"><code>GSList</code></a> (singly-linked list) is that the worst case
+on access/search operations is divided by two which comes at a cost in space as we need
+to retain two pointers in place of&nbsp;one.</p>
+<p>Each element in the list contains a piece of data, together with pointers which link to the
+previous and next elements in the list. Using these pointers it is possible to move through
+the list in both directions (unlike the singly-linked <a href="struct.SList.html"><code>GSList</code></a>,
+which only allows movement through the list in the forward&nbsp;direction).</p>
+<p>The doubly-linked list does not keep track of the number of items and does not keep track of
+both the start and end of the list. If you want fast access to both the start and the end of
+the list,  and/or the number of items in the list, use a <a href="struct.Queue.html"><code>GQueue</code></a>&nbsp;instead.</p>
+<p>The data contained in each element can be either integer values, by using one of the
+<a href="conversion-macros.html">Type Conversion Macros</a>, or simply pointers to any type of&nbsp;data.</p>
+<p>Note that most of the <code>GList</code> functions expect to be passed a pointer to the first element in the list.
+The functions which insert elements return the new start of the list, which may have&nbsp;changed.</p>
+<p>There is no function to create a <code>GList</code>. <code>NULL</code> is considered to be a valid, empty list so you simply
+set a <code>GList*</code> to <code>NULL</code> to initialize&nbsp;it.</p>
+<p>To add elements, use <a href="type_func.List.append.html"><code>g_list_append()</code></a>, <a href="type_func.List.prepend.html"><code>g_list_prepend()</code></a>,
+<a href="type_func.List.insert.html"><code>g_list_insert()</code></a> and <a href="type_func.List.insert_sorted.html"><code>g_list_insert_sorted()</code></a>.</p>
+<p>To visit all elements in the list, use a loop over the&nbsp;list:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">GList</span><span class="w"> </span><span class="o">*</span><span class="n">l</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// do something with l-&gt;data</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+
+<p>To call a function for each element in the list, use <a href="type_func.List.foreach.html"><code>g_list_foreach()</code></a>.</p>
+<p>To loop over the list and modify it (e.g. remove a certain element) a while loop is more appropriate,
+for&nbsp;example:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">GList</span><span class="w"> </span><span class="o">*</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">GList</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">should_be_removed</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// possibly free l-&gt;data</span>
+<span class="w">        </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_list_delete_link</span><span class="w"> </span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+
+<p>To remove elements, use <a href="type_func.List.remove.html"><code>g_list_remove()</code></a>.</p>
+<p>To navigate in a list, use <a href="type_func.List.first.html"><code>g_list_first()</code></a>, <a href="type_func.List.last.html"><code>g_list_last()</code></a>,
+<a href="func.list_next.html"><code>g_list_next()</code></a>, <a href="func.list_previous.html"><code>g_list_previous()</code></a>.</p>
+<p>To find elements in the list use <a href="type_func.List.nth.html"><code>g_list_nth()</code></a>, <a href="type_func.List.nth_data.html"><code>g_list_nth_data()</code></a>,
+<a href="type_func.List.find.html"><code>g_list_find()</code></a> and <a href="type_func.List.find_custom.html"><code>g_list_find_custom()</code></a>.</p>
+<p>To find the index of an element use <a href="type_func.List.position.html"><code>g_list_position()</code></a> and <a href="type_func.List.index.html"><code>g_list_index()</code></a>.</p>
+<p>To free the entire list, use <a href="type_func.List.free.html"><code>g_list_free()</code></a> or <a href="type_func.List.free_full.html"><code>g_list_free_full()</code></a>.</p>
+<h2 id="hash-tables">Hash Tables<a class="md-anchor" href="#hash-tables" title="Permanent link"></a></h2>
+<p>A <a href="struct.HashTable.html"><code>GHashTable</code></a> provides associations between keys and values which is
+optimized so that given a key, the associated value can be found, inserted or removed
+in amortized O(1). All operations going through each element take O(n) time (list all
+keys/values, table resize,&nbsp;etc.).</p>
+<p>Note that neither keys nor values are copied when inserted into the <code>GHashTable</code>,
+so they must exist for the lifetime of the <code>GHashTable</code>. This means that the use
+of static strings is <span class="caps">OK</span>, but temporary strings (i.e. those created in buffers and those
+returned by <span class="caps">GTK</span> widgets) should be copied with <a href="func.strdup.html"><code>g_strdup()</code></a> before being&nbsp;inserted.</p>
+<p>If keys or values are dynamically allocated, you must be careful to ensure that they are freed
+when they are removed from the <code>GHashTable</code>, and also when they are overwritten by
+new insertions into the <code>GHashTable</code>. It is also not advisable to mix static strings
+and dynamically-allocated strings in a <a href="struct.HashTable.html"><code>GHashTable</code></a>, because it then becomes difficult
+to determine whether the string should be&nbsp;freed.</p>
+<p>To create a <code>GHashTable</code>, use <a href="type_func.HashTable.new.html"><code>g_hash_table_new()</code></a>.</p>
+<p>To insert a key and value into a <code>GHashTable</code>, use <a href="type_func.HashTable.insert.html"><code>g_hash_table_insert()</code></a>.</p>
+<p>To look up a value corresponding to a given key, use <a href="type_func.HashTable.lookup.html"><code>g_hash_table_lookup()</code></a> or
+<a href="type_func.HashTable.lookup_extended.html"><code>g_hash_table_lookup_extended()</code></a>.</p>
+<p><a href="type_func.HashTable.lookup_extended.html"><code>g_hash_table_lookup_extended()</code></a> can also be used to simply check if a key is present
+in the hash&nbsp;table.</p>
+<p>To remove a key and value, use <a href="type_func.HashTable.remove.html"><code>g_hash_table_remove()</code></a>.</p>
+<p>To call a function for each key and value pair use <a href="type_func.HashTable.foreach.html"><code>g_hash_table_foreach()</code></a> or use
+an iterator to iterate over the key/value pairs in the hash table, see <a href="struct.HashTableIter.html"><code>GHashTableIter</code></a>.
+The iteration order of a hash table is not defined, and you must not rely on iterating over
+keys/values in the same order as they were&nbsp;inserted.</p>
+<p>To destroy a <code>GHashTable</code> use <a href="type_func.HashTable.unref.html"><code>g_hash_table_unref()</code></a> or <a href="type_func.HashTable.destroy.html"><code>g_hash_table_destroy()</code></a>.</p>
+<p>A common use-case for hash tables is to store information about a set of keys, without associating any
+particular value with each key. <code>GHashTable</code> optimizes one way of doing so: If you store only
+key-value pairs where key == value, then <code>GHashTable</code> does not allocate memory to store the values,
+which can be a considerable space saving, if your set is large. The functions <a href="type_func.HashTable.add.html"><code>g_hash_table_add()</code></a>
+and <a href="type_func.HashTable.contains.html"><code>g_hash_table_contains()</code></a> are designed to be used when using <code>GHashTable</code> this&nbsp;way.</p>
+<p><code>GHashTable</code> is not designed to be statically initialised with keys and values known at compile time.
+To build a static hash table, use a tool such as <a href="https://www.gnu.org/software/gperf/">gperf</a>.</p>
+<h2 id="double-ended-queues">Double-ended Queues<a class="md-anchor" href="#double-ended-queues" title="Permanent link"></a></h2>
+<p>The <a href="struct.Queue.html"><code>GQueue</code></a> structure and its associated functions provide a standard queue data structure.
+Internally, <code>GQueue</code> uses the same data structure as <a href="struct.List.html"><code>GList</code></a> to store elements with the same
+complexity over insertion/deletion (O(1)) and access/search (O(n))&nbsp;operations.</p>
+<p>The data contained in each element can be either integer values, by using one of the
+<a href="conversion-macros.html">Type Conversion Macros</a>, or simply pointers to any type of&nbsp;data.</p>
+<p>As with all other GLib data structures, <code>GQueue</code> is not thread-safe. For a thread-safe queue, use
+<a href="struct.AsyncQueue.html"><code>GAsyncQueue</code></a>.</p>
+<p>To create a new GQueue, use <a href="type_func.Queue.new.html"><code>g_queue_new()</code></a>.</p>
+<p>To initialize a statically-allocated GQueue, use <code>G_QUEUE_INIT</code> or <a href="method.Queue.init.html"><code>g_queue_init()</code></a>.</p>
+<p>To add elements, use <a href="method.Queue.push_head.html"><code>g_queue_push_head()</code></a>, <a href="method.Queue.push_head_link.html"><code>g_queue_push_head_link()</code></a>,
+<a href="method.Queue.push_tail.html"><code>g_queue_push_tail()</code></a> and <a href="method.Queue.push_tail_link.html"><code>g_queue_push_tail_link()</code></a>.</p>
+<p>To remove elements, use <a href="method.Queue.pop_head.html"><code>g_queue_pop_head()</code></a> and <a href="method.Queue.pop_tail.html"><code>g_queue_pop_tail()</code></a>.</p>
+<p>To free the entire queue, use <a href="method.Queue.free.html"><code>g_queue_free()</code></a>.</p>
+<h2 id="asynchronous-queues">Asynchronous Queues<a class="md-anchor" href="#asynchronous-queues" title="Permanent link"></a></h2>
+<p>Often you need to communicate between different threads. In general it’s safer not to do this
+by shared memory, but by explicit message passing. These messages only make sense asynchronously
+for multi-threaded applications though, as a synchronous operation could as well be done in the
+same&nbsp;thread.</p>
+<p>Asynchronous queues are an exception from most other GLib data structures, as they can be used
+simultaneously from multiple threads without explicit locking and they bring their own builtin
+reference counting. This is because the nature of an asynchronous queue is that it will always
+be used by at least 2 concurrent&nbsp;threads.</p>
+<p>For using an asynchronous queue you first have to create one with <a href="type_func.AsyncQueue.new.html"><code>g_async_queue_new()</code></a>.
+<a href="struct.AsyncQueue.html"><code>GAsyncQueue</code></a> structs are reference counted, use <a href="method.AsyncQueue.ref.html"><code>g_async_queue_ref()</code></a> and
+<a href="method.AsyncQueue.unref.html"><code>g_async_queue_unref()</code></a> to manage your&nbsp;references.</p>
+<p>A thread which wants to send a message to that queue simply calls <a href="method.AsyncQueue.push.html"><code>g_async_queue_push()</code></a>
+to push the message to the&nbsp;queue.</p>
+<p>A thread which is expecting messages from an asynchronous queue simply calls <a href="method.AsyncQueue.pop.html"><code>g_async_queue_pop()</code></a>
+for that queue. If no message is available in the queue at that point, the thread is now put to sleep
+until a message arrives. The message will be removed from the queue and returned. The functions
+<a href="method.AsyncQueue.try_pop.html"><code>g_async_queue_try_pop()</code></a> and <a href="method.AsyncQueue.timeout_pop.html"><code>g_async_queue_timeout_pop()</code></a> can be used to only check
+for the presence of messages or to only wait a certain time for messages&nbsp;respectively.</p>
+<p>For almost every function there exist two variants, one that locks the queue and one that doesn’t.
+That way you can hold the queue lock (acquire it with <a href="method.AsyncQueue.lock.html"><code>g_async_queue_lock()</code></a> and release it
+with <a href="method.AsyncQueue.unlock.html"><code>g_async_queue_unlock()</code></a> over multiple queue accessing instructions. This can be necessary
+to ensure the integrity of the queue, but should only be used when really necessary, as it can make your
+life harder if used unwisely. Normally you should only use the locking function variants (those without
+the <code>_unlocked</code> suffix).</p>
+<p>In many cases, it may be more convenient to use <a href="struct.ThreadPool.html"><code>GThreadPool</code></a> when you need to distribute work
+to a set of worker threads instead of using <code>GAsyncQueue</code> manually. <code>GThreadPool</code> uses a <code>GAsyncQueue</code>
+internally.</p>
+<h2 id="binary-trees">Binary Trees<a class="md-anchor" href="#binary-trees" title="Permanent link"></a></h2>
+<p>The <a href="struct.Tree.html"><code>GTree</code></a> structure and its associated functions provide a sorted collection of key/value
+pairs optimized for searching and traversing in order. This means that most of the operations (access,
+search, insertion, deletion, …) on <code>GTree</code> are O(log(n)) in average and O(n) in worst case for time
+complexity. But, note that maintaining a balanced sorted <code>GTree</code> of n elements is done in time O(n&nbsp;log(n)).</p>
+<p>To create a new <code>GTree</code> use <a href="ctor.Tree.new.html"><code>g_tree_new()</code></a>.</p>
+<p>To insert a key/value pair into a <code>GTree</code> use <a href="method.Tree.insert.html"><code>g_tree_insert()</code></a> (O(n&nbsp;log(n))).</p>
+<p>To remove a key/value pair use <a href="method.Tree.remove.html"><code>g_tree_remove()</code></a> (O(n&nbsp;log(n))).</p>
+<p>To look up the value corresponding to a given key, use <a href="method.Tree.lookup.html"><code>g_tree_lookup()</code></a> and
+<a href="method.Tree.lookup_extended.html"><code>g_tree_lookup_extended()</code></a>.</p>
+<p>To find out the number of nodes in a <code>GTree</code>, use <a href="method.Tree.nnodes.html"><code>g_tree_nnodes()</code></a>.
+To get the height of a <code>GTree</code>, use <a href="method.Tree.height.html"><code>g_tree_height()</code></a>.</p>
+<p>To traverse a <code>GTree</code>, calling a function for each node visited in
+the traversal, use <a href="method.Tree.foreach.html"><code>g_tree_foreach()</code></a>.</p>
+<p>To destroy a <code>GTree</code>, use <a href="method.Tree.destroy.html"><code>g_tree_destroy()</code></a>.</p>
+<h2 id="n-ary-trees">N-ary Trees<a class="md-anchor" href="#n-ary-trees" title="Permanent link"></a></h2>
+<p>The <a href="struct.Node.html"><code>GNode</code></a> struct and its associated functions provide a N-ary tree
+data structure, where nodes in the tree can contain arbitrary&nbsp;data.</p>
+<p>To create a new tree use <a href="type_func.Node.new.html"><code>g_node_new()</code></a>.</p>
+<p>To insert a node into a tree use <a href="method.Node.insert.html"><code>g_node_insert()</code></a>, <a href="method.Node.insert_before.html"><code>g_node_insert_before()</code></a>,
+<a href="func.node_append.html"><code>g_node_append()</code></a> and <a href="method.Node.prepend.html"><code>g_node_prepend()</code></a>,</p>
+<p>To create a new node and insert it into a tree use <a href="func.node_insert_data.html"><code>g_node_insert_data()</code></a>,
+<a href="func.node_insert_data_after.html"><code>g_node_insert_data_after()</code></a>, <a href="func.node_insert_data_before.html"><code>g_node_insert_data_before()</code></a>,
+<a href="func.node_append_data.html"><code>g_node_append_data()</code></a> and <a href="func.node_prepend_data.html"><code>g_node_prepend_data()</code></a>.</p>
+<p>To reverse the children of a node use <a href="method.Node.reverse_children.html"><code>g_node_reverse_children()</code></a>.</p>
+<p>To find a node use <a href="method.Node.get_root.html"><code>g_node_get_root()</code></a>, <a href="method.Node.find.html"><code>g_node_find()</code></a>, <a href="method.Node.find_child.html"><code>g_node_find_child()</code></a>,
+<a href="method.Node.child_index.html"><code>g_node_child_index()</code></a>, <a href="method.Node.child_position.html"><code>g_node_child_position()</code></a>, <a href="func.node_first_child.html"><code>g_node_first_child()</code></a>,
+<a href="method.Node.last_child.html"><code>g_node_last_child()</code></a>, <a href="method.Node.nth_child.html"><code>g_node_nth_child()</code></a>, <a href="method.Node.first_sibling.html"><code>g_node_first_sibling()</code></a>,
+<a href="func.node_prev_sibling.html"><code>g_node_prev_sibling()</code></a>, <a href="func.node_next_sibling.html"><code>g_node_next_sibling()</code></a> or <a href="method.Node.last_sibling.html"><code>g_node_last_sibling()</code></a>.</p>
+<p>To get information about a node or tree use <code>G_NODE_IS_LEAF()</code>,
+<code>G_NODE_IS_ROOT()</code>, <a href="method.Node.depth.html"><code>g_node_depth()</code></a>, <a href="method.Node.n_nodes.html"><code>g_node_n_nodes()</code></a>,
+<a href="method.Node.n_children.html"><code>g_node_n_children()</code></a>, <a href="method.Node.is_ancestor.html"><code>g_node_is_ancestor()</code></a> or <a href="method.Node.max_height.html"><code>g_node_max_height()</code></a>.</p>
+<p>To traverse a tree, calling a function for each node visited in the traversal, use
+<a href="method.Node.traverse.html"><code>g_node_traverse()</code></a> or <a href="method.Node.children_foreach.html"><code>g_node_children_foreach()</code></a>.</p>
+<p>To remove a node or subtree from a tree use <a href="method.Node.unlink.html"><code>g_node_unlink()</code></a> or <a href="method.Node.destroy.html"><code>g_node_destroy()</code></a>.</p>
+<h2 id="scalable-lists">Scalable Lists<a class="md-anchor" href="#scalable-lists" title="Permanent link"></a></h2>
+<p>The <a href="struct.Sequence.html"><code>GSequence</code></a> data structure has the <span class="caps">API</span> of a list, but is implemented internally with
+a balanced binary tree. This means that most of the operations  (access, search, insertion, deletion,
+…) on <code>GSequence</code> are O(log(n)) in average and O(n) in worst case for time complexity. But, note that
+maintaining a balanced sorted list of n elements is done in time O(n log(n)). The data contained
+in each element can be either integer values, by using of the
+<a href="conversion-macros-2.html">Type Conversion Macros</a>, or simply pointers to any type of&nbsp;data.</p>
+<p>A <code>GSequence</code> is accessed through “iterators”, represented by a <a href="struct.SequenceIter.html"><code>GSequenceIter</code></a>. An iterator
+represents a position between two elements of the sequence. For example, the “begin” iterator represents
+the gap immediately before the first element of the sequence, and the “end” iterator represents the gap
+immediately after the last element. In an empty sequence, the begin and end iterators are the&nbsp;same.</p>
+<p>Some methods on <code>GSequence</code> operate on ranges of items. For example <a href="type_func.Sequence.foreach_range.html"><code>g_sequence_foreach_range()</code></a>
+will call a user-specified function on each element with the given range. The range is delimited by the
+gaps represented by the passed-in iterators, so if you pass in the begin and end iterators, the range in
+question is the entire&nbsp;sequence.</p>
+<p>The function <a href="type_func.Sequence.get.html"><code>g_sequence_get()</code></a> is used with an iterator to access the element immediately following
+the gap that the iterator represents. The iterator is said to “point” to that&nbsp;element.</p>
+<p>Iterators are stable across most operations on a <code>GSequence</code>. For example an iterator pointing to some element
+of a sequence will continue to point to that element even after the sequence is sorted. Even moving an element
+to another sequence using for example <a href="type_func.Sequence.move_range.html"><code>g_sequence_move_range()</code></a> will not invalidate the iterators pointing
+to it. The only operation that will invalidate an iterator is when the element it points to is removed from
+any&nbsp;sequence.</p>
+<p>To sort the data, either use <a href="method.Sequence.insert_sorted.html"><code>g_sequence_insert_sorted()</code></a> or <a href="method.Sequence.insert_sorted_iter.html"><code>g_sequence_insert_sorted_iter()</code></a>
+to add data to the <code>GSequence</code> or, if you want to add a large amount of data, it is more efficient to call
+<a href="method.Sequence.sort.html"><code>g_sequence_sort()</code></a> or <a href="method.Sequence.sort_iter.html"><code>g_sequence_sort_iter()</code></a> after doing unsorted&nbsp;insertions.</p>
+<h2 id="reference-counted-strings">Reference-counted strings<a class="md-anchor" href="#reference-counted-strings" title="Permanent link"></a></h2>
+<p>Reference-counted strings are normal C strings that have been augmented with a reference count to manage
+their resources. You allocate a new reference counted string and acquire and release references as needed,
+instead of copying the string among callers; when the last reference on the string is released, the resources
+allocated for it are&nbsp;freed.</p>
+<p>Typically, reference-counted strings can be used when parsing data from files and storing them into data
+structures that are passed to various&nbsp;callers:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">PersonDetails</span><span class="w"> </span><span class="o">*</span>
+<span class="nf">person_details_from_data</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="c1">// Use g_autoptr() to simplify error cases</span>
+<span class="w">  </span><span class="n">g_autoptr</span><span class="p">(</span><span class="n">GRefString</span><span class="p">)</span><span class="w"> </span><span class="n">full_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">g_autoptr</span><span class="p">(</span><span class="n">GRefString</span><span class="p">)</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">g_autoptr</span><span class="p">(</span><span class="n">GRefString</span><span class="p">)</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">g_autoptr</span><span class="p">(</span><span class="n">GRefString</span><span class="p">)</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">g_autoptr</span><span class="p">(</span><span class="n">GRefString</span><span class="p">)</span><span class="w"> </span><span class="n">zip_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// parse_person_details() is defined elsewhere; returns refcounted strings</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">parse_person_details</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">full_name</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">zip_code</span><span class="p">))</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">validate_zip_code</span><span class="w"> </span><span class="p">(</span><span class="n">zip_code</span><span class="p">))</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// add_address_to_cache() and add_full_name_to_cache() are defined</span>
+<span class="w">  </span><span class="c1">// elsewhere; they add strings to various caches, using refcounted</span>
+<span class="w">  </span><span class="c1">// strings to avoid copying data over and over again</span>
+<span class="w">  </span><span class="n">add_address_to_cache</span><span class="w"> </span><span class="p">(</span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">zip_code</span><span class="p">);</span>
+<span class="w">  </span><span class="n">add_full_name_to_cache</span><span class="w"> </span><span class="p">(</span><span class="n">full_name</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// person_details_new() is defined elsewhere; it takes a reference</span>
+<span class="w">  </span><span class="c1">// on each string</span>
+<span class="w">  </span><span class="n">PersonDetails</span><span class="w"> </span><span class="o">*</span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">person_details_new</span><span class="w"> </span><span class="p">(</span><span class="n">full_name</span><span class="p">,</span>
+<span class="w">                                           </span><span class="n">address</span><span class="p">,</span>
+<span class="w">                                           </span><span class="n">city</span><span class="p">,</span>
+<span class="w">                                           </span><span class="n">state</span><span class="p">,</span>
+<span class="w">                                           </span><span class="n">zip_code</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>In the example above, we have multiple functions taking the same strings for different uses; with typical
+C strings, we’d have to copy the strings every time the life time rules of the data differ from the
+life-time of the string parsed from the original buffer. With reference counted strings, each caller can
+take a reference on the data, and keep it as long as it needs to own the&nbsp;string.</p>
+<p>Reference-counted strings can also be “interned” inside a global table owned by GLib; while an interned
+string has at least a reference, creating a new interned reference-counted string with the same contents
+will return a reference to the existing string instead of creating a new reference-counted string instance.
+Once the string loses its last reference, it will be automatically removed from the global interned strings&nbsp;table.</p>
+<p>Reference-counted strings were added to GLib in&nbsp;2.58.</p>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#arrays"><span class="link-text">Arrays</span></a></li>
+        
+        <li class="toc-list-item"><a href="#pointer-arrays"><span class="link-text">Pointer Arrays</span></a></li>
+        
+        <li class="toc-list-item"><a href="#byte-arrays"><span class="link-text">Byte Arrays</span></a></li>
+        
+        <li class="toc-list-item"><a href="#singly-linked-lists"><span class="link-text">Singly-linked Lists</span></a></li>
+        
+        <li class="toc-list-item"><a href="#doubly-linked-lists"><span class="link-text">Doubly-linked Lists</span></a></li>
+        
+        <li class="toc-list-item"><a href="#hash-tables"><span class="link-text">Hash Tables</span></a></li>
+        
+        <li class="toc-list-item"><a href="#double-ended-queues"><span class="link-text">Double-ended Queues</span></a></li>
+        
+        <li class="toc-list-item"><a href="#asynchronous-queues"><span class="link-text">Asynchronous Queues</span></a></li>
+        
+        <li class="toc-list-item"><a href="#binary-trees"><span class="link-text">Binary Trees</span></a></li>
+        
+        <li class="toc-list-item"><a href="#n-ary-trees"><span class="link-text">N-ary Trees</span></a></li>
+        
+        <li class="toc-list-item"><a href="#scalable-lists"><span class="link-text">Scalable Lists</span></a></li>
+        
+        <li class="toc-list-item"><a href="#reference-counted-strings"><span class="link-text">Reference-counted strings</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/data-structures.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

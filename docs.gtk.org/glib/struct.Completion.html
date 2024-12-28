@@ -1,0 +1,306 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Completion.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Completion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Completion">
+  <meta property="og:description" content="Reference for GLib.Completion">
+  <meta name="twitter:title" content="GLib.Completion">
+  <meta name="twitter:description" content="Reference for GLib.Completion">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>Completion</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem deprecated">deprecated: 2.26</span>&nbsp;</p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/deprecated/gcompletion.c#L46">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GCompletion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">GList</span><span class="o">*</span><span class="w"> </span><span class="n">items</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GCompletionFunc</span><span class="w"> </span><span class="n">func</span><span class="p">;</span>
+<span class="w">  </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">prefix</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GList</span><span class="o">*</span><span class="w"> </span><span class="n">cache</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GCompletionStrncmpFunc</span><span class="w"> </span><span class="n">strncmp_func</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p><code>GCompletion</code> provides support for automatic completion of a string
+using any group of target strings. It is typically used for file
+name completion as is common in many <span class="caps">UNIX</span>&nbsp;shells.</p>
+<p>A <code>GCompletion</code> is created using <a href="type_func.Completion.new.html"><code>g_completion_new()</code></a>. Target items are
+added and removed with <a href="method.Completion.add_items.html"><code>g_completion_add_items()</code></a>,
+<a href="method.Completion.remove_items.html"><code>g_completion_remove_items()</code></a> and
+<a href="method.Completion.clear_items.html"><code>g_completion_clear_items()</code></a>. A completion attempt is requested with
+<a href="method.Completion.complete.html"><code>g_completion_complete()</code></a> or <a href="method.Completion.complete_utf8.html"><code>g_completion_complete_utf8()</code></a>.
+When no longer needed, the <code>GCompletion</code> is freed with
+<a href="method.Completion.free.html"><code>g_completion_free()</code></a>.</p>
+<p>Items in the completion can be simple strings (e.g. filenames), or
+pointers to arbitrary data structures. If data structures are used
+you must provide a <a href="callback.CompletionFunc.html"><code>GCompletionFunc</code></a> in <a href="type_func.Completion.new.html"><code>g_completion_new()</code></a>,
+which retrieves the item’s string from the data structure. You can change
+the way in which strings are compared by setting a different
+<a href="callback.CompletionStrncmpFunc.html"><code>GCompletionStrncmpFunc</code></a> in <a href="method.Completion.set_compare.html"><code>g_completion_set_compare()</code></a>.</p>
+<p><code>GCompletion</code> has been marked as deprecated, since this <span class="caps">API</span> is rarely
+used and not very actively&nbsp;maintained.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>items</code></dt>
+              <dd><p>List of target items (strings or data&nbsp;structures).</p></dd>
+            
+              <dt><code>func</code></dt>
+              <dd><p>Function which is called to get the string associated with a
+       target item. It is <code>NULL</code> if the target items are&nbsp;strings.</p></dd>
+            
+              <dt><code>prefix</code></dt>
+              <dd><p>The last prefix passed to <code>g_completion_complete()</code> or&nbsp;g_completion_complete_utf8().</p></dd>
+            
+              <dt><code>cache</code></dt>
+              <dd><p>The list of items which begin with <code>prefix</code>.</p></dd>
+            
+              <dt><code>strncmp_func</code></dt>
+              <dd><p>The function to use when comparing strings.  Use
+               <code>g_completion_set_compare()</code> to modify this&nbsp;function.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+          <div class="admonition deprecation">
+            <p class="admonition-title">Deprecated since: 2.26.</p><p>Rarely used <span class="caps">API</span>.</p></div>
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="deprecated">
+        <h6><a href="type_func.Completion.new.html">g_completion_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GCompletion</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.26</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="deprecated">
+          <h6><a href="method.Completion.add_items.html">g_completion_add_items</a></h6>
+          <div class="docblock">
+            <p>Adds items to the <code>GCompletion</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.26</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Completion.clear_items.html">g_completion_clear_items</a></h6>
+          <div class="docblock">
+            <p>Removes all items from the <code>GCompletion</code>. The items are not freed, so if the
+memory was dynamically allocated, it should be freed after calling this&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.26</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Completion.complete.html">g_completion_complete</a></h6>
+          <div class="docblock">
+            <p>Attempts to complete the string <code>prefix</code> using the <code>GCompletion</code>
+target&nbsp;items.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.26</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Completion.complete_utf8.html">g_completion_complete_utf8</a></h6>
+          <div class="docblock">
+            <p>Attempts to complete the string <code>prefix</code> using the <code>GCompletion</code> target items.
+In contrast to g_completion_complete(), this function returns the largest common
+prefix that is a valid <span class="caps">UTF</span>-8 string, omitting a possible common partial&nbsp;character.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.26</span>&nbsp;<span class="emblem available">since: 2.4</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Completion.free.html">g_completion_free</a></h6>
+          <div class="docblock">
+            <p>Frees all memory used by the <code>GCompletion</code>. The items are not freed, so if
+the memory was dynamically allocated, it should be freed after calling this&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.26</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Completion.remove_items.html">g_completion_remove_items</a></h6>
+          <div class="docblock">
+            <p>Removes items from a <code>GCompletion</code>. The items are not freed, so if the memory
+was dynamically allocated, free <code>items</code> with <code>g_list_free_full()</code> after calling
+this&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.26</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Completion.set_compare.html">g_completion_set_compare</a></h6>
+          <div class="docblock">
+            <p>Sets the function to use for string comparisons. The default string
+comparison function is&nbsp;strncmp().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.26</span>&nbsp;</p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Completion.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

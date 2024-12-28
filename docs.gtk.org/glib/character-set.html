@@ -1,0 +1,177 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/character-set.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Character Set Conversions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Character Set Conversions">
+  <meta property="og:description" content="Reference for GLib-2.0: Character Set Conversions">
+  <meta name="twitter:title" content="GLib: Character Set Conversions">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Character Set Conversions">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Character Set Conversions
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="character-set-conversions">Character Set Conversions<a class="md-anchor" href="#character-set-conversions" title="Permanent link"></a></h1>
+<p>The <a href="func.convert.html"><code>g_convert()</code></a> family of function wraps the functionality of
+iconv(). In addition to pure character set conversions, GLib has functions
+to deal with the extra complications of encodings for file&nbsp;names.</p>
+<h2 id="file-name-encodings">File Name Encodings<a class="md-anchor" href="#file-name-encodings" title="Permanent link"></a></h2>
+<p>Historically, <span class="caps">UNIX</span> has not had a defined encoding for file names: a file
+name is valid as long as it does not have path separators in it (“/”).
+However, displaying file names may require conversion: from the character
+set in which they were created, to the character set in which the
+application operates. Consider the Spanish file name “Presentación.sxi”. If
+the application which created it uses <span class="caps">ISO</span>-8859-1 for its&nbsp;encoding,</p>
+<div class="codehilite"><pre><span></span><code>Character:  P  r  e  s  e  n  t  a  c  i  ó  n  .  s  x  i
+Hex code:   50 72 65 73 65 6e 74 61 63 69 f3 6e 2e 73 78 69
+</code></pre></div>
+
+<p>However, if the application use <span class="caps">UTF</span>-8, the actual file name on disk would
+look like&nbsp;this:</p>
+<div class="codehilite"><pre><span></span><code>Character:  P  r  e  s  e  n  t  a  c  i  ó     n  .  s  x  i
+Hex code:   50 72 65 73 65 6e 74 61 63 69 c3 b3 6e 2e 73 78 69
+</code></pre></div>
+
+<p>Glib uses <span class="caps">UTF</span>-8 for its strings, and <span class="caps">GUI</span> toolkits like <span class="caps">GTK</span> that use GLib do
+the same thing. If you get a file name from the file system, for example,
+from <code>readdir()</code> or from <a href="method.Dir.read_name.html"><code>g_dir_read_name()</code></a>, and you wish to
+display the file name to the user, you will need to convert it into <span class="caps">UTF</span>-8.
+The opposite case is when the user types the name of a file they wish to
+save: the toolkit will give you that string in <span class="caps">UTF</span>-8 encoding, and you will
+need to convert it to the character set used for file names before you can
+create the file with <code>open()</code> or <code>fopen()</code>.</p>
+<p>By default, GLib assumes that file names on disk are in <span class="caps">UTF</span>-8 encoding. This
+is a valid assumption for file systems which were created relatively
+recently: most applications use <span class="caps">UTF</span>-8 encoding for their strings, and that
+is also what they use for the file names they create. However, older file
+systems may still contain file names created in “older” encodings, such as
+<span class="caps">ISO</span>-8859-1. In this case, for compatibility reasons, you may want to
+instruct GLib to use that particular encoding for file names rather than
+<span class="caps">UTF</span>-8. You can do this by specifying the encoding for file names in the
+<code>G_FILENAME_ENCODING</code> environment variable. For example, if your installation
+uses <span class="caps">ISO</span>-8859-1 for file names, you can put this in your <code>~/.profile</code>:</p>
+<div class="codehilite"><pre><span></span><code>export G_FILENAME_ENCODING=ISO-8859-1
+</code></pre></div>
+
+<p>GLib provides the functions <a href="func.filename_to_utf8.html"><code>g_filename_to_utf8()</code></a> and
+<a href="func.filename_from_utf8.html"><code>g_filename_from_utf8()</code></a> to perform the necessary conversions. These
+functions convert file names from the encoding specified in
+<code>G_FILENAME_ENCODING</code> to <span class="caps">UTF</span>-8 and vice-versa.  This diagram illustrates how
+these functions are used to convert between <span class="caps">UTF</span>-8 and the encoding for file
+names in the file&nbsp;system.</p>
+<h2 id="conversion-between-file-name-encodings">Conversion between file name encodings<a class="md-anchor" href="#conversion-between-file-name-encodings" title="Permanent link"></a></h2>
+<p><img alt="" src="file-name-encodings.png"></p>
+<h2 id="checklist-for-application-writers">Checklist for Application Writers<a class="md-anchor" href="#checklist-for-application-writers" title="Permanent link"></a></h2>
+<p>This section is a practical summary of the detailed things to do to make
+sure your applications process file name encodings&nbsp;correctly.</p>
+<ol>
+<li>If you get a file name from the file system from a function such as
+   <code>readdir()</code> or <code>gtk_file_chooser_get_filename()</code>, you do not need to do
+   any conversion to pass that file name to functions like <code>open()</code>,
+   <code>rename()</code>, or <code>fopen()</code> — those are “raw” file names which the file
+   system&nbsp;understands.</li>
+<li>If you need to display a file name, convert it to <span class="caps">UTF</span>-8 first by using
+   <a href="func.filename_to_utf8.html"><code>g_filename_to_utf8()</code></a>. If conversion fails, display a string
+   like “Unknown file name”. Do not convert this string back into the
+   encoding used for file names if you wish to pass it to the file system;
+   use the original file name&nbsp;instead.</li>
+<li>For example, the document window of a word processor could display
+   “Unknown file name” in its title bar but still let the user save the
+   file, as it would keep the raw file name internally. This can happen if
+   the user has not set the <code>G_FILENAME_ENCODING</code> environment variable even
+   though he has files whose names are not encoded in <span class="caps">UTF</span>-8.</li>
+<li>If your user interface lets the user type a file name for saving or
+   renaming, convert it to the encoding used for file names in the file
+   system by using <a href="func.filename_from_utf8.html"><code>g_filename_from_utf8()</code></a>. Pass the converted file
+   name to functions like <code>fopen()</code>. If conversion fails, ask the user to
+   enter a different file name. This can happen if the user types Japanese
+   characters when <code>G_FILENAME_ENCODING</code> is set to <span class="caps">ISO</span>-8859-1, for&nbsp;example.</li>
+</ol>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#file-name-encodings"><span class="link-text">File Name Encodings</span></a></li>
+        
+        <li class="toc-list-item"><a href="#conversion-between-file-name-encodings"><span class="link-text">Conversion between file name encodings</span></a></li>
+        
+        <li class="toc-list-item"><a href="#checklist-for-application-writers"><span class="link-text">Checklist for Application Writers</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/character-set.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

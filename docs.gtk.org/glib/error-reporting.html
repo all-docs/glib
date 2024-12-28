@@ -1,0 +1,562 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/error-reporting.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Error Reporting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Error Reporting">
+  <meta property="og:description" content="Reference for GLib-2.0: Error Reporting">
+  <meta name="twitter:title" content="GLib: Error Reporting">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Error Reporting">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Error Reporting
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="error-reporting">Error Reporting<a class="md-anchor" href="#error-reporting" title="Permanent link"></a></h1>
+<p>GLib provides a standard method of reporting errors from a called function
+to the calling code. (This is the same problem solved by exceptions in other
+languages.) It’s important to understand that this method is both a data
+type (the <a href="struct.Error.html"><code>GError</code></a> struct) and a set of rules. If you use
+<code>GError</code> incorrectly, then your code will not properly interoperate with
+other code that uses <code>GError</code>, and users of your <span class="caps">API</span> will probably get
+confused. In most cases, using <code>GError</code> is preferred over numeric error
+codes, but there are situations where numeric error codes are useful for&nbsp;performance.</p>
+<p>First and foremost: <code>GError</code> should only be used to report recoverable
+runtime errors, never to report programming errors. If the programmer has
+screwed up, then you should use <code>g_warning()</code>, <code>g_return_if_fail()</code>,
+<code>g_assert()</code>, <code>g_error()</code>, or some similar facility. (Incidentally, remember
+that the <code>g_error()</code> function should only be used for programming errors, it
+should not be used to print any error reportable via <code>GError</code>.)</p>
+<p>Examples of recoverable runtime errors are “file not found” or “failed to
+parse input.” Examples of programming errors are “<span class="caps">NULL</span> passed to <code>strcmp()</code>”
+or “attempted to free the same pointer twice.” These two kinds of errors are
+fundamentally different: runtime errors should be handled or reported to the
+user, programming errors should be eliminated by fixing the bug in the
+program. This is why most functions in GLib and <span class="caps">GTK</span> do not use the <code>GError</code>
+facility.</p>
+<p>Functions that can fail take a return location for a <code>GError</code> as their last
+argument. On error, a new <code>GError</code> instance will be allocated and returned
+to the caller via this argument. For&nbsp;example:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">gboolean</span><span class="w"> </span><span class="nf">g_file_get_contents</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w">  </span><span class="o">*</span><span class="n">filename</span><span class="p">,</span>
+<span class="w">                              </span><span class="kt">char</span><span class="w">       </span><span class="o">**</span><span class="n">contents</span><span class="p">,</span>
+<span class="w">                              </span><span class="n">gsize</span><span class="w">       </span><span class="o">*</span><span class="n">length</span><span class="p">,</span>
+<span class="w">                              </span><span class="n">GError</span><span class="w">     </span><span class="o">**</span><span class="n">error</span><span class="p">);</span>
+</code></pre></div>
+
+<p>If you pass a non-<code>NULL</code> value for the <code>error</code> argument, it should
+point to a location where an error can be placed. For&nbsp;example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">contents</span><span class="p">;</span>
+<span class="n">GError</span><span class="w"> </span><span class="o">*</span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="n">g_file_get_contents</span><span class="w"> </span><span class="p">(</span><span class="s">"foo.txt"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">err</span><span class="p">);</span>
+<span class="n">g_assert</span><span class="w"> </span><span class="p">((</span><span class="n">contents</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">contents</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">));</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Report error to user, and free error</span>
+<span class="w">    </span><span class="n">g_assert</span><span class="w"> </span><span class="p">(</span><span class="n">contents</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fprintf</span><span class="w"> </span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Unable to read file: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">err</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_error_free</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Use file contents</span>
+<span class="w">    </span><span class="n">g_assert</span><span class="w"> </span><span class="p">(</span><span class="n">contents</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+
+<p>Note that <code>err != NULL</code> in this example is a reliable indicator of whether
+<code>g_file_get_contents()</code> failed. Additionally, <code>g_file_get_contents()</code>
+returns a boolean which indicates whether it was&nbsp;successful.</p>
+<p>Because <code>g_file_get_contents()</code> returns <code>FALSE</code> on failure, if you
+are only interested in whether it failed and don’t need to display
+an error message, you can pass <code>NULL</code> for the <code>error</code> argument:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_file_get_contents</span><span class="w"> </span><span class="p">(</span><span class="s">"foo.txt"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">))</span><span class="w"> </span><span class="c1">// ignore errors</span>
+<span class="w">  </span><span class="c1">// no error occurred</span>
+<span class="w">  </span><span class="p">;</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="c1">// error</span>
+<span class="w">  </span><span class="p">;</span>
+</code></pre></div>
+
+<p>The <code>GError</code> object contains three fields: <code>domain</code> indicates the module the
+error-reporting function is located in, <code>code</code> indicates the specific error
+that occurred, and <code>message</code> is a user-readable error message with as many
+details as possible. Several functions are provided to deal with an error
+received from a called function: <code>g_error_matches()</code> returns <code>TRUE</code> if the
+error matches a given domain and code, <code>g_propagate_error()</code> copies an error
+into an error location (so the calling function will receive it), and
+<code>g_clear_error()</code> clears an error location by freeing the error and
+resetting the location to <code>NULL</code>. To display an error to the user, simply
+display the <code>message</code>, perhaps along with additional context known only to
+the calling function (the file being opened, or whatever - though in the
+<code>g_file_get_contents()</code> case, the <code>message</code> already contains a&nbsp;filename).</p>
+<p>Since error messages may be displayed to the user, they need to be valid
+<span class="caps">UTF</span>-8 (all <span class="caps">GTK</span> widgets expect text to be <span class="caps">UTF</span>-8). Keep this in mind in
+particular when formatting error messages with filenames, which are in the
+‘filename encoding’, and need to be turned into <span class="caps">UTF</span>-8 using
+<code>g_filename_to_utf8()</code>, <code>g_filename_display_name()</code> or
+<code>g_utf8_make_valid()</code>.</p>
+<p>Note, however, that many error messages are too technical to display to the
+user in an application, so prefer to use <code>g_error_matches()</code> to categorize
+errors from called functions, and build an appropriate error message for the
+context within your application. Error messages from a <code>GError</code> are more
+appropriate to be printed in system logs or on the command line. They are
+typically&nbsp;translated.</p>
+<h2 id="reporting-errors">Reporting errors<a class="md-anchor" href="#reporting-errors" title="Permanent link"></a></h2>
+<p>When implementing a function that can report errors, the basic tool is
+<code>g_set_error()</code>. Typically, if a fatal error occurs you want to
+<code>g_set_error()</code>, then return immediately. <code>g_set_error()</code> does nothing if
+the error location passed to it is <code>NULL</code>.  Here’s an&nbsp;example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span>
+<span class="nf">foo_open_file</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w"> </span><span class="o">**</span><span class="n">error</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">saved_errno</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="w"> </span><span class="p">(</span><span class="s">"file.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">);</span>
+<span class="w">  </span><span class="n">saved_errno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errno</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">g_set_error</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">FOO_ERROR</span><span class="p">,</span><span class="w">                 </span><span class="c1">// error domain</span>
+<span class="w">                   </span><span class="n">FOO_ERROR_BLAH</span><span class="p">,</span><span class="w">            </span><span class="c1">// error code</span>
+<span class="w">                   </span><span class="s">"Failed to open file: %s"</span><span class="p">,</span><span class="w"> </span><span class="c1">// error message format string</span>
+<span class="w">                   </span><span class="n">g_strerror</span><span class="w"> </span><span class="p">(</span><span class="n">saved_errno</span><span class="p">));</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fd</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Things are somewhat more complicated if you yourself call another function
+that can report a <code>GError</code>. If the sub-function indicates fatal errors in
+some way other than reporting a <code>GError</code>, such as by returning <code>TRUE</code> on
+success, you can simply do the&nbsp;following:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">gboolean</span>
+<span class="nf">my_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w"> </span><span class="o">**</span><span class="n">err</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">*</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">sub_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// assert that error was set by the sub-function</span>
+<span class="w">      </span><span class="n">g_assert</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">*</span><span class="n">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// otherwise continue, no error occurred</span>
+<span class="w">  </span><span class="n">g_assert</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">*</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>If the sub-function does not indicate errors other than by reporting a
+<code>GError</code> (or if its return value does not reliably indicate errors) you need
+to create a temporary <code>GError</code> since the passed-in one may be <code>NULL</code>.
+<code>g_propagate_error()</code> is intended for use in this&nbsp;case.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">gboolean</span>
+<span class="nf">my_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w"> </span><span class="o">**</span><span class="n">err</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">GError</span><span class="w"> </span><span class="o">*</span><span class="n">tmp_error</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">*</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">tmp_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">sub_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">tmp_error</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tmp_error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// store tmp_error in err, if err != NULL,</span>
+<span class="w">      </span><span class="c1">// otherwise call g_error_free() on tmp_error</span>
+<span class="w">      </span><span class="n">g_propagate_error</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">tmp_error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// otherwise continue, no error occurred</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Error pileups are always a bug. For example, this code is&nbsp;incorrect:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">gboolean</span>
+<span class="nf">my_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w"> </span><span class="o">**</span><span class="n">err</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">GError</span><span class="w"> </span><span class="o">*</span><span class="n">tmp_error</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">*</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">tmp_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">sub_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">tmp_error</span><span class="p">);</span>
+<span class="w">  </span><span class="n">other_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">tmp_error</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tmp_error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">g_propagate_error</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">tmp_error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>tmp_error</code> should be checked immediately after
+<code>sub_function_that_can_fail()</code>, and either cleared or propagated upward. The
+rule is: after each error, you must either handle the error, or return it to
+the calling&nbsp;function.</p>
+<p>Note that passing <code>NULL</code> for the error location is the equivalent of
+handling an error by always doing nothing about it. So the following code is
+fine, assuming errors in <code>sub_function_that_can_fail()</code> are not fatal to
+<code>my_function_that_can_fail()</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">gboolean</span>
+<span class="nf">my_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w"> </span><span class="o">**</span><span class="n">err</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">GError</span><span class="w"> </span><span class="o">*</span><span class="n">tmp_error</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">*</span><span class="n">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">sub_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span><span class="w"> </span><span class="c1">// ignore errors</span>
+
+<span class="w">  </span><span class="n">tmp_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">other_function_that_can_fail</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">tmp_error</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tmp_error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">g_propagate_error</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">tmp_error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Note that passing <code>NULL</code> for the error location ignores errors; it’s
+equivalent&nbsp;to:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">sub_function_that_can_fail</span><span class="w"> </span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+
+<p>in C++. It does not mean to leave errors unhandled; it means to handle them
+by doing&nbsp;nothing.</p>
+<h2 id="error-domains">Error domains<a class="md-anchor" href="#error-domains" title="Permanent link"></a></h2>
+<p>Error domains and codes are conventionally named as&nbsp;follows:</p>
+<ul>
+<li>The error domain is called <code>&lt;NAMESPACE&gt;_&lt;MODULE&gt;_ERROR</code>, for example
+  <code>G_SPAWN_ERROR</code> or <code>G_THREAD_ERROR</code>:
+  “`c
+  #define G_SPAWN_ERROR g_spawn_error_quark&nbsp;()</li>
+</ul>
+<p>G_DEFINE_QUARK (g-spawn-error-quark, g_spawn_error)&nbsp;“`</p>
+<ul>
+<li>
+<p>The quark function for the error domain is called
+  <code>&lt;namespace&gt;_&lt;module&gt;_error_quark</code>, for example <code>g_spawn_error_quark()</code> or
+  <code>g_thread_error_quark()</code>.</p>
+</li>
+<li>
+<p>The error codes are in an enumeration called <code>&lt;Namespace&gt;&lt;Module&gt;Error</code>;
+  for example, <code>GThreadError</code> or <code>GSpawnError</code>.</p>
+</li>
+<li>
+<p>Members of the error code enumeration are called
+  <code>&lt;NAMESPACE&gt;_&lt;MODULE&gt;_ERROR_&lt;CODE&gt;</code>, for example <code>G_SPAWN_ERROR_FORK</code> or
+  <code>G_THREAD_ERROR_AGAIN</code>.</p>
+</li>
+<li>
+<p>If there’s a “generic” or “unknown” error code for unrecoverable errors it
+  doesn’t make sense to distinguish with specific codes, it should be called
+  <code>&lt;NAMESPACE&gt;_&lt;MODULE&gt;_ERROR_FAILED</code>, for example <code>G_SPAWN_ERROR_FAILED</code>.
+  In the case of error code enumerations that may be extended in future
+  releases, you should generally not handle this error code explicitly, but
+  should instead treat any unrecognized error code as equivalent to
+  <code>FAILED</code>.</p>
+</li>
+</ul>
+<h2 id="comparison-of-gerror-and-traditional-error-handling">Comparison of <code>GError</code> and traditional error handling<a class="md-anchor" href="#comparison-of-gerror-and-traditional-error-handling" title="Permanent link"></a></h2>
+<p><code>GError</code> has several advantages over traditional numeric error codes:
+importantly, tools like <a href="https://gi.readthedocs.org/">gobject-introspection</a>
+understand <code>GError</code>s and convert them to exceptions in bindings; the message
+includes more information than just a code; and use of a domain helps
+prevent misinterpretation of error&nbsp;codes.</p>
+<p><code>GError</code> has disadvantages though: it requires a memory allocation, and
+formatting the error message string has a performance overhead. This makes
+it unsuitable for use in retry loops where errors are a common case, rather
+than being unusual. For example, using <code>G_IO_ERROR_WOULD_BLOCK</code> means
+hitting these overheads in the normal control flow. String formatting
+overhead can be eliminated by using <code>g_set_error_literal()</code> in some&nbsp;cases.</p>
+<p>These performance issues can be compounded if a function wraps the <code>GError</code>s
+returned by the functions it calls: this multiplies the number of
+allocations and string formatting operations. This can be partially
+mitigated by using <code>g_prefix_error()</code>.</p>
+<h2 id="rules-for-use-of-gerror">Rules for use of <code>GError</code><a class="md-anchor" href="#rules-for-use-of-gerror" title="Permanent link"></a></h2>
+<p>Summary of rules for use of <code>GError</code>:</p>
+<ul>
+<li>
+<p>Do not report programming errors via <code>GError</code>.</p>
+</li>
+<li>
+<p>The last argument of a function that returns an error should be a location
+  where a <code>GError</code> can be placed (i.e. <code>GError **error</code>).  If <code>GError</code> is
+  used with varargs, the <code>GError**</code> should be the last argument before the
+  <code>...</code>.</p>
+</li>
+<li>
+<p>The caller may pass <code>NULL</code> for the <code>GError**</code> if they are not interested
+  in details of the exact error that&nbsp;occurred.</p>
+</li>
+<li>
+<p>If <code>NULL</code> is passed for the <code>GError**</code> argument, then errors should not be
+  returned to the caller, but your function should still abort and return if
+  an error occurs. That is, control flow should not be affected by whether
+  the caller wants to get a <code>GError</code>.</p>
+</li>
+<li>
+<p>If a <code>GError</code> is reported, then your function by definition had a fatal
+  failure and did not complete whatever it was supposed to do.  If the
+  failure was not fatal, then you handled it and you should not report it.
+  If it was fatal, then you must report it and discontinue whatever you were
+  doing&nbsp;immediately.</p>
+</li>
+<li>
+<p>If a <code>GError</code> is reported, out parameters are not guaranteed to be set to
+  any defined&nbsp;value.</p>
+</li>
+<li>
+<p>A <code>GError*</code> must be initialized to <code>NULL</code> before passing its address to a
+  function that can report&nbsp;errors.</p>
+</li>
+<li>
+<p><code>GError</code> structs must not be&nbsp;stack-allocated.</p>
+</li>
+<li>
+<p><span class="dquo">“</span>Piling up” errors is always a bug. That is, if you assign a new <code>GError</code>
+  to a <code>GError*</code> that is non-<code>NULL</code>, thus overwriting the previous error, it
+  indicates that you should have aborted the operation instead of
+  continuing. If you were able to continue, you should have cleared the
+  previous error with <code>g_clear_error()</code>.  <code>g_set_error()</code> will complain if
+  you pile up&nbsp;errors.</p>
+</li>
+<li>
+<p>By convention, if you return a boolean value indicating success then
+  <code>TRUE</code> means success and <code>FALSE</code> means failure. Avoid creating functions
+  which have a boolean return value and a <code>GError</code> parameter, but where the
+  boolean does something other than signal whether the <code>GError</code> is set.
+  Among other problems, it requires C callers to allocate a temporary error.
+  Instead, provide a <code>gboolean *</code> out parameter.  There are functions in
+  GLib itself such as <code>g_key_file_has_key()</code> that are hard to use because of
+  this. If <code>FALSE</code> is returned, the error must be set to a non-<code>NULL</code> value.
+  One exception to this is that in situations that are already considered to
+  be undefined behaviour (such as when a <code>g_return_val_if_fail()</code> check
+  fails), the error need not be set.  Instead of checking separately whether
+  the error is set, callers should ensure that they do not provoke undefined
+  behaviour, then assume that the error will be set on&nbsp;failure.</p>
+</li>
+<li>
+<p>A <code>NULL</code> return value is also frequently used to mean that an error
+  occurred. You should make clear in your documentation whether <code>NULL</code> is a
+  valid return value in non-error cases; if <code>NULL</code> is a valid value, then
+  users must check whether an error was returned to see if the function&nbsp;succeeded.</p>
+</li>
+<li>
+<p>When implementing a function that can report errors, you may want
+  to add a check at the top of your function that the error return
+  location is either <code>NULL</code> or contains a <code>NULL</code> error (e.g.
+  <code>g_return_if_fail (error == NULL || *error == NULL);</code>).</p>
+</li>
+</ul>
+<h2 id="extended-gerror-domains">Extended <code>GError</code> Domains<a class="md-anchor" href="#extended-gerror-domains" title="Permanent link"></a></h2>
+<p>Since GLib 2.68 it is possible to extend the <code>GError</code> type. This is
+done with the <code>G_DEFINE_EXTENDED_ERROR()</code> macro. To create an
+extended <code>GError</code> type do something like this in the header&nbsp;file:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">MY_ERROR_BAD_REQUEST</span><span class="p">,</span>
+<span class="p">}</span><span class="w"> </span><span class="n">MyError</span><span class="p">;</span>
+<span class="cp">#define MY_ERROR (my_error_quark ())</span>
+<span class="n">GQuark</span><span class="w"> </span><span class="nf">my_error_quark</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">int</span>
+<span class="nf">my_error_get_parse_error_id</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w"> </span><span class="o">*</span><span class="n">error</span><span class="p">);</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span>
+<span class="nf">my_error_get_bad_request_details</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w"> </span><span class="o">*</span><span class="n">error</span><span class="p">);</span>
+</code></pre></div>
+
+<p>and in the&nbsp;implementation:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">parse_error_id</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">bad_request_details</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">MyErrorPrivate</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">my_error_private_init</span><span class="w"> </span><span class="p">(</span><span class="n">MyErrorPrivate</span><span class="w"> </span><span class="o">*</span><span class="n">priv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">priv</span><span class="o">-&gt;</span><span class="n">parse_error_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// No need to set priv-&gt;bad_request_details to NULL,</span>
+<span class="w">  </span><span class="c1">// the struct is initialized with zeros.</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">my_error_private_copy</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MyErrorPrivate</span><span class="w"> </span><span class="o">*</span><span class="n">src_priv</span><span class="p">,</span><span class="w"> </span><span class="n">MyErrorPrivate</span><span class="w"> </span><span class="o">*</span><span class="n">dest_priv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">dest_priv</span><span class="o">-&gt;</span><span class="n">parse_error_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">src_priv</span><span class="o">-&gt;</span><span class="n">parse_error_id</span><span class="p">;</span>
+<span class="w">  </span><span class="n">dest_priv</span><span class="o">-&gt;</span><span class="n">bad_request_details</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_strdup</span><span class="w"> </span><span class="p">(</span><span class="n">src_priv</span><span class="o">-&gt;</span><span class="n">bad_request_details</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">my_error_private_clear</span><span class="w"> </span><span class="p">(</span><span class="n">MyErrorPrivate</span><span class="w"> </span><span class="o">*</span><span class="n">priv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">g_free</span><span class="w"> </span><span class="p">(</span><span class="n">priv</span><span class="o">-&gt;</span><span class="n">bad_request_details</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// This defines the my_error_get_private and my_error_quark functions.</span>
+<span class="n">G_DEFINE_EXTENDED_ERROR</span><span class="w"> </span><span class="p">(</span><span class="n">MyError</span><span class="p">,</span><span class="w"> </span><span class="n">my_error</span><span class="p">)</span>
+
+<span class="kt">int</span>
+<span class="n">my_error_get_parse_error_id</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w"> </span><span class="o">*</span><span class="n">error</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">MyErrorPrivate</span><span class="w"> </span><span class="o">*</span><span class="n">priv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_error_get_private</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">priv</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">priv</span><span class="o">-&gt;</span><span class="n">parse_error_id</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span>
+<span class="n">my_error_get_bad_request_details</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w"> </span><span class="o">*</span><span class="n">error</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">MyErrorPrivate</span><span class="w"> </span><span class="o">*</span><span class="n">priv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_error_get_private</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">priv</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">  </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="o">-&gt;</span><span class="n">code</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MY_ERROR_BAD_REQUEST</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">priv</span><span class="o">-&gt;</span><span class="n">bad_request_details</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="n">my_error_set_bad_request</span><span class="w"> </span><span class="p">(</span><span class="n">GError</span><span class="w">     </span><span class="o">**</span><span class="n">error</span><span class="p">,</span>
+<span class="w">                          </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w">  </span><span class="o">*</span><span class="n">reason</span><span class="p">,</span>
+<span class="w">                          </span><span class="kt">int</span><span class="w">          </span><span class="n">error_id</span><span class="p">,</span>
+<span class="w">                          </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w">  </span><span class="o">*</span><span class="n">details</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">MyErrorPrivate</span><span class="w"> </span><span class="o">*</span><span class="n">priv</span><span class="p">;</span>
+<span class="w">  </span><span class="n">g_set_error</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">MY_ERROR</span><span class="p">,</span><span class="w"> </span><span class="n">MY_ERROR_BAD_REQUEST</span><span class="p">,</span><span class="w"> </span><span class="s">"Invalid request: %s"</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">priv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_error_get_private</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">      </span><span class="n">g_return_val_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">priv</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">      </span><span class="n">priv</span><span class="o">-&gt;</span><span class="n">parse_error_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">error_id</span><span class="p">;</span>
+<span class="w">      </span><span class="n">priv</span><span class="o">-&gt;</span><span class="n">bad_request_details</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_strdup</span><span class="w"> </span><span class="p">(</span><span class="n">details</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>An example of use of the error could&nbsp;be:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">gboolean</span>
+<span class="nf">send_request</span><span class="w"> </span><span class="p">(</span><span class="n">GBytes</span><span class="w"> </span><span class="o">*</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">GError</span><span class="w"> </span><span class="o">**</span><span class="n">error</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">ParseFailedStatus</span><span class="w"> </span><span class="o">*</span><span class="n">failure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">validate_request</span><span class="w"> </span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">failure</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">my_error_set_bad_request</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">failure</span><span class="o">-&gt;</span><span class="n">reason</span><span class="p">,</span><span class="w"> </span><span class="n">failure</span><span class="o">-&gt;</span><span class="n">error_id</span><span class="p">,</span><span class="w"> </span><span class="n">failure</span><span class="o">-&gt;</span><span class="n">details</span><span class="p">);</span>
+<span class="w">      </span><span class="n">parse_failed_status_free</span><span class="w"> </span><span class="p">(</span><span class="n">failure</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">send_one</span><span class="w"> </span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Please note that if you are a library author and your library exposes an
+existing error domain, then you can’t make this error domain an extended one
+without breaking <span class="caps">ABI</span>. This is because earlier it was possible to create an
+error with this error domain on the stack and then copy it with
+<code>g_error_copy()</code>. If the new version of your library makes the error domain
+an extended one, then <code>g_error_copy()</code> called by code that allocated the
+error on the stack will try to copy more data than it used to, which will
+lead to undefined behavior. You must not stack-allocate errors with an
+extended error domain, and it is bad practice to stack-allocate any other
+<code>GError</code>s.</p>
+<p>Extended error domains in unloadable plugins/modules are not&nbsp;supported.</p>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#reporting-errors"><span class="link-text">Reporting errors</span></a></li>
+        
+        <li class="toc-list-item"><a href="#error-domains"><span class="link-text">Error domains</span></a></li>
+        
+        <li class="toc-list-item"><a href="#comparison-of-gerror-and-traditional-error-handling"><span class="link-text">Comparison of GError and traditional error handling</span></a></li>
+        
+        <li class="toc-list-item"><a href="#rules-for-use-of-gerror"><span class="link-text">Rules for use of GError</span></a></li>
+        
+        <li class="toc-list-item"><a href="#extended-gerror-domains"><span class="link-text">Extended GError Domains</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/error-reporting.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

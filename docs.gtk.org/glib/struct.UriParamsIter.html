@@ -1,0 +1,185 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.UriParamsIter.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.UriParamsIter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.UriParamsIter">
+  <meta property="og:description" content="Reference for GLib.UriParamsIter">
+  <meta name="twitter:title" content="GLib.UriParamsIter">
+  <meta name="twitter:description" content="Reference for GLib.UriParamsIter">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>UriParamsIter</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem available">since: 2.66</span></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/guri.c#L2077">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GUriParamsIter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>Many <span class="caps">URI</span> schemes include one or more attribute/value pairs as part of the <span class="caps">URI</span>
+value. For example <code>scheme://server/path?query=string&amp;is=there</code> has two
+attributes – <code>query=string</code> and <code>is=there</code> – in its query&nbsp;part.</p>
+<p>A <code>GUriParamsIter</code> structure represents an iterator that can be used to
+iterate over the attribute/value pairs of a <span class="caps">URI</span> query string. <code>GUriParamsIter</code>
+structures are typically allocated on the stack and then initialized with
+g_uri_params_iter_init(). See the documentation for <code>g_uri_params_iter_init()</code>
+for a usage&nbsp;example.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          <p>Available since: 2.66</p>
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.UriParamsIter.init.html">g_uri_params_iter_init</a></h6>
+          <div class="docblock">
+            <p>Initializes an attribute/value pair&nbsp;iterator.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.UriParamsIter.next.html">g_uri_params_iter_next</a></h6>
+          <div class="docblock">
+            <p>Advances <code>iter</code> and retrieves the next attribute/value. <code>FALSE</code> is returned if
+an error has occurred (in which case <code>error</code> is set), or if the end of the
+iteration is reached (in which case <code>attribute</code> and <code>value</code> are set to <code>NULL</code>
+and the iterator becomes invalid). If <code>TRUE</code> is returned,
+<code>g_uri_params_iter_next()</code> may be called again to receive another
+attribute/value&nbsp;pair.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.UriParamsIter.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

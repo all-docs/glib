@@ -1,0 +1,189 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.MainContext.add_poll.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.MainContext.add_poll</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.MainContext.add_poll">
+  <meta priority="og:description" content="Reference for GLib.MainContext.add_poll">
+  <meta name="twitter:title" content="GLib.MainContext.add_poll">
+  <meta name="twitter:description" content="Reference for GLib.MainContext.add_poll">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.MainContext.html">MainContext</a><span class="sep"></span>add_poll</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L559">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_main_context_add_poll</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GMainContext</span><span class="o">*</span><span class="w"> </span><span class="n">context</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GPollFD</span><span class="o">*</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="w"> </span><span class="n">priority</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.c#L4663">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Adds a file descriptor to the set of file descriptors polled for
+this context. This will very seldom be used directly. Instead
+a typical event source will use <code>g_source_add_unix_fd</code> instead.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>fd</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.PollFD.html"><code>GPollFD</code></a></p>
+            <p>A <code>GPollFD</code> structure holding information about a file
+     descriptor to&nbsp;watch.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the method.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>priority</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint</code></p>
+            <p>The priority for this file descriptor which should be
+     the same as the priority used for <a href="method.Source.attach.html"><code>g_source_attach()</code></a> to ensure
+     that the file descriptor is polled whenever the results may be&nbsp;needed.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.MainContext.add_poll.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

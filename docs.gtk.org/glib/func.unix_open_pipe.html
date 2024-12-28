@@ -1,0 +1,234 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.unix_open_pipe.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.unix_open_pipe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.unix_open_pipe">
+  <meta property="og:description" content="Reference for GLib.unix_open_pipe">
+  <meta name="twitter:title" content="GLib.unix_open_pipe">
+  <meta name="twitter:description" content="Reference for GLib.unix_open_pipe">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>unix_open_pipe</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.30</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/glib-unix.h#L64">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gboolean</span>
+<span class="n">g_unix_open_pipe</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">gint</span><span class="o">*</span><span class="w"> </span><span class="n">fds</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GError</span><span class="o">**</span><span class="w"> </span><span class="n">error</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/glib-unix.c#L96">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Similar to the <span class="caps">UNIX</span> <code>pipe()</code> call, but on modern systems like Linux
+uses the <code>pipe2()</code> system call, which atomically creates a pipe with
+the configured&nbsp;flags.</p>
+<p>As of GLib 2.78, the supported flags are <code>O_CLOEXEC</code>/<code>FD_CLOEXEC</code> (see below)
+and <code>O_NONBLOCK</code>. Prior to GLib 2.78, only <code>FD_CLOEXEC</code> was supported — if
+you wanted to configure <code>O_NONBLOCK</code> then that had to be done separately with
+<code>fcntl()</code>.</p>
+<p>Since GLib 2.80, the constants <code>G_UNIX_PIPE_END_READ</code> and
+<code>G_UNIX_PIPE_END_WRITE</code> can be used as mnemonic indexes in <code>fds</code>.</p>
+<p>It is a programmer error to call this function with unsupported flags, and a
+critical warning will be&nbsp;raised.</p>
+<p>As of GLib 2.78, it is preferred to pass <code>O_CLOEXEC</code> in, rather than
+<code>FD_CLOEXEC</code>, as that matches the underlying <code>pipe()</code> <span class="caps">API</span> more closely. Prior
+to 2.78, only <code>FD_CLOEXEC</code> was supported. Support for <code>FD_CLOEXEC</code> may be
+deprecated and removed in&nbsp;future.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.30</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>fds</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>gint</code></p>
+            <p>Array of two&nbsp;integers.</p>
+            <table>
+            
+            
+            
+            
+            
+            <tbody><tr><td>The array must have 2 elements.</td></tr>
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>flags</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint</code></p>
+            <p>Bitfield of file descriptor flags, as for&nbsp;fcntl().</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+          <dt class="arg-name"><code>error</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="javascript:void(0)" data-namespace="GLib" data-link="struct.Error.html" class="external"><code>GError **</code></a></p>
+            <p>The return location for <a href="error-reporting.html#rules-for-use-of-gerror">a recoverable error</a>.</p>
+            <table>
+              <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+              <tr><td>If the return location is not <code>NULL</code>, then you must initialize it to a <code>NULL</code> <code>GError*</code>.</td></tr>
+              <tr><td>The argument will be left initialized to <code>NULL</code> by the function if there are no errors.</td></tr>
+              <tr><td>In case of error, the argument will be set to a newly allocated <code>GError</code>; the caller will take ownership of the data, and be responsible for freeing it.</td></tr>
+            </tbody></table>
+          </dd>
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p><code>TRUE</code> on success, <code>FALSE</code> if not (and errno will be&nbsp;set).</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.unix_open_pipe.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

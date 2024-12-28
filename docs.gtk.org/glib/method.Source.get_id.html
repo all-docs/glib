@@ -1,0 +1,167 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.Source.get_id.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Source.get_id</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.Source.get_id">
+  <meta priority="og:description" content="Reference for GLib.Source.get_id">
+  <meta name="twitter:title" content="GLib.Source.get_id">
+  <meta name="twitter:description" content="Reference for GLib.Source.get_id">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.Source.html">Source</a><span class="sep"></span>get_id</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L725">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">guint</span>
+<span class="n">g_source_get_id</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GSource</span><span class="o">*</span><span class="w"> </span><span class="n">source</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.c#L1365">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Returns the numeric <span class="caps">ID</span> for a particular source. The <span class="caps">ID</span> of a source
+is a positive integer which is unique within a particular main loop
+context. The reverse mapping from <span class="caps">ID</span> to source is done by
+<a href="method.MainContext.find_source_by_id.html"><code>g_main_context_find_source_by_id()</code></a>.</p>
+<p>You can only call this function while the source is associated to a
+<a href="struct.MainContext.html"><code>GMainContext</code></a> instance; calling this function before
+<a href="method.Source.attach.html"><code>g_source_attach()</code></a> or after <a href="method.Source.destroy.html"><code>g_source_destroy()</code></a> yields
+undefined behavior. The <span class="caps">ID</span> returned is unique within the
+<a href="struct.MainContext.html"><code>GMainContext</code></a> instance passed to <a href="method.Source.attach.html"><code>g_source_attach()</code></a>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>guint</code></p>
+            <p>The <span class="caps">ID</span> (greater than 0) for the&nbsp;source.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.Source.get_id.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --></html>

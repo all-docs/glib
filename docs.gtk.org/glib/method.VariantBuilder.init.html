@@ -1,0 +1,190 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.VariantBuilder.init.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.VariantBuilder.init</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.VariantBuilder.init">
+  <meta priority="og:description" content="Reference for GLib.VariantBuilder.init">
+  <meta name="twitter:title" content="GLib.VariantBuilder.init">
+  <meta name="twitter:description" content="Reference for GLib.VariantBuilder.init">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.VariantBuilder.html">VariantBuilder</a><span class="sep"></span>init</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.24</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.h#L417">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_variant_builder_init</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GVariantBuilder</span><span class="o">*</span><span class="w"> </span><span class="n">builder</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">GVariantType</span><span class="o">*</span><span class="w"> </span><span class="n">type</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.c#L3494">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Initialises a <code>GVariantBuilder</code> structure.</p>
+<p><code>type</code> must be non-<code>NULL</code>.  It specifies the type of container to
+construct.  It can be an indefinite type such as
+<code>G_VARIANT_TYPE_ARRAY</code> or a definite type such as “as” or “(ii)”.
+Maybe, array, tuple, dictionary entry and variant-typed values may be&nbsp;constructed.</p>
+<p>If using a static type such as one of the <code>G_VARIANT_TYPE_*</code> constants
+or a <code>G_VARIANT_TYPE ("(ii)")</code> macro, it is more performant to use
+<code>g_variant_builder_init_static()</code> rather than&nbsp;g_variant_builder_init().</p>
+<p>After the builder is initialised, values are added using
+<code>g_variant_builder_add_value()</code> or&nbsp;g_variant_builder_add().</p>
+<p>After all the child values are added, <code>g_variant_builder_end()</code> frees
+the memory associated with the builder and returns the <code>GVariant</code> that
+was&nbsp;created.</p>
+<p>This function completely ignores the previous contents of <code>builder</code>.
+On one hand this means that it is valid to pass in completely
+uninitialised memory.  On the other hand, this means that if you are
+initialising over top of an existing <code>GVariantBuilder</code> you need to
+first call <code>g_variant_builder_clear()</code> in order to avoid leaking&nbsp;memory.</p>
+<p>You must not call <code>g_variant_builder_ref()</code> or
+<code>g_variant_builder_unref()</code> on a <code>GVariantBuilder</code> that was initialised
+with this function.  If you ever pass a reference to a
+<code>GVariantBuilder</code> outside of the control of your own code then you
+should assume that the person receiving that reference may try to use
+reference counting; you should use <code>g_variant_builder_new()</code> instead of
+this&nbsp;function.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.24</p>
+        
+        
+        <p>This method is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>type</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.VariantType.html"><code>GVariantType</code></a></p>
+            <p>A container&nbsp;type.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the method.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.VariantBuilder.init.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:21 GMT --></html>

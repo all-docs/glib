@@ -1,0 +1,192 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/memory.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Memory Allocation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Memory Allocation">
+  <meta property="og:description" content="Reference for GLib-2.0: Memory Allocation">
+  <meta name="twitter:title" content="GLib: Memory Allocation">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Memory Allocation">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Memory Allocation
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="memory-allocation">Memory Allocation<a class="md-anchor" href="#memory-allocation" title="Permanent link"></a></h1>
+<p>These functions provide support for allocating and freeing&nbsp;memory.</p>
+<p>If any call to allocate memory using functions <a href="func.new.html"><code>g_new()</code></a>,
+<a href="func.new0.html"><code>g_new0()</code></a>, <a href="func.renew.html"><code>g_renew()</code></a>, <a href="func.malloc.html"><code>g_malloc()</code></a>, <a href="func.malloc0.html"><code>g_malloc0()</code></a>,
+<a href="func.malloc0_n.html"><code>g_malloc0_n()</code></a>, <a href="func.realloc.html"><code>g_realloc()</code></a> and <a href="func.realloc_n.html"><code>g_realloc_n()</code></a>
+fails, the application is terminated. This also means that there is no
+need to check if the call&nbsp;succeeded.</p>
+<p>On the other hand, the <code>g_try_…()</code> family of functions returns <code>NULL</code> on failure
+that can be used as a check for unsuccessful memory allocation. The application
+is not terminated in this&nbsp;case.</p>
+<p>As all GLib functions and data structures use <a href="func.malloc.html"><code>g_malloc()</code></a> internally,
+unless otherwise specified, any allocation failure will result in the
+application being&nbsp;terminated.</p>
+<p>It’s important to match <a href="func.malloc.html"><code>g_malloc()</code></a> (and wrappers such as
+<a href="func.new.html"><code>g_new()</code></a>) with <a href="func.free.html"><code>g_free()</code></a>, <a href="func.slice_alloc.html"><code>g_slice_alloc()</code></a> (and wrappers
+such as <a href="func.slice_new.html"><code>g_slice_new()</code></a>) with <a href="func.slice_free.html"><code>g_slice_free()</code></a>, plain
+<a href="man:malloc(3)"><code>malloc()</code></a> with <a href="man:free(3)"><code>free()</code></a>, and (if you’re using
+C++) <code>new</code> with <code>delete</code> and <code>new[]</code> with <code>delete[]</code>. Otherwise bad things can
+happen, since these allocators may use different memory pools (and
+<code>new</code>/<code>delete</code> call constructors and&nbsp;destructors).</p>
+<p>Since GLib 2.46, <a href="func.malloc.html"><code>g_malloc()</code></a> is hardcoded to always use the system malloc&nbsp;implementation.</p>
+<h2 id="struct-allocations">Struct Allocations<a class="md-anchor" href="#struct-allocations" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.new.html"><code>g_new()</code></a></li>
+<li><a href="func.new0.html"><code>g_new0()</code></a></li>
+<li><a href="func.renew.html"><code>g_renew()</code></a></li>
+<li><a href="func.try_new.html"><code>g_try_new()</code></a></li>
+<li><a href="func.try_new0.html"><code>g_try_new0()</code></a></li>
+<li><a href="func.try_renew.html"><code>g_try_renew()</code></a></li>
+</ul>
+<h2 id="block-allocations">Block Allocations<a class="md-anchor" href="#block-allocations" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.malloc.html"><code>g_malloc()</code></a></li>
+<li><a href="func.malloc0.html"><code>g_malloc0()</code></a></li>
+<li><a href="func.realloc.html"><code>g_realloc()</code></a></li>
+<li><a href="func.try_malloc.html"><code>g_try_malloc()</code></a></li>
+<li><a href="func.try_malloc0.html"><code>g_try_malloc0()</code></a></li>
+<li><a href="func.try_realloc.html"><code>g_try_realloc()</code></a></li>
+<li><a href="func.malloc_n.html"><code>g_malloc_n()</code></a></li>
+<li><a href="func.malloc0_n.html"><code>g_malloc0_n()</code></a></li>
+<li><a href="func.realloc_n.html"><code>g_realloc_n()</code></a></li>
+<li><a href="func.try_malloc_n.html"><code>g_try_malloc_n()</code></a></li>
+<li><a href="func.try_malloc0_n.html"><code>g_try_malloc0_n()</code></a></li>
+<li><a href="func.try_realloc_n.html"><code>g_try_realloc_n()</code></a></li>
+</ul>
+<h2 id="free-functions">Free Functions<a class="md-anchor" href="#free-functions" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.free.html"><code>g_free()</code></a></li>
+<li><a href="func.free_sized.html"><code>g_free_sized()</code></a></li>
+<li><a href="func.clear_pointer.html"><code>g_clear_pointer()</code></a></li>
+<li><a href="func.steal_pointer.html"><code>g_steal_pointer()</code></a></li>
+</ul>
+<p>In addition, the <code>g_mem_gc_friendly</code> exported variable will be true if GLib has
+been <a href="running.html#environment-variables">run with <code>G_DEBUG=gc-friendly</code></a>. If
+so, memory to be freed will be cleared to zero before being&nbsp;freed.</p>
+<h2 id="stack-allocations">Stack Allocations<a class="md-anchor" href="#stack-allocations" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.alloca.html"><code>g_alloca()</code></a></li>
+<li><a href="func.alloca0.html"><code>g_alloca0()</code></a></li>
+<li><a href="func.newa.html"><code>g_newa()</code></a></li>
+<li><a href="func.newa0.html"><code>g_newa0()</code></a></li>
+</ul>
+<h2 id="aligned-allocations">Aligned Allocations<a class="md-anchor" href="#aligned-allocations" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.aligned_alloc.html"><code>g_aligned_alloc()</code></a></li>
+<li><a href="func.aligned_alloc0.html"><code>g_aligned_alloc0()</code></a></li>
+<li><a href="func.aligned_free.html"><code>g_aligned_free()</code></a></li>
+<li><a href="func.aligned_free_sized.html"><code>g_aligned_free_sized()</code></a></li>
+</ul>
+<h2 id="copies-and-moves">Copies and Moves<a class="md-anchor" href="#copies-and-moves" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.memmove.html"><code>g_memmove()</code></a></li>
+<li><a href="func.memdup2.html"><code>g_memdup2()</code></a></li>
+</ul>
+<h2 id="deprecated-api">Deprecated API<a class="md-anchor" href="#deprecated-api" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.memdup.html"><code>g_memdup()</code></a></li>
+<li><a href="struct.MemVTable.html"><code>GMemVTable</code></a></li>
+<li><a href="func.mem_set_vtable.html"><code>g_mem_set_vtable()</code></a></li>
+<li><a href="func.mem_is_system_malloc.html"><code>g_mem_is_system_malloc()</code></a></li>
+<li><code>glib_mem_profiler_table</code> exported&nbsp;variable</li>
+<li><a href="func.mem_profile.html"><code>g_mem_profile()</code></a></li>
+</ul>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#struct-allocations"><span class="link-text">Struct Allocations</span></a></li>
+        
+        <li class="toc-list-item"><a href="#block-allocations"><span class="link-text">Block Allocations</span></a></li>
+        
+        <li class="toc-list-item"><a href="#free-functions"><span class="link-text">Free Functions</span></a></li>
+        
+        <li class="toc-list-item"><a href="#stack-allocations"><span class="link-text">Stack Allocations</span></a></li>
+        
+        <li class="toc-list-item"><a href="#aligned-allocations"><span class="link-text">Aligned Allocations</span></a></li>
+        
+        <li class="toc-list-item"><a href="#copies-and-moves"><span class="link-text">Copies and Moves</span></a></li>
+        
+        <li class="toc-list-item"><a href="#deprecated-api"><span class="link-text">Deprecated API</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/memory.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

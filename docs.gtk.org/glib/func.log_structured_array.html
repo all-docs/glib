@@ -1,0 +1,207 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.log_structured_array.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.log_structured_array</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.log_structured_array">
+  <meta property="og:description" content="Reference for GLib.log_structured_array">
+  <meta name="twitter:title" content="GLib.log_structured_array">
+  <meta name="twitter:description" content="Reference for GLib.log_structured_array">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>log_structured_array</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.50</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.h#L207">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_log_structured_array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GLogLevelFlags</span><span class="w"> </span><span class="n">log_level</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">GLogField</span><span class="o">*</span><span class="w"> </span><span class="n">fields</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gsize</span><span class="w"> </span><span class="n">n_fields</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.c#L1810">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Log a message with structured&nbsp;data.</p>
+<p>The message will be passed through to the log writer set by the application
+using <a href="func.log_set_writer_func.html"><code>g_log_set_writer_func()</code></a>. If the
+message is fatal (i.e. its log level is <a href="flags.LogLevelFlags.html"><code>G_LOG_LEVEL_ERROR</code></a>), the program will
+be aborted at the end of this&nbsp;function.</p>
+<p>See <a href="func.log_structured.html"><code>g_log_structured()</code></a> for more&nbsp;documentation.</p>
+<p>This assumes that <code>log_level</code> is already present in <code>fields</code> (typically as the
+<code>PRIORITY</code> field).</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.50</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>log_level</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="flags.LogLevelFlags.html"><code>GLogLevelFlags</code></a></p>
+            <p>Log level, either from <a href="flags.LogLevelFlags.html"><code>GLogLevelFlags</code></a>, or a user-defined&nbsp;level.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>fields</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>GLogField</code></p>
+            <p>Key–value pairs of structured data to add
+   to the log&nbsp;message.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td>The length of the array is specified in the <code>n_fields</code> argument.</td></tr>
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>n_fields</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gsize</code></p>
+            <p>Number of elements in the <code>fields</code> array.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.log_structured_array.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

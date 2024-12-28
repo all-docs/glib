@@ -1,0 +1,260 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/testing.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Testing Framework</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Testing Framework">
+  <meta property="og:description" content="Reference for GLib-2.0: Testing Framework">
+  <meta name="twitter:title" content="GLib: Testing Framework">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Testing Framework">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Testing Framework
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="testing-framework">Testing Framework<a class="md-anchor" href="#testing-framework" title="Permanent link"></a></h1>
+<p>GLib provides a framework for writing and maintaining unit tests in parallel
+to the code they are testing. The <span class="caps">API</span> is designed according to established
+concepts found in the other test frameworks (JUnit, NUnit, RUnit), which in
+turn is based on smalltalk unit testing&nbsp;concepts.</p>
+<ul>
+<li>Test case: Tests (test methods) are grouped together with their fixture
+  into test&nbsp;cases.</li>
+<li>Fixture: A test fixture consists of fixture data and setup and teardown
+  methods to establish the environment for the test functions. We use fresh
+  fixtures, i.e. fixtures are newly set up and torn down around each test
+  invocation to avoid dependencies between&nbsp;tests.</li>
+<li>Test suite: Test cases can be grouped into test suites, to allow subsets
+  of the available tests to be run. Test suites can be grouped into other
+  test suites as&nbsp;well.</li>
+</ul>
+<p>The <span class="caps">API</span> is designed to handle creation and registration of test suites and
+test cases implicitly. A simple call&nbsp;like:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">g_test_add_func</span><span class="w"> </span><span class="p">(</span><span class="s">"/misc/assertions"</span><span class="p">,</span><span class="w"> </span><span class="n">test_assertions</span><span class="p">);</span>
+</code></pre></div>
+
+<p>creates a test suite called “misc” with a single test case named
+“assertions”, which consists of running the <code>test_assertions</code> function.</p>
+<p>In addition to the traditional <code>g_assert_true()</code>, the test framework
+provides an extended set of assertions for comparisons:
+<code>g_assert_cmpfloat()</code>, <code>g_assert_cmpfloat_with_epsilon()</code>,
+<code>g_assert_cmpint()</code>, <code>g_assert_cmpuint()</code>, <code>g_assert_cmphex()</code>,
+<code>g_assert_cmpstr()</code>, <code>g_assert_cmpmem()</code> and <code>g_assert_cmpvariant()</code>. The
+advantage of these variants over plain <code>g_assert_true()</code> is that the
+assertion messages can be more elaborate, and include the values of the
+compared&nbsp;entities.</p>
+<p>Note that <code>g_assert()</code> should <strong>not</strong> be used in unit tests, since it is a
+no-op when compiling with <code>G_DISABLE_ASSERT</code>. Use <code>g_assert()</code> in production
+code, and <code>g_assert_true()</code> in unit&nbsp;tests.</p>
+<p>A full example of creating a test suite with two tests using&nbsp;fixtures:</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;glib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;locale.h&gt;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MyObject</span><span class="w"> </span><span class="o">*</span><span class="n">obj</span><span class="p">;</span>
+<span class="w">  </span><span class="n">OtherObject</span><span class="w"> </span><span class="o">*</span><span class="n">helper</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">MyObjectFixture</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">my_object_fixture_set_up</span><span class="w"> </span><span class="p">(</span><span class="n">MyObjectFixture</span><span class="w"> </span><span class="o">*</span><span class="n">fixture</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">user_data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_object_new</span><span class="w"> </span><span class="p">();</span>
+<span class="w">  </span><span class="n">my_object_set_prop1</span><span class="w"> </span><span class="p">(</span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="s">"some-value"</span><span class="p">);</span>
+<span class="w">  </span><span class="n">my_object_do_some_complex_setup</span><span class="w"> </span><span class="p">(</span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">user_data</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">helper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">other_object_new</span><span class="w"> </span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">my_object_fixture_tear_down</span><span class="w"> </span><span class="p">(</span><span class="n">MyObjectFixture</span><span class="w"> </span><span class="o">*</span><span class="n">fixture</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">user_data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">g_clear_object</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">helper</span><span class="p">);</span>
+<span class="w">  </span><span class="n">g_clear_object</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">obj</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">test_my_object_test1</span><span class="w"> </span><span class="p">(</span><span class="n">MyObjectFixture</span><span class="w"> </span><span class="o">*</span><span class="n">fixture</span><span class="p">,</span>
+<span class="w">                      </span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">user_data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">g_assert_cmpstr</span><span class="w"> </span><span class="p">(</span><span class="n">my_object_get_property</span><span class="w"> </span><span class="p">(</span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">obj</span><span class="p">),</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="s">"initial-value"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="nf">test_my_object_test2</span><span class="w"> </span><span class="p">(</span><span class="n">MyObjectFixture</span><span class="w"> </span><span class="o">*</span><span class="n">fixture</span><span class="p">,</span>
+<span class="w">                      </span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">user_data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">my_object_do_some_work_using_helper</span><span class="w"> </span><span class="p">(</span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">helper</span><span class="p">);</span>
+<span class="w">  </span><span class="n">g_assert_cmpstr</span><span class="w"> </span><span class="p">(</span><span class="n">my_object_get_property</span><span class="w"> </span><span class="p">(</span><span class="n">fixture</span><span class="o">-&gt;</span><span class="n">obj</span><span class="p">),</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="s">"updated-value"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">setlocale</span><span class="w"> </span><span class="p">(</span><span class="n">LC_ALL</span><span class="p">,</span><span class="w"> </span><span class="s">""</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">g_test_init</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Define the tests.</span>
+<span class="w">  </span><span class="n">g_test_add</span><span class="w"> </span><span class="p">(</span><span class="s">"/my-object/test1"</span><span class="p">,</span><span class="w"> </span><span class="n">MyObjectFixture</span><span class="p">,</span><span class="w"> </span><span class="s">"some-user-data"</span><span class="p">,</span>
+<span class="w">              </span><span class="n">my_object_fixture_set_up</span><span class="p">,</span><span class="w"> </span><span class="n">test_my_object_test1</span><span class="p">,</span>
+<span class="w">              </span><span class="n">my_object_fixture_tear_down</span><span class="p">);</span>
+<span class="w">  </span><span class="n">g_test_add</span><span class="w"> </span><span class="p">(</span><span class="s">"/my-object/test2"</span><span class="p">,</span><span class="w"> </span><span class="n">MyObjectFixture</span><span class="p">,</span><span class="w"> </span><span class="s">"some-user-data"</span><span class="p">,</span>
+<span class="w">              </span><span class="n">my_object_fixture_set_up</span><span class="p">,</span><span class="w"> </span><span class="n">test_my_object_test2</span><span class="p">,</span>
+<span class="w">              </span><span class="n">my_object_fixture_tear_down</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">g_test_run</span><span class="w"> </span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="integrating-gtest-in-your-project">Integrating GTest in your project<a class="md-anchor" href="#integrating-gtest-in-your-project" title="Permanent link"></a></h3>
+<h4 id="using-meson">Using Meson<a class="md-anchor" href="#using-meson" title="Permanent link"></a></h4>
+<p>If you are using the Meson build system, you will typically use the provided
+<code>test()</code> primitive to call the test binaries,&nbsp;e.g.:</p>
+<div class="codehilite"><pre><span></span><code>test(
+  'foo',
+  executable('foo', 'foo.c', dependencies: deps),
+  env: [
+    'G_TEST_SRCDIR=@0@'.format(meson.current_source_dir()),
+    'G_TEST_BUILDDIR=@0@'.format(meson.current_build_dir()),
+  ],
+  protocol: 'tap',
+)
+
+test(
+  'bar',
+  executable('bar', 'bar.c', dependencies: deps),
+  env: [
+    'G_TEST_SRCDIR=@0@'.format(meson.current_source_dir()),
+    'G_TEST_BUILDDIR=@0@'.format(meson.current_build_dir()),
+  ],
+  protocol: 'tap',
+)
+</code></pre></div>
+
+<h4 id="using-autotools">Using Autotools<a class="md-anchor" href="#using-autotools" title="Permanent link"></a></h4>
+<p>If you are using Autotools, you’re strongly encouraged to use the Automake
+<span class="caps">TAP</span> harness; GLib provides template files for easily integrating with&nbsp;it:</p>
+<ul>
+<li><a href="https://gitlab.gnome.org/GNOME/glib/blob/glib-2-58/glib-tap.mk"><code>glib-tap.mk</code></a></li>
+<li><a href="https://gitlab.gnome.org/GNOME/glib/blob/glib-2-58/tap-test"><code>tap-test</code></a></li>
+<li><a href="https://gitlab.gnome.org/GNOME/glib/blob/glib-2-58/tap-driver.sh"><code>tap-driver.sh</code></a></li>
+</ul>
+<p>You can copy these files in your own project’s root directory, and then set
+up your <code>Makefile.am</code> file to reference them, for&nbsp;instance:</p>
+<div class="codehilite"><pre><span></span><code>include $(top_srcdir)/glib-tap.mk
+
+# test binaries
+test_programs = \
+  foo \
+  bar
+
+# data distributed in the tarball
+dist_test_data = \
+  foo.data.txt \
+  bar.data.txt
+
+# data not distributed in the tarball
+test_data = \
+  blah.data.txt
+</code></pre></div>
+
+<p>Make sure to distribute the <span class="caps">TAP</span> files, using something like the following in
+your top-level <code>Makefile.am</code>:</p>
+<div class="codehilite"><pre><span></span><code>EXTRA_DIST += \
+  tap-driver.sh \
+  tap-test
+</code></pre></div>
+
+<p><code>glib-tap.mk</code> will be distributed implicitly due to being included in a
+<code>Makefile.am</code>. All three files should be added to version&nbsp;control.</p>
+<p>If you don’t have access to the Autotools <span class="caps">TAP</span> harness, you can use the
+gtester and gtester-report tools, and use the
+<a href="https://gitlab.gnome.org/GNOME/glib/blob/glib-2-58/glib.mk"><code>glib.mk</code></a>
+Automake template provided by GLib. Note, however, that since GLib 2.62,
+gtester and gtester-report have been deprecated in favour of using <span class="caps">TAP</span>. The
+<code>--tap</code> argument to tests is enabled by default as of GLib&nbsp;2.62.</p>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#integrating-gtest-in-your-project"><span class="link-text">Integrating GTest in your project</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/testing.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

@@ -1,0 +1,497 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.HashTable.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.HashTable</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.HashTable">
+  <meta property="og:description" content="Reference for GLib.HashTable">
+  <meta name="twitter:title" content="GLib.HashTable">
+  <meta name="twitter:description" content="Reference for GLib.HashTable">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>HashTable</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/ghash.c#L66">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GHashTable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GHashTable</code> struct is an opaque data structure to represent a
+[Hash Table][glib-Hash-Tables]. It should only be accessed via the
+following&nbsp;functions.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.add.html">g_hash_table_add</a></h6>
+        <div class="docblock">
+          <p>This is a convenience function for using a <code>GHashTable</code> as a set.  It
+is equivalent to calling <code>g_hash_table_replace()</code> with <code>key</code> as both the
+key and the&nbsp;value.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.32</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.contains.html">g_hash_table_contains</a></h6>
+        <div class="docblock">
+          <p>Checks if <code>key</code> is in <code>hash_table</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.32</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.destroy.html">g_hash_table_destroy</a></h6>
+        <div class="docblock">
+          <p>Destroys all keys and values in the <code>GHashTable</code> and decrements its
+reference count by 1. If keys and/or values are dynamically allocated,
+you should either free them first or create the <code>GHashTable</code> with destroy
+notifiers using g_hash_table_new_full(). In the latter case the destroy
+functions you supplied will be called on all keys and values during the
+destruction&nbsp;phase.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.find.html">g_hash_table_find</a></h6>
+        <div class="docblock">
+          <p>Calls the given function for key/value pairs in the <code>GHashTable</code>
+until <code>predicate</code> returns <code>TRUE</code>. The function is passed the key
+and value of each pair, and the given <code>user_data</code> parameter. The
+hash table may not be modified while iterating over it (you can’t
+add/remove&nbsp;items).</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.4</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.foreach.html">g_hash_table_foreach</a></h6>
+        <div class="docblock">
+          <p>Calls the given function for each of the key/value pairs in the
+<code>GHashTable</code>.  The function is passed the key and value of each
+pair, and the given <code>user_data</code> parameter.  The hash table may not
+be modified while iterating over it (you can’t add/remove
+items). To remove all items matching a predicate, use&nbsp;g_hash_table_foreach_remove().</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.foreach_remove.html">g_hash_table_foreach_remove</a></h6>
+        <div class="docblock">
+          <p>Calls the given function for each key/value pair in the
+<code>GHashTable</code>. If the function returns <code>TRUE</code>, then the key/value
+pair is removed from the <code>GHashTable</code>. If you supplied key or
+value destroy functions when creating the <code>GHashTable</code>, they are
+used to free the memory allocated for the removed keys and&nbsp;values.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.foreach_steal.html">g_hash_table_foreach_steal</a></h6>
+        <div class="docblock">
+          <p>Calls the given function for each key/value pair in the
+<code>GHashTable</code>. If the function returns <code>TRUE</code>, then the key/value
+pair is removed from the <code>GHashTable</code>, but no key or value
+destroy functions are&nbsp;called.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.get_keys.html">g_hash_table_get_keys</a></h6>
+        <div class="docblock">
+          <p>Retrieves every key inside <code>hash_table</code>. The returned data is valid
+until changes to the hash release those&nbsp;keys.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.get_keys_as_array.html">g_hash_table_get_keys_as_array</a></h6>
+        <div class="docblock">
+          <p>Retrieves every key inside <code>hash_table</code>, as an&nbsp;array.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.40</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.get_keys_as_ptr_array.html">g_hash_table_get_keys_as_ptr_array</a></h6>
+        <div class="docblock">
+          <p>Retrieves every key inside <code>hash_table</code>, as a <code>GPtrArray</code>.
+The returned data is valid until changes to the hash release those&nbsp;keys.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.get_values.html">g_hash_table_get_values</a></h6>
+        <div class="docblock">
+          <p>Retrieves every value inside <code>hash_table</code>. The returned data
+is valid until <code>hash_table</code> is&nbsp;modified.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.get_values_as_ptr_array.html">g_hash_table_get_values_as_ptr_array</a></h6>
+        <div class="docblock">
+          <p>Retrieves every value inside <code>hash_table</code>, as a <code>GPtrArray</code>.
+The returned data is valid until changes to the hash release those&nbsp;values.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.insert.html">g_hash_table_insert</a></h6>
+        <div class="docblock">
+          <p>Inserts a new key and value into a <code>GHashTable</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.lookup.html">g_hash_table_lookup</a></h6>
+        <div class="docblock">
+          <p>Looks up a key in a <code>GHashTable</code>. Note that this function cannot
+distinguish between a key that is not present and one which is present
+and has the value <code>NULL</code>. If you need this distinction, use&nbsp;g_hash_table_lookup_extended().</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.lookup_extended.html">g_hash_table_lookup_extended</a></h6>
+        <div class="docblock">
+          <p>Looks up a key in the <code>GHashTable</code>, returning the original key and the
+associated value and a #gboolean which is <code>TRUE</code> if the key was found. This
+is useful if you need to free the memory allocated for the original key,
+for example before calling&nbsp;g_hash_table_remove().</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.new.html">g_hash_table_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GHashTable</code> with a reference count of&nbsp;1.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.new_full.html">g_hash_table_new_full</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GHashTable</code> like <code>g_hash_table_new()</code> with a reference
+count of 1 and allows to specify functions to free the memory
+allocated for the key and value that get called when removing the
+entry from the <code>GHashTable</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.new_similar.html">g_hash_table_new_similar</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GHashTable</code> like <code>g_hash_table_new_full()</code> with a reference
+count of&nbsp;1.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.72</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.ref.html">g_hash_table_ref</a></h6>
+        <div class="docblock">
+          <p>Atomically increments the reference count of <code>hash_table</code> by one.
+This function is <span class="caps">MT</span>-safe and may be called from any&nbsp;thread.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.10</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.remove.html">g_hash_table_remove</a></h6>
+        <div class="docblock">
+          <p>Removes a key and its associated value from a <code>GHashTable</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.remove_all.html">g_hash_table_remove_all</a></h6>
+        <div class="docblock">
+          <p>Removes all keys and their associated values from a <code>GHashTable</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.12</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.replace.html">g_hash_table_replace</a></h6>
+        <div class="docblock">
+          <p>Inserts a new key and value into a <code>GHashTable</code> similar to
+g_hash_table_insert(). The difference is that if the key
+already exists in the <code>GHashTable</code>, it gets replaced by the
+new key. If you supplied a <code>value_destroy_func</code> when creating
+the <code>GHashTable</code>, the old value is freed using that function.
+If you supplied a <code>key_destroy_func</code> when creating the
+<code>GHashTable</code>, the old key is freed using that&nbsp;function.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.size.html">g_hash_table_size</a></h6>
+        <div class="docblock">
+          <p>Returns the number of elements contained in the <code>GHashTable</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.steal.html">g_hash_table_steal</a></h6>
+        <div class="docblock">
+          <p>Removes a key and its associated value from a <code>GHashTable</code> without
+calling the key and value destroy&nbsp;functions.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.steal_all.html">g_hash_table_steal_all</a></h6>
+        <div class="docblock">
+          <p>Removes all keys and their associated values from a <code>GHashTable</code>
+without calling the key and value destroy&nbsp;functions.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.12</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.steal_all_keys.html">g_hash_table_steal_all_keys</a></h6>
+        <div class="docblock">
+          <p>Removes all keys and their associated values from a <code>GHashTable</code>
+without calling the key destroy functions, returning the keys
+as a <code>GPtrArray</code> with the free func set to the <code>hash_table</code> key
+destroy&nbsp;function.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.steal_all_values.html">g_hash_table_steal_all_values</a></h6>
+        <div class="docblock">
+          <p>Removes all keys and their associated values from a <code>GHashTable</code>
+without calling the value destroy functions, returning the values
+as a <code>GPtrArray</code> with the free func set to the <code>hash_table</code> value
+destroy&nbsp;function.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.steal_extended.html">g_hash_table_steal_extended</a></h6>
+        <div class="docblock">
+          <p>Looks up a key in the <code>GHashTable</code>, stealing the original key and the
+associated value and returning <code>TRUE</code> if the key was found. If the key was
+not found, <code>FALSE</code> is&nbsp;returned.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.58</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.HashTable.unref.html">g_hash_table_unref</a></h6>
+        <div class="docblock">
+          <p>Atomically decrements the reference count of <code>hash_table</code> by one.
+If the reference count drops to 0, all keys and values will be
+destroyed, and all memory allocated by the hash table is released.
+This function is <span class="caps">MT</span>-safe and may be called from any&nbsp;thread.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.10</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.HashTable.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

@@ -1,0 +1,255 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/error.BookmarkFileError.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.BookmarkFileError</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.BookmarkFileError">
+  <meta property="og:description" content="Reference for GLib.BookmarkFileError">
+  <meta name="twitter:title" content="GLib.BookmarkFileError">
+  <meta name="twitter:description" content="Reference for GLib.BookmarkFileError">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>BookmarkFileError</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>error-domain GLib.BookmarkFileError</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gbookmarkfile.h#L45">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Error codes returned by bookmark file&nbsp;parsing.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="invalid_uri">G_BOOKMARK_FILE_ERROR_INVALID_URI</code>
+            <a class="anchor" href="#invalid_uri"></a>
+          </dt>
+          <dd>
+            <div><p><span class="caps">URI</span> was&nbsp;ill-formed.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="invalid_value">G_BOOKMARK_FILE_ERROR_INVALID_VALUE</code>
+            <a class="anchor" href="#invalid_value"></a>
+          </dt>
+          <dd>
+            <div><p>A requested field was not&nbsp;found.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="app_not_registered">G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED</code>
+            <a class="anchor" href="#app_not_registered"></a>
+          </dt>
+          <dd>
+            <div><p>A requested application did
+    not register a&nbsp;bookmark.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="uri_not_found">G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND</code>
+            <a class="anchor" href="#uri_not_found"></a>
+          </dt>
+          <dd>
+            <div><p>A requested <span class="caps">URI</span> was not&nbsp;found.</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="read">G_BOOKMARK_FILE_ERROR_READ</code>
+            <a class="anchor" href="#read"></a>
+          </dt>
+          <dd>
+            <div><p>Document was ill&nbsp;formed.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unknown_encoding">G_BOOKMARK_FILE_ERROR_UNKNOWN_ENCODING</code>
+            <a class="anchor" href="#unknown_encoding"></a>
+          </dt>
+          <dd>
+            <div><p>The text being parsed was
+    in an unknown&nbsp;encoding.</p></div>
+            <ul>
+              <li>Value: <code>5</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="write">G_BOOKMARK_FILE_ERROR_WRITE</code>
+            <a class="anchor" href="#write"></a>
+          </dt>
+          <dd>
+            <div><p>An error occurred while&nbsp;writing.</p></div>
+            <ul>
+              <li>Value: <code>6</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="file_not_found">G_BOOKMARK_FILE_ERROR_FILE_NOT_FOUND</code>
+            <a class="anchor" href="#file_not_found"></a>
+          </dt>
+          <dd>
+            <div><p>Requested file was not&nbsp;found.</p></div>
+            <ul>
+              <li>Value: <code>7</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      <li class="toc-list-item"><a href="#members"><span class="link-text">Members</span></a></li>
+      
+
+      
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/error.BookmarkFileError.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

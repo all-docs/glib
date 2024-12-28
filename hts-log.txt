@@ -1,0 +1,36 @@
+HTTrack3.49-5 launched on Sun, 24 Nov 2024 15:17:19 at https://docs.gtk.org/glib/
+(httrack -iC1 https://docs.gtk.org/glib/ )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+15:17:20	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/method.Dir.g_make_tmp.html (from https://docs.gtk.org/glib/file-utils.html)
+15:17:20	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/func.IS_DIR_SEPARATOR.html (from https://docs.gtk.org/glib/file-utils.html)
+15:17:20	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.FloatIEEE754.html (from https://docs.gtk.org/glib/numerical.html)
+15:17:20	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.DoubleIEEE754.html (from https://docs.gtk.org/glib/numerical.html)
+15:17:20	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/conversion-macros.md (from https://docs.gtk.org/glib/data-structures.html)
+15:17:20	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/GLib.Dir (from https://docs.gtk.org/glib/struct.Dir.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.Mutex.html (from https://docs.gtk.org/glib/union.Mutex.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.TokenValue.html (from https://docs.gtk.org/glib/union.TokenValue.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.DateDay.html (from https://docs.gtk.org/glib/alias.DateDay.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.DateYear.html (from https://docs.gtk.org/glib/alias.DateYear.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.MainContextPusher.html (from https://docs.gtk.org/glib/alias.MainContextPusher.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.MutexLocker.html (from https://docs.gtk.org/glib/alias.MutexLocker.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.Pid.html (from https://docs.gtk.org/glib/alias.Pid.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.Quark.html (from https://docs.gtk.org/glib/alias.Quark.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.RecMutexLocker.html (from https://docs.gtk.org/glib/alias.RecMutexLocker.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.RefString.html (from https://docs.gtk.org/glib/alias.RefString.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.RWLockReaderLocker.html (from https://docs.gtk.org/glib/alias.RWLockReaderLocker.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.RWLockWriterLocker.html (from https://docs.gtk.org/glib/alias.RWLockWriterLocker.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.Strv.html (from https://docs.gtk.org/glib/alias.Strv.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.Time.html (from https://docs.gtk.org/glib/alias.Time.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/struct.TimeSpan.html (from https://docs.gtk.org/glib/alias.TimeSpan.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/glib-running.html (from https://docs.gtk.org/glib/func.log_set_always_fatal.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/GLib.Private.set (from https://docs.gtk.org/glib/method.Private.set.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/GLib.Sequence.set (from https://docs.gtk.org/glib/type_func.Sequence.set.html)
+15:17:21	Error: 	"Not Found" (404) at link https://docs.gtk.org/glib/GLib.StaticPrivate.set (from https://docs.gtk.org/glib/method.StaticPrivate.set.html)
+
+HTTrack Website Copier/3.49-5 mirror complete in 2 seconds : 2517 links scanned, 2491 files written (19271900 bytes overall), no files updated [0 bytes received at 0 bytes/sec]
+(25 errors, 0 warnings, 0 messages)

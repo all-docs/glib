@@ -1,0 +1,185 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.test_run.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.test_run</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.test_run">
+  <meta property="og:description" content="Reference for GLib.test_run">
+  <meta name="twitter:title" content="GLib.test_run">
+  <meta name="twitter:description" content="Reference for GLib.test_run">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>test_run</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.16</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.h#L396">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">int</span>
+<span class="n">g_test_run</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="kt">void</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.c#L2322">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Runs all tests under the toplevel&nbsp;suite.</p>
+<p>The toplevel suite can be retrieved with <a href="func.test_get_root.html"><code>g_test_get_root()</code></a>.</p>
+<p>Similar to <a href="func.test_run_suite.html"><code>g_test_run_suite()</code></a>, the test cases to be run are
+filtered according to test path arguments (<code>-p testpath</code> and <code>-s testpath</code>)
+as parsed by <a href="func.test_init.html"><code>g_test_init()</code></a>. <a href="func.test_run_suite.html"><code>g_test_run_suite()</code></a> or
+<a href="func.test_run.html"><code>g_test_run()</code></a> may only be called once in a&nbsp;program.</p>
+<p>In general, the tests and sub-suites within each suite are run in
+the order in which they are defined. However, note that prior to
+GLib 2.36, there was a bug in the <code>g_test_add_*</code>
+functions which caused them to create multiple suites with the same
+name, meaning that if you created tests “/foo/simple”,
+“/bar/simple”, and “/foo/using-bar” in that order, they would get
+run in that order (since <a href="func.test_run.html"><code>g_test_run()</code></a> would run the first “/foo”
+suite, then the “/bar” suite, then the second “/foo” suite). As of
+2.36, this bug is fixed, and adding the tests in that order would
+result in a running order of “/foo/simple”, “/foo/using-bar”,
+“/bar/simple”. If this new ordering is sub-optimal (because it puts
+more-complicated tests before simpler ones, making it harder to
+figure out exactly what has failed), you can fix it by changing the
+test paths to group tests by suite in a way that will result in the
+desired running order. Eg, “/simple/foo”, “/simple/bar”,&nbsp;“/complex/foo-using-bar”.</p>
+<p>However, you should never make the actual result of a test depend
+on the order that tests are run in. If you need to ensure that some
+particular code runs before or after a given test case, use
+<a href="func.test_add.html"><code>g_test_add()</code></a>, which lets you specify setup and teardown&nbsp;functions.</p>
+<p>If all tests are skipped or marked as incomplete (expected failures),
+this function will return 0 if producing <span class="caps">TAP</span> output, or 77 (treated
+as “skip test” by Automake)&nbsp;otherwise.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.16</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>int</code></p>
+            <p>0 on success, 1 on failure (assuming it returns at all),
+  0 or 77 if all tests were skipped or marked as&nbsp;incomplete.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.test_run.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

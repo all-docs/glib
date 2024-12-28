@@ -1,0 +1,434 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/conversion-macros.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Conversion Macros</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Conversion Macros">
+  <meta property="og:description" content="Reference for GLib-2.0: Conversion Macros">
+  <meta name="twitter:title" content="GLib: Conversion Macros">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Conversion Macros">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Conversion Macros
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="conversion-macros">Conversion Macros<a class="md-anchor" href="#conversion-macros" title="Permanent link"></a></h1>
+<h2 id="type-conversion">Type Conversion<a class="md-anchor" href="#type-conversion" title="Permanent link"></a></h2>
+<p>Many times GLib, <span class="caps">GTK</span>, and other libraries allow you to pass “user data” to a
+callback, in the form of a void pointer. From time to time you want to pass
+an integer instead of a pointer. You could allocate an integer, with
+something&nbsp;like:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_new</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="o">*</span><span class="n">ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</code></pre></div>
+
+<p>But this is inconvenient, and it’s annoying to have to free the memory at
+some later&nbsp;time.</p>
+<p>Pointers are always at least 32 bits in size (on all platforms GLib intends
+to support). Thus you can store at least 32-bit integer values in a pointer
+value. Naively, you might try this, but it’s&nbsp;incorrect:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">gpointer</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Again, that example was not correct, don’t copy&nbsp;it.</p>
+<p>The problem is that on some systems you need to do&nbsp;this:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">gpointer</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+</code></pre></div>
+
+<p>The GLib macros <a href="#gpointer-to-int"><code>GPOINTER_TO_INT()</code></a>, <a href="#gint-to-pointer"><code>GINT_TO_POINTER()</code></a>,
+etc. take care to do the right thing on every&nbsp;platform.</p>
+<p><strong>Warning</strong>: You may not store pointers in integers. This is not portable in
+any way, shape or form. These macros only allow storing integers in
+pointers, and only preserve 32 bits of the integer; values outside the range
+of a 32-bit integer will be&nbsp;mangled.</p>
+<dl>
+<dt><code>GINT_TO_POINTER(value)</code><a name="gint-to-pointer"></a>, <code>GPOINTER_TO_INT(value)</code><a name="gpointer-to-int"></a></dt>
+<dd>
+<p>Stuffs an integer into a pointer type, and vice&nbsp;versa.</p>
+<p>Remember, you may not store pointers in integers. This is not portable in
+any way, shape or form. These macros only allow storing integers in
+pointers, and only preserve 32 bits of the integer; values outside the
+range of a 32-bit integer will be&nbsp;mangled.</p>
+</dd>
+<dt><code>GUINT_TO_POINTER(value)</code><a name="guint-to-pointer"></a>, <code>GPOINTER_TO_UINT(value)</code><a name="gpointer-to-uint"></a></dt>
+<dd>
+<p>Stuffs an unsigned integer into a pointer type, and vice&nbsp;versa.</p>
+</dd>
+<dt><code>GSIZE_TO_POINTER(value)</code><a name="gsize-to-pointer"></a>, <code>GPOINTER_TO_SIZE(value)</code><a name="gpointer-to-size"></a></dt>
+<dd>
+<p>Stuffs a <code>size_t</code> into a pointer type, and vice&nbsp;versa.</p>
+</dd>
+<dt><code>GTYPE_TO_POINTER(value)</code><a name="gtype-to-pointer"></a>, <code>GPOINTER_TO_TYPE(value)</code><a name="gpointer-to-type"></a></dt>
+<dd>
+<p>Stuffs a <a href="https://docs.gtk.org/gobject/alias.Type.html"><code>GType</code></a> into a pointer type, and
+vice&nbsp;versa.</p>
+<p>These macros should be used instead of <a href="#gsize-to-pointer"><code>GSIZE_TO_POINTER()</code></a>,
+<a href="#gpointer-to-size"><code>GPOINTER_TO_SIZE()</code></a> to ensure portability, since
+<code>GType</code> is not guaranteed to be the same as <code>size_t</code>.</p>
+<p>Since:&nbsp;2.80</p>
+</dd>
+</dl>
+<h2 id="byte-order-conversion">Byte Order Conversion<a class="md-anchor" href="#byte-order-conversion" title="Permanent link"></a></h2>
+<p>These macros provide a portable way to determine the host byte order and to
+convert values between different byte&nbsp;orders.</p>
+<p>The byte order is the order in which bytes are stored to create larger data
+types such as the #gint and #glong values.  The host byte order is the byte
+order used on the current&nbsp;machine.</p>
+<p>Some processors store the most significant bytes (i.e. the bytes that hold
+the largest part of the value) first. These are known as big-endian
+processors. Other processors (notably the x86 family) store the most
+significant byte last. These are known as little-endian&nbsp;processors.</p>
+<p>Finally, to complicate matters, some other processors store the bytes in a
+rather curious order known as <span class="caps">PDP</span>-endian. For a 4-byte word, the 3rd most
+significant byte is stored first, then the 4th, then the 1st and finally the&nbsp;2nd.</p>
+<p>Obviously there is a problem when these different processors communicate
+with each other, for example over networks or by using binary file formats.
+This is where these macros come in. They are typically used to convert
+values into a byte order which has been agreed on for use when communicating
+between different processors. The Internet uses what is known as ‘network
+byte order’ as the standard byte order (which is in fact the big-endian byte&nbsp;order).</p>
+<p>Note that the byte order conversion macros may evaluate their arguments
+multiple times, thus you should not use them with arguments which have&nbsp;side-effects.</p>
+<dl>
+<dt><code>G_BYTE_ORDER</code><a name="g-byte-order"></a></dt>
+<dd>
+<p>The host byte order. This can be either <a href="#g-little-endian"><code>G_LITTLE_ENDIAN</code></a>
+or <a href="#g-big-endian"><code>G_BIG_ENDIAN</code></a>.</p>
+</dd>
+<dt><code>G_LITTLE_ENDIAN</code><a name="g-little-endian"></a></dt>
+<dd>
+<p>Specifies the little endian byte&nbsp;order.</p>
+</dd>
+<dt><code>G_BIG_ENDIAN</code><a name="g-big-endian"></a></dt>
+<dd>
+<p>Specifies the big endian byte&nbsp;order.</p>
+</dd>
+<dt><code>G_PDP_ENDIAN</code><a name="g-pdp-endian"></a></dt>
+<dd>
+<p>Specifies the <span class="caps">PDP</span> endian byte&nbsp;order.</p>
+</dd>
+</dl>
+<h3 id="signed">Signed<a class="md-anchor" href="#signed" title="Permanent link"></a></h3>
+<dl>
+<dt><code>GINT_FROM_BE(value)</code><a name="gint-from-be"></a></dt>
+<dd>
+<p>Converts an <code>int</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GINT_FROM_LE(value)</code><a name="gint-from-le"></a></dt>
+<dd>
+<p>Converts an <code>int</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GINT_TO_BE(value)</code><a name="gint-to-be"></a></dt>
+<dd>
+<p>Converts an <code>int</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GINT_TO_LE(value)</code><a name="gint-to-le"></a></dt>
+<dd>
+<p>Converts an <code>int</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GLONG_FROM_BE(value)</code><a name="glong-from-be"></a></dt>
+<dd>
+<p>Converts a <code>long</code> value from big-endian to the host byte&nbsp;order.</p>
+</dd>
+<dt><code>GLONG_FROM_LE(value)</code><a name="glong-from-le"></a></dt>
+<dd>
+<p>Converts a <code>long</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GLONG_TO_BE(value)</code><a name="glong-to-be"></a></dt>
+<dd>
+<p>Converts a <code>long</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GLONG_TO_LE(value)</code><a name="glong-to-le"></a></dt>
+<dd>
+<p>Converts a <code>long</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GSSIZE_FROM_BE(value)</code><a name="gssize-from-be"></a></dt>
+<dd>
+<p>Converts a <code>ssize_t</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GSSIZE_FROM_LE(value)</code><a name="gssize-from-le"></a></dt>
+<dd>
+<p>Converts a <code>ssize_t</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GSSIZE_TO_BE(value)</code><a name="gssize-to-be"></a></dt>
+<dd>
+<p>Converts a <code>ssize_t</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GSSIZE_TO_LE(value)</code><a name="gssize-to-le"></a></dt>
+<dd>
+<p>Converts a <code>ssize_t</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GINT16_FROM_BE(value)</code><a name="gint16-from-be"></a></dt>
+<dd>
+<p>Converts an <code>int16_t</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GINT16_FROM_LE(value)</code><a name="gint16-from-le"></a></dt>
+<dd>
+<p>Converts an <code>int16_t</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GINT16_TO_BE(value)</code><a name="gint16-to-be"></a></dt>
+<dd>
+<p>Converts an <code>int16_t</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GINT16_TO_LE(value)</code><a name="gint16-to-le"></a></dt>
+<dd>
+<p>Converts an <code>int16_t</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GINT32_FROM_BE(value)</code><a name="gint32-from-be"></a></dt>
+<dd>
+<p>Converts an <code>int32_t</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GINT32_FROM_LE(value)</code><a name="gint32-from-le"></a></dt>
+<dd>
+<p>Converts an <code>int32_t</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GINT32_TO_BE(value)</code><a name="gint32-to-be"></a></dt>
+<dd>
+<p>Converts an <code>int32_t</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GINT32_TO_LE(value)</code><a name="gint32-to-le"></a></dt>
+<dd>
+<p>Converts an <code>int32_t</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GINT64_FROM_BE(value)</code><a name="gint64-from-be"></a></dt>
+<dd>
+<p>Converts an <code>int64_t</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GINT64_FROM_LE(value)</code><a name="gint64-from-le"></a></dt>
+<dd>
+<p>Converts an <code>int64_t</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GINT64_TO_BE(value)</code><a name="gint64-to-be"></a></dt>
+<dd>
+<p>Converts an <code>int64_t</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GINT64_TO_LE(value)</code><a name="gint64-to-le"></a></dt>
+<dd>
+<p>Converts an <code>int64_t</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+</dl>
+<h3 id="unsigned">Unsigned<a class="md-anchor" href="#unsigned" title="Permanent link"></a></h3>
+<dl>
+<dt><code>GUINT_FROM_BE(value)</code><a name="guint-from-be"></a></dt>
+<dd>
+<p>Converts an <code>unsigned int</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GUINT_FROM_LE(value)</code><a name="guint-from-le"></a></dt>
+<dd>
+<p>Converts an <code>unsigned int</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GUINT_TO_BE(value)</code><a name="guint-to-be"></a></dt>
+<dd>
+<p>Converts an <code>unsigned int</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GUINT_TO_LE(value)</code><a name="guint-to-le"></a></dt>
+<dd>
+<p>Converts an <code>unsigned int</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GULONG_FROM_BE(value)</code><a name="gulong-from-be"></a></dt>
+<dd>
+<p>Converts an <code>unsigned long</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GULONG_FROM_LE(value)</code><a name="gulong-from-le"></a></dt>
+<dd>
+<p>Converts an <code>unsigned long</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GULONG_TO_BE(value)</code><a name="gulong-to-be"></a></dt>
+<dd>
+<p>Converts an <code>unsigned long</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GULONG_TO_LE(value)</code><a name="gulong-to-le"></a></dt>
+<dd>
+<p>Converts an <code>unsigned long</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GSIZE_FROM_BE(value)</code><a name="gsize-from-be"></a></dt>
+<dd>
+<p>Converts a <code>size_t</code> value from big-endian to the host byte&nbsp;order.</p>
+</dd>
+<dt><code>GSIZE_FROM_LE(value)</code><a name="gsize-from-le"></a></dt>
+<dd>
+<p>Converts a <code>size_t</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GSIZE_TO_BE(value)</code><a name="gsize-to-be"></a></dt>
+<dd>
+<p>Converts a <code>size_t</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GSIZE_TO_LE(value)</code><a name="gsize-to-le"></a></dt>
+<dd>
+<p>Converts a <code>size_t</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GUINT16_FROM_BE(value)</code><a name="guint16-from-be"></a></dt>
+<dd>
+<p>Converts a <code>uint16_t</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GUINT16_FROM_LE(value)</code><a name="guint16-from-le"></a></dt>
+<dd>
+<p>Converts a <code>uint16_t</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GUINT16_TO_BE(value)</code><a name="guint16-to-be"></a></dt>
+<dd>
+<p>Converts a <code>uint16_t</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GUINT16_TO_LE(value)</code><a name="guint16-to-le"></a></dt>
+<dd>
+<p>Converts a <code>uint16_t</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GUINT32_FROM_BE(value)</code><a name="guint32-from-be"></a></dt>
+<dd>
+<p>Converts a <code>uint32_t</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GUINT32_FROM_LE(value)</code><a name="guint32-from-le"></a></dt>
+<dd>
+<p>Converts a <code>uint32_t</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GUINT32_TO_BE(value)</code><a name="guint32-to-be"></a></dt>
+<dd>
+<p>Converts a <code>uint32_t</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GUINT32_TO_LE(value)</code><a name="guint32-to-le"></a></dt>
+<dd>
+<p>Converts a <code>uint32_t</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GUINT64_FROM_BE(value)</code><a name="guint64-from-be"></a></dt>
+<dd>
+<p>Converts a <code>uint64_t</code> value from big-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GUINT64_FROM_LE(value)</code><a name="guint64-from-le"></a></dt>
+<dd>
+<p>Converts a <code>uint64_t</code> value from little-endian to host byte&nbsp;order.</p>
+</dd>
+<dt><code>GUINT64_TO_BE(value)</code><a name="guint64-to-be"></a></dt>
+<dd>
+<p>Converts a <code>uint64_t</code> value from host byte order to&nbsp;big-endian.</p>
+</dd>
+<dt><code>GUINT64_TO_LE(value)</code><a name="guint64-to-le"></a></dt>
+<dd>
+<p>Converts a <code>uint64_t</code> value from host byte order to&nbsp;little-endian.</p>
+</dd>
+<dt><code>GUINT16_SWAP_BE_PDP(value)</code><a name="guint16-swap-be-pdp"></a></dt>
+<dd>
+<p>Converts a <code>uint16_t</code> value between big-endian and pdp-endian byte order.
+The conversion is symmetric so it can be used both&nbsp;ways.</p>
+</dd>
+<dt><code>GUINT16_SWAP_LE_BE(value)</code><a name="guint16-swap-le-be"></a></dt>
+<dd>
+<p>Converts a <code>uint16_t</code> value between little-endian and big-endian byte order.
+The conversion is symmetric so it can be used both&nbsp;ways.</p>
+</dd>
+<dt><code>GUINT16_SWAP_LE_PDP(value)</code><a name="guint16-swap-le-pdp"></a></dt>
+<dd>
+<p>Converts a <code>uint16_t</code> value between little-endian and pdp-endian byte order.
+The conversion is symmetric so it can be used both&nbsp;ways.</p>
+</dd>
+<dt><code>GUINT32_SWAP_BE_PDP(value)</code><a name="guint32-swap-be-pdp"></a></dt>
+<dd>
+<p>Converts a <code>uint32_t</code> value between big-endian and pdp-endian byte order.
+The conversion is symmetric so it can be used both&nbsp;ways.</p>
+</dd>
+<dt><code>GUINT32_SWAP_LE_BE(value)</code><a name="guint32-swap-le-be"></a></dt>
+<dd>
+<p>Converts a <code>uint32_t</code> value between little-endian and big-endian byte order.
+The conversion is symmetric so it can be used both&nbsp;ways.</p>
+</dd>
+<dt><code>GUINT32_SWAP_LE_PDP(value)</code><a name="guint32-swap-le-pdp"></a></dt>
+<dd>
+<p>Converts a <code>uint32_t</code> value between little-endian and pdp-endian byte order.
+The conversion is symmetric so it can be used both&nbsp;ways.</p>
+</dd>
+<dt><code>GUINT64_SWAP_LE_BE(value)</code><a name="guint64-swap-le-be"></a></dt>
+<dd>
+<p>Converts a <code>uint64_t</code> value between little-endian and big-endian byte order.
+The conversion is symmetric so it can be used both&nbsp;ways.</p>
+</dd>
+</dl>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#type-conversion"><span class="link-text">Type Conversion</span></a></li>
+        
+        <li class="toc-list-item"><a href="#byte-order-conversion"><span class="link-text">Byte Order Conversion</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/conversion-macros.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

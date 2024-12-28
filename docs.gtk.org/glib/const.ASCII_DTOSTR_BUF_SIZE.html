@@ -1,0 +1,125 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/const.ASCII_DTOSTR_BUF_SIZE.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.ASCII_DTOSTR_BUF_SIZE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.ASCII_DTOSTR_BUF_SIZE">
+  <meta property="og:description" content="Reference for GLib.ASCII_DTOSTR_BUF_SIZE">
+  <meta name="twitter:title" content="GLib.ASCII_DTOSTR_BUF_SIZE">
+  <meta name="twitter:description" content="Reference for GLib.ASCII_DTOSTR_BUF_SIZE">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Constant</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>ASCII_DTOSTR_BUF_SIZE</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="cp">#define G_ASCII_DTOSTR_BUF_SIZE 39</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>A good size for a buffer to be passed into <a href="func.ascii_dtostr.html"><code>g_ascii_dtostr()</code></a>.
+It is guaranteed to be enough for all output of that function
+on systems with 64bit <span class="caps">IEEE</span>-compatible&nbsp;doubles.</p>
+<p>The typical usage would be something&nbsp;like:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="n">G_ASCII_DTOSTR_BUF_SIZE</span><span class="p">];</span>
+
+<span class="n">fprintf</span><span class="w"> </span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="s">"value=%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">g_ascii_dtostr</span><span class="w"> </span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">buf</span><span class="p">),</span><span class="w"> </span><span class="n">value</span><span class="p">));</span>
+</code></pre></div>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/const.ASCII_DTOSTR_BUF_SIZE.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

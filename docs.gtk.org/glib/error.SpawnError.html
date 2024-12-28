@@ -1,0 +1,423 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/error.SpawnError.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.SpawnError</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.SpawnError">
+  <meta property="og:description" content="Reference for GLib.SpawnError">
+  <meta name="twitter:title" content="GLib.SpawnError">
+  <meta name="twitter:description" content="Reference for GLib.SpawnError">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>SpawnError</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>error-domain GLib.SpawnError</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gspawn.h#L43">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Error codes returned by spawning&nbsp;processes.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="fork">G_SPAWN_ERROR_FORK</code>
+            <a class="anchor" href="#fork"></a>
+          </dt>
+          <dd>
+            <div><p>Fork failed due to lack of&nbsp;memory.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="read">G_SPAWN_ERROR_READ</code>
+            <a class="anchor" href="#read"></a>
+          </dt>
+          <dd>
+            <div><p>Read or select on pipes&nbsp;failed.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="chdir">G_SPAWN_ERROR_CHDIR</code>
+            <a class="anchor" href="#chdir"></a>
+          </dt>
+          <dd>
+            <div><p>Changing to working directory&nbsp;failed.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="acces">G_SPAWN_ERROR_ACCES</code>
+            <a class="anchor" href="#acces"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>EACCES</code>.</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="perm">G_SPAWN_ERROR_PERM</code>
+            <a class="anchor" href="#perm"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>EPERM</code>.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="too_big">G_SPAWN_ERROR_TOO_BIG</code>
+            <a class="anchor" href="#too_big"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>E2BIG</code>.</p></div>
+            <ul>
+              <li>Value: <code>5</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="2big">G_SPAWN_ERROR_2BIG</code>
+            <a class="anchor" href="#2big"></a>
+          </dt>
+          <dd>
+            <div><p>Deprecated alias for <code>G_SPAWN_ERROR_TOO_BIG</code> (deprecated since GLib&nbsp;2.32).</p></div>
+            <ul>
+              <li>Value: <code>5</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="noexec">G_SPAWN_ERROR_NOEXEC</code>
+            <a class="anchor" href="#noexec"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>ENOEXEC</code>.</p></div>
+            <ul>
+              <li>Value: <code>6</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nametoolong">G_SPAWN_ERROR_NAMETOOLONG</code>
+            <a class="anchor" href="#nametoolong"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>ENAMETOOLONG</code>.</p></div>
+            <ul>
+              <li>Value: <code>7</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="noent">G_SPAWN_ERROR_NOENT</code>
+            <a class="anchor" href="#noent"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>ENOENT</code>.</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nomem">G_SPAWN_ERROR_NOMEM</code>
+            <a class="anchor" href="#nomem"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>ENOMEM</code>.</p></div>
+            <ul>
+              <li>Value: <code>9</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="notdir">G_SPAWN_ERROR_NOTDIR</code>
+            <a class="anchor" href="#notdir"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>ENOTDIR</code>.</p></div>
+            <ul>
+              <li>Value: <code>10</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="loop">G_SPAWN_ERROR_LOOP</code>
+            <a class="anchor" href="#loop"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>ELOOP</code>.</p></div>
+            <ul>
+              <li>Value: <code>11</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="txtbusy">G_SPAWN_ERROR_TXTBUSY</code>
+            <a class="anchor" href="#txtbusy"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>ETXTBUSY</code>.</p></div>
+            <ul>
+              <li>Value: <code>12</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="io">G_SPAWN_ERROR_IO</code>
+            <a class="anchor" href="#io"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>EIO</code>.</p></div>
+            <ul>
+              <li>Value: <code>13</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nfile">G_SPAWN_ERROR_NFILE</code>
+            <a class="anchor" href="#nfile"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>ENFILE</code>.</p></div>
+            <ul>
+              <li>Value: <code>14</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="mfile">G_SPAWN_ERROR_MFILE</code>
+            <a class="anchor" href="#mfile"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>EMFILE</code>.</p></div>
+            <ul>
+              <li>Value: <code>15</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="inval">G_SPAWN_ERROR_INVAL</code>
+            <a class="anchor" href="#inval"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>EINVAL</code>.</p></div>
+            <ul>
+              <li>Value: <code>16</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="isdir">G_SPAWN_ERROR_ISDIR</code>
+            <a class="anchor" href="#isdir"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>EISDIR</code>.</p></div>
+            <ul>
+              <li>Value: <code>17</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="libbad">G_SPAWN_ERROR_LIBBAD</code>
+            <a class="anchor" href="#libbad"></a>
+          </dt>
+          <dd>
+            <div><p>Execv() returned <code>ELIBBAD</code>.</p></div>
+            <ul>
+              <li>Value: <code>18</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="failed">G_SPAWN_ERROR_FAILED</code>
+            <a class="anchor" href="#failed"></a>
+          </dt>
+          <dd>
+            <div><p>Some other fatal failure,
+  <code>error-&gt;message</code> should&nbsp;explain.</p></div>
+            <ul>
+              <li>Value: <code>19</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      <li class="toc-list-item"><a href="#members"><span class="link-text">Members</span></a></li>
+      
+
+      
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/error.SpawnError.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

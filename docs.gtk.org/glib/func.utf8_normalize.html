@@ -1,0 +1,249 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.utf8_normalize.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.utf8_normalize</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.utf8_normalize">
+  <meta property="og:description" content="Reference for GLib.utf8_normalize">
+  <meta name="twitter:title" content="GLib.utf8_normalize">
+  <meta name="twitter:description" content="Reference for GLib.utf8_normalize">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>utf8_normalize</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gunicode.h#L980">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gchar</span><span class="o">*</span>
+<span class="n">g_utf8_normalize</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">str</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gssize</span><span class="w"> </span><span class="n">len</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GNormalizeMode</span><span class="w"> </span><span class="n">mode</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gunidecomp.c#L513">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Converts a string into canonical form, standardizing
+such issues as whether a character with an accent
+is represented as a base character and combining
+accent or as a single precomposed character. The
+string has to be valid <span class="caps">UTF</span>-8, otherwise <code>NULL</code> is
+returned. You should generally call <code>g_utf8_normalize()</code>
+before comparing two Unicode&nbsp;strings.</p>
+<p>The normalization mode <code>G_NORMALIZE_DEFAULT</code> only
+standardizes differences that do not affect the
+text content, such as the above-mentioned accent
+representation. <code>G_NORMALIZE_ALL</code> also standardizes
+the “compatibility” characters in Unicode, such
+as <span class="caps">SUPERSCRIPT</span> <span class="caps">THREE</span> to the standard forms
+(in this case <span class="caps">DIGIT</span> <span class="caps">THREE</span>). Formatting information
+may be lost but for most text operations such
+characters should be considered the&nbsp;same.</p>
+<p><code>G_NORMALIZE_DEFAULT_COMPOSE</code> and <code>G_NORMALIZE_ALL_COMPOSE</code>
+are like <code>G_NORMALIZE_DEFAULT</code> and <code>G_NORMALIZE_ALL</code>,
+but returned a result with composed forms rather
+than a maximally decomposed form. This is often
+useful if you intend to convert the string to
+a legacy encoding or pass it to a system with
+less capable Unicode&nbsp;handling.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>str</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>A <span class="caps">UTF</span>-8 encoded&nbsp;string.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>len</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gssize</code></p>
+            <p>Length of <code>str</code>, in bytes, or -1 if <code>str</code> is&nbsp;nul-terminated.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>mode</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="enum.NormalizeMode.html"><code>GNormalizeMode</code></a></p>
+            <p>The type of normalization to&nbsp;perform.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gchar*</code></p>
+            <p>A newly allocated string, that
+  is the normalized form of <code>str</code>, or <code>NULL</code> if <code>str</code>
+  is not valid <span class="caps">UTF</span>-8.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
+            <tr><td>The return value can be <code>NULL</code>.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.utf8_normalize.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

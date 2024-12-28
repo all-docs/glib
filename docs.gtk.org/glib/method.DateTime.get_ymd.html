@@ -1,0 +1,202 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.DateTime.get_ymd.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.DateTime.get_ymd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.DateTime.get_ymd">
+  <meta priority="og:description" content="Reference for GLib.DateTime.get_ymd">
+  <meta name="twitter:title" content="GLib.DateTime.get_ymd">
+  <meta name="twitter:description" content="Reference for GLib.DateTime.get_ymd">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.DateTime.html">DateTime</a><span class="sep"></span>get_ymd</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.26</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gdatetime.h#L238">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_date_time_get_ymd</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GDateTime</span><span class="o">*</span><span class="w"> </span><span class="n">datetime</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="o">*</span><span class="w"> </span><span class="n">year</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="o">*</span><span class="w"> </span><span class="n">month</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="o">*</span><span class="w"> </span><span class="n">day</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gdatetime.c#L2172">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Retrieves the Gregorian day, month, and year of a given <code>GDateTime</code>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.26</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>year</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint*</code></p>
+            <p>The return location for the gregorian year, or <code>NULL</code>.</p>
+            <table>
+            <tbody><tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>month</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint*</code></p>
+            <p>The return location for the month of the year, or <code>NULL</code>.</p>
+            <table>
+            <tbody><tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>day</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint*</code></p>
+            <p>The return location for the day of the month, or <code>NULL</code>.</p>
+            <table>
+            <tbody><tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.DateTime.get_ymd.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

@@ -1,0 +1,480 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Scanner.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Scanner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Scanner">
+  <meta property="og:description" content="Reference for GLib.Scanner">
+  <meta name="twitter:title" content="GLib.Scanner">
+  <meta name="twitter:description" content="Reference for GLib.Scanner">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>Scanner</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gscanner.c#L172">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GScanner</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">user_data</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">max_parse_errors</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">parse_errors</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">input_name</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GData</span><span class="o">*</span><span class="w"> </span><span class="n">qdata</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GScannerConfig</span><span class="o">*</span><span class="w"> </span><span class="n">config</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GTokenType</span><span class="w"> </span><span class="n">token</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GTokenValue</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">line</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">position</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GTokenType</span><span class="w"> </span><span class="n">next_token</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GTokenValue</span><span class="w"> </span><span class="n">next_value</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">next_line</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">next_position</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GScannerMsgFunc</span><span class="w"> </span><span class="n">msg_handler</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p><code>GScanner</code> provides a general-purpose lexical&nbsp;scanner.</p>
+<p>You should set <code>input_name</code> after creating the scanner, since
+it is used by the default message handler when displaying
+warnings and errors. If you are scanning a file, the filename
+would be a good&nbsp;choice.</p>
+<p>The <code>user_data</code> and <code>max_parse_errors</code> fields are not used.
+If you need to associate extra data with the scanner you
+can place them&nbsp;here.</p>
+<p>If you want to use your own message handler you can set the
+<code>msg_handler</code> field. The type of the message handler function
+is declared by <code>GScannerMsgFunc</code>.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>user_data</code></dt>
+              <dd><p>Unused.</p></dd>
+            
+              <dt><code>max_parse_errors</code></dt>
+              <dd><p>Unused.</p></dd>
+            
+              <dt><code>parse_errors</code></dt>
+              <dd><p>G_scanner_error() increments this&nbsp;field.</p></dd>
+            
+              <dt><code>input_name</code></dt>
+              <dd><p>Name of input stream, featured by the default message&nbsp;handler.</p></dd>
+            
+              <dt><code>qdata</code></dt>
+              <dd><p>Quarked&nbsp;data.</p></dd>
+            
+              <dt><code>config</code></dt>
+              <dd><p>Link into the scanner&nbsp;configuration.</p></dd>
+            
+              <dt><code>token</code></dt>
+              <dd><p>Token parsed by the last&nbsp;g_scanner_get_next_token().</p></dd>
+            
+              <dt><code>value</code></dt>
+              <dd><p>Value of the last token from&nbsp;g_scanner_get_next_token().</p></dd>
+            
+              <dt><code>line</code></dt>
+              <dd><p>Line number of the last token from&nbsp;g_scanner_get_next_token().</p></dd>
+            
+              <dt><code>position</code></dt>
+              <dd><p>Char number of the last token from&nbsp;g_scanner_get_next_token().</p></dd>
+            
+              <dt><code>next_token</code></dt>
+              <dd><p>Token parsed by the last&nbsp;g_scanner_peek_next_token().</p></dd>
+            
+              <dt><code>next_value</code></dt>
+              <dd><p>Value of the last token from&nbsp;g_scanner_peek_next_token().</p></dd>
+            
+              <dt><code>next_line</code></dt>
+              <dd><p>Line number of the last token from&nbsp;g_scanner_peek_next_token().</p></dd>
+            
+              <dt><code>next_position</code></dt>
+              <dd><p>Char number of the last token from&nbsp;g_scanner_peek_next_token().</p></dd>
+            
+              <dt><code>msg_handler</code></dt>
+              <dd><p>Handler function for _warn and&nbsp;_error.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.Scanner.new.html">g_scanner_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GScanner</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Scanner.cur_line.html">g_scanner_cur_line</a></h6>
+          <div class="docblock">
+            <p>Returns the current line in the input stream (counting
+from 1). This is the line of the last token parsed via&nbsp;g_scanner_get_next_token().</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.cur_position.html">g_scanner_cur_position</a></h6>
+          <div class="docblock">
+            <p>Returns the current position in the current line (counting
+from 0). This is the position of the last token parsed via&nbsp;g_scanner_get_next_token().</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.cur_token.html">g_scanner_cur_token</a></h6>
+          <div class="docblock">
+            <p>Gets the current token type. This is simply the <code>token</code>
+field in the <code>GScanner</code> structure.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.cur_value.html">g_scanner_cur_value</a></h6>
+          <div class="docblock">
+            <p>Gets the current token value. This is simply the <code>value</code>
+field in the <code>GScanner</code> structure.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.destroy.html">g_scanner_destroy</a></h6>
+          <div class="docblock">
+            <p>Frees all memory used by the <code>GScanner</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.eof.html">g_scanner_eof</a></h6>
+          <div class="docblock">
+            <p>Returns <code>TRUE</code> if the scanner has reached the end of
+the file or text&nbsp;buffer.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.error.html">g_scanner_error</a></h6>
+          <div class="docblock">
+            <p>Outputs an error message, via the <code>GScanner</code> message&nbsp;handler.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.get_next_token.html">g_scanner_get_next_token</a></h6>
+          <div class="docblock">
+            <p>Parses the next token just like <code>g_scanner_peek_next_token()</code>
+and also removes it from the input stream. The token data is
+placed in the <code>token</code>, <code>value</code>, <code>line</code>, and <code>position</code> fields of
+the <code>GScanner</code> structure.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.input_file.html">g_scanner_input_file</a></h6>
+          <div class="docblock">
+            <p>Prepares to scan a&nbsp;file.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.input_text.html">g_scanner_input_text</a></h6>
+          <div class="docblock">
+            <p>Prepares to scan a text&nbsp;buffer.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.lookup_symbol.html">g_scanner_lookup_symbol</a></h6>
+          <div class="docblock">
+            <p>Looks up a symbol in the current scope and return its value.
+If the symbol is not bound in the current scope, <code>NULL</code> is&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.peek_next_token.html">g_scanner_peek_next_token</a></h6>
+          <div class="docblock">
+            <p>Parses the next token, without removing it from the input stream.
+The token data is placed in the <code>next_token</code>, <code>next_value</code>, <code>next_line</code>,
+and <code>next_position</code> fields of the <code>GScanner</code> structure.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.scope_add_symbol.html">g_scanner_scope_add_symbol</a></h6>
+          <div class="docblock">
+            <p>Adds a symbol to the given&nbsp;scope.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.scope_foreach_symbol.html">g_scanner_scope_foreach_symbol</a></h6>
+          <div class="docblock">
+            <p>Calls the given function for each of the symbol/value pairs
+in the given scope of the <code>GScanner</code>. The function is passed
+the symbol and value of each pair, and the given <code>user_data</code>
+parameter.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.scope_lookup_symbol.html">g_scanner_scope_lookup_symbol</a></h6>
+          <div class="docblock">
+            <p>Looks up a symbol in a scope and return its value. If the
+symbol is not bound in the scope, <code>NULL</code> is&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.scope_remove_symbol.html">g_scanner_scope_remove_symbol</a></h6>
+          <div class="docblock">
+            <p>Removes a symbol from a&nbsp;scope.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.set_scope.html">g_scanner_set_scope</a></h6>
+          <div class="docblock">
+            <p>Sets the current&nbsp;scope.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.sync_file_offset.html">g_scanner_sync_file_offset</a></h6>
+          <div class="docblock">
+            <p>Rewinds the filedescriptor to the current buffer position
+and blows the file read ahead buffer. This is useful for
+third party uses of the scanners filedescriptor, which hooks
+onto the current scanning&nbsp;position.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.unexp_token.html">g_scanner_unexp_token</a></h6>
+          <div class="docblock">
+            <p>Outputs a message through the scanner’s msg_handler,
+resulting from an unexpected token in the input stream.
+Note that you should not call <code>g_scanner_peek_next_token()</code>
+followed by <code>g_scanner_unexp_token()</code> without an intermediate
+call to g_scanner_get_next_token(), as <code>g_scanner_unexp_token()</code>
+evaluates the scanner’s current token (not the peeked token)
+to construct part of the&nbsp;message.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Scanner.warn.html">g_scanner_warn</a></h6>
+          <div class="docblock">
+            <p>Outputs a warning message, via the <code>GScanner</code> message&nbsp;handler.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Scanner.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

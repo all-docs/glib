@@ -1,0 +1,225 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.set_str.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.set_str</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.set_str">
+  <meta property="og:description" content="Reference for GLib.set_str">
+  <meta name="twitter:title" content="GLib.set_str">
+  <meta name="twitter:description" content="Reference for GLib.set_str">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>set_str</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.76</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstrfuncs.h#L479">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">gboolean</span>
+<span class="n">g_set_str</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">str_pointer</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">new_str</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstrfuncs.h#L445">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Updates a pointer to a string to a copy of <code>new_str</code> and returns whether the
+string was&nbsp;changed.</p>
+<p>If <code>new_str</code> matches the previous string, this function is a no-op. If
+<code>new_str</code> is different, a copy of it will be assigned to <code>str_pointer</code> and
+the previous string pointed to by <code>str_pointer</code> will be freed with
+<a href="func.free.html"><code>g_free()</code></a>.</p>
+<p><code>str_pointer</code> must not be <code>NULL</code>, but can point to a <code>NULL</code> value.</p>
+<p>One convenient usage of this function is in implementing property&nbsp;settings:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span>
+<span class="nf">foo_set_bar</span><span class="w"> </span><span class="p">(</span><span class="n">Foo</span><span class="w">        </span><span class="o">*</span><span class="n">foo</span><span class="p">,</span>
+<span class="w">             </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">new_bar</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">g_return_if_fail</span><span class="w"> </span><span class="p">(</span><span class="n">IS_FOO</span><span class="w"> </span><span class="p">(</span><span class="n">foo</span><span class="p">));</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_set_str</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">foo</span><span class="o">-&gt;</span><span class="n">bar</span><span class="p">,</span><span class="w"> </span><span class="n">new_bar</span><span class="p">))</span>
+<span class="w">    </span><span class="n">g_object_notify</span><span class="w"> </span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="s">"bar"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.76</p>
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>str_pointer</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>char**</code></p>
+            <p>A pointer to either
+  a string or <code>NULL</code>.</p>
+            <table>
+            <tbody><tr><td title="direction: inout">The argument will be modified by the function.</td></tr>
+            
+            
+            
+            
+            
+            
+            <tr><td title="transfer: full">The caller of the function takes ownership of the returned data, and is responsible for freeing it.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>new_str</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const char*</code></p>
+            <p>A string to assign to <code>str_pointer</code>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p>True if the value of <code>str_pointer</code> changed, false&nbsp;otherwise.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.set_str.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

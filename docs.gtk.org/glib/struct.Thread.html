@@ -1,0 +1,359 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Thread.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Thread</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Thread">
+  <meta property="og:description" content="Reference for GLib.Thread">
+  <meta name="twitter:title" content="GLib.Thread">
+  <meta name="twitter:description" content="Reference for GLib.Thread">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>Thread</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gthread.c#L434">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GThread</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GThread</code> struct represents a running thread. This struct
+is returned by <code>g_thread_new()</code> or g_thread_try_new(). You can
+obtain the <code>GThread</code> struct representing the current thread by
+calling&nbsp;g_thread_self().</p>
+<p>GThread is refcounted, see <code>g_thread_ref()</code> and g_thread_unref().
+The thread represented by it holds a reference while it is running,
+and <code>g_thread_join()</code> consumes the reference that it is given, so
+it is normally not necessary to manage GThread references&nbsp;explicitly.</p>
+<p>The structure is opaque — none of its fields may be directly&nbsp;accessed.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.Thread.new.html">g_thread_new</a></h6>
+          <div class="docblock">
+            <p>This function creates a new thread. The new thread starts by invoking
+<code>func</code> with the argument data. The thread will run until <code>func</code> returns
+or until <code>g_thread_exit()</code> is called from the new thread. The return value
+of <code>func</code> becomes the return value of the thread, which can be obtained
+with&nbsp;g_thread_join().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Thread.try_new.html">g_thread_try_new</a></h6>
+          <div class="docblock">
+            <p>This function is the same as <code>g_thread_new()</code> except that
+it allows for the possibility of&nbsp;failure.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="deprecated">
+        <h6><a href="type_func.Thread.create.html">g_thread_create</a></h6>
+        <div class="docblock">
+          <p>This function creates a new&nbsp;thread.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      <div class="deprecated">
+        <h6><a href="type_func.Thread.create_full.html">g_thread_create_full</a></h6>
+        <div class="docblock">
+          <p>This function creates a new&nbsp;thread.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Thread.error_quark.html">g_thread_error_quark</a></h6>
+        <div class="docblock">
+          No description available.
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Thread.exit.html">g_thread_exit</a></h6>
+        <div class="docblock">
+          <p>Terminates the current&nbsp;thread.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="deprecated">
+        <h6><a href="type_func.Thread.foreach.html">g_thread_foreach</a></h6>
+        <div class="docblock">
+          <p>Call <code>thread_func</code> on all <code>GThreads</code> that have been
+created with&nbsp;g_thread_create().</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;<span class="emblem available">since: 2.10</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Thread.get_initialized.html">g_thread_get_initialized</a></h6>
+        <div class="docblock">
+          <p>Indicates if <code>g_thread_init()</code> has been&nbsp;called.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.20</span></p>
+        </div>
+      </div>
+      
+      <div class="deprecated">
+        <h6><a href="type_func.Thread.init.html">g_thread_init</a></h6>
+        <div class="docblock">
+          <p>If you use GLib from more than one thread, you must initialize the
+thread system by calling&nbsp;g_thread_init().</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Thread.init_with_errorcheck_mutexes.html">g_thread_init_with_errorcheck_mutexes</a></h6>
+        <div class="docblock">
+          No description available.
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Thread.self.html">g_thread_self</a></h6>
+        <div class="docblock">
+          <p>This function returns the <code>GThread</code> corresponding to the
+current thread. Note that this function does not increase
+the reference count of the returned&nbsp;struct.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Thread.yield.html">g_thread_yield</a></h6>
+        <div class="docblock">
+          <p>Causes the calling thread to voluntarily relinquish the <span class="caps">CPU</span>, so
+that other threads can&nbsp;run.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Thread.join.html">g_thread_join</a></h6>
+          <div class="docblock">
+            <p>Waits until <code>thread</code> finishes, i.e. the function <code>func</code>, as
+given to g_thread_new(), returns or <code>g_thread_exit()</code> is called.
+If <code>thread</code> has already terminated, then <code>g_thread_join()</code>
+returns&nbsp;immediately.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Thread.ref.html">g_thread_ref</a></h6>
+          <div class="docblock">
+            <p>Increase the reference count on <code>thread</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Thread.set_priority.html">g_thread_set_priority</a></h6>
+          <div class="docblock">
+            <p>This function does&nbsp;nothing.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Thread.unref.html">g_thread_unref</a></h6>
+          <div class="docblock">
+            <p>Decrease the reference count on <code>thread</code>, possibly freeing all
+resources associated with&nbsp;it.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Thread.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

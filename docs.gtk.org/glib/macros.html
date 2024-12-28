@@ -1,0 +1,860 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/macros.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Macros</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Macros">
+  <meta property="og:description" content="Reference for GLib-2.0: Macros">
+  <meta name="twitter:title" content="GLib: Macros">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Macros">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Macros
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="macros">Macros<a class="md-anchor" href="#macros" title="Permanent link"></a></h1>
+<p>GLib provides a set of C pre-processor macros and symbols for commonly-used
+language and platform&nbsp;features.</p>
+<h2 id="platform">Platform<a class="md-anchor" href="#platform" title="Permanent link"></a></h2>
+<dl>
+<dt><code>G_OS_WIN32</code></dt>
+<dd>This macro is defined only on Windows, so you can bracket Windows-specific
+code using <code>#ifdef G_OS_WIN32 ... #endif</code>.</dd>
+<dt><code>G_OS_UNIX</code></dt>
+<dd>
+<p>This macro is defined only on <span class="caps">UNIX</span> and <span class="caps">UNIX</span>-like systems, so you can bracket
+<span class="caps">UNIX</span>-specific code in <code>#ifdef G_OS_UNIX ... #endif</code>. To detect whether to
+compile features that require a specific kernel or operating system, check
+for the appropriate <span class="caps">OS</span>-specific predefined macros instead, for&nbsp;example:</p>
+<ul>
+<li>Linux kernel (any libc, including glibc, musl or Android): <code>#ifdef __linux__</code></li>
+<li>Linux kernel and <span class="caps">GNU</span> user-space: <code>#if defined(__linux__) &amp;&amp; defined(__GLIBC__)</code></li>
+<li>FreeBSD kernel (any libc, including glibc): <code>#ifdef __FreeBSD_kernel__</code></li>
+<li>FreeBSD kernel and user-space: <code>#ifdef __FreeBSD__</code></li>
+<li>Apple operating systems (macOS, iOS, tvOS), regardless of whether
+  Cocoa/Carbon toolkits are available: <code>#ifdef __APPLE__</code></li>
+</ul>
+<p>See <a href="https://sourceforge.net/p/predef/wiki/OperatingSystems/">https://sourceforge.net/p/predef/wiki/OperatingSystems/</a> for&nbsp;more.</p>
+</dd>
+<dt><code>G_DIR_SEPARATOR</code></dt>
+<dd>The directory separator character. This is <code>'/'</code> on <span class="caps">UNIX</span> machines and <code>'\'</code> under&nbsp;Windows.</dd>
+<dt><code>G_DIR_SEPARATOR_S</code></dt>
+<dd>The directory separator as a string. This is <code>"/"</code> on <span class="caps">UNIX</span> machines and <code>"\"</code> under&nbsp;Windows.</dd>
+<dt><code>G_IS_DIR_SEPARATOR(ch)</code></dt>
+<dd>Checks whether a character is a directory separator. It returns true for <code>'/'</code> on <span class="caps">UNIX</span> machines and for <code>'\'</code> or <code>'/'</code> under Windows. Available since&nbsp;2.6.</dd>
+<dt><code>G_SEARCHPATH_SEPARATOR</code></dt>
+<dd>The search path separator character. This is <code>':'</code> on <span class="caps">UNIX</span> machines and <code>';'</code> under&nbsp;Windows.</dd>
+<dt><code>G_SEARCHPATH_SEPARATOR_S</code></dt>
+<dd>The search path separator as a string. This is <code>":"</code> on <span class="caps">UNIX</span> machines and <code>";"</code> under&nbsp;Windows.</dd>
+</dl>
+<h2 id="values">Values<a class="md-anchor" href="#values" title="Permanent link"></a></h2>
+<dl>
+<dt><code>TRUE</code></dt>
+<dd>Defines the true value for the <code>gboolean</code> type.</dd>
+<dt><code>FALSE</code></dt>
+<dd>Defines the false value for the <code>gboolean</code> type.</dd>
+<dt><code>NULL</code></dt>
+<dd>Defines the standard <code>NULL</code> pointer.</dd>
+</dl>
+<h2 id="maths">Maths<a class="md-anchor" href="#maths" title="Permanent link"></a></h2>
+<dl>
+<dt><code>MIN(a, b)</code></dt>
+<dd>Calculates the minimum of <code>a</code> and <code>b</code>.</dd>
+<dt><code>MAX(a, b)</code></dt>
+<dd>Calculates the maximum of <code>a</code> and <code>b</code>.</dd>
+<dt><code>ABS(value)</code></dt>
+<dd>
+<p>Calculates the absolute value of a given numerical value. The absolute value
+is simply the number with any negative sign taken&nbsp;away.</p>
+<p>For&nbsp;example,</p>
+<ul>
+<li><code>ABS(-10)</code> is&nbsp;10.</li>
+<li><code>ABS(10)</code> is also&nbsp;10.</li>
+</ul>
+</dd>
+<dt><code>CLAMP(value, low, high)</code></dt>
+<dd>
+<p>Ensures that a value is between the limits set by <code>low</code> and <code>high</code>. If <code>low</code> is
+greater than <code>high</code> the result is&nbsp;undefined.</p>
+<p>For&nbsp;example,</p>
+<ul>
+<li><code>CLAMP(5, 10, 15)</code> is&nbsp;10.</li>
+<li><code>CLAMP(15, 5, 10)</code> is&nbsp;10.</li>
+<li><code>CLAMP(20, 15, 25)</code> is&nbsp;20.</li>
+</ul>
+</dd>
+<dt><code>G_APPROX_VALUE(a, b, epsilon)</code></dt>
+<dd>
+<p>Evaluates to true if the absolute difference between the given numerical
+values <code>a</code> and <code>b</code> is smaller than <code>epsilon</code>, and to false&nbsp;otherwise.</p>
+<p>For&nbsp;example,</p>
+<ul>
+<li><code>G_APPROX_VALUE (5, 6, 2)</code> evaluates to&nbsp;true</li>
+<li><code>G_APPROX_VALUE (3.14, 3.15, 0.001)</code> evaluates to&nbsp;false</li>
+<li><code>G_APPROX_VALUE (n, 0.f, FLT_EPSILON)</code> evaluates to true if <code>n</code> is within
+  the single precision floating point epsilon from&nbsp;zero</li>
+</ul>
+<p>Available since:&nbsp;2.58</p>
+</dd>
+</dl>
+<h2 id="structure-access">Structure Access<a class="md-anchor" href="#structure-access" title="Permanent link"></a></h2>
+<dl>
+<dt><code>G_STRUCT_MEMBER(member_type, struct_pointer, offset)</code></dt>
+<dd>Returns a member of a structure at a given offset, using the given&nbsp;type.</dd>
+<dt><code>G_STRUCT_MEMBER_P(struct_pointer, offset)</code></dt>
+<dd>Returns an untyped pointer to a given offset of a&nbsp;struct.</dd>
+<dt><code>G_STRUCT_OFFSET(struct_type, member_name)</code></dt>
+<dd>Returns the offset, in bytes, of a member of a struct.
+Consider using standard C <code>offsetof()</code>, available since at least C89
+and C++98, in new code (but note that <code>offsetof()</code> returns a <code>size_t</code>
+rather than a <code>long</code>).</dd>
+</dl>
+<h2 id="array-utilities">Array Utilities<a class="md-anchor" href="#array-utilities" title="Permanent link"></a></h2>
+<dl>
+<dt><code>G_N_ELEMENTS(array)</code></dt>
+<dd>Determines the number of elements in an array. The array must be
+declared so the compiler knows its size at compile-time; this
+macro will not work on an array allocated on the heap, only static
+arrays or arrays on the&nbsp;stack.</dd>
+</dl>
+<h2 id="miscellaneous-macros">Miscellaneous Macros<a class="md-anchor" href="#miscellaneous-macros" title="Permanent link"></a></h2>
+<p>These macros provide more specialized features which are not needed so often
+by application&nbsp;programmers.</p>
+<dl>
+<dt><code>G_STMT_START</code></dt>
+<dd>Starts a multi-statement macro block so that it can be used in places
+where only one statement is expected by the&nbsp;compiler.</dd>
+<dt><code>G_STMT_END</code></dt>
+<dd>Ends a multi-statement macro block so that it can be used in places
+where only one statement is expected by the&nbsp;compiler.</dd>
+<dt><code>G_BEGIN_DECLS</code></dt>
+<dd>Used (along with <code>G_END_DECLS</code>) to bracket C header files that may be
+included by C++ sources. If the compiler in use is a C++ compiler, starts
+an <code>extern "C"</code> around the&nbsp;header.</dd>
+<dt><code>G_END_DECLS</code></dt>
+<dd>Used (along with <code>G_BEGIN_DECLS</code>) to bracket C header files that may be
+included by C++ sources, or compiled by a C++ compiler. If the compiler
+in use is a C++ compiler, ends the <code>extern "C"</code> block around the&nbsp;header.</dd>
+<dt><code>G_VA_COPY(ap1, ap2)</code></dt>
+<dd>
+<p>Portable way to copy <code>va_list</code> variables.</p>
+<p>In order to use this function, you must include <code>string.h</code> yourself,
+because this macro may use <code>memmove()</code> and GLib does not include
+<code>string.h</code> for&nbsp;you.</p>
+<p>Each invocation of <code>G_VA_COPY (ap1, ap2)</code> must be matched with a
+corresponding <code>va_end (ap1)</code> call in the same&nbsp;function.</p>
+<p>This is equivalent to standard C <code>va_copy()</code>, available since C99
+and C++11, which should be preferred in new&nbsp;code.</p>
+</dd>
+<dt><code>G_STRINGIFY(macro_or_string)</code></dt>
+<dd>
+<p>Accepts a macro or a string and converts it into a string after
+preprocessor argument expansion. For example, the following&nbsp;code:</p>
+<div class="codehilite"><pre><span></span><code>#define AGE 27
+const gchar *greeting = G_STRINGIFY (AGE) " today!";
+</code></pre></div>
+
+<p>is transformed by the preprocessor into (code equivalent&nbsp;to):</p>
+<div class="codehilite"><pre><span></span><code>const gchar *greeting = "27 today!";
+</code></pre></div>
+
+</dd>
+<dt><code>G_PASTE(identifier1, identifier2)</code></dt>
+<dd>
+<p>Yields a new preprocessor pasted identifier <code>identifier1identifier2</code> from its expanded
+arguments <code>identifier1</code> and <code>identifier2</code>. For example,the following&nbsp;code:</p>
+<div class="codehilite"><pre><span></span><code>#define GET(traveller,method) G_PASTE(traveller_get_, method) (traveller)
+const char *name = GET (traveller, name);
+const char *quest = GET (traveller, quest);
+Color *favourite = GET (traveller, favourite_colour);
+</code></pre></div>
+
+<p>is transformed by the preprocessor&nbsp;into:</p>
+<div class="codehilite"><pre><span></span><code>const char *name = traveller_get_name (traveller);
+const char *quest = traveller_get_quest (traveller);
+Color *favourite = traveller_get_favourite_colour (traveller);
+</code></pre></div>
+
+<p>Available since:&nbsp;2.20</p>
+</dd>
+<dt><code>G_STATIC_ASSERT(expr)</code></dt>
+<dd>
+<p>The <code>G_STATIC_ASSERT()</code> macro lets the programmer check a condition at
+compile time. The condition needs to be compile time computable. The
+macro can be used in any place where a <code>typedef</code> is&nbsp;valid.</p>
+<p>A <code>typedef</code> is generally allowed in exactly the same places that
+a variable declaration is allowed. For this reason, you should
+not use <code>G_STATIC_ASSERT()</code> in the middle of blocks of&nbsp;code.</p>
+<p>The macro should only be used once per source code&nbsp;line.</p>
+<p>Since:&nbsp;2.20</p>
+</dd>
+<dt><code>G_STATIC_ASSERT_EXPR(expr)</code></dt>
+<dd>
+<p>The <code>G_STATIC_ASSERT_EXPR()</code> macro lets the programmer check a condition
+at compile time. The condition needs to be compile time&nbsp;computable.</p>
+<p>Unlike <code>G_STATIC_ASSERT()</code>, this macro evaluates to an expression
+and, as such, can be used in the middle of other expressions.
+Its value should be ignored. This can be accomplished by placing
+it as the first argument of a comma&nbsp;expression.</p>
+<div class="codehilite"><pre><span></span><code>#define ADD_ONE_TO_INT(x) \
+  (G_STATIC_ASSERT_EXPR(sizeof (x) == sizeof (int)), ((x) + 1))
+</code></pre></div>
+
+<p>Since:&nbsp;2.30</p>
+</dd>
+</dl>
+<h2 id="compiler">Compiler<a class="md-anchor" href="#compiler" title="Permanent link"></a></h2>
+<dl>
+<dt><code>G_GNUC_EXTENSION</code></dt>
+<dd>Expands to <code>__extension__</code> when <span class="caps">GCC</span> is used as the compiler. This simply
+tells <span class="caps">GCC</span> not to warn about the following non-standard code when compiling
+with the <code>-pedantic</code> option.</dd>
+<dt><code>G_GNUC_CONST</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>const</code> function attribute if the compiler is <span class="caps">GCC</span>.
+Declaring a function as <code>const</code> enables better optimization of calls to
+the function. A <code>const</code> function doesn’t examine any values except its
+parameters, and has no effects except its return&nbsp;value.</p>
+<p>Place the attribute after the declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>gchar g_ascii_tolower (gchar c) G_GNUC_CONST;
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-const-function-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+<p>A function that has pointer arguments and examines the data pointed to
+must not be declared <code>const</code>. Likewise, a function that calls a non-<code>const</code>
+function usually must not be <code>const</code>. It doesn’t make sense for a <code>const</code>
+function to return <code>void</code>.</p>
+</dd>
+<dt><code>G_GNUC_PURE</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>pure</code> function attribute if the compiler is <span class="caps">GCC</span>.
+Declaring a function as <code>pure</code> enables better optimization of calls to
+the function. A <code>pure</code> function has no effects except its return value
+and the return value depends only on the parameters and/or global&nbsp;variables.</p>
+<p>Place the attribute after the declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>gboolean g_type_check_value (const GValue *value) G_GNUC_PURE;
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-pure-function-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+</dd>
+<dt><code>G_GNUC_UNUSED</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>unused</code> function attribute if the compiler is gcc.
+It is used for declaring functions and arguments which may never be used.
+It avoids possible compiler&nbsp;warnings.</p>
+<p>For functions, place the attribute after the declaration, just before the
+semicolon. It cannot go in the definition of a function, only the
+declaration. For arguments, place the attribute at the beginning of the
+argument&nbsp;declaration.</p>
+<div class="codehilite"><pre><span></span><code>void my_unused_function (G_GNUC_UNUSED gint unused_argument,
+                         gint other_argument) G_GNUC_UNUSED;
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-unused-function-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+</dd>
+<dt><code>G_GNUC_MALLOC</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>malloc</code> function attribute if the compiler is <span class="caps">GCC</span>.</p>
+<p>Declaring a function as <code>malloc</code> enables better optimization of the function,
+but must only be done if the allocation behaviour of the function is fully
+understood, otherwise miscompilation can&nbsp;result.</p>
+<p>A function can have the <code>malloc</code> attribute if it returns a pointer which is
+guaranteed to not alias with any other pointer valid when the function
+returns, and moreover no pointers to valid objects occur in any storage
+addressed by the returned&nbsp;pointer.</p>
+<p>In practice, this means that <code>G_GNUC_MALLOC</code> can be used with any function
+which returns unallocated or zeroed-out memory, but not with functions which
+return initialised structures containing other pointers, or with functions
+that reallocate memory. This definition changed in GLib 2.58 to match the
+stricter definition introduced around <span class="caps">GCC</span>&nbsp;5.</p>
+<p>Place the attribute after the declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>gpointer g_malloc (gsize n_bytes) G_GNUC_MALLOC G_GNUC_ALLOC_SIZE(1);
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-functions-that-behave-like-malloc"><span class="caps">GNU</span> C documentation</a>
+for more&nbsp;details.</p>
+<p>Since:&nbsp;2.6</p>
+</dd>
+<dt><code>G_GNUC_DEPRECATED</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>deprecated</code> attribute if the compiler is <span class="caps">GCC</span>.
+It can be used to mark <code>typedef</code>s, variables and functions as deprecated.
+When called with the <code>-Wdeprecated-declarations</code> option,
+gcc will generate warnings when deprecated interfaces are&nbsp;used.</p>
+<p>Place the attribute after the declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>int my_mistake (void) G_GNUC_DEPRECATED;
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-deprecated-function-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+<p>See also: <code>G_DEPRECATED</code> </p>
+<p>Since:&nbsp;2.2</p>
+</dd>
+<dt><code>G_GNUC_DEPRECATED_FOR(func)</code></dt>
+<dd>
+<p>Like <code>G_GNUC_DEPRECATED</code>, but names the intended replacement for the
+deprecated symbol if the version of gcc in use is new enough to support
+custom deprecation&nbsp;messages.</p>
+<p>Place the attribute after the declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>int my_mistake (void) G_GNUC_DEPRECATED_FOR(my_replacement);
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-deprecated-function-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+<p>Note that if <code>func</code> is a macro, it will be expanded in the warning message.
+You can enclose it in quotes to prevent this. (The quotes will show up
+in the warning, but it’s better than showing the macro&nbsp;expansion.)</p>
+<p>Since:&nbsp;2.26</p>
+</dd>
+<dt><code>G_GNUC_NORETURN</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>noreturn</code> function attribute if the compiler is <span class="caps">GCC</span>.
+It is used for declaring functions which never return. It enables
+optimization of the function, and avoids possible compiler&nbsp;warnings.</p>
+<p>Since 2.68, it is recommended that code uses <code>G_NORETURN</code> instead of
+<code>G_GNUC_NORETURN</code>, as that works on more platforms and compilers (in
+particular, <span class="caps">MSVC</span> and C++11) than <code>G_GNUC_NORETURN</code>, which works with <span class="caps">GCC</span> and
+Clang only. <code>G_GNUC_NORETURN</code> continues to work, so has not been deprecated&nbsp;yet.</p>
+<p>Place the attribute after the declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>void g_abort (void) G_GNUC_NORETURN;
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-noreturn-function-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+</dd>
+<dt><code>G_GNUC_FALLTHROUGH</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>fallthrough</code> statement attribute if the compiler supports it.
+This allows declaring case statement to explicitly fall through in switch
+statements. To enable this feature, use <code>-Wimplicit-fallthrough</code> during&nbsp;compilation.</p>
+<p>Put the attribute right before the case statement you want to fall through&nbsp;to.</p>
+<div class="codehilite"><pre><span></span><code>switch (foo)
+  {
+  case 1:
+    g_message ("it's 1");
+    G_GNUC_FALLTHROUGH;
+  case 2:
+    g_message ("it's either 1 or 2");
+    break;
+  }
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Statement-Attributes.html#index-fallthrough-statement-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+<p>Since:&nbsp;2.60</p>
+</dd>
+<dt><code>G_GNUC_FORMAT(idx)</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>format_arg</code> function attribute if the compiler
+is <span class="caps">GCC</span>. This function attribute specifies that a function takes a
+format string for a <code>printf()</code>, <code>scanf()</code>, <code>strftime()</code> or <code>strfmon()</code>
+style  function and modifies it, so that the result can be passed to
+a <code>printf()</code>, <code>scanf()</code>, <code>strftime()</code> or <code>strfmon()</code> style function
+(with the remaining arguments to the format function the same as they
+would have been for the unmodified&nbsp;string).</p>
+<p>Place the attribute after the function declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>gchar *g_dgettext (gchar *domain_name, gchar *msgid) G_GNUC_FORMAT (2);
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-Wformat-nonliteral-1"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+</dd>
+<dt><code>G_GNUC_NULL_TERMINATED</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>sentinel</code> function attribute if the compiler is <span class="caps">GCC</span>.
+This function attribute only applies to variadic functions and instructs
+the compiler to check that the argument list is terminated with an
+explicit <code>NULL</code>.</p>
+<p>Place the attribute after the declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>gchar *g_strconcat (const gchar *string1,
+                    ...) G_GNUC_NULL_TERMINATED;
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-sentinel-function-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details</p>
+<p>Since:&nbsp;2.8</p>
+</dd>
+<dt><code>G_GNUC_WARN_UNUSED_RESULT</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>warn_unused_result</code> function attribute if the compiler
+is <span class="caps">GCC</span>. This function attribute makes the compiler emit a warning if the
+result of a function call is&nbsp;ignored.</p>
+<p>Place the attribute after the declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>GList *g_list_append (GList *list,
+                      gpointer data) G_GNUC_WARN_UNUSED_RESULT;
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-warn_005funused_005fresult-function-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+<p>Since:&nbsp;2.10</p>
+</dd>
+<dt><code>G_GNUC_NO_INLINE</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>noinline</code> function attribute if the compiler is <span class="caps">GCC</span>.</p>
+<p>Declaring a function as <code>noinline</code> prevents the function from being
+considered for&nbsp;inlining.</p>
+<p>This macro is provided for retro-compatibility and will be eventually
+deprecated; <code>G_NO_INLINE</code> should be used&nbsp;instead.</p>
+<p>The attribute may be placed before the declaration or definition,
+right before the <code>static</code> keyword.</p>
+<div class="codehilite"><pre><span></span><code>G_GNUC_NO_INLINE
+static int
+do_not_inline_this (void)
+{
+// ...
+}
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-noinline-function-attribute"><span class="caps">GNU</span> C documentation</a>
+for more&nbsp;details.</p>
+<p>See also: <code>G_NO_INLINE</code>, <code>G_ALWAYS_INLINE</code>.</p>
+<p>Since:&nbsp;2.58</p>
+</dd>
+<dt><code>G_GNUC_NO_INSTRUMENT</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>no_instrument_function</code> function attribute if the
+compiler is <span class="caps">GCC</span>. Functions with this attribute will not be instrumented
+for profiling, when the compiler is called with the
+<code>-finstrument-functions</code> option.</p>
+<p>Place the attribute after the declaration, just before the&nbsp;semicolon.</p>
+<div class="codehilite"><pre><span></span><code>int do_uninteresting_things (void) G_GNUC_NO_INSTRUMENT;
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-no_005finstrument_005ffunction-function-attribute"><span class="caps">GNU</span> C documentation</a> for more&nbsp;details.</p>
+</dd>
+<dt><code>G_GNUC_MAY_ALIAS</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>may_alias</code> type attribute if the compiler is <span class="caps">GCC</span>.
+Types with this attribute will not be subjected to type-based alias
+analysis, but are assumed to alias with any other type, just like <code>char</code>.</p>
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Type-Attributes.html#index-may_005falias-type-attribute"><span class="caps">GNU</span> C documentation</a> for&nbsp;details.</p>
+<p>Since:&nbsp;2.14</p>
+</dd>
+<dt><code>G_GNUC_FUNCTION</code></dt>
+<dd>
+<p>Expands to <code>""</code> on all modern compilers, and to <code>__FUNCTION__</code> on <span class="caps">GCC</span> version 2.x. Don’t use&nbsp;it.</p>
+<p>Deprecated: 2.16: Use <code>G_STRFUNC()</code> instead</p>
+</dd>
+<dt><code>G_GNUC_PRETTY_FUNCTION</code></dt>
+<dd>
+<p>Expands to <code>""</code> on all modern compilers, and to <code>__PRETTY_FUNCTION__</code> on <span class="caps">GCC</span> version 2.x. Don’t use&nbsp;it.</p>
+<p>Deprecated: 2.16: Use <code>G_STRFUNC()</code> instead</p>
+</dd>
+<dt><code>G_GNUC_CHECK_VERSION(major, minor)</code></dt>
+<dd>
+<p>Expands to a check for a compiler with <code>__GNUC__</code> defined and a version
+greater than or equal to the major and minor numbers provided. For example,
+the following would only match on compilers such as <span class="caps">GCC</span> 4.8 or&nbsp;newer.</p>
+<div class="codehilite"><pre><span></span><code>#if G_GNUC_CHECK_VERSION(4, 8)
+// ...
+#endif
+</code></pre></div>
+
+<p>Since:&nbsp;2.42</p>
+</dd>
+<dt><code>G_GNUC_BEGIN_IGNORE_DEPRECATIONS</code></dt>
+<dd>
+<p>Tells <span class="caps">GCC</span> (if it is a new enough version) to temporarily stop emitting
+warnings when functions marked with <code>G_GNUC_DEPRECATED</code> or
+<code>G_GNUC_DEPRECATED_FOR</code> are called. This is useful for when you have
+one deprecated function calling another one, or when you still have
+regression tests for deprecated&nbsp;functions.</p>
+<p>Use <code>G_GNUC_END_IGNORE_DEPRECATIONS</code> to resume warning again. (If you
+are not compiling with <code>-Wdeprecated-declarations</code> then neither macro
+has any&nbsp;effect.)</p>
+<p>This macro can be used either inside or outside of a function body,
+but must appear on a line by&nbsp;itself.</p>
+<div class="codehilite"><pre><span></span><code>static void
+test_deprecated_function (void)
+{
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+  g_assert_cmpint (my_mistake (), ==, 42);
+  G_GNUC_END_IGNORE_DEPRECATIONS
+}
+</code></pre></div>
+
+<p>Both this macro and the corresponding <code>G_GNUC_END_IGNORE_DEPRECATIONS</code>
+are considered statements, so they should not be used around branching
+or loop conditions; for instance, this use is&nbsp;invalid:</p>
+<div class="codehilite"><pre><span></span><code>G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+if (check == some_deprecated_function ())
+G_GNUC_END_IGNORE_DEPRECATIONS
+  {
+    do_something ();
+  }
+</code></pre></div>
+
+<p>and you should move the deprecated section outside the&nbsp;condition</p>
+<div class="codehilite"><pre><span></span><code>// Solution A
+some_data_t *res;
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+res = some_deprecated_function ();
+G_GNUC_END_IGNORE_DEPRECATIONS
+
+if (check == res)
+  {
+    do_something ();
+  }
+
+// Solution B
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+if (check == some_deprecated_function ())
+  {
+    do_something ();
+  }
+G_GNUC_END_IGNORE_DEPRECATIONS
+</code></pre></div>
+
+<p>Since:&nbsp;2.32</p>
+</dd>
+<dt><code>G_GNUC_END_IGNORE_DEPRECATIONS</code></dt>
+<dd>
+<p>Undoes the effect of <code>G_GNUC_BEGIN_IGNORE_DEPRECATIONS</code>, telling
+<span class="caps">GCC</span> to resume outputting warnings again (assuming those warnings
+had been enabled to begin&nbsp;with).</p>
+<p>This macro can be used either inside or outside of a function body,
+but must appear on a line by&nbsp;itself.</p>
+<p>Since:&nbsp;2.32</p>
+</dd>
+<dt><code>G_C_STD_VERSION</code></dt>
+<dd>
+<p>The C standard version the code is compiling against, it’s normally
+defined with the same value of <code>__STDC_VERSION__</code> for C standard
+compatible compilers, while it uses the lowest standard version
+in pure <span class="caps">MSVC</span>, given that in such compiler the definition depends on
+a compilation&nbsp;flag.</p>
+<p>This is granted to be undefined when compiling with a C++&nbsp;compiler.</p>
+<p>See also: <code>G_C_STD_CHECK_VERSION</code> and <code>G_CXX_STD_VERSION</code></p>
+<p>Since:&nbsp;2.76</p>
+</dd>
+<dt><code>G_C_STD_CHECK_VERSION(version)</code></dt>
+<dd>
+<p>Macro to check if the current compiler supports a specified version
+of the C standard. Such value must be numeric and can be provided both
+in the short form for the well-known versions (e.g. <code>90</code>, <code>99</code>…) or in
+the complete form otherwise (e.g. <code>199000L</code>, <code>199901L</code>, <code>205503L</code>…).</p>
+<p>When a C++ compiler is used, the macro is defined and evaluates to&nbsp;false.</p>
+<p>This value is compared against <code>G_C_STD_VERSION</code>.</p>
+<div class="codehilite"><pre><span></span><code>#if G_C_STD_CHECK_VERSION(17)
+// ...
+#endif
+</code></pre></div>
+
+<p>See also: <code>G_CXX_STD_CHECK_VERSION</code></p>
+<p>Since:&nbsp;2.76</p>
+</dd>
+<dt><code>G_CXX_STD_VERSION</code></dt>
+<dd>
+<p>The C++ standard version the code is compiling against, it’s defined
+with the same value of <code>__cplusplus</code> for C++ standard compatible
+compilers, while it uses <code>_MSVC_LANG</code> in <span class="caps">MSVC</span>, given that the
+standard definition depends on a compilation flag in such&nbsp;compiler.</p>
+<p>This is granted to be undefined when not compiling with a C++&nbsp;compiler.</p>
+<p>See also: <code>G_CXX_STD_CHECK_VERSION</code> and <code>G_C_STD_VERSION</code></p>
+<p>Since:&nbsp;2.76</p>
+</dd>
+<dt><code>G_CXX_STD_CHECK_VERSION(version)</code></dt>
+<dd>
+<p>Macro to check if the current compiler supports a specified <code>version</code>
+of the C++ standard. Such value must be numeric and can be provided both
+in the short form for the well-known versions (e.g. <code>11</code>, <code>17</code>…) or in
+the complete form otherwise (e.g. <code>201103L</code>, <code>201703L</code>, <code>205503L</code>…).</p>
+<p>When a C compiler is used, the macro evaluates to&nbsp;false.</p>
+<p>This value is compared against <code>G_CXX_STD_VERSION</code>.</p>
+<div class="codehilite"><pre><span></span><code>#if G_CXX_STD_CHECK_VERSION(20)
+// ...
+#endif
+</code></pre></div>
+
+<p>See also: <code>G_C_STD_CHECK_VERSION</code></p>
+<p>Since:&nbsp;2.76</p>
+</dd>
+<dt><code>G_LIKELY(expr)</code></dt>
+<dd>
+<p>Hints the compiler that the expression is likely to evaluate to
+a true value. The compiler may use this information for&nbsp;optimizations.</p>
+<div class="codehilite"><pre><span></span><code>if (G_LIKELY (random () != 1))
+  g_print ("not one");
+</code></pre></div>
+
+<p>Since:&nbsp;2.2</p>
+</dd>
+<dt><code>G_UNLIKELY(expr)</code></dt>
+<dd>
+<p>Hints the compiler that the expression is unlikely to evaluate to
+a true value. The compiler may use this information for&nbsp;optimizations.</p>
+<div class="codehilite"><pre><span></span><code>if (G_UNLIKELY (random () == 1))
+  g_print ("a random one");
+</code></pre></div>
+
+<p>Since:&nbsp;2.2</p>
+</dd>
+<dt><code>G_ALIGNOF(type)</code></dt>
+<dd>
+<p>Evaluates to the minimal alignment required by the platform <span class="caps">ABI</span> for values
+of the given type. The address of a variable or struct member of the given
+type must always be a multiple of this alignment. For example, most
+platforms require int variables to be aligned at a 4-byte boundary, so
+<code>G_ALIGNOF (int)</code> is 4 on most&nbsp;platforms.</p>
+<p>Note this is not necessarily the same as the value returned by <span class="caps">GCC</span>’s
+<code>__alignof__</code> operator, which returns the preferred alignment for a type.
+The preferred alignment may be a stricter alignment than the minimal&nbsp;alignment.</p>
+<p>Since:&nbsp;2.60</p>
+</dd>
+<dt><code>G_SIZEOF_MEMBER(struct_type, member_name)</code></dt>
+<dd>
+<p>Evaluates to the size in bytes of <code>member_name</code> in the struct definition
+without having a declared instance of <code>struct_type</code>.</p>
+<p>Since:&nbsp;2.64</p>
+</dd>
+<dt><code>G_NORETURN</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C or <span class="caps">MSVC</span> <code>noreturn</code> function attribute depending on
+the compiler. It is used for declaring functions which never return.
+Enables optimization of the function, and avoids possible compiler&nbsp;warnings.</p>
+<p>Note that <code>G_NORETURN</code> supersedes the previous <code>G_GNUC_NORETURN</code> macro, which
+will eventually be deprecated. <code>G_NORETURN</code> supports more&nbsp;platforms.</p>
+<p>Place the attribute before the function declaration as&nbsp;follows:</p>
+<div class="codehilite"><pre><span></span><code>G_NORETURN void g_abort (void);
+</code></pre></div>
+
+<p>Since:&nbsp;2.68</p>
+</dd>
+<dt><code>G_NORETURN_FUNCPTR</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C or <span class="caps">MSVC</span> <code>noreturn</code> function attribute depending on
+the compiler. It is used for declaring function pointers which never return.
+Enables optimization of the function, and avoids possible compiler&nbsp;warnings.</p>
+<p>Place the attribute before the function declaration as&nbsp;follows:</p>
+<div class="codehilite"><pre><span></span><code>G_NORETURN_FUNCPTR void (*funcptr) (void);
+</code></pre></div>
+
+<p>Note that if the function is not a function pointer, you can simply use
+the <code>G_NORETURN</code> macro as&nbsp;follows:</p>
+<div class="codehilite"><pre><span></span><code>G_NORETURN void g_abort (void);
+</code></pre></div>
+
+<p>Since:&nbsp;2.68</p>
+</dd>
+<dt><code>G_ALWAYS_INLINE</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C <code>always_inline</code> or <span class="caps">MSVC</span> <code>__forceinline</code> function
+attribute depending on the compiler. It is used for declaring functions
+as always inlined, ignoring the compiler optimization&nbsp;levels.</p>
+<p>The attribute may be placed before the declaration or definition,
+right before the <code>static</code> keyword.</p>
+<div class="codehilite"><pre><span></span><code>G_ALWAYS_INLINE
+static int
+do_inline_this (void)
+{
+// ...
+}
+</code></pre></div>
+
+<p>See the <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-always_005finline-function-attribute"><span class="caps">GNU</span> C documentation</a>
+and the <a href="https://docs.microsoft.com/en-us/visualstudio/misc/inline-inline-forceinline"><span class="caps">MSVC</span> documentation</a>
+for more&nbsp;details.</p>
+<p>Since:&nbsp;2.74</p>
+</dd>
+<dt><code>G_NO_INLINE</code></dt>
+<dd>
+<p>Expands to the <span class="caps">GNU</span> C or <span class="caps">MSVC</span> <code>noinline</code> function attribute
+depending on the compiler. It is used for declaring functions
+preventing from being considered for&nbsp;inlining.</p>
+<p>Note that <code>G_NO_INLINE</code> supersedes the previous <code>G_GNUC_NO_INLINE</code>
+macro, which will eventually be deprecated. <code>G_NO_INLINE</code> supports
+more&nbsp;platforms.</p>
+<p>The attribute may be placed before the declaration or definition,
+right before the <code>static</code> keyword.</p>
+<div class="codehilite"><pre><span></span><code>G_NO_INLINE
+static int
+do_not_inline_this (void)
+{
+// ...
+}
+</code></pre></div>
+
+<p>Since:&nbsp;2.74</p>
+</dd>
+<dt><code>G_STRLOC</code></dt>
+<dd>Expands to a string identifying the current code&nbsp;position.</dd>
+<dt><code>G_STRFUNC</code></dt>
+<dd>Expands to a string identifying the current function. Since:&nbsp;2.4</dd>
+<dt><code>G_GNUC_INTERNAL</code></dt>
+<dd>
+<p>This attribute can be used for marking library functions as being used
+internally to the library only, which may allow the compiler to handle
+function calls more efficiently. Note that static functions do not need
+to be marked as internal in this way. See the <span class="caps">GNU</span> C documentation for&nbsp;details.</p>
+<p>When using a compiler that supports the <span class="caps">GNU</span> C hidden visibility attribute,
+this macro expands to <code>__attribute__((visibility("hidden")))</code>.
+When using the Sun Studio compiler, it expands to <code>__hidden</code>.</p>
+<p>Note that for portability, the attribute should be placed before the
+function declaration. While <span class="caps">GCC</span> allows the macro after the declaration,
+Sun Studio does&nbsp;not.</p>
+<div class="codehilite"><pre><span></span><code>G_GNUC_INTERNAL
+void _g_log_fallback_handler (const gchar    *log_domain,
+                              GLogLevelFlags  log_level,
+                              const gchar    *message,
+                              gpointer        unused_data);
+</code></pre></div>
+
+<p>Since:&nbsp;2.6</p>
+</dd>
+<dt><code>G_HAVE_GNUC_VISIBILITY</code></dt>
+<dd>Defined to 1 if <span class="caps">GCC</span>-style visibility handling is&nbsp;supported.</dd>
+</dl>
+<h2 id="deprecation">Deprecation<a class="md-anchor" href="#deprecation" title="Permanent link"></a></h2>
+<dl>
+<dt><code>G_DEPRECATED</code></dt>
+<dd>
+<p>This macro is similar to <code>G_GNUC_DEPRECATED</code>, and can be used to mark
+functions declarations as deprecated. Unlike <code>G_GNUC_DEPRECATED</code>, it is
+meant to be portable across different compilers and must be placed
+before the function&nbsp;declaration.</p>
+<div class="codehilite"><pre><span></span><code>G_DEPRECATED
+int my_mistake (void);
+</code></pre></div>
+
+<p>Since:&nbsp;2.32</p>
+</dd>
+<dt><code>G_DEPRECATED_FOR(f)</code></dt>
+<dd>
+<p>This macro is similar to <code>G_GNUC_DEPRECATED_FOR</code>, and can be used to mark
+functions declarations as deprecated. Unlike <code>G_GNUC_DEPRECATED_FOR</code>, it
+is meant to be portable across different compilers and must be placed
+before the function&nbsp;declaration.</p>
+<div class="codehilite"><pre><span></span><code>G_DEPRECATED_FOR(my_replacement)
+int my_mistake (void);
+</code></pre></div>
+
+<p>Since:&nbsp;2.32</p>
+</dd>
+<dt><code>G_UNAVAILABLE(major, minor)</code></dt>
+<dd>
+<p>This macro can be used to mark a function declaration as unavailable.
+It must be placed before the function declaration. Use of a function
+that has been annotated with this macros will produce a compiler&nbsp;warning.</p>
+<p>Since:&nbsp;2.32</p>
+</dd>
+<dt><code>GLIB_DISABLE_DEPRECATION_WARNINGS</code></dt>
+<dd>A macro that should be defined before including the <code>glib.h</code> header.
+If it is defined, no compiler warnings will be produced for uses
+of deprecated GLib&nbsp;APIs.</dd>
+</dl>
+<h2 id="version-checking">Version checking<a class="md-anchor" href="#version-checking" title="Permanent link"></a></h2>
+<dl>
+<dt><code>GLIB_MAJOR_VERSION</code></dt>
+<dd>
+<p>A macro that evaluates to the major component of the version of GLib,
+e.g. <code>1</code> for version <code>1.2.3</code>.</p>
+</dd>
+<dt><code>GLIB_MINOR_VERSION</code></dt>
+<dd>
+<p>A macro that evaluates to the minor component of the version of GLib,
+e.g. <code>2</code> for version <code>1.2.3</code>.</p>
+</dd>
+<dt><code>GLIB_MICRO_VERSION</code></dt>
+<dd>
+<p>A macro that evaluates to the micro component of the version of GLib,
+e.g. <code>3</code> for version <code>1.2.3</code>.</p>
+</dd>
+<dt><code>GLIB_CHECK_VERSION (major, minor, micro)</code></dt>
+<dd>
+<p>A macro that evaluates to true if the version of GLib is newer than
+the given version&nbsp;tuple.</p>
+</dd>
+</dl>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#platform"><span class="link-text">Platform</span></a></li>
+        
+        <li class="toc-list-item"><a href="#values"><span class="link-text">Values</span></a></li>
+        
+        <li class="toc-list-item"><a href="#maths"><span class="link-text">Maths</span></a></li>
+        
+        <li class="toc-list-item"><a href="#structure-access"><span class="link-text">Structure Access</span></a></li>
+        
+        <li class="toc-list-item"><a href="#array-utilities"><span class="link-text">Array Utilities</span></a></li>
+        
+        <li class="toc-list-item"><a href="#miscellaneous-macros"><span class="link-text">Miscellaneous Macros</span></a></li>
+        
+        <li class="toc-list-item"><a href="#compiler"><span class="link-text">Compiler</span></a></li>
+        
+        <li class="toc-list-item"><a href="#deprecation"><span class="link-text">Deprecation</span></a></li>
+        
+        <li class="toc-list-item"><a href="#version-checking"><span class="link-text">Version checking</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/macros.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

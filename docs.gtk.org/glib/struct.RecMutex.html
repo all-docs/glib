@@ -1,0 +1,221 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.RecMutex.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.RecMutex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.RecMutex">
+  <meta property="og:description" content="Reference for GLib.RecMutex">
+  <meta name="twitter:title" content="GLib.RecMutex">
+  <meta name="twitter:description" content="Reference for GLib.RecMutex">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>RecMutex</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem available">since: 2.32</span></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gthread.c#L269">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GRecMutex</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The GRecMutex struct is an opaque data structure to represent a
+recursive mutex. It is similar to a <code>GMutex</code> with the difference
+that it is possible to lock a GRecMutex multiple times in the same
+thread without deadlock. When doing so, care has to be taken to
+unlock the recursive mutex as often as it has been&nbsp;locked.</p>
+<p>If a <code>GRecMutex</code> is allocated in static storage then it can be used
+without initialisation.  Otherwise, you should call
+<code>g_rec_mutex_init()</code> on it and <code>g_rec_mutex_clear()</code> when&nbsp;done.</p>
+<p>A GRecMutex should only be accessed with the
+g_rec_mutex_&nbsp;functions.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          <p>Available since: 2.32</p>
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.RecMutex.clear.html">g_rec_mutex_clear</a></h6>
+          <div class="docblock">
+            <p>Frees the resources allocated to a recursive mutex with&nbsp;g_rec_mutex_init().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.RecMutex.init.html">g_rec_mutex_init</a></h6>
+          <div class="docblock">
+            <p>Initializes a <code>GRecMutex</code> so that it can be&nbsp;used.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.RecMutex.lock.html">g_rec_mutex_lock</a></h6>
+          <div class="docblock">
+            <p>Locks <code>rec_mutex</code>. If <code>rec_mutex</code> is already locked by another
+thread, the current thread will block until <code>rec_mutex</code> is
+unlocked by the other thread. If <code>rec_mutex</code> is already locked
+by the current thread, the ‘lock count’ of <code>rec_mutex</code> is increased.
+The mutex will only become available again when it is unlocked
+as many times as it has been&nbsp;locked.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.RecMutex.trylock.html">g_rec_mutex_trylock</a></h6>
+          <div class="docblock">
+            <p>Tries to lock <code>rec_mutex</code>. If <code>rec_mutex</code> is already locked
+by another thread, it immediately returns <code>FALSE</code>. Otherwise
+it locks <code>rec_mutex</code> and returns <code>TRUE</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.RecMutex.unlock.html">g_rec_mutex_unlock</a></h6>
+          <div class="docblock">
+            <p>Unlocks <code>rec_mutex</code>. If another thread is blocked in a
+<code>g_rec_mutex_lock()</code> call for <code>rec_mutex</code>, it will become unblocked
+and can lock <code>rec_mutex</code> itself.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.RecMutex.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

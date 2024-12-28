@@ -1,0 +1,235 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.strlcpy.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.strlcpy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.strlcpy">
+  <meta property="og:description" content="Reference for GLib.strlcpy">
+  <meta name="twitter:title" content="GLib.strlcpy">
+  <meta name="twitter:description" content="Reference for GLib.strlcpy">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>strlcpy</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstrfuncs.h#L123">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gsize</span>
+<span class="n">g_strlcpy</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">dest</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">src</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gsize</span><span class="w"> </span><span class="n">dest_size</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstrfuncs.c#L1424">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Portability wrapper that calls <code>strlcpy()</code> on systems which have it,
+and emulates <code>strlcpy()</code> otherwise. Copies <code>src</code> to <code>dest</code>; <code>dest</code> is
+guaranteed to be nul-terminated; <code>src</code> must be nul-terminated;
+<code>dest_size</code> is the buffer size, not the number of bytes to&nbsp;copy.</p>
+<p>At most <code>dest_size</code> - 1 characters will be copied. Always nul-terminates
+(unless <code>dest_size</code> is 0). This function does not allocate memory. Unlike
+<code>strncpy()</code>, this function doesn’t pad <code>dest</code> (so it’s often faster). It
+returns the size of the attempted result, <code>strlen (src)</code>, so if
+<code>retval</code> &gt;= <code>dest_size</code>, truncation&nbsp;occurred.</p>
+<p>Caveat: <code>strlcpy()</code> is supposedly more secure than <code>strcpy()</code> or <code>strncpy()</code>,
+but if you really want to avoid screwups, <a href="func.strdup.html"><code>g_strdup()</code></a> is an even better&nbsp;idea.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>dest</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gchar*</code></p>
+            <p>Destination&nbsp;buffer.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>src</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>Source&nbsp;buffer.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>dest_size</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gsize</code></p>
+            <p>Length of <code>dest</code> in&nbsp;bytes.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gsize</code></p>
+            <p>Length of <code>src</code>.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.strlcpy.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

@@ -1,0 +1,321 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.MatchInfo.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.MatchInfo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.MatchInfo">
+  <meta property="og:description" content="Reference for GLib.MatchInfo">
+  <meta name="twitter:title" content="GLib.MatchInfo">
+  <meta name="twitter:description" content="Reference for GLib.MatchInfo">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>MatchInfo</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gregex.h#L419">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GMatchInfo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>A GMatchInfo is an opaque struct used to return information about&nbsp;matches.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.expand_references.html">g_match_info_expand_references</a></h6>
+          <div class="docblock">
+            <p>Returns a new string containing the text in <code>string_to_expand</code> with
+references and escape sequences expanded. References refer to the last
+match done with <code>string</code> against <code>regex</code> and have the same syntax used by&nbsp;g_regex_replace().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.fetch.html">g_match_info_fetch</a></h6>
+          <div class="docblock">
+            <p>Retrieves the text matching the <code>match_num</code><span class="quo">‘</span>th capturing
+parentheses. 0 is the full text of the match, 1 is the first paren
+set, 2 the second, and so&nbsp;on.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.fetch_all.html">g_match_info_fetch_all</a></h6>
+          <div class="docblock">
+            <p>Bundles up pointers to each of the matching substrings from a match
+and stores them in an array of gchar pointers. The first element in
+the returned array is the match number 0, i.e. the entire matched&nbsp;text.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.fetch_named.html">g_match_info_fetch_named</a></h6>
+          <div class="docblock">
+            <p>Retrieves the text matching the capturing parentheses named <code>name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.fetch_named_pos.html">g_match_info_fetch_named_pos</a></h6>
+          <div class="docblock">
+            <p>Retrieves the position in bytes of the capturing parentheses named <code>name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.fetch_pos.html">g_match_info_fetch_pos</a></h6>
+          <div class="docblock">
+            <p>Retrieves the position in bytes of the <code>match_num</code><span class="quo">‘</span>th capturing
+parentheses. 0 is the full text of the match, 1 is the first
+paren set, 2 the second, and so&nbsp;on.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.free.html">g_match_info_free</a></h6>
+          <div class="docblock">
+            <p>If <code>match_info</code> is not <code>NULL</code>, calls g_match_info_unref(); otherwise does&nbsp;nothing.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.get_match_count.html">g_match_info_get_match_count</a></h6>
+          <div class="docblock">
+            <p>Retrieves the number of matched substrings (including substring 0,
+that is the whole matched text), so 1 is returned if the pattern
+has no substrings in it and 0 is returned if the match&nbsp;failed.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.get_regex.html">g_match_info_get_regex</a></h6>
+          <div class="docblock">
+            <p>Returns <code>GRegex</code> object used in <code>match_info</code>. It belongs to Glib
+and must not be freed. Use <code>g_regex_ref()</code> if you need to keep it
+after you free <code>match_info</code> object.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.get_string.html">g_match_info_get_string</a></h6>
+          <div class="docblock">
+            <p>Returns the string searched with <code>match_info</code>. This is the
+string passed to <code>g_regex_match()</code> or <code>g_regex_replace()</code> so
+you may not free it before calling this&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.is_partial_match.html">g_match_info_is_partial_match</a></h6>
+          <div class="docblock">
+            <p>Usually if the string passed to g_regex_match*() matches as far as
+it goes, but is too short to match the entire pattern, <code>FALSE</code> is
+returned. There are circumstances where it might be helpful to
+distinguish this case from other cases in which there is no&nbsp;match.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.matches.html">g_match_info_matches</a></h6>
+          <div class="docblock">
+            <p>Returns whether the previous match operation&nbsp;succeeded.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.next.html">g_match_info_next</a></h6>
+          <div class="docblock">
+            <p>Scans for the next match using the same parameters of the previous
+call to <code>g_regex_match_full()</code> or <code>g_regex_match()</code> that returned
+<code>match_info</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.ref.html">g_match_info_ref</a></h6>
+          <div class="docblock">
+            <p>Increases reference count of <code>match_info</code> by&nbsp;1.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MatchInfo.unref.html">g_match_info_unref</a></h6>
+          <div class="docblock">
+            <p>Decreases reference count of <code>match_info</code> by 1. When reference count drops
+to zero, it frees all the memory associated with the match_info&nbsp;structure.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.MatchInfo.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

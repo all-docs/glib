@@ -1,0 +1,258 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/error.ConvertError.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.ConvertError</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.ConvertError">
+  <meta property="og:description" content="Reference for GLib.ConvertError">
+  <meta name="twitter:title" content="GLib.ConvertError">
+  <meta name="twitter:description" content="Reference for GLib.ConvertError">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>ConvertError</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>error-domain GLib.ConvertError</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gconvert.h#L38">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Error codes returned by character set conversion&nbsp;routines.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="no_conversion">G_CONVERT_ERROR_NO_CONVERSION</code>
+            <a class="anchor" href="#no_conversion"></a>
+          </dt>
+          <dd>
+            <div><p>Conversion between the requested character
+    sets is not&nbsp;supported.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="illegal_sequence">G_CONVERT_ERROR_ILLEGAL_SEQUENCE</code>
+            <a class="anchor" href="#illegal_sequence"></a>
+          </dt>
+          <dd>
+            <div><p>Invalid byte sequence in conversion input;
+   or the character sequence could not be represented in the target
+   character&nbsp;set.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="failed">G_CONVERT_ERROR_FAILED</code>
+            <a class="anchor" href="#failed"></a>
+          </dt>
+          <dd>
+            <div><p>Conversion failed for some&nbsp;reason.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="partial_input">G_CONVERT_ERROR_PARTIAL_INPUT</code>
+            <a class="anchor" href="#partial_input"></a>
+          </dt>
+          <dd>
+            <div><p>Partial character sequence at end of&nbsp;input.</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="bad_uri">G_CONVERT_ERROR_BAD_URI</code>
+            <a class="anchor" href="#bad_uri"></a>
+          </dt>
+          <dd>
+            <div><p><span class="caps">URI</span> is&nbsp;invalid.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="not_absolute_path">G_CONVERT_ERROR_NOT_ABSOLUTE_PATH</code>
+            <a class="anchor" href="#not_absolute_path"></a>
+          </dt>
+          <dd>
+            <div><p>Pathname is not an absolute&nbsp;path.</p></div>
+            <ul>
+              <li>Value: <code>5</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="no_memory">G_CONVERT_ERROR_NO_MEMORY</code>
+            <a class="anchor" href="#no_memory"></a>
+          </dt>
+          <dd>
+            <div><p>No memory available. Since:&nbsp;2.40.</p></div>
+            <ul>
+              <li>Value: <code>6</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="embedded_nul">G_CONVERT_ERROR_EMBEDDED_NUL</code>
+            <a class="anchor" href="#embedded_nul"></a>
+          </dt>
+          <dd>
+            <div><p>An embedded <span class="caps">NUL</span> character is present in
+    conversion output where a <span class="caps">NUL</span>-terminated string is expected.
+    Since:&nbsp;2.56.</p></div>
+            <ul>
+              <li>Value: <code>7</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      <li class="toc-list-item"><a href="#members"><span class="link-text">Members</span></a></li>
+      
+
+      
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/error.ConvertError.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

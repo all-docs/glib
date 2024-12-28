@@ -1,0 +1,232 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/ctor.Variant.new_parsed.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Variant.new_parsed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Variant.new_parsed">
+  <meta property="og:description" content="Reference for GLib.Variant.new_parsed">
+  <meta name="twitter:title" content="GLib.Variant.new_parsed">
+  <meta name="twitter:description" content="Reference for GLib.Variant.new_parsed">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.Variant.html">Variant</a><span class="sep"></span>new_parsed</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.h#L471">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GVariant</span><span class="o">*</span>
+<span class="n">g_variant_new_parsed</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">format</span><span class="p">,</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant-parser.c#L2656">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Parses <code>format</code> and returns the&nbsp;result.</p>
+<p><code>format</code> must be a text format <code>GVariant</code> with one extension: at any
+point that a value may appear in the text, a ‘%’ character followed
+by a GVariant format string (as per g_variant_new()) may appear.  In
+that case, the same arguments are collected from the argument list as
+<code>g_variant_new()</code> would have&nbsp;collected.</p>
+<p>Note that the arguments must be of the correct width for their types
+specified in <code>format</code>. This can be achieved by casting them. See
+the <a href="gvariant-format-strings.html#varargs">GVariant varargs documentation</a>.</p>
+<p>Consider this simple&nbsp;example:</p>
+<div class="highlight"><pre><span></span><span class="w"> </span><span class="n">g_variant_new_parsed</span><span class="w"> </span><span class="p">(</span><span class="s">"[('one', 1), ('two', %i), (%s, 3)]"</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">"three"</span><span class="p">);</span>
+</pre></div>
+
+<p>In the example, the variable argument parameters are collected and
+filled in as if they were part of the original string to produce the
+result&nbsp;of</p>
+<div class="highlight"><pre><span></span><span class="p">[(</span><span class="err">'</span><span class="n">one</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">two</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">three</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)]</span>
+</pre></div>
+
+<p>This function is intended only to be used with <code>format</code> as a string
+literal.  Any parse error is fatal to the calling process.  If you
+want to parse data from untrusted sources, use&nbsp;g_variant_parse().</p>
+<p>You may not use this function to return, unmodified, a single
+<code>GVariant</code> pointer from the argument list.  ie: <code>format</code> may not solely
+be anything along the lines of “%*”, “%?”, “\%r”, or anything starting
+with&nbsp;“%@”.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>format</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>A text format <code>GVariant</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>...</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code></code></p>
+            <p>Arguments as per <code>format</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.Variant.html"><code>GVariant</code></a></p>
+            <p>A new floating <code>GVariant</code> instance.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
+            
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/ctor.Variant.new_parsed.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

@@ -1,0 +1,136 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/markup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Simple XML Subset Parser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Simple XML Subset Parser">
+  <meta property="og:description" content="Reference for GLib-2.0: Simple XML Subset Parser">
+  <meta name="twitter:title" content="GLib: Simple XML Subset Parser">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Simple XML Subset Parser">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Simple XML Subset Parser
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="simple-xml-subset-parser">Simple XML Subset Parser<a class="md-anchor" href="#simple-xml-subset-parser" title="Permanent link"></a></h1>
+<p>The “GMarkup” parser is intended to parse a simple markup format
+that’s a subset of <span class="caps">XML</span>. This is a small, efficient, easy-to-use
+parser. It should not be used if you expect to interoperate with
+other applications generating full-scale <span class="caps">XML</span>, and must not be used if you
+expect to parse untrusted input. However, it’s very useful for application
+data files, config files, etc. where you know your application will be the
+only one writing the&nbsp;file.</p>
+<p>Full-scale <span class="caps">XML</span> parsers should be able to parse the subset used by
+GMarkup, so you can easily migrate to full-scale <span class="caps">XML</span> at a later
+time if the need&nbsp;arises.</p>
+<p>GMarkup is not guaranteed to signal an error on all invalid <span class="caps">XML</span>;
+the parser may accept documents that an <span class="caps">XML</span> parser would not.
+However, <span class="caps">XML</span> documents which are not well-formed (which is a
+weaker condition than being valid. See the
+<a href="http://www.w3.org/TR/REC-xml/"><span class="caps">XML</span> specification</a>
+for definitions of these terms.) are not considered valid GMarkup&nbsp;documents.</p>
+<h2 id="simplifications-to-xml">Simplifications to XML<a class="md-anchor" href="#simplifications-to-xml" title="Permanent link"></a></h2>
+<p>The simplifications compared to full <span class="caps">XML</span>&nbsp;include:</p>
+<ul>
+<li>Only <span class="caps">UTF</span>-8 encoding is&nbsp;allowed</li>
+<li>No user-defined&nbsp;entities</li>
+<li>Processing instructions, comments and the doctype declaration
+   are “passed through” but are not interpreted in any&nbsp;way</li>
+<li>No <span class="caps">DTD</span> or&nbsp;validation</li>
+</ul>
+<p>The markup format does&nbsp;support:</p>
+<ul>
+<li>Elements</li>
+<li>Attributes</li>
+<li>5 standard entities: <code>&amp;amp;</code> <code>&amp;lt;</code> <code>&amp;gt;</code> <code>&amp;quot;</code> <code>&amp;apos;</code></li>
+<li>Character&nbsp;references</li>
+<li>Sections marked as <span class="caps">CDATA</span></li>
+</ul>
+<h2 id="an-example-parser">An example parser<a class="md-anchor" href="#an-example-parser" title="Permanent link"></a></h2>
+<p>Here is an example for a markup parser:
+<a href="https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/glib/tests/markup-example.c">markup-example.c</a></p>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#simplifications-to-xml"><span class="link-text">Simplifications to XML</span></a></li>
+        
+        <li class="toc-list-item"><a href="#an-example-parser"><span class="link-text">An example parser</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/markup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

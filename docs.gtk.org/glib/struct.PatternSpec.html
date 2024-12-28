@@ -1,0 +1,237 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.PatternSpec.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.PatternSpec</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.PatternSpec">
+  <meta property="og:description" content="Reference for GLib.PatternSpec">
+  <meta name="twitter:title" content="GLib.PatternSpec">
+  <meta name="twitter:description" content="Reference for GLib.PatternSpec">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>PatternSpec</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gpattern.c#L33">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GPatternSpec</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>A <code>GPatternSpec</code> struct is the ‘compiled’ form of a glob-style&nbsp;pattern.</p>
+<p>The <a href="func.pattern_match_simple.html"><code>g_pattern_match_simple()</code></a> and <a href="method.PatternSpec.match.html"><code>g_pattern_spec_match()</code></a> functions
+match a string against a pattern containing <code>*</code> and <code>?</code> wildcards with similar
+semantics as the standard <code>glob()</code> function: <code>*</code> matches an arbitrary,
+possibly empty, string, <code>?</code> matches an arbitrary&nbsp;character.</p>
+<p>Note that in contrast to <a href="man:glob(3)"><code>glob()</code></a>, the <code>/</code> character can be
+matched by the wildcards, there are no <code>[…]</code> character ranges and <code>*</code> and <code>?</code>
+can not be escaped to include them literally in a&nbsp;pattern.</p>
+<p>When multiple strings must be matched against the same pattern, it is better
+to compile the pattern to a <a href="struct.PatternSpec.html"><code>GPatternSpec</code></a> using
+<a href="ctor.PatternSpec.new.html"><code>g_pattern_spec_new()</code></a> and use <a href="method.PatternSpec.match_string.html"><code>g_pattern_spec_match_string()</code></a>
+instead of <a href="func.pattern_match_simple.html"><code>g_pattern_match_simple()</code></a>. This avoids the overhead of repeated
+pattern&nbsp;compilation.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.PatternSpec.new.html">g_pattern_spec_new</a></h6>
+          <div class="docblock">
+            <p>Compiles a pattern to a <code>GPatternSpec</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.PatternSpec.copy.html">g_pattern_spec_copy</a></h6>
+          <div class="docblock">
+            <p>Copies <code>pspec</code> in a new <code>GPatternSpec</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.70</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.PatternSpec.equal.html">g_pattern_spec_equal</a></h6>
+          <div class="docblock">
+            <p>Compares two compiled pattern specs and returns whether they will
+match the same set of&nbsp;strings.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.PatternSpec.free.html">g_pattern_spec_free</a></h6>
+          <div class="docblock">
+            <p>Frees the memory allocated for the <code>GPatternSpec</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.PatternSpec.match.html">g_pattern_spec_match</a></h6>
+          <div class="docblock">
+            <p>Matches a string against a compiled&nbsp;pattern.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.70</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.PatternSpec.match_string.html">g_pattern_spec_match_string</a></h6>
+          <div class="docblock">
+            <p>Matches a string against a compiled&nbsp;pattern.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.70</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.PatternSpec.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

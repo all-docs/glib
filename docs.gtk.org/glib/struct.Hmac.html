@@ -1,0 +1,253 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Hmac.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Hmac</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Hmac">
+  <meta property="og:description" content="Reference for GLib.Hmac">
+  <meta name="twitter:title" content="GLib.Hmac">
+  <meta name="twitter:description" content="Reference for GLib.Hmac">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>Hmac</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem available">since: 2.30</span></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/ghmac.c#L39">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GHmac</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>HMACs should be used when producing a cookie or hash based on data
+and a key. Simple mechanisms for using <span class="caps">SHA1</span> and other algorithms to
+digest a key and data together are vulnerable to various security
+issues.
+<a href="http://en.wikipedia.org/wiki/HMAC"><span class="caps">HMAC</span></a>
+uses algorithms like <span class="caps">SHA1</span> in a secure way to produce a digest of a
+key and&nbsp;data.</p>
+<p>Both the key and data are arbitrary byte arrays of bytes or&nbsp;characters.</p>
+<p>Support for <span class="caps">HMAC</span> Digests has been added in GLib 2.30, and support for <span class="caps">SHA</span>-512
+in GLib 2.42. Support for <span class="caps">SHA</span>-384 was added in GLib&nbsp;2.52.</p>
+<p>To create a new <code>GHmac</code>, use <a href="ctor.Hmac.new.html"><code>g_hmac_new()</code></a>. To free a <code>GHmac</code>, use
+<a href="method.Hmac.unref.html"><code>g_hmac_unref()</code></a>.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          <p>Available since: 2.30</p>
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.Hmac.new.html">g_hmac_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GHmac</code>, using the digest algorithm <code>digest_type</code>.
+If the <code>digest_type</code> is not known, <code>NULL</code> is returned.
+A <code>GHmac</code> can be used to compute the <span class="caps">HMAC</span> of a key and an
+arbitrary binary blob, using different hashing&nbsp;algorithms.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Hmac.copy.html">g_hmac_copy</a></h6>
+          <div class="docblock">
+            <p>Copies a <code>GHmac</code>. If <code>hmac</code> has been closed, by calling
+<code>g_hmac_get_string()</code> or g_hmac_get_digest(), the copied
+<span class="caps">HMAC</span> will be closed as&nbsp;well.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Hmac.get_digest.html">g_hmac_get_digest</a></h6>
+          <div class="docblock">
+            <p>Gets the digest from <code>checksum</code> as a raw binary array and places it
+into <code>buffer</code>. The size of the digest depends on the type of&nbsp;checksum.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Hmac.get_string.html">g_hmac_get_string</a></h6>
+          <div class="docblock">
+            <p>Gets the <span class="caps">HMAC</span> as a hexadecimal&nbsp;string.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Hmac.ref.html">g_hmac_ref</a></h6>
+          <div class="docblock">
+            <p>Atomically increments the reference count of <code>hmac</code> by&nbsp;one.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Hmac.unref.html">g_hmac_unref</a></h6>
+          <div class="docblock">
+            <p>Atomically decrements the reference count of <code>hmac</code> by&nbsp;one.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Hmac.update.html">g_hmac_update</a></h6>
+          <div class="docblock">
+            <p>Feeds <code>data</code> into an existing <code>GHmac</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.30</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Hmac.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

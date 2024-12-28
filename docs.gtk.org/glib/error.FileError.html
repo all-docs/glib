@@ -1,0 +1,523 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/error.FileError.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.FileError</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.FileError">
+  <meta property="og:description" content="Reference for GLib.FileError">
+  <meta name="twitter:title" content="GLib.FileError">
+  <meta name="twitter:description" content="Reference for GLib.FileError">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>FileError</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>error-domain GLib.FileError</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gfileutils.c#L62">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Values corresponding to <code>errno</code> codes returned from file operations
+on <span class="caps">UNIX</span>. Unlike <code>errno</code> codes, GFileError values are available on
+all systems, even Windows. The exact meaning of each code depends
+on what sort of file operation you were performing; the <span class="caps">UNIX</span>
+documentation gives more details. The following error code descriptions
+come from the <span class="caps">GNU</span> C Library manual, and are under the copyright
+of that&nbsp;manual.</p>
+<p>It’s not very portable to make detailed assumptions about exactly
+which errors will be returned from a given operation. Some errors
+don’t occur on some systems, etc., sometimes there are subtle
+differences in when a system will report a given error,&nbsp;etc.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="exist">G_FILE_ERROR_EXIST</code>
+            <a class="anchor" href="#exist"></a>
+          </dt>
+          <dd>
+            <div><p>Operation not permitted; only the owner of
+    the file (or other resource) or processes with special privileges
+    can perform the&nbsp;operation.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="isdir">G_FILE_ERROR_ISDIR</code>
+            <a class="anchor" href="#isdir"></a>
+          </dt>
+          <dd>
+            <div><p>File is a directory; you cannot open a directory
+    for writing, or create or remove hard links to&nbsp;it.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="acces">G_FILE_ERROR_ACCES</code>
+            <a class="anchor" href="#acces"></a>
+          </dt>
+          <dd>
+            <div><p>Permission denied; the file permissions do not
+    allow the attempted&nbsp;operation.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nametoolong">G_FILE_ERROR_NAMETOOLONG</code>
+            <a class="anchor" href="#nametoolong"></a>
+          </dt>
+          <dd>
+            <div><p>Filename too&nbsp;long.</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="noent">G_FILE_ERROR_NOENT</code>
+            <a class="anchor" href="#noent"></a>
+          </dt>
+          <dd>
+            <div><p>No such file or directory. This is a “file
+    doesn’t exist” error for ordinary files that are referenced in
+    contexts where they are expected to already&nbsp;exist.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="notdir">G_FILE_ERROR_NOTDIR</code>
+            <a class="anchor" href="#notdir"></a>
+          </dt>
+          <dd>
+            <div><p>A file that isn’t a directory was specified when
+    a directory is&nbsp;required.</p></div>
+            <ul>
+              <li>Value: <code>5</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nxio">G_FILE_ERROR_NXIO</code>
+            <a class="anchor" href="#nxio"></a>
+          </dt>
+          <dd>
+            <div><p>No such device or address. The system tried to
+    use the device represented by a file you specified, and it
+    couldn’t find the device. This can mean that the device file was
+    installed incorrectly, or that the physical device is missing or
+    not correctly attached to the&nbsp;computer.</p></div>
+            <ul>
+              <li>Value: <code>6</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nodev">G_FILE_ERROR_NODEV</code>
+            <a class="anchor" href="#nodev"></a>
+          </dt>
+          <dd>
+            <div><p>The underlying file system of the specified file
+    does not support memory&nbsp;mapping.</p></div>
+            <ul>
+              <li>Value: <code>7</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="rofs">G_FILE_ERROR_ROFS</code>
+            <a class="anchor" href="#rofs"></a>
+          </dt>
+          <dd>
+            <div><p>The directory containing the new link can’t be
+    modified because it’s on a read-only file&nbsp;system.</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="txtbsy">G_FILE_ERROR_TXTBSY</code>
+            <a class="anchor" href="#txtbsy"></a>
+          </dt>
+          <dd>
+            <div><p>Text file&nbsp;busy.</p></div>
+            <ul>
+              <li>Value: <code>9</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="fault">G_FILE_ERROR_FAULT</code>
+            <a class="anchor" href="#fault"></a>
+          </dt>
+          <dd>
+            <div><p>You passed in a pointer to bad memory.
+    (GLib won’t reliably return this, don’t pass in pointers to bad&nbsp;memory.).</p></div>
+            <ul>
+              <li>Value: <code>10</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="loop">G_FILE_ERROR_LOOP</code>
+            <a class="anchor" href="#loop"></a>
+          </dt>
+          <dd>
+            <div><p>Too many levels of symbolic links were encountered
+    in looking up a file name. This often indicates a cycle of symbolic&nbsp;links.</p></div>
+            <ul>
+              <li>Value: <code>11</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nospc">G_FILE_ERROR_NOSPC</code>
+            <a class="anchor" href="#nospc"></a>
+          </dt>
+          <dd>
+            <div><p>No space left on device; write operation on a
+    file failed because the disk is&nbsp;full.</p></div>
+            <ul>
+              <li>Value: <code>12</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nomem">G_FILE_ERROR_NOMEM</code>
+            <a class="anchor" href="#nomem"></a>
+          </dt>
+          <dd>
+            <div><p>No memory available. The system cannot allocate
+    more virtual memory because its capacity is&nbsp;full.</p></div>
+            <ul>
+              <li>Value: <code>13</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="mfile">G_FILE_ERROR_MFILE</code>
+            <a class="anchor" href="#mfile"></a>
+          </dt>
+          <dd>
+            <div><p>The current process has too many files open and
+    can’t open any more. Duplicate descriptors do count toward this&nbsp;limit.</p></div>
+            <ul>
+              <li>Value: <code>14</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nfile">G_FILE_ERROR_NFILE</code>
+            <a class="anchor" href="#nfile"></a>
+          </dt>
+          <dd>
+            <div><p>There are too many distinct file openings in the
+    entire&nbsp;system.</p></div>
+            <ul>
+              <li>Value: <code>15</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="badf">G_FILE_ERROR_BADF</code>
+            <a class="anchor" href="#badf"></a>
+          </dt>
+          <dd>
+            <div><p>Bad file descriptor; for example, I/O on a
+    descriptor that has been closed or reading from a descriptor open
+    only for writing (or vice&nbsp;versa).</p></div>
+            <ul>
+              <li>Value: <code>16</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="inval">G_FILE_ERROR_INVAL</code>
+            <a class="anchor" href="#inval"></a>
+          </dt>
+          <dd>
+            <div><p>Invalid argument. This is used to indicate
+    various kinds of problems with passing the wrong argument to a
+    library&nbsp;function.</p></div>
+            <ul>
+              <li>Value: <code>17</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="pipe">G_FILE_ERROR_PIPE</code>
+            <a class="anchor" href="#pipe"></a>
+          </dt>
+          <dd>
+            <div><p>Broken pipe; there is no process reading from the
+    other end of a pipe. Every library function that returns this
+    error code also generates a ‘<span class="caps">SIGPIPE</span>’ signal; this signal
+    terminates the program if not handled or blocked. Thus, your
+    program will never actually see this code unless it has handled
+    or blocked ‘<span class="caps">SIGPIPE</span>’.</p></div>
+            <ul>
+              <li>Value: <code>18</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="again">G_FILE_ERROR_AGAIN</code>
+            <a class="anchor" href="#again"></a>
+          </dt>
+          <dd>
+            <div><p>Resource temporarily unavailable; the call might
+    work if you try again&nbsp;later.</p></div>
+            <ul>
+              <li>Value: <code>19</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="intr">G_FILE_ERROR_INTR</code>
+            <a class="anchor" href="#intr"></a>
+          </dt>
+          <dd>
+            <div><p>Interrupted function call; an asynchronous signal
+    occurred and prevented completion of the call. When this
+    happens, you should try the call&nbsp;again.</p></div>
+            <ul>
+              <li>Value: <code>20</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="io">G_FILE_ERROR_IO</code>
+            <a class="anchor" href="#io"></a>
+          </dt>
+          <dd>
+            <div><p>Input/output error; usually used for physical read
+   or write errors. i.e. the disk or other physical device hardware
+   is returning&nbsp;errors.</p></div>
+            <ul>
+              <li>Value: <code>21</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="perm">G_FILE_ERROR_PERM</code>
+            <a class="anchor" href="#perm"></a>
+          </dt>
+          <dd>
+            <div><p>Operation not permitted; only the owner of the
+   file (or other resource) or processes with special privileges can
+   perform the&nbsp;operation.</p></div>
+            <ul>
+              <li>Value: <code>22</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nosys">G_FILE_ERROR_NOSYS</code>
+            <a class="anchor" href="#nosys"></a>
+          </dt>
+          <dd>
+            <div><p>Function not implemented; this indicates that
+   the system is missing some&nbsp;functionality.</p></div>
+            <ul>
+              <li>Value: <code>23</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="failed">G_FILE_ERROR_FAILED</code>
+            <a class="anchor" href="#failed"></a>
+          </dt>
+          <dd>
+            <div><p>Does not correspond to a <span class="caps">UNIX</span> error code; this
+   is the standard “failed for unspecified reason” error code present
+   in all <code>GError</code> error code enumerations. Returned if no specific
+   code&nbsp;applies.</p></div>
+            <ul>
+              <li>Value: <code>24</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      <li class="toc-list-item"><a href="#members"><span class="link-text">Members</span></a></li>
+      
+
+      
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/error.FileError.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

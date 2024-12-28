@@ -1,0 +1,267 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/type_func.Array.binary_search.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Array.binary_search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Array.binary_search">
+  <meta property="og:description" content="Reference for GLib.Array.binary_search">
+  <meta name="twitter:title" content="GLib.Array.binary_search">
+  <meta name="twitter:description" content="Reference for GLib.Array.binary_search">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.Array.html">Array</a><span class="sep"></span>binary_search</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.62</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/garray.h#L137">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gboolean</span>
+<span class="n">g_array_binary_search</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GArray</span><span class="o">*</span><span class="w"> </span><span class="n">array</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">target</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GCompareFunc</span><span class="w"> </span><span class="n">compare_func</span><span class="p">,</span>
+<span class="w">  </span><span class="n">guint</span><span class="o">*</span><span class="w"> </span><span class="n">out_match_index</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/garray.c#L967">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Checks whether <code>target</code> exists in <code>array</code> by performing a binary
+search based on the given comparison function <code>compare_func</code> which
+get pointers to items as arguments. If the element is found, <code>TRUE</code>
+is returned and the element’s index is returned in <code>out_match_index</code>
+(if non-<code>NULL</code>). Otherwise, <code>FALSE</code> is returned and <code>out_match_index</code>
+is undefined. If <code>target</code> exists multiple times in <code>array</code>, the index
+of the first instance is returned. This search is using a binary
+search, so the <code>array</code> must absolutely be sorted to return a correct
+result (if not, the function may produce&nbsp;false-negative).</p>
+<p>This example defines a comparison function and search an element in a <code>GArray</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">gint</span>
+<span class="nf">cmpint</span><span class="w"> </span><span class="p">(</span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gint</span><span class="w"> </span><span class="o">*</span><span class="n">_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gint</span><span class="w"> </span><span class="o">*</span><span class="n">_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">_a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">*</span><span class="n">_b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">...</span>
+<span class="n">gint</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">424242</span><span class="p">;</span>
+<span class="n">guint</span><span class="w"> </span><span class="n">matched_index</span><span class="p">;</span>
+<span class="n">gboolean</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_array_binary_search</span><span class="w"> </span><span class="p">(</span><span class="n">garray</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">cmpint</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">matched_index</span><span class="p">);</span>
+<span class="p">...</span>
+</pre></div>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.62</p>
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>array</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>gpointer</code></p>
+            <p>A <code>GArray</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>target</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gconstpointer</code></p>
+            <p>A pointer to the item to look&nbsp;up.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>compare_func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.CompareFunc.html"><code>GCompareFunc</code></a></p>
+            <p>A <code>GCompareFunc</code> used to locate <code>target</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>out_match_index</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>guint*</code></p>
+            <p>Return location
+   for the index of the element, if&nbsp;found.</p>
+            <table>
+            <tbody><tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p><code>TRUE</code> if <code>target</code> is one of the elements of <code>array</code>, <code>FALSE</code> otherwise.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/type_func.Array.binary_search.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

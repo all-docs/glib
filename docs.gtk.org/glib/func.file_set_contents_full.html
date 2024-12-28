@@ -1,0 +1,327 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.file_set_contents_full.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.file_set_contents_full</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.file_set_contents_full">
+  <meta property="og:description" content="Reference for GLib.file_set_contents_full">
+  <meta name="twitter:title" content="GLib.file_set_contents_full">
+  <meta name="twitter:description" content="Reference for GLib.file_set_contents_full">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>file_set_contents_full</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.66</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gfileutils.h#L131">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gboolean</span>
+<span class="n">g_file_set_contents_full</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gssize</span><span class="w"> </span><span class="n">length</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GFileSetContentsFlags</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">mode</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GError</span><span class="o">**</span><span class="w"> </span><span class="n">error</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gfileutils.c#L1259">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Writes all of <code>contents</code> to a file named <code>filename</code>, with good error checking.
+If a file called <code>filename</code> already exists it will be&nbsp;overwritten.</p>
+<p><code>flags</code> control the properties of the write operation: whether it’s atomic,
+and what the tradeoff is between returning quickly or being resilient to
+system&nbsp;crashes.</p>
+<p>As this function performs file I/O, it is recommended to not call it anywhere
+where blocking would cause problems, such as in the main loop of a graphical
+application. In particular, if <code>flags</code> has any value other than
+<code>G_FILE_SET_CONTENTS_NONE</code> then this function may call <code>fsync()</code>.</p>
+<p>If <code>G_FILE_SET_CONTENTS_CONSISTENT</code> is set in <code>flags</code>, the operation is atomic
+in the sense that it is first written to a temporary file which is then
+renamed to the final&nbsp;name.</p>
+<p>Notes:</p>
+<ul>
+<li>
+<p>On <span class="caps">UNIX</span>, if <code>filename</code> already exists hard links to <code>filename</code> will break.
+  Also since the file is recreated, existing permissions, access control
+  lists, metadata etc. may be lost. If <code>filename</code> is a symbolic link,
+  the link itself will be replaced, not the linked&nbsp;file.</p>
+</li>
+<li>
+<p>On <span class="caps">UNIX</span>, if <code>filename</code> already exists and is non-empty, and if the system
+  supports it (via a journalling filesystem or equivalent), and if
+  <code>G_FILE_SET_CONTENTS_CONSISTENT</code> is set in <code>flags</code>, the <code>fsync()</code> call (or
+  equivalent) will be used to ensure atomic replacement: <code>filename</code>
+  will contain either its old contents or <code>contents</code>, even in the face of
+  system power loss, the disk being unsafely removed,&nbsp;etc.</p>
+</li>
+<li>
+<p>On <span class="caps">UNIX</span>, if <code>filename</code> does not already exist or is empty, there is a
+  possibility that system power loss etc. after calling this function will
+  leave <code>filename</code> empty or full of <span class="caps">NUL</span> bytes, depending on the underlying
+  filesystem, unless <code>G_FILE_SET_CONTENTS_DURABLE</code> and
+  <code>G_FILE_SET_CONTENTS_CONSISTENT</code> are set in <code>flags</code>.</p>
+</li>
+<li>
+<p>On Windows renaming a file will not remove an existing file with the
+  new name, so on Windows there is a race condition between the existing
+  file being removed and the temporary file being&nbsp;renamed.</p>
+</li>
+<li>
+<p>On Windows there is no way to remove a file that is open to some
+  process, or mapped into memory. Thus, this function will fail if
+  <code>filename</code> already exists and is&nbsp;open.</p>
+</li>
+</ul>
+<p>If the call was successful, it returns <code>TRUE</code>. If the call was not successful,
+it returns <code>FALSE</code> and sets <code>error</code>. The error domain is <code>G_FILE_ERROR</code>.
+Possible error codes are those in the <code>GFileError</code> enumeration.</p>
+<p>Note that the name for the temporary file is constructed by appending up
+to 7 characters to <code>filename</code>.</p>
+<p>If the file didn’t exist before and is created, it will be given the
+permissions from <code>mode</code>. Otherwise, the permissions of the existing file may
+be changed to <code>mode</code> depending on <code>flags</code>, or they may remain&nbsp;unchanged.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.66</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>filename</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>Name of a file to write <code>contents</code> to, in the GLib file name&nbsp;encoding.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a platform-native string, using the preferred OS encoding on Unix and UTF-8 on Windows.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>contents</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>guint8</code></p>
+            <p>String to write to the&nbsp;file.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td>The length of the array is specified in the <code>length</code> argument.</td></tr>
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>length</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gssize</code></p>
+            <p>Length of <code>contents</code>, or -1 if <code>contents</code> is a nul-terminated&nbsp;string.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>flags</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="flags.FileSetContentsFlags.html"><code>GFileSetContentsFlags</code></a></p>
+            <p>Flags controlling the safety vs speed of the&nbsp;operation.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>mode</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>int</code></p>
+            <p>File mode, as passed to <code>open()</code>; typically this will be <code>0666</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+          <dt class="arg-name"><code>error</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="javascript:void(0)" data-namespace="GLib" data-link="struct.Error.html" class="external"><code>GError **</code></a></p>
+            <p>The return location for <a href="error-reporting.html#rules-for-use-of-gerror">a recoverable error</a>.</p>
+            <table>
+              <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+              <tr><td>If the return location is not <code>NULL</code>, then you must initialize it to a <code>NULL</code> <code>GError*</code>.</td></tr>
+              <tr><td>The argument will be left initialized to <code>NULL</code> by the function if there are no errors.</td></tr>
+              <tr><td>In case of error, the argument will be set to a newly allocated <code>GError</code>; the caller will take ownership of the data, and be responsible for freeing it.</td></tr>
+            </tbody></table>
+          </dd>
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p><code>TRUE</code> on success, <code>FALSE</code> if an error&nbsp;occurred.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.file_set_contents_full.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

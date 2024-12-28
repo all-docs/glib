@@ -1,0 +1,197 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/main-loop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: The Main Event Loop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: The Main Event Loop">
+  <meta property="og:description" content="Reference for GLib-2.0: The Main Event Loop">
+  <meta name="twitter:title" content="GLib: The Main Event Loop">
+  <meta name="twitter:description" content="Reference for GLib-2.0: The Main Event Loop">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    The Main Event Loop
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="the-main-event-loop">The Main Event Loop<a class="md-anchor" href="#the-main-event-loop" title="Permanent link"></a></h1>
+<p>The main event loop manages all the available sources of events for GLib and
+<span class="caps">GTK</span> applications. These events can come from any number of different types
+of sources such as file descriptors (plain files, pipes or sockets) and
+timeouts. New types of event sources can also be added using
+<code>g_source_attach()</code>.</p>
+<p>To allow multiple independent sets of sources to be handled in different
+threads, each source is associated with a <code>GMainContext</code>.  A <code>GMainContext</code>
+can only be running in a single thread, but sources can be added to it and
+removed from it from other threads. All functions which operate on a
+<code>GMainContext</code> or a built-in <code>GSource</code> are&nbsp;thread-safe.</p>
+<p>Each event source is assigned a priority. The default priority,
+<code>G_PRIORITY_DEFAULT</code>, is 0. Values less than 0 denote higher priorities.
+Values greater than 0 denote lower priorities. Events from high priority
+sources are always processed before events from lower priority&nbsp;sources.</p>
+<p>Idle functions can also be added, and assigned a priority. These will be run
+whenever no events with a higher priority are ready to be&nbsp;processed.</p>
+<p>The <code>GMainLoop</code> data type represents a main event loop. A GMainLoop is
+created with <code>g_main_loop_new()</code>. After adding the initial event sources,
+<code>g_main_loop_run()</code> is called. This continuously checks for new events from
+each of the event sources and dispatches them. Finally, the processing of an
+event from one of the sources leads to a call to <code>g_main_loop_quit()</code> to
+exit the main loop, and <code>g_main_loop_run()</code> returns.</p>
+<p>It is possible to create new instances of <code>GMainLoop</code> recursively.  This is
+often used in <span class="caps">GTK</span> applications when showing modal dialog boxes. Note that
+event sources are associated with a particular <code>GMainContext</code>, and will be
+checked and dispatched for all main loops associated with that&nbsp;GMainContext.</p>
+<p>Libraries may contain wrappers of some of these functions, e.g.
+<code>gtk_main()</code>, <code>gtk_main_quit()</code> and <code>gtk_events_pending()</code>.</p>
+<h2 id="creating-new-source-types">Creating new source types<a class="md-anchor" href="#creating-new-source-types" title="Permanent link"></a></h2>
+<p>One of the unusual features of the <code>GMainLoop</code> functionality is that new
+types of event source can be created and used in addition to the builtin
+type of event source. A new event source type is used for handling <span class="caps">GDK</span>
+events. A new source type is created by “deriving” from the <code>GSource</code>
+structure. The derived type of source is represented by a structure that has
+the <code>GSource</code> structure as a first element, and other elements specific to
+the new source type. To create an instance of the new source type, call
+<code>g_source_new()</code> passing in the size of the derived structure and a table of
+functions. These <code>GSourceFuncs</code> determine the behavior of the new source&nbsp;type.</p>
+<p>New source types basically interact with the main context in two ways. Their
+prepare function in <code>GSourceFuncs</code> can set a timeout to determine the
+maximum amount of time that the main loop will sleep before checking the
+source again. In addition, or as well, the source can add file descriptors
+to the set that the main context checks using <code>g_source_add_poll()</code>.</p>
+<h2 id="customizing-the-main-loop-iteration">Customizing the main loop iteration<a class="md-anchor" href="#customizing-the-main-loop-iteration" title="Permanent link"></a></h2>
+<p>Single iterations of a <code>GMainContext</code> can be run with
+<code>g_main_context_iteration()</code>. In some cases, more detailed control of
+exactly how the details of the main loop work is desired, for instance, when
+integrating the <code>GMainLoop</code> with an external main loop.  In such cases, you
+can call the component functions of <code>g_main_context_iteration()</code> directly.
+These functions are <code>g_main_context_prepare()</code>, <code>g_main_context_query()</code>,
+<code>g_main_context_check()</code> and <code>g_main_context_dispatch()</code>.</p>
+<h2 id="state-of-a-main-context">State of a Main Context<a class="md-anchor" href="#state-of-a-main-context" title="Permanent link"></a></h2>
+<p>The operation of these functions can best be seen in terms of a state
+diagram, as shown in this&nbsp;image.</p>
+<p><img alt="" src="mainloop-states.gif"></p>
+<p>On <span class="caps">UNIX</span>, the GLib mainloop is incompatible with <code>fork()</code>. Any program using
+the mainloop must either <code>exec()</code> or <code>exit()</code> from the child without
+returning to the&nbsp;mainloop.</p>
+<h2 id="memory-management-of-sources">Memory management of sources<a class="md-anchor" href="#memory-management-of-sources" title="Permanent link"></a></h2>
+<p>There are two options for memory management of the user data passed to a
+<code>GSource</code> to be passed to its callback on invocation. This data is provided
+in calls to <code>g_timeout_add()</code>, <code>g_timeout_add_full()</code>, <code>g_idle_add()</code>, etc.
+and more generally, using <code>g_source_set_callback()</code>. This data is typically
+an object which ‘owns’ the timeout or idle callback, such as a widget or a
+network protocol implementation. In many cases, it is an error for the
+callback to be invoked after this owning object has been destroyed, as that
+results in use of freed&nbsp;memory.</p>
+<p>The first, and preferred, option is to store the source <span class="caps">ID</span> returned by
+functions such as <code>g_timeout_add()</code> or <code>g_source_attach()</code>, and explicitly
+remove that source from the main context using <code>g_source_remove()</code> when the
+owning object is finalized. This ensures that the callback can only be
+invoked while the object is still&nbsp;alive.</p>
+<p>The second option is to hold a strong reference to the object in the
+callback, and to release it in the callback’s <code>GDestroyNotify</code>. This ensures
+that the object is kept alive until after the source is finalized, which is
+guaranteed to be after it is invoked for the final time. The
+<code>GDestroyNotify</code> is another callback passed to the ‘full’ variants of
+<code>GSource</code> functions (for example, <code>g_timeout_add_full()</code>). It is called when
+the source is finalized, and is designed for releasing references like&nbsp;this.</p>
+<p>One important caveat of this second approach is that it will keep the object
+alive indefinitely if the main loop is stopped before the <code>GSource</code> is
+invoked, which may be&nbsp;undesirable.</p>
+<h2 id="tutorial">Tutorial<a class="md-anchor" href="#tutorial" title="Permanent link"></a></h2>
+<p><code>GMainContext</code> is complicated, and can be particularly intimidating for
+developers new to working with GLib. Unfortunately, improper use of
+<code>GMainContext</code> often results in bugs that may be difficult to debug. The
+<a href="https://developer.gnome.org/documentation/tutorials/main-contexts.html">Main Contexts tutorial</a>
+provides valuable guidance for developers working with <code>GMainContext</code>
+and is highly recommended reading. In particular, the section
+<a href="https://developer.gnome.org/documentation/tutorials/main-contexts.html#using-gmaincontext-in-a-library">Using GMainContext in a Library</a>
+documents several pitfalls that library authors should&nbsp;avoid.</p>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#creating-new-source-types"><span class="link-text">Creating new source types</span></a></li>
+        
+        <li class="toc-list-item"><a href="#customizing-the-main-loop-iteration"><span class="link-text">Customizing the main loop iteration</span></a></li>
+        
+        <li class="toc-list-item"><a href="#state-of-a-main-context"><span class="link-text">State of a Main Context</span></a></li>
+        
+        <li class="toc-list-item"><a href="#memory-management-of-sources"><span class="link-text">Memory management of sources</span></a></li>
+        
+        <li class="toc-list-item"><a href="#tutorial"><span class="link-text">Tutorial</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/main-loop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

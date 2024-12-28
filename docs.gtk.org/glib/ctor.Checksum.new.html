@@ -1,0 +1,201 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/ctor.Checksum.new.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Checksum.new</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Checksum.new">
+  <meta property="og:description" content="Reference for GLib.Checksum.new">
+  <meta name="twitter:title" content="GLib.Checksum.new">
+  <meta name="twitter:description" content="Reference for GLib.Checksum.new">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.Checksum.html">Checksum</a><span class="sep"></span>new</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.16</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gchecksum.h#L63">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GChecksum</span><span class="o">*</span>
+<span class="n">g_checksum_new</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GChecksumType</span><span class="w"> </span><span class="n">checksum_type</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gchecksum.c#L1449">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Creates a new <code>GChecksum</code>, using the checksum algorithm <code>checksum_type</code>.
+If the <code>checksum_type</code> is not known, <code>NULL</code> is returned.
+A <code>GChecksum</code> can be used to compute the checksum, or digest, of an
+arbitrary binary blob, using different hashing&nbsp;algorithms.</p>
+<p>A <code>GChecksum</code> works by feeding a binary blob through <code>g_checksum_update()</code>
+until there is data to be checked; the digest can then be extracted
+using g_checksum_get_string(), which will return the checksum as a
+hexadecimal string; or g_checksum_get_digest(), which will return a
+vector of raw bytes. Once either <code>g_checksum_get_string()</code> or
+<code>g_checksum_get_digest()</code> have been called on a <code>GChecksum</code>, the checksum
+will be closed and it won’t be possible to call <code>g_checksum_update()</code>
+on it&nbsp;anymore.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.16</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>checksum_type</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="enum.ChecksumType.html"><code>GChecksumType</code></a></p>
+            <p>The desired type of&nbsp;checksum.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.Checksum.html"><code>GChecksum</code></a></p>
+            <p>The newly created <code>GChecksum</code>, or <code>NULL</code>.
+  Use <code>g_checksum_free()</code> to free the memory allocated by&nbsp;it.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
+            <tr><td>The return value can be <code>NULL</code>.</td></tr>
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/ctor.Checksum.new.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

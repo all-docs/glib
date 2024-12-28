@@ -1,0 +1,271 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/building.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Building GLib</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Building GLib">
+  <meta property="og:description" content="Reference for GLib-2.0: Building GLib">
+  <meta name="twitter:title" content="GLib: Building GLib">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Building GLib">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Building GLib
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="building-glib">Building GLib<a class="md-anchor" href="#building-glib" title="Permanent link"></a></h1>
+<p>GLib uses the <a href="https://mesonbuild.com/">Meson build system</a>. The normal
+sequence for compiling and installing the GLib library is&nbsp;thus:</p>
+<div class="codehilite"><pre><span></span><code>$ meson setup _build
+$ meson compile -C _build
+$ meson install -C _build
+</code></pre></div>
+
+<p>On FreeBSD, you will need something more&nbsp;complex:</p>
+<div class="codehilite"><pre><span></span><code>$ env CPPFLAGS="-I/usr/local/include" LDFLAGS="-L/usr/local/lib -Wl,--disable-new-dtags" \
+&gt; meson setup \
+&gt; -Dxattr=false \
+&gt; -Dinstalled_tests=true \
+&gt; -Db_lundef=false \
+&gt; _build
+$ meson compile -C _build
+</code></pre></div>
+
+<p>The standard options provided by Meson may be passed to the <code>meson</code> command. Please see the Meson documentation or&nbsp;run:</p>
+<div class="codehilite"><pre><span></span><code>meson configure --help
+</code></pre></div>
+
+<p>for information about the standard&nbsp;options.</p>
+<p>GLib is compiled with
+<a href="https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#index-fstrict-aliasing">strict aliasing</a>
+disabled. It is strongly recommended that this is not re-enabled by overriding
+the compiler flags, as GLib has not been tested with strict aliasing and cannot
+be guaranteed to&nbsp;work.</p>
+<h2 id="dependencies">Dependencies<a class="md-anchor" href="#dependencies" title="Permanent link"></a></h2>
+<p>Before you can compile the GLib library, you need to have various other
+tools and libraries installed on your system. If you are building from a
+release archive, you will need a <a href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/docs/toolchain-requirements.md">compliant C
+toolchain</a>,
+Meson, and pkg-config; the requirements are the same when building from a
+Git repository clone of&nbsp;GLib.</p>
+<ul>
+<li><a href="https://www.freedesktop.org/wiki/Software/pkg-config/"><code>pkg-config</code></a> is a
+  tool for tracking the compilation flags needed for libraries that are used
+  by the GLib library. (For each library, a small <code>.pc</code> text file is
+  installed in a standard location that contains the compilation flags
+  needed for that library along with version number&nbsp;information). </li>
+</ul>
+<p>A <span class="caps">UNIX</span> build of GLib requires that the system implements at least the
+original 1990 version of <span class="caps">POSIX</span>. Beyond this, it depends on a number of other&nbsp;libraries.</p>
+<ul>
+<li>The <a href="http://www.gnu.org/software/libiconv/"><span class="caps">GNU</span> libiconv library</a> is
+  needed to build GLib if your system doesn’t have the <code>iconv()</code> function
+  for doing conversion between character encodings. Most modern systems
+  should have <code>iconv()</code>, however many older systems lack an <code>iconv()</code>
+  implementation. On such systems, you must install the libiconv library.
+  This can be found at:&nbsp;http://www.gnu.org/software/libiconv.</li>
+</ul>
+<p>If your system has an <code>iconv()</code> implementation but you want to use libiconv
+  instead, make sure it is installed to the default compiler header/library
+  search path (for instance, in <code>/usr/local/</code>). The <code>iconv.h</code> that libiconv
+  installs hides the system iconv. Meson then detects this, recognizes that the
+  system iconv is unusable and the external one is mandatory, and automatically
+  forces it to be&nbsp;used.</p>
+<p>If you are using the native iconv implementation on Solaris instead of
+  libiconv, you’ll need to make sure that you have the converters between
+  locale encodings and <span class="caps">UTF</span>-8 installed. At a minimum you’ll need the
+  SUNWuiu8 package. You probably should also install the SUNWciu8, SUNWhiu8,
+  SUNWjiu8, and SUNWkiu8&nbsp;packages.</p>
+<p>The native iconv on Compaq Tru64 doesn’t contain support for <span class="caps">UTF</span>-8, so
+  you’ll need to use <span class="caps">GNU</span> libiconv instead. (When using <span class="caps">GNU</span> libiconv for
+  GLib, you’ll need to use <span class="caps">GNU</span> libiconv for <span class="caps">GNU</span> gettext as well.) This
+  probably applies to related operating systems as&nbsp;well.</p>
+<ul>
+<li>
+<p>Python 3.5 or newer is required. Your system Python must conform to
+  <a href="https://www.python.org/dev/peps/pep-0394/"><span class="caps">PEP</span> 394</a> For FreeBSD, this means
+  that the <code>lang/python3</code> port must be&nbsp;installed.</p>
+</li>
+<li>
+<p>The libintl library from the <a href="http://www.gnu.org/software/gettext"><span class="caps">GNU</span>
+  gettext</a> package is needed if your
+  system doesn’t have the <code>gettext()</code> functionality for handling message
+  translation&nbsp;databases.</p>
+</li>
+<li>
+<p>A thread implementation is needed. The thread support in GLib can be based
+  upon <span class="caps">POSIX</span> threads or win32&nbsp;threads.</p>
+</li>
+<li>
+<p>GRegex uses the <a href="http://www.pcre.org/"><span class="caps">PCRE</span> library</a> for regular
+  expression matching. The system version of <span class="caps">PCRE</span> is used, unless not available
+  (which is the case on Android), in which case a fallback subproject is&nbsp;used.</p>
+</li>
+<li>
+<p>The optional extended attribute support in <span class="caps">GIO</span> requires the <code>getxattr()</code>
+  family of functions that may be provided by the C library or by the
+  standalone libattr library. To build GLib without extended attribute
+  support, use the <code>-Dxattr=false</code> option.</p>
+</li>
+<li>
+<p>The optional SELinux support in <span class="caps">GIO</span> requires libselinux. To build GLib
+  without SELinux support, use the <code>-Dselinux=disabled</code> option.</p>
+</li>
+<li>
+<p>The optional support for DTrace requires the <code>sys/sdt.h</code> header, which is
+  provided by SystemTap on Linux. To build GLib without DTrace, use the
+  <code>-Ddtrace=false</code> option.</p>
+</li>
+<li>
+<p>The optional support for SystemTap can be disabled with the
+  <code>-Dsystemtap=false</code> option. Additionally, you can control the location
+  where GLib installs the SystemTap probes, using the
+  <code>-Dtapset_install_dir=DIR</code> option.</p>
+</li>
+<li>
+<p><a href="https://gitlab.gnome.org/GNOME/gobject-introspection/">gobject-introspection</a>
+  is needed to generate introspection data for consumption by other projects,
+  and to generate the GLib documentation via
+  <a href="https://gitlab.gnome.org/GNOME/gi-docgen">gi-docgen</a>. There is a dependency
+  cycle between GLib and gobject-introspection. This can be broken by building
+  GLib first with <code>-Dintrospection=disabled</code>, then building
+  gobject-introspection against this copy of GLib, then re-building GLib against
+  the new gobject-introspection with <code>-Dintrospection=enabled</code>. The GLib <span class="caps">API</span>
+  documentation can be built during this second build process if
+  <code>-Ddocumentation=true</code> is also&nbsp;set.</p>
+</li>
+</ul>
+<h2 id="extra-configuration-options">Extra Configuration Options<a class="md-anchor" href="#extra-configuration-options" title="Permanent link"></a></h2>
+<p>In addition to the normal options, these additional ones are supported when
+configuring the GLib&nbsp;library:</p>
+<dl>
+<dt><code>--buildtype</code></dt>
+<dd>This is a standard Meson option which specifies how much debugging and
+  optimization to enable. If the build type is <code>debug</code>, <code>G_ENABLE_DEBUG</code> will be
+  defined and GLib will be built with additional debug code enabled. You can
+  override this behavior using <code>-Dglib_debug</code>.</dd>
+<dt><code>-Dforce_posix_threads=true</code></dt>
+<dd>Normally, Meson should be able to work out the correct thread implementation
+  to use. This option forces <span class="caps">POSIX</span> threads to be used even if the platform
+  provides another threading <span class="caps">API</span> (for example, on&nbsp;Windows).</dd>
+<dt><code>-Dbsymbolic_functions=false</code> and <code>-Dbsymbolic_functions=true</code></dt>
+<dd>By default, GLib uses the <code>-Bsymbolic-functions</code> linker flag to avoid
+  intra-library <span class="caps">PLT</span> jumps. A side-effect of this is that it is no longer
+  possible to override internal uses of GLib functions with <code>LD_PRELOAD</code>.
+  Therefore, it may make sense to turn this feature off in some
+  situations. The <code>-Dbsymbolic_functions=false</code> option allows to do&nbsp;that.</dd>
+<dt><code>-Ddocumentation=false</code> and <code>-Ddocumentation=true</code></dt>
+<dd>By default, GLib will not build documentation for the library and tools. This
+  option can be used to enable building the&nbsp;documentation.</dd>
+<dt><code>-Dman-pages=disabled</code> and <code>-Dman-pages=enabled</code></dt>
+<dd>By default, GLib will detect whether <code>rst2man</code> and the necessary DocBook
+  stylesheets are installed. If they are, then it will use them to build
+  the included man pages from the reStructuredText sources. These options can be
+  used to explicitly control whether man pages should be built and&nbsp;used.</dd>
+<dt><code>-Dxattr=false</code> and <code>-Dxattr=true</code></dt>
+<dd>By default, GLib will detect whether the <code>getxattr()</code> family of functions is
+  available. If it is, then extended attribute support will be included in
+  <span class="caps">GIO</span>. These options can be used to explicitly control whether extended
+  attribute support should be included or not. <code>getxattr()</code> and friends can be
+  provided by glibc or by the standalone libattr&nbsp;library.</dd>
+<dt><code>-Dselinux=auto</code>, <code>-Dselinux=enabled</code> or <code>-Dselinux=disabled</code></dt>
+<dd>By default, GLib will detect if libselinux is available and include SELinux
+  support in <span class="caps">GIO</span> if it is. These options can be used to explicitly control
+  whether SELinux support should be&nbsp;included.</dd>
+<dt><code>-Ddtrace=false</code> and <code>-Ddtrace=true</code></dt>
+<dd>By default, GLib will detect if DTrace support is available, and use it.
+  These options can be used to explicitly control whether DTrace support is
+  compiled into&nbsp;GLib.</dd>
+<dt><code>-Dsystemtap=false</code> and <code>-Dsystemtap=true</code></dt>
+<dd>This option requires DTrace support. If it is available, then GLib will also
+  check for the presence of&nbsp;SystemTap.</dd>
+<dt><code>-Db_coverage=true</code> and <code>-Db_coverage=false</code></dt>
+<dd>Enable the generation of coverage reports for the GLib tests. This requires
+  the lcov frontend to gcov from the Linux Test Project. To generate a
+  coverage report, use <code>ninja coverage-html</code>. The report is placed in the
+  <code>meson-logs</code> directory.</dd>
+</dl>
+    </div>
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      
+        
+        <li class="toc-list-item"><a href="#dependencies"><span class="link-text">Dependencies</span></a></li>
+        
+        <li class="toc-list-item"><a href="#extra-configuration-options"><span class="link-text">Extra Configuration Options</span></a></li>
+        
+      
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/building.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

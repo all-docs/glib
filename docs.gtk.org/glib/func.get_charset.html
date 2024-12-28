@@ -1,0 +1,205 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.get_charset.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.get_charset</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.get_charset">
+  <meta property="og:description" content="Reference for GLib.get_charset">
+  <meta name="twitter:title" content="GLib.get_charset">
+  <meta name="twitter:description" content="Reference for GLib.get_charset">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>get_charset</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gcharset.h#L33">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gboolean</span>
+<span class="n">g_get_charset</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">charset</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gcharset.c#L173">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Obtains the character set for the [current locale][setlocale]; you
+might use this character set as an argument to g_convert(), to convert
+from the current locale’s encoding to some other encoding. (Frequently
+<code>g_locale_to_utf8()</code> and <code>g_locale_from_utf8()</code> are nice shortcuts,&nbsp;though.)</p>
+<p>On Windows the character set returned by this function is the
+so-called system default <span class="caps">ANSI</span> code-page. That is the character set
+used by the “narrow” versions of C library and Win32 functions that
+handle file names. It might be different from the character set
+used by the C library’s current&nbsp;locale.</p>
+<p>On Linux, the character set is found by consulting <code>nl_langinfo()</code> if
+available. If not, the environment variables <code>LC_ALL</code>, <code>LC_CTYPE</code>, <code>LANG</code>
+and <code>CHARSET</code> are queried in order. <code>nl_langinfo()</code> returns the C locale if
+no locale has been loaded by&nbsp;setlocale().</p>
+<p>The return value is <code>TRUE</code> if the locale’s encoding is <span class="caps">UTF</span>-8, in that
+case you can perhaps avoid calling&nbsp;g_convert().</p>
+<p>The string returned in <code>charset</code> is not allocated, and should not be&nbsp;freed.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>charset</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const char**</code></p>
+            <p>Return location for character set
+  name, or <code>NULL</code>.</p>
+            <table>
+            <tbody><tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            <tr><td title="transfer: none">The returned data is owned by the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p><code>TRUE</code> if the returned charset is <span class="caps">UTF</span>-8.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.get_charset.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

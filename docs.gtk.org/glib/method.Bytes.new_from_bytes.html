@@ -1,0 +1,218 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.Bytes.new_from_bytes.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Bytes.new_from_bytes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.Bytes.new_from_bytes">
+  <meta priority="og:description" content="Reference for GLib.Bytes.new_from_bytes">
+  <meta name="twitter:title" content="GLib.Bytes.new_from_bytes">
+  <meta name="twitter:description" content="Reference for GLib.Bytes.new_from_bytes">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.Bytes.html">Bytes</a><span class="sep"></span>new_from_bytes</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.32</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gbytes.h#L55">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GBytes</span><span class="o">*</span>
+<span class="n">g_bytes_new_from_bytes</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GBytes</span><span class="o">*</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gsize</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gsize</span><span class="w"> </span><span class="n">length</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gbytes.c#L235">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Creates a <a href="struct.Bytes.html"><code>GBytes</code></a> which is a subsection of another <code>GBytes</code>.</p>
+<p>The <code>offset</code> + <code>length</code> may not be longer than the size of <code>bytes</code>.</p>
+<p>A reference to <code>bytes</code> will be held by the newly created <code>GBytes</code> until
+the byte data is no longer&nbsp;needed.</p>
+<p>Since 2.56, if <code>offset</code> is 0 and <code>length</code> matches the size of <code>bytes</code>, then
+<code>bytes</code> will be returned with the reference count incremented by 1. If <code>bytes</code>
+is a slice of another <code>GBytes</code>, then the resulting <code>GBytes</code> will reference
+the same <code>GBytes</code> instead of <code>bytes</code>. This allows consumers to simplify the
+usage of <code>GBytes</code> when asynchronously writing to&nbsp;streams.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.32</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>offset</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gsize</code></p>
+            <p>Offset which subsection starts&nbsp;at.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>length</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gsize</code></p>
+            <p>Length of&nbsp;subsection.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.Bytes.html"><code>GBytes</code></a></p>
+            <p>A new <a href="struct.Bytes.html"><code>GBytes</code></a>.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the method takes ownership of the returned data, and is responsible for freeing it.</td></tr>
+            
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.Bytes.new_from_bytes.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

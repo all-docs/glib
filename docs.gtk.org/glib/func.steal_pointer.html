@@ -1,0 +1,228 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.steal_pointer.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.steal_pointer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.steal_pointer">
+  <meta property="og:description" content="Reference for GLib.steal_pointer">
+  <meta name="twitter:title" content="GLib.steal_pointer">
+  <meta name="twitter:description" content="Reference for GLib.steal_pointer">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>steal_pointer</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.44</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmem.h#L233">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">gpointer</span>
+<span class="n">g_steal_pointer</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">pp</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmem.h#L177">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Sets <code>pp</code> to <code>NULL</code>, returning the value that was there&nbsp;before.</p>
+<p>Conceptually, this transfers the ownership of the pointer from the
+referenced variable to the “caller” of the macro (ie: “steals” the&nbsp;reference).</p>
+<p>The return value will be properly typed, according to the type of
+<code>pp</code>.</p>
+<p>This can be very useful when combined with <code>g_autoptr()</code> to prevent the
+return value of a function from being automatically freed.  Consider
+the following example (which only works on <span class="caps">GCC</span> and&nbsp;clang):</p>
+<div class="codehilite"><pre><span></span><code>GObject *
+create_object (void)
+{
+  g_autoptr(GObject) obj = g_object_new (G_TYPE_OBJECT, NULL);
+
+  if (early_error_case)
+    return NULL;
+
+  return g_steal_pointer (&amp;obj);
+}
+</code></pre></div>
+
+<p>It can also be used in similar ways for ‘out’ parameters and is
+particularly useful for dealing with optional out&nbsp;parameters:</p>
+<div class="codehilite"><pre><span></span><code>gboolean
+get_object (GObject **obj_out)
+{
+  g_autoptr(GObject) obj = g_object_new (G_TYPE_OBJECT, NULL);
+
+  if (early_error_case)
+    return FALSE;
+
+  if (obj_out)
+    *obj_out = g_steal_pointer (&amp;obj);
+
+  return TRUE;
+}
+</code></pre></div>
+
+<p>In the above example, the object will be automatically freed in the
+early error case and also in the case that <code>NULL</code> was given for
+<code>obj_out</code>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.44</p>
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>pp</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>A pointer to a&nbsp;pointer.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>No description available.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the called function.</td></tr>
+            <tr><td>The return value can be <code>NULL</code>.</td></tr>
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.steal_pointer.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

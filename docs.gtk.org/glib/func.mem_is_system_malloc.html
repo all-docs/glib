@@ -1,0 +1,163 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.mem_is_system_malloc.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.mem_is_system_malloc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.mem_is_system_malloc">
+  <meta property="og:description" content="Reference for GLib.mem_is_system_malloc">
+  <meta name="twitter:title" content="GLib.mem_is_system_malloc">
+  <meta name="twitter:description" content="Reference for GLib.mem_is_system_malloc">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>mem_is_system_malloc</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem deprecated">deprecated: 2.46</span>&nbsp;</p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmem.h#L416">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gboolean</span>
+<span class="n">g_mem_is_system_malloc</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="kt">void</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmem.c#L534">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Checks whether the allocator used by <code>g_malloc()</code> is the system’s
+malloc implementation. If it returns <code>TRUE</code> memory allocated with
+<code>malloc()</code> can be used interchangeably with memory allocated using g_malloc().
+This function is useful for avoiding an extra copy of allocated memory returned
+by a non-GLib-based <span class="caps">API</span>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        <div class="admonition deprecation">
+          <p class="admonition-title">Deprecated since: 2.46</p><p>GLib always uses the system malloc, so this function always
+returns <code>TRUE</code>.</p></div>
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p>If <code>TRUE</code>, <code>malloc()</code> and <code>g_malloc()</code> can be&nbsp;mixed.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.mem_is_system_malloc.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

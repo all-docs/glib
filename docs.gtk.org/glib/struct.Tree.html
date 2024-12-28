@@ -1,0 +1,471 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Tree.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Tree</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Tree">
+  <meta property="og:description" content="Reference for GLib.Tree">
+  <meta name="twitter:title" content="GLib.Tree">
+  <meta name="twitter:description" content="Reference for GLib.Tree">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>Tree</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtree.c#L43">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GTree</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The GTree struct is an opaque data structure representing a
+[balanced binary tree][glib-Balanced-Binary-Trees]. It should be
+accessed only by using the following&nbsp;functions.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.Tree.new.html">g_tree_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GTree</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Tree.new_full.html">g_tree_new_full</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GTree</code> like <code>g_tree_new()</code> and allows to specify functions
+to free the memory allocated for the key and value that get called when
+removing the entry from the <code>GTree</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Tree.new_with_data.html">g_tree_new_with_data</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GTree</code> with a comparison function that accepts user data.
+See <code>g_tree_new()</code> for more&nbsp;details.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Tree.destroy.html">g_tree_destroy</a></h6>
+          <div class="docblock">
+            <p>Removes all keys and values from the <code>GTree</code> and decreases its
+reference count by one. If keys and/or values are dynamically
+allocated, you should either free them first or create the <code>GTree</code>
+using g_tree_new_full(). In the latter case the destroy functions
+you supplied will be called on all keys and values before destroying
+the <code>GTree</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.foreach.html">g_tree_foreach</a></h6>
+          <div class="docblock">
+            <p>Calls the given function for each of the key/value pairs in the <code>GTree</code>.
+The function is passed the key and value of each pair, and the given
+<code>data</code> parameter. The tree is traversed in sorted&nbsp;order.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.foreach_node.html">g_tree_foreach_node</a></h6>
+          <div class="docblock">
+            <p>Calls the given function for each of the nodes in the <code>GTree</code>.
+The function is passed the pointer to the particular node, and the given
+<code>data</code> parameter. The tree traversal happens&nbsp;in-order.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.height.html">g_tree_height</a></h6>
+          <div class="docblock">
+            <p>Gets the height of a <code>GTree</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.insert.html">g_tree_insert</a></h6>
+          <div class="docblock">
+            <p>Inserts a key/value pair into a <code>GTree</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.insert_node.html">g_tree_insert_node</a></h6>
+          <div class="docblock">
+            <p>Inserts a key/value pair into a <code>GTree</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.lookup.html">g_tree_lookup</a></h6>
+          <div class="docblock">
+            <p>Gets the value corresponding to the given key. Since a <code>GTree</code> is
+automatically balanced as key/value pairs are added, key lookup
+is O(log n) (where n is the number of key/value pairs in the&nbsp;tree).</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.lookup_extended.html">g_tree_lookup_extended</a></h6>
+          <div class="docblock">
+            <p>Looks up a key in the <code>GTree</code>, returning the original key and the
+associated value. This is useful if you need to free the memory
+allocated for the original key, for example before calling&nbsp;g_tree_remove().</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.lookup_node.html">g_tree_lookup_node</a></h6>
+          <div class="docblock">
+            <p>Gets the tree node corresponding to the given key. Since a <code>GTree</code> is
+automatically balanced as key/value pairs are added, key lookup
+is O(log n) (where n is the number of key/value pairs in the&nbsp;tree).</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.lower_bound.html">g_tree_lower_bound</a></h6>
+          <div class="docblock">
+            <p>Gets the lower bound node corresponding to the given key,
+or <code>NULL</code> if the tree is empty or all the nodes in the tree
+have keys that are strictly lower than the searched&nbsp;key.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.nnodes.html">g_tree_nnodes</a></h6>
+          <div class="docblock">
+            <p>Gets the number of nodes in a <code>GTree</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.node_first.html">g_tree_node_first</a></h6>
+          <div class="docblock">
+            <p>Returns the first in-order node of the tree, or <code>NULL</code>
+for an empty&nbsp;tree.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.node_last.html">g_tree_node_last</a></h6>
+          <div class="docblock">
+            <p>Returns the last in-order node of the tree, or <code>NULL</code>
+for an empty&nbsp;tree.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.ref.html">g_tree_ref</a></h6>
+          <div class="docblock">
+            <p>Increments the reference count of <code>tree</code> by&nbsp;one.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.22</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.remove.html">g_tree_remove</a></h6>
+          <div class="docblock">
+            <p>Removes a key/value pair from a <code>GTree</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.remove_all.html">g_tree_remove_all</a></h6>
+          <div class="docblock">
+            <p>Removes all nodes from a <code>GTree</code> and destroys their keys and values,
+then resets the <code>GTree</code>’s root to <code>NULL</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.70</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.replace.html">g_tree_replace</a></h6>
+          <div class="docblock">
+            <p>Inserts a new key and value into a <code>GTree</code> as <code>g_tree_replace_node()</code> does,
+only this function does not return the inserted or set&nbsp;node.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.replace_node.html">g_tree_replace_node</a></h6>
+          <div class="docblock">
+            <p>Inserts a new key and value into a <code>GTree</code> similar to g_tree_insert_node().
+The difference is that if the key already exists in the <code>GTree</code>, it gets
+replaced by the new key. If you supplied a <code>value_destroy_func</code> when
+creating the <code>GTree</code>, the old value is freed using that function. If you
+supplied a <code>key_destroy_func</code> when creating the <code>GTree</code>, the old key is
+freed using that&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.search.html">g_tree_search</a></h6>
+          <div class="docblock">
+            <p>Searches a <code>GTree</code> using <code>search_func</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.search_node.html">g_tree_search_node</a></h6>
+          <div class="docblock">
+            <p>Searches a <code>GTree</code> using <code>search_func</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.steal.html">g_tree_steal</a></h6>
+          <div class="docblock">
+            <p>Removes a key and its associated value from a <code>GTree</code> without calling
+the key and value destroy&nbsp;functions.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Tree.traverse.html">g_tree_traverse</a></h6>
+          <div class="docblock">
+            <p>Calls the given function for each node in the <code>GTree</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.2</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.unref.html">g_tree_unref</a></h6>
+          <div class="docblock">
+            <p>Decrements the reference count of <code>tree</code> by one.
+If the reference count drops to 0, all keys and values will
+be destroyed (if destroy functions were specified) and all
+memory allocated by <code>tree</code> will be&nbsp;released.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.22</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Tree.upper_bound.html">g_tree_upper_bound</a></h6>
+          <div class="docblock">
+            <p>Gets the upper bound node corresponding to the given key,
+or <code>NULL</code> if the tree is empty or all the nodes in the tree
+have keys that are lower than or equal to the searched&nbsp;key.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Tree.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

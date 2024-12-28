@@ -1,0 +1,256 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/type_func.PtrArray.new_from_null_terminated_array.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.PtrArray.new_from_null_terminated_array</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.PtrArray.new_from_null_terminated_array">
+  <meta property="og:description" content="Reference for GLib.PtrArray.new_from_null_terminated_array">
+  <meta name="twitter:title" content="GLib.PtrArray.new_from_null_terminated_array">
+  <meta name="twitter:description" content="Reference for GLib.PtrArray.new_from_null_terminated_array">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span><a href="struct.PtrArray.html">PtrArray</a><span class="sep"></span>new_from_null_terminated_array</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.76</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/garray.h#L184">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GPtrArray</span><span class="o">*</span>
+<span class="n">g_ptr_array_new_from_null_terminated_array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GCopyFunc</span><span class="w"> </span><span class="n">copy_func</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">copy_func_user_data</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GDestroyNotify</span><span class="w"> </span><span class="n">element_free_func</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/garray.c#L1359">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Creates a new <code>GPtrArray</code> copying the pointers from <code>data</code> after having
+computed the length of it and with a reference count of 1.
+This avoids having to manually add each element one by one.
+If <code>copy_func</code> is provided, then it is used to copy the data in the new
+array.
+It also set <code>element_free_func</code> for freeing each element when the array is
+destroyed either via g_ptr_array_unref(), when <code>g_ptr_array_free()</code> is called
+with <code>free_segment</code> set to <code>TRUE</code> or when removing&nbsp;elements.</p>
+<p>Do not use it if the <code>data</code> has more than <code>G_MAXUINT</code> elements. <code>GPtrArray</code>
+stores the length of its data in #guint, which may be shorter&nbsp;than</p>
+<h1 id="gsize">gsize.<a class="md-anchor" href="#gsize" title="Permanent link"></a></h1>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.76</p>
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>data</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>gpointer</code></p>
+            <p>An array of
+  pointers, <code>NULL</code> terminated; or <code>NULL</code> for an empty&nbsp;array.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            <tr><td>The array must be <code>NULL</code>-terminated.</td></tr>
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>copy_func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.CopyFunc.html"><code>GCopyFunc</code></a></p>
+            <p>A copy function used to copy every element in the
+  array or <code>NULL</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>copy_func_user_data</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>User data passed to <code>copy_func</code>, or <code>NULL</code>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>element_free_func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.DestroyNotify.html"><code>GDestroyNotify</code></a></p>
+            <p>A function to free elements on <code>array</code>
+  destruction or <code>NULL</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>gpointer</code></p>
+            <p>A new <code>GPtrArray</code>.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
+            
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/type_func.PtrArray.new_from_null_terminated_array.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

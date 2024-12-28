@@ -1,0 +1,322 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Cond.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.Cond</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Cond">
+  <meta property="og:description" content="Reference for GLib.Cond">
+  <meta name="twitter:title" content="GLib.Cond">
+  <meta name="twitter:description" content="Reference for GLib.Cond">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>Cond</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gthread.c#L362">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GCond</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GCond</code> struct is an opaque data structure that represents a
+condition. Threads can block on a <code>GCond</code> if they find a certain
+condition to be false. If other threads change the state of this
+condition they signal the <code>GCond</code>, and that causes the waiting
+threads to be woken&nbsp;up.</p>
+<p>Consider the following example of a shared variable.  One or more
+threads can wait for data to be published to the variable and when
+another thread publishes the data, it can signal one of the waiting
+threads to wake up to collect the&nbsp;data.</p>
+<p>Here is an example for using GCond to block a thread until a condition
+is&nbsp;satisfied:</p>
+<div class="highlight"><pre><span></span><span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">current_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GMutex</span><span class="w"> </span><span class="n">data_mutex</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GCond</span><span class="w"> </span><span class="n">data_cond</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">void</span>
+<span class="w">  </span><span class="nf">push_data</span><span class="w"> </span><span class="p">(</span><span class="n">gpointer</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g_mutex_lock</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="n">current_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">    </span><span class="n">g_cond_signal</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_cond</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_mutex_unlock</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_mutex</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">gpointer</span>
+<span class="w">  </span><span class="nf">pop_data</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">gpointer</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">g_mutex_lock</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">current_data</span><span class="p">)</span>
+<span class="w">      </span><span class="n">g_cond_wait</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_cond</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_data</span><span class="p">;</span>
+<span class="w">    </span><span class="n">current_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">g_mutex_unlock</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_mutex</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+
+<p>Whenever a thread calls <code>pop_data()</code> now, it will wait until
+current_data is non-<code>NULL</code>, i.e. until some other thread
+has called&nbsp;push_data().</p>
+<p>The example shows that use of a condition variable must always be
+paired with a mutex.  Without the use of a mutex, there would be a
+race between the check of <code>current_data</code> by the while loop in
+<code>pop_data()</code> and waiting. Specifically, another thread could set
+<code>current_data</code> after the check, and signal the cond (with nobody
+waiting on it) before the first thread goes to sleep. <code>GCond</code> is
+specifically useful for its ability to release the mutex and go
+to sleep&nbsp;atomically.</p>
+<p>It is also important to use the <code>g_cond_wait()</code> and <code>g_cond_wait_until()</code>
+functions only inside a loop which checks for the condition to be
+true.  See <code>g_cond_wait()</code> for an explanation of why the condition may
+not be true even after it&nbsp;returns.</p>
+<p>If a <code>GCond</code> is allocated in static storage then it can be used
+without initialisation.  Otherwise, you should call <code>g_cond_init()</code>
+on it and <code>g_cond_clear()</code> when&nbsp;done.</p>
+<p>A <code>GCond</code> should only be accessed via the g_cond_&nbsp;functions.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="deprecated">
+        <h6><a href="type_func.Cond.new.html">g_cond_new</a></h6>
+        <div class="docblock">
+          <p>Allocates and initializes a new <code>GCond</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Cond.broadcast.html">g_cond_broadcast</a></h6>
+          <div class="docblock">
+            <p>If threads are waiting for <code>cond</code>, all of them are unblocked.
+If no threads are waiting for <code>cond</code>, this function has no effect.
+It is good practice to lock the same mutex as the waiting threads
+while calling this function, though not&nbsp;required.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Cond.clear.html">g_cond_clear</a></h6>
+          <div class="docblock">
+            <p>Frees the resources allocated to a <code>GCond</code> with&nbsp;g_cond_init().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Cond.free.html">g_cond_free</a></h6>
+          <div class="docblock">
+            <p>Destroys a <code>GCond</code> that has been created with&nbsp;g_cond_new().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Cond.init.html">g_cond_init</a></h6>
+          <div class="docblock">
+            <p>Initialises a <code>GCond</code> so that it can be&nbsp;used.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Cond.signal.html">g_cond_signal</a></h6>
+          <div class="docblock">
+            <p>If threads are waiting for <code>cond</code>, at least one of them is unblocked.
+If no threads are waiting for <code>cond</code>, this function has no effect.
+It is good practice to hold the same lock as the waiting thread
+while calling this function, though not&nbsp;required.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Cond.timed_wait.html">g_cond_timed_wait</a></h6>
+          <div class="docblock">
+            <p>Waits until this thread is woken up on <code>cond</code>, but not longer than
+until the time specified by <code>abs_time</code>. The <code>mutex</code> is unlocked before
+falling asleep and locked again before&nbsp;resuming.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Cond.wait.html">g_cond_wait</a></h6>
+          <div class="docblock">
+            <p>Atomically releases <code>mutex</code> and waits until <code>cond</code> is signalled.
+When this function returns, <code>mutex</code> is locked again and owned by the
+calling&nbsp;thread.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Cond.wait_until.html">g_cond_wait_until</a></h6>
+          <div class="docblock">
+            <p>Waits until either <code>cond</code> is signalled or <code>end_time</code> has&nbsp;passed.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Cond.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

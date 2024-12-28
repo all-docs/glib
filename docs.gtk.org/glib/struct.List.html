@@ -1,0 +1,545 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.List.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.List">
+  <meta property="og:description" content="Reference for GLib.List">
+  <meta name="twitter:title" content="GLib.List">
+  <meta name="twitter:description" content="Reference for GLib.List">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>List</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/glist.c#L39">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GList</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GList</span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GList</span><span class="o">*</span><span class="w"> </span><span class="n">prev</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GList</code> struct is used for each element in a doubly-linked&nbsp;list.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>data</code></dt>
+              <dd><p>Holds the element’s data, which can be a pointer to any kind
+       of data, or any integer value using the
+       [Type Conversion&nbsp;Macros][glib-Type-Conversion-Macros].</p></dd>
+            
+              <dt><code>next</code></dt>
+              <dd><p>Contains the link to the next element in the&nbsp;list.</p></dd>
+            
+              <dt><code>prev</code></dt>
+              <dd><p>Contains the link to the previous element in the&nbsp;list.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.List.alloc.html">g_list_alloc</a></h6>
+        <div class="docblock">
+          <p>Allocates space for one <code>GList</code> element. It is called by
+g_list_append(), g_list_prepend(), <code>g_list_insert()</code> and
+<code>g_list_insert_sorted()</code> and so is rarely used on its&nbsp;own.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.append.html">g_list_append</a></h6>
+        <div class="docblock">
+          <p>Adds a new element on to the end of the&nbsp;list.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.concat.html">g_list_concat</a></h6>
+        <div class="docblock">
+          <p>Adds the second <code>GList</code> onto the end of the first <code>GList</code>.
+Note that the elements of the second <code>GList</code> are not copied.
+They are used&nbsp;directly.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.copy.html">g_list_copy</a></h6>
+        <div class="docblock">
+          <p>Copies a <code>GList</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.copy_deep.html">g_list_copy_deep</a></h6>
+        <div class="docblock">
+          <p>Makes a full (deep) copy of a <code>GList</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.34</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.delete_link.html">g_list_delete_link</a></h6>
+        <div class="docblock">
+          <p>Removes the node link_ from the list and frees it.
+Compare this to <code>g_list_remove_link()</code> which removes the node
+without freeing&nbsp;it.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.find.html">g_list_find</a></h6>
+        <div class="docblock">
+          <p>Finds the element in a <code>GList</code> which contains the given&nbsp;data.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.find_custom.html">g_list_find_custom</a></h6>
+        <div class="docblock">
+          <p>Finds an element in a <code>GList</code>, using a supplied function to
+find the desired element. It iterates over the list, calling
+the given function which should return 0 when the desired
+element is found. The function takes two #gconstpointer arguments,
+the <code>GList</code> element’s data as the first argument and the
+given user&nbsp;data.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.first.html">g_list_first</a></h6>
+        <div class="docblock">
+          <p>Gets the first element in a <code>GList</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.foreach.html">g_list_foreach</a></h6>
+        <div class="docblock">
+          <p>Calls a function for each element of a <code>GList</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.free.html">g_list_free</a></h6>
+        <div class="docblock">
+          <p>Frees all of the memory used by a <code>GList</code>.
+The freed elements are returned to the slice&nbsp;allocator.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.free_1.html">g_list_free_1</a></h6>
+        <div class="docblock">
+          <p>Frees one <code>GList</code> element, but does not update links from the next and
+previous elements in the list, so you should not call this function on an
+element that is currently part of a&nbsp;list.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.free_full.html">g_list_free_full</a></h6>
+        <div class="docblock">
+          <p>Convenience method, which frees all the memory used by a <code>GList</code>,
+and calls <code>free_func</code> on every element’s&nbsp;data.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.28</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.index.html">g_list_index</a></h6>
+        <div class="docblock">
+          <p>Gets the position of the element containing
+the given data (starting from&nbsp;0).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.insert.html">g_list_insert</a></h6>
+        <div class="docblock">
+          <p>Inserts a new element into the list at the given&nbsp;position.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.insert_before.html">g_list_insert_before</a></h6>
+        <div class="docblock">
+          <p>Inserts a new element into the list before the given&nbsp;position.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.insert_before_link.html">g_list_insert_before_link</a></h6>
+        <div class="docblock">
+          <p>Inserts <code>link_</code> into the list before the given&nbsp;position.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.62</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.insert_sorted.html">g_list_insert_sorted</a></h6>
+        <div class="docblock">
+          <p>Inserts a new element into the list, using the given comparison
+function to determine its&nbsp;position.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.insert_sorted_with_data.html">g_list_insert_sorted_with_data</a></h6>
+        <div class="docblock">
+          <p>Inserts a new element into the list, using the given comparison
+function to determine its&nbsp;position.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.10</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.last.html">g_list_last</a></h6>
+        <div class="docblock">
+          <p>Gets the last element in a <code>GList</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.length.html">g_list_length</a></h6>
+        <div class="docblock">
+          <p>Gets the number of elements in a <code>GList</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.nth.html">g_list_nth</a></h6>
+        <div class="docblock">
+          <p>Gets the element at the given position in a <code>GList</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.nth_data.html">g_list_nth_data</a></h6>
+        <div class="docblock">
+          <p>Gets the data of the element at the given&nbsp;position.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.nth_prev.html">g_list_nth_prev</a></h6>
+        <div class="docblock">
+          <p>Gets the element <code>n</code> places before <code>list</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.pop_allocator.html">g_list_pop_allocator</a></h6>
+        <div class="docblock">
+          No description available.
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.position.html">g_list_position</a></h6>
+        <div class="docblock">
+          <p>Gets the position of the given element
+in the <code>GList</code> (starting from&nbsp;0).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.prepend.html">g_list_prepend</a></h6>
+        <div class="docblock">
+          <p>Prepends a new element on to the start of the&nbsp;list.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.push_allocator.html">g_list_push_allocator</a></h6>
+        <div class="docblock">
+          No description available.
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.remove.html">g_list_remove</a></h6>
+        <div class="docblock">
+          <p>Removes an element from a <code>GList</code>.
+If two elements contain the same data, only the first is removed.
+If none of the elements contain the data, the <code>GList</code> is&nbsp;unchanged.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.remove_all.html">g_list_remove_all</a></h6>
+        <div class="docblock">
+          <p>Removes all list nodes with data equal to <code>data</code>.
+Returns the new head of the list. Contrast with
+<code>g_list_remove()</code> which removes only the first node
+matching the given&nbsp;data.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.remove_link.html">g_list_remove_link</a></h6>
+        <div class="docblock">
+          <p>Removes an element from a <code>GList</code>, without freeing the element.
+The removed element’s prev and next links are set to <code>NULL</code>, so
+that it becomes a self-contained list with one&nbsp;element.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.reverse.html">g_list_reverse</a></h6>
+        <div class="docblock">
+          <p>Reverses a <code>GList</code>.
+It simply switches the next and prev pointers of each&nbsp;element.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.sort.html">g_list_sort</a></h6>
+        <div class="docblock">
+          <p>Sorts a <code>GList</code> using the given comparison function. The algorithm
+used is a stable&nbsp;sort.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.List.sort_with_data.html">g_list_sort_with_data</a></h6>
+        <div class="docblock">
+          <p>Like g_list_sort(), but the comparison function accepts
+a user data&nbsp;argument.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.List.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:19 GMT --></html>

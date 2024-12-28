@@ -1,0 +1,197 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.test_log_set_fatal_handler.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.test_log_set_fatal_handler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.test_log_set_fatal_handler">
+  <meta property="og:description" content="Reference for GLib.test_log_set_fatal_handler">
+  <meta name="twitter:title" content="GLib.test_log_set_fatal_handler">
+  <meta name="twitter:description" content="Reference for GLib.test_log_set_fatal_handler">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>test_log_set_fatal_handler</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.22</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.h#L766">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_test_log_set_fatal_handler</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GTestLogFatalFunc</span><span class="w"> </span><span class="n">log_func</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">user_data</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.c#L803">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Installs a non-error fatal log handler which can be
+used to decide whether log messages which are counted
+as fatal abort the&nbsp;program.</p>
+<p>The use case here is that you are running a test case
+that depends on particular libraries or circumstances
+and cannot prevent certain known critical or warning
+messages. So you install a handler that compares the
+domain and message to precisely not abort in such a&nbsp;case.</p>
+<p>Note that the handler is reset at the beginning of
+any test case, so you have to set it inside each test
+function which needs the special&nbsp;behavior.</p>
+<p>This handler has no effect on g_error&nbsp;messages.</p>
+<p>This handler also has no effect on structured log messages (using
+<a href="func.log_structured.html"><code>g_log_structured()</code></a> or <a href="func.log_structured_array.html"><code>g_log_structured_array()</code></a>). To change the fatal
+behaviour for specific log messages, programs must install a custom log
+writer function using <a href="func.log_set_writer_func.html"><code>g_log_set_writer_func()</code></a>.See
+<a href="logging.html#using-structured-logging">Using Structured Logging</a>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.22</p>
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>log_func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.TestLogFatalFunc.html"><code>GTestLogFatalFunc</code></a></p>
+            <p>The log handler&nbsp;function.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>user_data</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>Data passed to the log&nbsp;handler.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.test_log_set_fatal_handler.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>

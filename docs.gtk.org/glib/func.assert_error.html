@@ -1,0 +1,206 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.assert_error.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib.assert_error</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.assert_error">
+  <meta property="og:description" content="Reference for GLib.assert_error">
+  <meta name="twitter:title" content="GLib.assert_error">
+  <meta name="twitter:description" content="Reference for GLib.assert_error">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function Macro</h3>
+    <h1><a href="index-2.html">GLib</a><span class="sep"></span>assert_error</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.20</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.h#L222">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="cp">#define g_assert_error (</span>
+<span class="w">  </span><span class="n">err</span><span class="p">,</span>
+<span class="w">  </span><span class="n">dom</span><span class="p">,</span>
+<span class="w">  </span><span class="n">c</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.c#L626">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Debugging macro to check that a method has returned
+the correct <a href="struct.Error.html"><code>GError</code></a>.</p>
+<p>The effect of <code>g_assert_error (err, dom, c)</code> is the same as
+<code>g_assert_true (err != NULL &amp;&amp; err-&gt;domain == dom &amp;&amp; err-&gt;code == c)</code>.
+The advantage of this macro is that it can produce a message that
+includes the incorrect error message and&nbsp;code.</p>
+<p>This can only be used to test for a specific error. If you want to
+test that <code>err</code> is set, but don’t care what it’s set to, just use
+<code>g_assert_nonnull (err)</code>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.20</p>
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>err</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>A <code>GError</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>dom</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>The expected error domain (a <code>GQuark</code>).</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>c</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>The expected error&nbsp;code.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.assert_error.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Nov 2024 14:17:20 GMT --></html>
