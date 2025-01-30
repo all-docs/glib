@@ -1,5 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-docs.gtk.org	TRUE	/	FALSE	1999999999	3095c01b1b217403318b6074565774e8	b8b2be87c0ac084f2fa66d4624ee5790
-docs.gtk.org	TRUE	/	FALSE	1999999999	SameSite	None
-
