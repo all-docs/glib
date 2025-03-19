@@ -1,0 +1,293 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.test_trap_subprocess_with_envp.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:27 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>test_trap_subprocess_with_envp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.test_trap_subprocess_with_envp">
+  <meta property="og:description" content="Reference for GLib.test_trap_subprocess_with_envp">
+  <meta name="twitter:title" content="GLib.test_trap_subprocess_with_envp">
+  <meta name="twitter:description" content="Reference for GLib.test_trap_subprocess_with_envp">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a> test_trap_subprocess_with_envp</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.80</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.h#L551">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_test_trap_subprocess_with_envp</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">test_path</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">envp</span><span class="p">,</span>
+<span class="w">  </span><span class="n">guint64</span><span class="w"> </span><span class="n">usec_timeout</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GTestSubprocessFlags</span><span class="w"> </span><span class="n">test_flags</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.c#L4022">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Respawns the test program to run only <code>test_path</code> in a subprocess with
+a given&nbsp;environment.</p>
+<p>This can be used for a test case that might not return, or that
+might&nbsp;abort.</p>
+<p>If <code>test_path</code> is <code>NULL</code> then the same test is re-run in a subprocess.
+You can use <a href="func.test_subprocess.html"><code>g_test_subprocess()</code></a> to determine whether the test
+is in a subprocess or&nbsp;not.</p>
+<p><code>test_path</code> can also be the name of the parent test, followed by
+“<code>/subprocess/</code>” and then a name for the specific subtest (or just
+ending with “<code>/subprocess</code>” if the test only has one child test);
+tests with names of this form will automatically be skipped in the
+parent&nbsp;process.</p>
+<p>If <code>envp</code> is <code>NULL</code>, the parent process’ environment will be&nbsp;inherited.</p>
+<p>If <code>usec_timeout</code> is non-0, the test subprocess is aborted and
+considered failing if its run time exceeds&nbsp;it.</p>
+<p>The subprocess behavior can be configured with <a href="flags.TestSubprocessFlags.html"><code>GTestSubprocessFlags</code></a>&nbsp;flags.</p>
+<p>You can use methods such as <a href="func.test_trap_assert_passed.html"><code>g_test_trap_assert_passed()</code></a>,
+<a href="func.test_trap_assert_failed.html"><code>g_test_trap_assert_failed()</code></a>, and <a href="func.test_trap_assert_stderr.html"><code>g_test_trap_assert_stderr()</code></a> to
+check the results of the subprocess. (But note that
+<a href="func.test_trap_assert_stdout.html"><code>g_test_trap_assert_stdout()</code></a> and <a href="func.test_trap_assert_stderr.html"><code>g_test_trap_assert_stderr()</code></a>
+cannot be used if <code>test_flags</code> specifies that the child should
+inherit the parent&nbsp;stdout/stderr.)</p>
+<p>If your <code>main ()</code> needs to behave differently in the subprocess, you can
+call <a href="func.test_subprocess.html"><code>g_test_subprocess()</code></a> (after calling <a href="func.test_init.html"><code>g_test_init()</code></a>)
+to see whether you are in a&nbsp;subprocess.</p>
+<p>Internally, this function tracks the child process using
+<a href="func.child_watch_source_new.html"><code>g_child_watch_source_new()</code></a>, so your process must not ignore
+<code>SIGCHLD</code>, and must not attempt to watch or wait for the child process
+via another&nbsp;mechanism.</p>
+<p>The following example tests that calling <code>my_object_new(1000000)</code> will
+abort with an error&nbsp;message.</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="w">  </span><span class="nf">test_create_large_object</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_test_subprocess</span><span class="w"> </span><span class="p">())</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">my_object_new</span><span class="w"> </span><span class="p">(</span><span class="mi">1000000</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Reruns this same test in a subprocess</span>
+<span class="w">    </span><span class="n">g_test_trap_subprocess</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">G_TEST_SUBPROCESS_DEFAULT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_test_trap_assert_failed</span><span class="w"> </span><span class="p">();</span>
+<span class="w">    </span><span class="n">g_test_trap_assert_stderr</span><span class="w"> </span><span class="p">(</span><span class="s">"*ERROR*too large*"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span>
+<span class="w">  </span><span class="nf">test_different_username</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_test_subprocess</span><span class="w"> </span><span class="p">())</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Code under test goes here</span>
+<span class="w">        </span><span class="n">g_message</span><span class="w"> </span><span class="p">(</span><span class="s">"Username is now simulated as %s"</span><span class="p">,</span><span class="w"> </span><span class="n">g_getenv</span><span class="w"> </span><span class="p">(</span><span class="s">"USER"</span><span class="p">));</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Reruns this same test in a subprocess</span>
+<span class="w">    </span><span class="n">g_autoptr</span><span class="p">(</span><span class="n">GStrv</span><span class="p">)</span><span class="w"> </span><span class="n">envp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_get_environ</span><span class="w"> </span><span class="p">();</span>
+<span class="w">    </span><span class="n">envp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_environ_setenv</span><span class="w"> </span><span class="p">(</span><span class="n">g_steal_pointer</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">envp</span><span class="p">),</span><span class="w"> </span><span class="s">"USER"</span><span class="p">,</span><span class="w"> </span><span class="s">"charlie"</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_test_trap_subprocess_with_envp</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">envp</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">G_TEST_SUBPROCESS_DEFAULT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_test_trap_assert_passed</span><span class="w"> </span><span class="p">();</span>
+<span class="w">    </span><span class="n">g_test_trap_assert_stdout</span><span class="w"> </span><span class="p">(</span><span class="s">"Username is now simulated as charlie"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">int</span>
+<span class="w">  </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g_test_init</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">g_test_add_func</span><span class="w"> </span><span class="p">(</span><span class="s">"/myobject/create-large-object"</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">test_create_large_object</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_test_add_func</span><span class="w"> </span><span class="p">(</span><span class="s">"/myobject/different-username"</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">test_different_username</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">g_test_run</span><span class="w"> </span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.80</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>test_path</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const char*</code></p>
+            <p>Test to run in a&nbsp;subprocess.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>envp</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>filename</code></p>
+            <p>Environment
+  to run the test&nbsp;in.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            <tr><td>The array must be <code>NULL</code>-terminated.</td></tr>
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>Each element is a platform-native string, using the preferred OS encoding on Unix and UTF-8 on Windows..</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>usec_timeout</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>guint64</code></p>
+            <p>Timeout for the subprocess test in&nbsp;microseconds.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>test_flags</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="flags.TestSubprocessFlags.html"><code>GTestSubprocessFlags</code></a></p>
+            <p>Flags to modify subprocess&nbsp;behaviour.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.test_trap_subprocess_with_envp.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:27 GMT --></html>

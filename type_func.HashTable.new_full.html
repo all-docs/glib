@@ -1,0 +1,255 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/type_func.HashTable.new_full.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:40 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>HashTable.new_full</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.HashTable.new_full">
+  <meta property="og:description" content="Reference for GLib.HashTable.new_full">
+  <meta name="twitter:title" content="GLib.HashTable.new_full">
+  <meta name="twitter:description" content="Reference for GLib.HashTable.new_full">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a> <a href="struct.HashTable.html">HashTable</a> new_full</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/ghash.h#L63">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GHashTable</span><span class="o">*</span>
+<span class="n">g_hash_table_new_full</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GHashFunc</span><span class="w"> </span><span class="n">hash_func</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GEqualFunc</span><span class="w"> </span><span class="n">key_equal_func</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GDestroyNotify</span><span class="w"> </span><span class="n">key_destroy_func</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GDestroyNotify</span><span class="w"> </span><span class="n">value_destroy_func</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/ghash.c#L988">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Creates a new <code>GHashTable</code> like <code>g_hash_table_new()</code> with a reference
+count of 1 and allows to specify functions to free the memory
+allocated for the key and value that get called when removing the
+entry from the <code>GHashTable</code>.</p>
+<p>Since version 2.42 it is permissible for destroy notify functions to
+recursively remove further items from the hash table. This is only
+permissible if the application still holds a reference to the hash table.
+This means that you may need to ensure that the hash table is empty by
+calling <code>g_hash_table_remove_all()</code> before releasing the last reference using&nbsp;g_hash_table_unref().</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>hash_func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.HashFunc.html"><code>GHashFunc</code></a></p>
+            <p>A function to create a hash value from a&nbsp;key.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>key_equal_func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.EqualFunc.html"><code>GEqualFunc</code></a></p>
+            <p>A function to check two keys for&nbsp;equality.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>key_destroy_func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.DestroyNotify.html"><code>GDestroyNotify</code></a></p>
+            <p>A function to free the memory allocated for the key
+    used when removing the entry from the <code>GHashTable</code>, or <code>NULL</code>
+    if you don’t want to supply such a&nbsp;function.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>value_destroy_func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.DestroyNotify.html"><code>GDestroyNotify</code></a></p>
+            <p>A function to free the memory allocated for the
+    value used when removing the entry from the <code>GHashTable</code>, or <code>NULL</code>
+    if you don’t want to supply such a&nbsp;function.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.HashTable.html"><code>GHashTable</code></a></p>
+            <p>A new <code>GHashTable</code>.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
+            
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/type_func.HashTable.new_full.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:40 GMT --></html>

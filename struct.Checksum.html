@@ -1,0 +1,260 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Checksum.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:01:55 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>Checksum</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Checksum">
+  <meta property="og:description" content="Reference for GLib.Checksum">
+  <meta name="twitter:title" content="GLib.Checksum">
+  <meta name="twitter:description" content="Reference for GLib.Checksum">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> Checksum</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem available">since: 2.16</span></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gchecksum.c#L35">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GChecksum</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>GLib provides a generic <span class="caps">API</span> for computing checksums (or ‘digests’)
+for a sequence of arbitrary bytes, using various hashing algorithms
+like <span class="caps">MD5</span>, <span class="caps">SHA</span>-1 and <span class="caps">SHA</span>-256. Checksums are commonly used in various
+environments and&nbsp;specifications.</p>
+<p>To create a new <code>GChecksum</code>, use <a href="ctor.Checksum.new.html"><code>g_checksum_new()</code></a>. To free
+a <code>GChecksum</code>, use <a href="method.Checksum.free.html"><code>g_checksum_free()</code></a>.</p>
+<p>GLib supports incremental checksums using the <code>GChecksum</code> data
+structure, by calling <a href="method.Checksum.update.html"><code>g_checksum_update()</code></a> as long as there’s data
+available and then using <a href="method.Checksum.get_string.html"><code>g_checksum_get_string()</code></a> or
+<a href="method.Checksum.get_digest.html"><code>g_checksum_get_digest()</code></a> to compute the checksum and return it
+either as a string in hexadecimal form, or as a raw sequence of bytes. To
+compute the checksum for binary blobs and nul-terminated strings in
+one go, use the convenience functions <a href="func.compute_checksum_for_data.html"><code>g_compute_checksum_for_data()</code></a>
+and <a href="func.compute_checksum_for_string.html"><code>g_compute_checksum_for_string()</code></a>,&nbsp;respectively.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          <p>Available since: 2.16</p>
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.Checksum.new.html">g_checksum_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GChecksum</code>, using the checksum algorithm <code>checksum_type</code>.
+If the <code>checksum_type</code> is not known, <code>NULL</code> is returned.
+A <code>GChecksum</code> can be used to compute the checksum, or digest, of an
+arbitrary binary blob, using different hashing&nbsp;algorithms.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.16</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.Checksum.type_get_length.html">g_checksum_type_get_length</a></h6>
+        <div class="docblock">
+          <p>Gets the length in bytes of digests of type <code>checksum_type</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.16</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Checksum.copy.html">g_checksum_copy</a></h6>
+          <div class="docblock">
+            <p>Copies a <code>GChecksum</code>. If <code>checksum</code> has been closed, by calling
+<code>g_checksum_get_string()</code> or g_checksum_get_digest(), the copied
+checksum will be closed as&nbsp;well.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.16</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Checksum.free.html">g_checksum_free</a></h6>
+          <div class="docblock">
+            <p>Frees the memory allocated for <code>checksum</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.16</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Checksum.get_digest.html">g_checksum_get_digest</a></h6>
+          <div class="docblock">
+            <p>Gets the digest from <code>checksum</code> as a raw binary vector and places it
+into <code>buffer</code>. The size of the digest depends on the type of&nbsp;checksum.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.16</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Checksum.get_string.html">g_checksum_get_string</a></h6>
+          <div class="docblock">
+            <p>Gets the digest as a hexadecimal&nbsp;string.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.16</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Checksum.reset.html">g_checksum_reset</a></h6>
+          <div class="docblock">
+            <p>Resets the state of the <code>checksum</code> back to its initial&nbsp;state.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.18</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Checksum.update.html">g_checksum_update</a></h6>
+          <div class="docblock">
+            <p>Feeds <code>data</code> into an existing <code>GChecksum</code>. The checksum must still be
+open, that is <code>g_checksum_get_string()</code> or <code>g_checksum_get_digest()</code> must
+not have been called on <code>checksum</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.16</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Checksum.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:02:01 GMT --></html>

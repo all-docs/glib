@@ -1,0 +1,203 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.remove.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:24 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>remove</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.remove">
+  <meta property="og:description" content="Reference for GLib.remove">
+  <meta name="twitter:title" content="GLib.remove">
+  <meta name="twitter:description" content="Reference for GLib.remove">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a> remove</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.6</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstdio.h#L151">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">int</span>
+<span class="n">g_remove</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">filename</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstdio.c#L1445">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>A wrapper for the <span class="caps">POSIX</span> <code>remove()</code> function. The <code>remove()</code> function
+deletes a name from the&nbsp;filesystem.</p>
+<p>See your C library manual for more details about how <code>remove()</code> works
+on your system. On Unix, <code>remove()</code> removes also directories, as it
+calls <code>unlink()</code> for files and <code>rmdir()</code> for directories. On Windows,
+although <code>remove()</code> in the C library only works for files, this
+function tries first <code>remove()</code> and then if that fails rmdir(), and
+thus works for both files and directories. Note however, that on
+Windows, it is in general not possible to remove a file that is
+open to some process, or mapped into&nbsp;memory.</p>
+<p>If this function fails on Windows you can’t infer too much from the
+errno value. <code>rmdir()</code> is tried regardless of what caused <code>remove()</code> to
+fail. Any errno value set by <code>remove()</code> will be overwritten by that
+set by&nbsp;rmdir().</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.6</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>filename</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>A pathname in the GLib file name encoding
+    (<span class="caps">UTF</span>-8 on&nbsp;Windows).</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a platform-native string, using the preferred OS encoding on Unix and UTF-8 on Windows.</td></tr>
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>int</code></p>
+            <p>0 if the file was successfully removed, -1 if an error&nbsp;occurred.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.remove.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:24 GMT --></html>

@@ -1,0 +1,807 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Date.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:02:10 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>Date</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Date">
+  <meta property="og:description" content="Reference for GLib.Date">
+  <meta name="twitter:title" content="GLib.Date">
+  <meta name="twitter:description" content="Reference for GLib.Date">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> Date</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gdate.c#L62">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GDate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">julian_days</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">julian</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">dmy</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p><code>GDate</code> is a struct for calendrical&nbsp;calculations.</p>
+<p>The <code>GDate</code> data structure represents a day between January 1, Year 1,
+and sometime a few thousand years in the future (right now it will go
+to the year 65535 or so, but <a href="method.Date.set_parse.html"><code>g_date_set_parse()</code></a> only parses up to the
+year 8000 or so - just count on “a few thousand”). <code>GDate</code> is meant to
+represent everyday dates, not astronomical dates or historical dates
+or <span class="caps">ISO</span> timestamps or the like. It extrapolates the current Gregorian
+calendar forward and backward in time; there is no attempt to change
+the calendar to match time periods or locations. <code>GDate</code> does not store
+time information; it represents a&nbsp;day.</p>
+<p>The <code>GDate</code> implementation has several nice features; it is only a
+64-bit struct, so storing large numbers of dates is very efficient. It
+can keep both a Julian and day-month-year representation of the date,
+since some calculations are much easier with one representation or the
+other. A Julian representation is simply a count of days since some
+fixed day in the past; for <code>GDate</code> the fixed day is January 1, 1 <span class="caps">AD</span>.
+(“Julian” dates in the <code>GDate</code> <span class="caps">API</span> aren’t really Julian dates in the
+technical sense; technically, Julian dates count from the start of the
+Julian period, Jan 1, 4713 <span class="caps">BC</span>).</p>
+<p><code>GDate</code> is simple to use. First you need a “blank” date; you can get a
+dynamically allocated date from <a href="ctor.Date.new.html"><code>g_date_new()</code></a>, or you can declare an
+automatic variable or array and initialize it by calling <a href="method.Date.clear.html"><code>g_date_clear()</code></a>.
+A cleared date is safe; it’s safe to call <a href="method.Date.set_dmy.html"><code>g_date_set_dmy()</code></a> and the other
+mutator functions to initialize the value of a cleared date. However, a cleared date
+is initially invalid, meaning that it doesn’t represent a day that exists.
+It is undefined to call any of the date calculation routines on an invalid date.
+If you obtain a date from a user or other unpredictable source, you should check
+its validity with the <a href="method.Date.valid.html"><code>g_date_valid()</code></a> predicate. <a href="method.Date.valid.html"><code>g_date_valid()</code></a>
+is also used to check for errors with <a href="method.Date.set_parse.html"><code>g_date_set_parse()</code></a> and other functions
+that can fail. Dates can be invalidated by calling <a href="method.Date.clear.html"><code>g_date_clear()</code></a>&nbsp;again.</p>
+<p>It is very important to use the <span class="caps">API</span> to access the <code>GDate</code> struct. Often only the
+day-month-year or only the Julian representation is valid. Sometimes neither is valid.
+Use the <span class="caps">API</span>.</p>
+<p>GLib also features <code>GDateTime</code> which represents a precise&nbsp;time.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>julian_days</code></dt>
+              <dd><p>The Julian representation of the&nbsp;date.</p></dd>
+            
+              <dt><code>julian</code></dt>
+              <dd><p>This bit is set if <code>julian_days</code> is&nbsp;valid.</p></dd>
+            
+              <dt><code>dmy</code></dt>
+              <dd><p>This is set if <code>day</code>, <code>month</code> and <code>year</code> are&nbsp;valid.</p></dd>
+            
+              <dt><code>day</code></dt>
+              <dd><p>The day of the day-month-year representation of the date,
+  as a number between 1 and&nbsp;31.</p></dd>
+            
+              <dt><code>month</code></dt>
+              <dd><p>The month of the day-month-year representation of the date,
+  as a number between 1 and&nbsp;12.</p></dd>
+            
+              <dt><code>year</code></dt>
+              <dd><p>The year of the day-month-year representation of the&nbsp;date.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.Date.new.html">g_date_new</a></h6>
+          <div class="docblock">
+            <p>Allocates a <code>GDate</code> and initializes
+it to a safe state. The new date will
+be cleared (as if you’d called g_date_clear()) but invalid (it won’t
+represent an existing day). Free the return value with&nbsp;g_date_free().</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Date.new_dmy.html">g_date_new_dmy</a></h6>
+          <div class="docblock">
+            <p>Create a new <code>GDate</code> representing the given day-month-year&nbsp;triplet.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.Date.new_julian.html">g_date_new_julian</a></h6>
+          <div class="docblock">
+            <p>Create a new <code>GDate</code> representing the given Julian&nbsp;date.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.Date.get_days_in_month.html">g_date_get_days_in_month</a></h6>
+        <div class="docblock">
+          <p>Returns the number of days in a month, taking leap
+years into&nbsp;account.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.get_monday_weeks_in_year.html">g_date_get_monday_weeks_in_year</a></h6>
+        <div class="docblock">
+          <p>Returns the number of weeks in the year, where weeks
+are taken to start on Monday. Will be 52 or 53. The
+date must be valid. (Years always have 52 7-day periods,
+plus 1 or 2 extra days depending on whether it’s a leap
+year. This function is basically telling you how many
+Mondays are in the year, i.e. there are 53 Mondays if
+one of the extra days happens to be a&nbsp;Monday.).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.get_sunday_weeks_in_year.html">g_date_get_sunday_weeks_in_year</a></h6>
+        <div class="docblock">
+          <p>Returns the number of weeks in the year, where weeks
+are taken to start on Sunday. Will be 52 or 53. The
+date must be valid. (Years always have 52 7-day periods,
+plus 1 or 2 extra days depending on whether it’s a leap
+year. This function is basically telling you how many
+Sundays are in the year, i.e. there are 53 Sundays if
+one of the extra days happens to be a&nbsp;Sunday.).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.is_leap_year.html">g_date_is_leap_year</a></h6>
+        <div class="docblock">
+          <p>Returns <code>TRUE</code> if the year is a leap&nbsp;year.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.strftime.html">g_date_strftime</a></h6>
+        <div class="docblock">
+          <p>Generates a printed representation of the date, in a
+<a href="running.html#locale">locale</a>-specific way.
+Works just like the platform’s C library <code>strftime()</code> function,
+but only accepts date-related formats; time-related formats
+give undefined results. Date must be valid. Unlike <code>strftime()</code>
+(which uses the locale encoding), works on a <span class="caps">UTF</span>-8 format
+string and stores a <span class="caps">UTF</span>-8&nbsp;result.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.valid_day.html">g_date_valid_day</a></h6>
+        <div class="docblock">
+          <p>Returns <code>TRUE</code> if the day of the month is valid (a day is valid if it’s
+between 1 and 31&nbsp;inclusive).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.valid_dmy.html">g_date_valid_dmy</a></h6>
+        <div class="docblock">
+          <p>Returns <code>TRUE</code> if the day-month-year triplet forms a valid, existing day
+in the range of days <code>GDate</code> understands (Year 1 or later, no more than
+a few thousand years in the&nbsp;future).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.valid_julian.html">g_date_valid_julian</a></h6>
+        <div class="docblock">
+          <p>Returns <code>TRUE</code> if the Julian day is valid. Anything greater than zero
+is basically a valid Julian, though there is a 32-bit&nbsp;limit.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.valid_month.html">g_date_valid_month</a></h6>
+        <div class="docblock">
+          <p>Returns <code>TRUE</code> if the month value is valid. The 12 <code>GDateMonth</code>
+enumeration values are the only valid&nbsp;months.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.valid_weekday.html">g_date_valid_weekday</a></h6>
+        <div class="docblock">
+          <p>Returns <code>TRUE</code> if the weekday is valid. The seven <code>GDateWeekday</code> enumeration
+values are the only valid&nbsp;weekdays.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Date.valid_year.html">g_date_valid_year</a></h6>
+        <div class="docblock">
+          <p>Returns <code>TRUE</code> if the year is valid. Any year greater than 0 is valid,
+though there is a 16-bit limit to what <code>GDate</code> will&nbsp;understand.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Date.add_days.html">g_date_add_days</a></h6>
+          <div class="docblock">
+            <p>Increments a date some number of days.
+To move forward by weeks, add weeks*7 days.
+The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.add_months.html">g_date_add_months</a></h6>
+          <div class="docblock">
+            <p>Increments a date by some number of months.
+If the day of the month is greater than 28,
+this routine may change the day of the month
+(because the destination month may not have
+the current day in it). The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.add_years.html">g_date_add_years</a></h6>
+          <div class="docblock">
+            <p>Increments a date by some number of years.
+If the date is February 29, and the destination
+year is not a leap year, the date will be changed
+to February 28. The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.clamp.html">g_date_clamp</a></h6>
+          <div class="docblock">
+            <p>If <code>date</code> is prior to <code>min_date</code>, sets <code>date</code> equal to <code>min_date</code>.
+If <code>date</code> falls after <code>max_date</code>, sets <code>date</code> equal to <code>max_date</code>.
+Otherwise, <code>date</code> is unchanged.
+Either of <code>min_date</code> and <code>max_date</code> may be <code>NULL</code>.
+All non-<code>NULL</code> dates must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.clear.html">g_date_clear</a></h6>
+          <div class="docblock">
+            <p>Initializes one or more <code>GDate</code> structs to a safe but invalid
+state. The cleared dates will not represent an existing date, but will
+not contain garbage. Useful to init a date declared on the stack.
+Validity can be tested with&nbsp;g_date_valid().</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.compare.html">g_date_compare</a></h6>
+          <div class="docblock">
+            <p>Qsort()-style comparison function for dates.
+Both dates must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.copy.html">g_date_copy</a></h6>
+          <div class="docblock">
+            <p>Copies a GDate to a newly-allocated GDate. If the input was invalid
+(as determined by g_date_valid()), the invalid state will be copied
+as is into the new&nbsp;object.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.56</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.days_between.html">g_date_days_between</a></h6>
+          <div class="docblock">
+            <p>Computes the number of days between two dates.
+If <code>date2</code> is prior to <code>date1</code>, the returned value is negative.
+Both dates must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.free.html">g_date_free</a></h6>
+          <div class="docblock">
+            <p>Frees a <code>GDate</code> returned from&nbsp;g_date_new().</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.get_day.html">g_date_get_day</a></h6>
+          <div class="docblock">
+            <p>Returns the day of the month. The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.get_day_of_year.html">g_date_get_day_of_year</a></h6>
+          <div class="docblock">
+            <p>Returns the day of the year, where Jan 1 is the first day of the
+year. The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.get_iso8601_week_of_year.html">g_date_get_iso8601_week_of_year</a></h6>
+          <div class="docblock">
+            <p>Returns the week of the year, where weeks are interpreted according
+to <span class="caps">ISO</span>&nbsp;8601.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.get_julian.html">g_date_get_julian</a></h6>
+          <div class="docblock">
+            <p>Returns the Julian day or “serial number” of the <code>GDate</code>. The
+Julian day is simply the number of days since January 1, Year 1; i.e.,
+January 1, Year 1 is Julian day 1; January 2, Year 1 is Julian day 2,
+etc. The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.get_monday_week_of_year.html">g_date_get_monday_week_of_year</a></h6>
+          <div class="docblock">
+            <p>Returns the week of the year, where weeks are understood to start on
+Monday. If the date is before the first Monday of the year, return 0.
+The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.get_month.html">g_date_get_month</a></h6>
+          <div class="docblock">
+            <p>Returns the month of the year. The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.get_sunday_week_of_year.html">g_date_get_sunday_week_of_year</a></h6>
+          <div class="docblock">
+            <p>Returns the week of the year during which this date falls, if
+weeks are understood to begin on Sunday. The date must be valid.
+Can return 0 if the day is before the first Sunday of the&nbsp;year.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.get_weekday.html">g_date_get_weekday</a></h6>
+          <div class="docblock">
+            <p>Returns the day of the week for a <code>GDate</code>. The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.get_year.html">g_date_get_year</a></h6>
+          <div class="docblock">
+            <p>Returns the year of a <code>GDate</code>. The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.is_first_of_month.html">g_date_is_first_of_month</a></h6>
+          <div class="docblock">
+            <p>Returns <code>TRUE</code> if the date is on the first of a month.
+The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.is_last_of_month.html">g_date_is_last_of_month</a></h6>
+          <div class="docblock">
+            <p>Returns <code>TRUE</code> if the date is the last day of the month.
+The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.order.html">g_date_order</a></h6>
+          <div class="docblock">
+            <p>Checks if <code>date1</code> is less than or equal to <code>date2</code>,
+and swap the values if this is not the&nbsp;case.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.set_day.html">g_date_set_day</a></h6>
+          <div class="docblock">
+            <p>Sets the day of the month for a <code>GDate</code>. If the resulting
+day-month-year triplet is invalid, the date will be&nbsp;invalid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.set_dmy.html">g_date_set_dmy</a></h6>
+          <div class="docblock">
+            <p>Sets the value of a <code>GDate</code> from a day, month, and year.
+The day-month-year triplet must be valid; if you aren’t
+sure it is, call <code>g_date_valid_dmy()</code> to check before you
+set&nbsp;it.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.set_julian.html">g_date_set_julian</a></h6>
+          <div class="docblock">
+            <p>Sets the value of a <code>GDate</code> from a Julian day&nbsp;number.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.set_month.html">g_date_set_month</a></h6>
+          <div class="docblock">
+            <p>Sets the month of the year for a <code>GDate</code>.  If the resulting
+day-month-year triplet is invalid, the date will be&nbsp;invalid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.set_parse.html">g_date_set_parse</a></h6>
+          <div class="docblock">
+            <p>Parses a user-inputted string <code>str</code>, and try to figure out what date it
+represents, taking the <a href="running.html#locale">current locale</a>
+into account. If the string is successfully parsed, the date will be
+valid after the call. Otherwise, it will be invalid. You should check
+using <code>g_date_valid()</code> to see whether the parsing&nbsp;succeeded.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Date.set_time.html">g_date_set_time</a></h6>
+          <div class="docblock">
+            <p>Sets the value of a date from a <code>GTime</code> value.
+The time to date conversion is done using the user’s current&nbsp;timezone.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.10</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.set_time_t.html">g_date_set_time_t</a></h6>
+          <div class="docblock">
+            <p>Sets the value of a date to the date corresponding to a time
+specified as a time_t. The time to date conversion is done using
+the user’s current&nbsp;timezone.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.10</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.Date.set_time_val.html">g_date_set_time_val</a></h6>
+          <div class="docblock">
+            <p>Sets the value of a date from a <code>GTimeVal</code> value.  Note that the
+<code>tv_usec</code> member is ignored, because <code>GDate</code> can’t make use of the
+additional&nbsp;precision.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.62</span>&nbsp;<span class="emblem available">since: 2.10</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.set_year.html">g_date_set_year</a></h6>
+          <div class="docblock">
+            <p>Sets the year for a <code>GDate</code>. If the resulting day-month-year
+triplet is invalid, the date will be&nbsp;invalid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.subtract_days.html">g_date_subtract_days</a></h6>
+          <div class="docblock">
+            <p>Moves a date some number of days into the past.
+To move by weeks, just move by weeks*7 days.
+The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.subtract_months.html">g_date_subtract_months</a></h6>
+          <div class="docblock">
+            <p>Moves a date some number of months into the past.
+If the current day of the month doesn’t exist in
+the destination month, the day of the month
+may change. The date must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.subtract_years.html">g_date_subtract_years</a></h6>
+          <div class="docblock">
+            <p>Moves a date some number of years into the past.
+If the current day doesn’t exist in the destination
+year (i.e. it’s February 29 and you move to a non-leap-year)
+then the day is changed to February 29. The date
+must be&nbsp;valid.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.to_struct_tm.html">g_date_to_struct_tm</a></h6>
+          <div class="docblock">
+            <p>Fills in the date-related bits of a struct tm using the <code>date</code> value.
+Initializes the non-date parts with something safe but&nbsp;meaningless.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Date.valid.html">g_date_valid</a></h6>
+          <div class="docblock">
+            <p>Returns <code>TRUE</code> if the <code>GDate</code> represents an existing day. The date must not
+contain garbage; it should have been initialized with <code>g_date_clear()</code>
+if it wasn’t allocated by one of the <code>g_date_new()</code> variants.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Date.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:02:42 GMT --></html>

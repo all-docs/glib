@@ -1,0 +1,245 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/ctor.DateTime.new_from_iso8601.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:41 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>DateTime.new_from_iso8601</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.DateTime.new_from_iso8601">
+  <meta property="og:description" content="Reference for GLib.DateTime.new_from_iso8601">
+  <meta name="twitter:title" content="GLib.DateTime.new_from_iso8601">
+  <meta name="twitter:description" content="Reference for GLib.DateTime.new_from_iso8601">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a> <a href="struct.DateTime.html">DateTime</a> new_from_iso8601</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.56</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gdatetime.h#L154">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GDateTime</span><span class="o">*</span>
+<span class="n">g_date_time_new_from_iso8601</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">text</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GTimeZone</span><span class="o">*</span><span class="w"> </span><span class="n">default_tz</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gdatetime.c#L1490">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Creates a <code>GDateTime</code> corresponding to the given
+<a href="https://en.wikipedia.org/wiki/ISO_8601"><span class="caps">ISO</span> 8601 formatted string</a>
+<code>text</code>. <span class="caps">ISO</span> 8601 strings of the form <code>&lt;date&gt;&lt;sep&gt;&lt;time&gt;&lt;tz&gt;</code> are supported, with
+some extensions from <a href="https://tools.ietf.org/html/rfc3339"><span class="caps">RFC</span> 3339</a> as
+mentioned&nbsp;below.</p>
+<p>Note that as <code>GDateTime</code> <span class="dquo">“</span>is oblivious to leap seconds”, leap seconds information
+in an <span class="caps">ISO</span>-8601 string will be ignored, so a <code>23:59:60</code> time would be parsed as
+<code>23:59:59</code>.</p>
+<p><code>&lt;sep&gt;</code> is the separator and can be either ‘T’, ‘t’ or ‘ ‘. The latter two
+separators are an extension from
+<a href="https://tools.ietf.org/html/rfc3339#section-5.6"><span class="caps">RFC</span> 3339</a>.</p>
+<p><code>&lt;date&gt;</code> is in the&nbsp;form:</p>
+<ul>
+<li><code>YYYY-MM-DD</code> - Year/month/day, e.g.&nbsp;2016-08-24.</li>
+<li><code>YYYYMMDD</code> - Same as above without&nbsp;dividers.</li>
+<li><code>YYYY-DDD</code> - Ordinal day where <span class="caps">DDD</span> is from 001 to 366, e.g.&nbsp;2016-237.</li>
+<li><code>YYYYDDD</code> - Same as above without&nbsp;dividers.</li>
+<li><code>YYYY-Www-D</code> - Week day where ww is from 01 to 52 and D from 1-7,
+  e.g.&nbsp;2016-W34-3.</li>
+<li><code>YYYYWwwD</code> - Same as above without&nbsp;dividers.</li>
+</ul>
+<p><code>&lt;time&gt;</code> is in the&nbsp;form:</p>
+<ul>
+<li><code>hh:mm:ss(.sss)</code> - Hours, minutes, seconds (subseconds), e.g.&nbsp;22:10:42.123.</li>
+<li><code>hhmmss(.sss)</code> - Same as above without&nbsp;dividers.</li>
+</ul>
+<p><code>&lt;tz&gt;</code> is an optional timezone suffix of the&nbsp;form:</p>
+<ul>
+<li><code>Z</code> - <span class="caps">UTC</span>.</li>
+<li><code>+hh:mm</code> or <code>-hh:mm</code> - Offset from <span class="caps">UTC</span> in hours and minutes, e.g.&nbsp;+12:00.</li>
+<li><code>+hh</code> or <code>-hh</code> - Offset from <span class="caps">UTC</span> in hours, e.g.&nbsp;+12.</li>
+</ul>
+<p>If the timezone is not provided in <code>text</code> it must be provided in <code>default_tz</code>
+(this field is otherwise&nbsp;ignored).</p>
+<p>This call can fail (returning <code>NULL</code>) if <code>text</code> is not a valid <span class="caps">ISO</span> 8601
+formatted&nbsp;string.</p>
+<p>You should release the return value by calling <code>g_date_time_unref()</code>
+when you are done with&nbsp;it.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.56</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>text</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>An <span class="caps">ISO</span> 8601 formatted time&nbsp;string.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>default_tz</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.TimeZone.html"><code>GTimeZone</code></a></p>
+            <p>A <code>GTimeZone</code> to use if the text doesn’t contain a
+                         timezone, or <code>NULL</code>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.DateTime.html"><code>GDateTime</code></a></p>
+            <p>A new <code>GDateTime</code>, or <code>NULL</code>.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
+            <tr><td>The return value can be <code>NULL</code>.</td></tr>
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/ctor.DateTime.new_from_iso8601.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:41 GMT --></html>

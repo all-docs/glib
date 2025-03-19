@@ -1,0 +1,178 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/enum.TestFileType.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:08 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>TestFileType</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.TestFileType">
+  <meta property="og:description" content="Reference for GLib.TestFileType">
+  <meta name="twitter:title" content="GLib.TestFileType">
+  <meta name="twitter:description" content="Reference for GLib.TestFileType">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> TestFileType</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.38</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>enum GLib.TestFileType</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.c#L4661">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>The type of file to return the filename for, when used with
+<a href="func.test_build_filename.html"><code>g_test_build_filename()</code></a>.</p>
+<p>These two options correspond rather directly to the ‘dist’ and
+‘built’ terminology that automake uses and are explicitly used to
+distinguish between the ‘srcdir’ and ‘builddir’ being separate. All
+files in your project should either be dist (in the <code>EXTRA_DIST</code> or
+<code>dist_schema_DATA</code> sense, in which case they will always be in the
+srcdir) or built (in the <code>BUILT_SOURCES</code> sense, in which case they
+will always be in the&nbsp;builddir).</p>
+<p>Note: As a general rule of automake, files that are generated only as
+part of the build-from-git process (but then are distributed with the
+tarball) always go in srcdir (even if doing a srcdir != builddir
+build from git) and are considered as distributed&nbsp;files.</p>
+<p>The same principles apply for other build systems, such as&nbsp;meson.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        <p>Available since: 2.38</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="dist">G_TEST_DIST</code>
+            <a class="anchor" href="#dist"></a>
+          </dt>
+          <dd>
+            <div><p>A file that was included in the distribution&nbsp;tarball.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.38</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="built">G_TEST_BUILT</code>
+            <a class="anchor" href="#built"></a>
+          </dt>
+          <dd>
+            <div><p>A file that was built on the compiling&nbsp;machine.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.38</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/enum.TestFileType.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:08 GMT --></html>

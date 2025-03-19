@@ -1,0 +1,176 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.Variant.ref_sink.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:59 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>Variant.ref_sink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.Variant.ref_sink">
+  <meta priority="og:description" content="Reference for GLib.Variant.ref_sink">
+  <meta name="twitter:title" content="GLib.Variant.ref_sink">
+  <meta name="twitter:description" content="Reference for GLib.Variant.ref_sink">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a> <a href="struct.Variant.html">Variant</a> ref_sink</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.24</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.h#L65">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GVariant</span><span class="o">*</span>
+<span class="n">g_variant_ref_sink</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GVariant</span><span class="o">*</span><span class="w"> </span><span class="n">value</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant-core.c#L922">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p><code>GVariant</code> uses a floating reference count system.  All functions with
+names starting with <code>g_variant_new_</code> return floating&nbsp;references.</p>
+<p>Calling <code>g_variant_ref_sink()</code> on a <code>GVariant</code> with a floating reference
+will convert the floating reference into a full reference.  Calling
+<code>g_variant_ref_sink()</code> on a non-floating <code>GVariant</code> results in an
+additional normal reference being&nbsp;added.</p>
+<p>In other words, if the <code>value</code> is floating, then this call “assumes
+ownership” of the floating reference, converting it to a normal
+reference.  If the <code>value</code> is not floating, then this call adds a
+new normal reference increasing the reference count by&nbsp;one.</p>
+<p>All calls that result in a <code>GVariant</code> instance being inserted into a
+container will call <code>g_variant_ref_sink()</code> on the instance.  This means
+that if the value was just created (and has only its floating
+reference) then the container will assume sole ownership of the value
+at that point and the caller will not need to unreference it.  This
+makes certain common styles of programming much easier while still
+maintaining normal refcounting semantics in situations where values
+are not&nbsp;floating.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.24</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.Variant.html"><code>GVariant</code></a></p>
+            <p>The same <code>value</code>.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the method takes ownership of the returned data, and is responsible for freeing it.</td></tr>
+            
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.Variant.ref_sink.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:59 GMT --></html>

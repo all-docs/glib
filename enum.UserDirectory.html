@@ -1,0 +1,260 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/enum.UserDirectory.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:15 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>UserDirectory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.UserDirectory">
+  <meta property="og:description" content="Reference for GLib.UserDirectory">
+  <meta name="twitter:title" content="GLib.UserDirectory">
+  <meta name="twitter:description" content="Reference for GLib.UserDirectory">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> UserDirectory</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.14</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>enum GLib.UserDirectory</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gutils.h#L219">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>These are logical ids for special directories which are defined
+depending on the platform used. You should use <code>g_get_user_special_dir()</code>
+to retrieve the full path associated to the logical&nbsp;id.</p>
+<p>The <code>GUserDirectory</code> enumeration can be extended at later date. Not
+every platform has a directory for every logical id in this&nbsp;enumeration.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        <p>Available since: 2.14</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="directory_desktop">G_USER_DIRECTORY_DESKTOP</code>
+            <a class="anchor" href="#directory_desktop"></a>
+          </dt>
+          <dd>
+            <div><p>The user’s Desktop&nbsp;directory.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="directory_documents">G_USER_DIRECTORY_DOCUMENTS</code>
+            <a class="anchor" href="#directory_documents"></a>
+          </dt>
+          <dd>
+            <div><p>The user’s Documents&nbsp;directory.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="directory_download">G_USER_DIRECTORY_DOWNLOAD</code>
+            <a class="anchor" href="#directory_download"></a>
+          </dt>
+          <dd>
+            <div><p>The user’s Downloads&nbsp;directory.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="directory_music">G_USER_DIRECTORY_MUSIC</code>
+            <a class="anchor" href="#directory_music"></a>
+          </dt>
+          <dd>
+            <div><p>The user’s Music&nbsp;directory.</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="directory_pictures">G_USER_DIRECTORY_PICTURES</code>
+            <a class="anchor" href="#directory_pictures"></a>
+          </dt>
+          <dd>
+            <div><p>The user’s Pictures&nbsp;directory.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="directory_public_share">G_USER_DIRECTORY_PUBLIC_SHARE</code>
+            <a class="anchor" href="#directory_public_share"></a>
+          </dt>
+          <dd>
+            <div><p>The user’s shared&nbsp;directory.</p></div>
+            <ul>
+              <li>Value: <code>5</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="directory_templates">G_USER_DIRECTORY_TEMPLATES</code>
+            <a class="anchor" href="#directory_templates"></a>
+          </dt>
+          <dd>
+            <div><p>The user’s Templates&nbsp;directory.</p></div>
+            <ul>
+              <li>Value: <code>6</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="directory_videos">G_USER_DIRECTORY_VIDEOS</code>
+            <a class="anchor" href="#directory_videos"></a>
+          </dt>
+          <dd>
+            <div><p>The user’s Movies&nbsp;directory.</p></div>
+            <ul>
+              <li>Value: <code>7</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="n_directories">G_USER_N_DIRECTORIES</code>
+            <a class="anchor" href="#n_directories"></a>
+          </dt>
+          <dd>
+            <div><p>The number of enum&nbsp;values.</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/enum.UserDirectory.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:15 GMT --></html>

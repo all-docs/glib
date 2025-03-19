@@ -1,0 +1,233 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/flags.MarkupCollectType.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>MarkupCollectType</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.MarkupCollectType">
+  <meta property="og:description" content="Reference for GLib.MarkupCollectType">
+  <meta name="twitter:title" content="GLib.MarkupCollectType">
+  <meta name="twitter:description" content="Reference for GLib.MarkupCollectType">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> MarkupCollectType</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>flags GLib.MarkupCollectType</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmarkup.c#L2619">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>A mixed enumerated type and flags field. You must specify one type
+(string, strdup, boolean, tristate).  Additionally, you may  optionally
+bitwise <span class="caps">OR</span> the type with the flag <code>G_MARKUP_COLLECT_OPTIONAL</code>.</p>
+<p>It is likely that this enum will be extended in the future to
+support other&nbsp;types.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="invalid">G_MARKUP_COLLECT_INVALID</code>
+            <a class="anchor" href="#invalid"></a>
+          </dt>
+          <dd>
+            <div><p>Used to terminate the list of attributes
+    to&nbsp;collect.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="string">G_MARKUP_COLLECT_STRING</code>
+            <a class="anchor" href="#string"></a>
+          </dt>
+          <dd>
+            <div><p>Collect the string pointer directly from
+    the attribute_values[] array. Expects a parameter of type (const
+    char **). If <code>G_MARKUP_COLLECT_OPTIONAL</code> is specified and the
+    attribute isn’t present then the pointer will be set to <code>NULL</code>.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="strdup">G_MARKUP_COLLECT_STRDUP</code>
+            <a class="anchor" href="#strdup"></a>
+          </dt>
+          <dd>
+            <div><p>As with <code>G_MARKUP_COLLECT_STRING</code>, but
+    expects a parameter of type (char **) and g_strdup()s the
+    returned pointer. The pointer must be freed with&nbsp;g_free().</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="boolean">G_MARKUP_COLLECT_BOOLEAN</code>
+            <a class="anchor" href="#boolean"></a>
+          </dt>
+          <dd>
+            <div><p>Expects a parameter of type (<code>gboolean *</code>)
+    and parses the attribute value as a boolean. Sets <code>FALSE</code> if the
+    attribute isn’t present. Valid boolean values consist of
+    (case-insensitive) “false”, “f”, “no”, “n”, “0” and “true”, “t”,
+    “yes”, “y”,&nbsp;“1”.</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="tristate">G_MARKUP_COLLECT_TRISTATE</code>
+            <a class="anchor" href="#tristate"></a>
+          </dt>
+          <dd>
+            <div><p>As with <code>G_MARKUP_COLLECT_BOOLEAN</code>, but
+    in the case of a missing attribute a value is set that compares
+    equal to neither <code>FALSE</code> nor <code>TRUE</code> <code>G_MARKUP_COLLECT_OPTIONAL</code> is&nbsp;implied.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="optional">G_MARKUP_COLLECT_OPTIONAL</code>
+            <a class="anchor" href="#optional"></a>
+          </dt>
+          <dd>
+            <div><p>Can be bitwise ORed with the other fields.
+    If present, allows the attribute not to appear. A default value
+    is set depending on what value type is&nbsp;used.</p></div>
+            <ul>
+              <li>Value: <code>65536</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/flags.MarkupCollectType.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --></html>

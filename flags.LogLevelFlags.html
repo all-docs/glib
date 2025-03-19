@@ -1,0 +1,259 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/flags.LogLevelFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>LogLevelFlags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.LogLevelFlags">
+  <meta property="og:description" content="Reference for GLib.LogLevelFlags">
+  <meta name="twitter:title" content="GLib.LogLevelFlags">
+  <meta name="twitter:description" content="Reference for GLib.LogLevelFlags">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> LogLevelFlags</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>flags GLib.LogLevelFlags</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.c#L153">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Flags specifying the level of log&nbsp;messages.</p>
+<p>It is possible to change how GLib treats messages of the various
+levels using <a href="func.log_set_handler.html"><code>g_log_set_handler()</code></a> and <a href="func.log_set_fatal_mask.html"><code>g_log_set_fatal_mask()</code></a>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="flag_recursion">G_LOG_FLAG_RECURSION</code>
+            <a class="anchor" href="#flag_recursion"></a>
+          </dt>
+          <dd>
+            <div><p>Internal&nbsp;flag.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="flag_fatal">G_LOG_FLAG_FATAL</code>
+            <a class="anchor" href="#flag_fatal"></a>
+          </dt>
+          <dd>
+            <div><p>Internal&nbsp;flag.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="level_error">G_LOG_LEVEL_ERROR</code>
+            <a class="anchor" href="#level_error"></a>
+          </dt>
+          <dd>
+            <div><p>Log level for errors, see <a href="func.error.html"><code>g_error()</code></a>.
+  This level is also used for messages produced by <a href="func.assert.html"><code>g_assert()</code></a>.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="level_critical">G_LOG_LEVEL_CRITICAL</code>
+            <a class="anchor" href="#level_critical"></a>
+          </dt>
+          <dd>
+            <div><p>Log level for critical warning messages, see
+  <a href="func.critical.html"><code>g_critical()</code></a>. This level is also used for messages produced by
+  <a href="func.return_if_fail.html"><code>g_return_if_fail()</code></a> and <a href="func.return_val_if_fail.html"><code>g_return_val_if_fail()</code></a>.</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="level_warning">G_LOG_LEVEL_WARNING</code>
+            <a class="anchor" href="#level_warning"></a>
+          </dt>
+          <dd>
+            <div><p>Log level for warnings, see <a href="func.warning.html"><code>g_warning()</code></a>.</p></div>
+            <ul>
+              <li>Value: <code>16</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="level_message">G_LOG_LEVEL_MESSAGE</code>
+            <a class="anchor" href="#level_message"></a>
+          </dt>
+          <dd>
+            <div><p>Log level for messages, see <a href="func.message.html"><code>g_message()</code></a>.</p></div>
+            <ul>
+              <li>Value: <code>32</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="level_info">G_LOG_LEVEL_INFO</code>
+            <a class="anchor" href="#level_info"></a>
+          </dt>
+          <dd>
+            <div><p>Log level for informational messages, see <a href="func.info.html"><code>g_info()</code></a>.</p></div>
+            <ul>
+              <li>Value: <code>64</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="level_debug">G_LOG_LEVEL_DEBUG</code>
+            <a class="anchor" href="#level_debug"></a>
+          </dt>
+          <dd>
+            <div><p>Log level for debug messages, see <a href="func.debug.html"><code>g_debug()</code></a>.</p></div>
+            <ul>
+              <li>Value: <code>128</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="level_mask">G_LOG_LEVEL_MASK</code>
+            <a class="anchor" href="#level_mask"></a>
+          </dt>
+          <dd>
+            <div><p>A mask including all log&nbsp;levels.</p></div>
+            <ul>
+              <li>Value: <code>-4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/flags.LogLevelFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --></html>

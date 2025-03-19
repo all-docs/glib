@@ -1,0 +1,266 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/enum.OptionArg.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:08 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>OptionArg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.OptionArg">
+  <meta property="og:description" content="Reference for GLib.OptionArg">
+  <meta name="twitter:title" content="GLib.OptionArg">
+  <meta name="twitter:description" content="Reference for GLib.OptionArg">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> OptionArg</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>enum GLib.OptionArg</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/goption.h#L116">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>The <code>GOptionArg</code> enum values determine which type of extra argument the
+options expect to find. If an option expects an extra argument, it can
+be specified in several ways; with a short option: <code>-x arg</code>, with a long
+option: <code>--name arg</code> or combined in a single argument: <code>--name=arg</code>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="none">G_OPTION_ARG_NONE</code>
+            <a class="anchor" href="#none"></a>
+          </dt>
+          <dd>
+            <div><p>No extra argument. This is useful for simple flags or&nbsp;booleans.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="string">G_OPTION_ARG_STRING</code>
+            <a class="anchor" href="#string"></a>
+          </dt>
+          <dd>
+            <div><p>The option takes a <span class="caps">UTF</span>-8 string&nbsp;argument.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="int">G_OPTION_ARG_INT</code>
+            <a class="anchor" href="#int"></a>
+          </dt>
+          <dd>
+            <div><p>The option takes an integer&nbsp;argument.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="callback">G_OPTION_ARG_CALLBACK</code>
+            <a class="anchor" href="#callback"></a>
+          </dt>
+          <dd>
+            <div><p>The option provides a callback (of type <code>GOptionArgFunc</code>)
+  to parse the extra&nbsp;argument.</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="filename">G_OPTION_ARG_FILENAME</code>
+            <a class="anchor" href="#filename"></a>
+          </dt>
+          <dd>
+            <div><p>The option takes a filename as argument, which will
+     be in the GLib filename encoding rather than <span class="caps">UTF</span>-8.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="string_array">G_OPTION_ARG_STRING_ARRAY</code>
+            <a class="anchor" href="#string_array"></a>
+          </dt>
+          <dd>
+            <div><p>The option takes a string argument, multiple
+  uses of the option are collected into an array of&nbsp;strings.</p></div>
+            <ul>
+              <li>Value: <code>5</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="filename_array">G_OPTION_ARG_FILENAME_ARRAY</code>
+            <a class="anchor" href="#filename_array"></a>
+          </dt>
+          <dd>
+            <div><p>The option takes a filename as argument,
+  multiple uses of the option are collected into an array of&nbsp;strings.</p></div>
+            <ul>
+              <li>Value: <code>6</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="double">G_OPTION_ARG_DOUBLE</code>
+            <a class="anchor" href="#double"></a>
+          </dt>
+          <dd>
+            <div><p>The option takes a double argument. The argument
+  can be formatted either for the user’s locale or for the “C” locale.
+  Since&nbsp;2.12.</p></div>
+            <ul>
+              <li>Value: <code>7</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="int64">G_OPTION_ARG_INT64</code>
+            <a class="anchor" href="#int64"></a>
+          </dt>
+          <dd>
+            <div><p>The option takes a 64-bit integer. Like
+  <code>G_OPTION_ARG_INT</code> but for larger numbers. The number can be in
+  decimal base, or in hexadecimal (when prefixed with <code>0x</code>, for
+  example, <code>0xffffffff</code>). Since&nbsp;2.12.</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/enum.OptionArg.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:08 GMT --></html>

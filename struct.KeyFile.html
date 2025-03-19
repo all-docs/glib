@@ -1,0 +1,798 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.KeyFile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:04:29 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>KeyFile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.KeyFile">
+  <meta property="og:description" content="Reference for GLib.KeyFile">
+  <meta name="twitter:title" content="GLib.KeyFile">
+  <meta name="twitter:description" content="Reference for GLib.KeyFile">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> KeyFile</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gkeyfile.c#L76">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GKeyFile</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p><code>GKeyFile</code> parses .ini-like config&nbsp;files.</p>
+<p><code>GKeyFile</code> lets you parse, edit or create files containing groups of
+key-value pairs, which we call ‘key files’ for lack of a better name.
+Several freedesktop.org specifications use key files. For example, the
+<a href="https://specifications.freedesktop.org/desktop-entry-spec/latest/">Desktop Entry Specification</a>
+and the <a href="https://specifications.freedesktop.org/icon-theme-spec/latest/">Icon Theme Specification</a>.</p>
+<p>The syntax of key files is described in detail in the
+<a href="https://specifications.freedesktop.org/desktop-entry-spec/latest/">Desktop Entry Specification</a>,
+here is a quick summary: Key files consists of groups of key-value pairs, interspersed
+with&nbsp;comments.</p>
+<div class="codehilite"><pre><span></span><code># this is just an example
+# there can be comments before the first group
+
+[First Group]
+
+Name=Key File Example\tthis value shows\nescaping
+
+# localized strings are stored in multiple key-value pairs
+Welcome=Hello
+Welcome[de]=Hallo
+Welcome[fr_FR]=Bonjour
+Welcome[it]=Ciao
+
+[Another Group]
+
+Numbers=2;20;-200;0
+
+Booleans=true;false;true;true
+</code></pre></div>
+
+<p>Lines beginning with a <code>#</code> and blank lines are considered&nbsp;comments.</p>
+<p>Groups are started by a header line containing the group name enclosed
+in <code>[</code> and <code>]</code>, and ended implicitly by the start of the next group or
+the end of the file. Each key-value pair must be contained in a&nbsp;group.</p>
+<p>Key-value pairs generally have the form <code>key=value</code>, with the exception
+of localized strings, which have the form <code>key[locale]=value</code>, with a
+locale identifier of the form <code>lang_COUNTRY@MODIFIER</code> where <code>COUNTRY</code>
+and <code>MODIFIER</code> are optional. As a special case, the locale <code>C</code> is associated
+with the untranslated pair <code>key=value</code> (since GLib 2.84). Space before and
+after the <code>=</code> character is ignored. Newline, tab, carriage return and
+backslash characters in value are escaped as <code>\n</code>, <code>\t</code>, <code>\r</code>, and <code>\\\\</code>,
+respectively. To preserve leading spaces in values, these can also be escaped
+as <code>\s</code>.</p>
+<p>Key files can store strings (possibly with localized variants), integers,
+booleans and lists of these. Lists are separated by a separator character,
+typically <code>;</code> or <code>,</code>. To use the list separator character in a value in
+a list, it has to be escaped by prefixing it with a&nbsp;backslash.</p>
+<p>This syntax is obviously inspired by the .ini files commonly met
+on Windows, but there are some important&nbsp;differences:</p>
+<ul>
+<li>
+<p>.ini files use the <code>;</code> character to begin comments,
+  key files use the <code>#</code> character.</p>
+</li>
+<li>
+<p>Key files do not allow for ungrouped keys meaning only
+  comments can precede the first&nbsp;group.</p>
+</li>
+<li>
+<p>Key files are always encoded in <span class="caps">UTF</span>-8.</p>
+</li>
+<li>
+<p>Key and Group names are case-sensitive. For example, a group called
+  <code>[GROUP]</code> is a different from <code>[group]</code>.</p>
+</li>
+<li>
+<p>.ini files don’t have a strongly typed boolean entry type,
+   they only have <code>GetProfileInt()</code>. In key files, only
+   <code>true</code> and <code>false</code> (in lower case) are&nbsp;allowed.</p>
+</li>
+</ul>
+<p>Note that in contrast to the
+<a href="https://specifications.freedesktop.org/desktop-entry-spec/latest/">Desktop Entry Specification</a>,
+groups in key files may contain the same key multiple times; the last entry wins.
+Key files may also contain multiple groups with the same name; they are merged
+together. Another difference is that keys and group names in key files are not
+restricted to <span class="caps">ASCII</span>&nbsp;characters.</p>
+<p>Here is an example of loading a key file and reading a&nbsp;value:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">g_autoptr</span><span class="p">(</span><span class="n">GError</span><span class="p">)</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="n">g_autoptr</span><span class="p">(</span><span class="n">GKeyFile</span><span class="p">)</span><span class="w"> </span><span class="n">key_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_key_file_new</span><span class="w"> </span><span class="p">();</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_key_file_load_from_file</span><span class="w"> </span><span class="p">(</span><span class="n">key_file</span><span class="p">,</span><span class="w"> </span><span class="s">"key-file.ini"</span><span class="p">,</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">error</span><span class="p">))</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_error_matches</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">G_FILE_ERROR</span><span class="p">,</span><span class="w"> </span><span class="n">G_FILE_ERROR_NOENT</span><span class="p">))</span>
+<span class="w">      </span><span class="n">g_warning</span><span class="w"> </span><span class="p">(</span><span class="s">"Error loading key file: %s"</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="n">g_autofree</span><span class="w"> </span><span class="n">gchar</span><span class="w"> </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_key_file_get_string</span><span class="w"> </span><span class="p">(</span><span class="n">key_file</span><span class="p">,</span><span class="w"> </span><span class="s">"Group Name"</span><span class="p">,</span><span class="w"> </span><span class="s">"SomeKey"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">error</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">    </span><span class="o">!</span><span class="n">g_error_matches</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">G_KEY_FILE_ERROR</span><span class="p">,</span><span class="w"> </span><span class="n">G_KEY_FILE_ERROR_KEY_NOT_FOUND</span><span class="p">))</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g_warning</span><span class="w"> </span><span class="p">(</span><span class="s">"Error finding key in key file: %s"</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Fall back to a default value.</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_strdup</span><span class="w"> </span><span class="p">(</span><span class="s">"default-value"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+
+<p>Here is an example of creating and saving a key&nbsp;file:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">g_autoptr</span><span class="p">(</span><span class="n">GKeyFile</span><span class="p">)</span><span class="w"> </span><span class="n">key_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_key_file_new</span><span class="w"> </span><span class="p">();</span>
+<span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="w"> </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">…</span><span class="p">;</span>
+<span class="n">g_autoptr</span><span class="p">(</span><span class="n">GError</span><span class="p">)</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="n">g_key_file_set_string</span><span class="w"> </span><span class="p">(</span><span class="n">key_file</span><span class="p">,</span><span class="w"> </span><span class="s">"Group Name"</span><span class="p">,</span><span class="w"> </span><span class="s">"SomeKey"</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+
+<span class="c1">// Save as a file.</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_key_file_save_to_file</span><span class="w"> </span><span class="p">(</span><span class="n">key_file</span><span class="p">,</span><span class="w"> </span><span class="s">"key-file.ini"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">error</span><span class="p">))</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g_warning</span><span class="w"> </span><span class="p">(</span><span class="s">"Error saving key file: %s"</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1">// Or store to a GBytes for use elsewhere.</span>
+<span class="n">gsize</span><span class="w"> </span><span class="n">data_len</span><span class="p">;</span>
+<span class="n">g_autofree</span><span class="w"> </span><span class="n">guint8</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">guint8</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">g_key_file_to_data</span><span class="w"> </span><span class="p">(</span><span class="n">key_file</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data_len</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">error</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g_warning</span><span class="w"> </span><span class="p">(</span><span class="s">"Error saving key file: %s"</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="n">g_autoptr</span><span class="p">(</span><span class="n">GBytes</span><span class="p">)</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_bytes_new_take</span><span class="w"> </span><span class="p">(</span><span class="n">g_steal_pointer</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">),</span><span class="w"> </span><span class="n">data_len</span><span class="p">);</span>
+</code></pre></div>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.KeyFile.new.html">g_key_file_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new empty <code>GKeyFile</code> object.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.KeyFile.error_quark.html">g_key_file_error_quark</a></h6>
+        <div class="docblock">
+          No description available.
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.KeyFile.free.html">g_key_file_free</a></h6>
+          <div class="docblock">
+            <p>Clears all keys and groups from <code>key_file</code>, and decreases the
+reference count by&nbsp;1.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_boolean.html">g_key_file_get_boolean</a></h6>
+          <div class="docblock">
+            <p>Returns the value associated with <code>key</code> under <code>group_name</code> as a&nbsp;boolean.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_boolean_list.html">g_key_file_get_boolean_list</a></h6>
+          <div class="docblock">
+            <p>Returns the values associated with <code>key</code> under <code>group_name</code> as&nbsp;booleans.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_comment.html">g_key_file_get_comment</a></h6>
+          <div class="docblock">
+            <p>Retrieves a comment above <code>key</code> from <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_double.html">g_key_file_get_double</a></h6>
+          <div class="docblock">
+            <p>Returns the value associated with <code>key</code> under <code>group_name</code> as a&nbsp;double.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_double_list.html">g_key_file_get_double_list</a></h6>
+          <div class="docblock">
+            <p>Returns the values associated with <code>key</code> under <code>group_name</code> as&nbsp;doubles.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_groups.html">g_key_file_get_groups</a></h6>
+          <div class="docblock">
+            <p>Returns all groups in the key file loaded with <code>key_file</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_int64.html">g_key_file_get_int64</a></h6>
+          <div class="docblock">
+            <p>Returns the value associated with <code>key</code> under <code>group_name</code> as a signed
+64-bit&nbsp;integer.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_integer.html">g_key_file_get_integer</a></h6>
+          <div class="docblock">
+            <p>Returns the value associated with <code>key</code> under <code>group_name</code> as an&nbsp;integer.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_integer_list.html">g_key_file_get_integer_list</a></h6>
+          <div class="docblock">
+            <p>Returns the values associated with <code>key</code> under <code>group_name</code> as&nbsp;integers.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_keys.html">g_key_file_get_keys</a></h6>
+          <div class="docblock">
+            <p>Returns all keys for the group name <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_locale_for_key.html">g_key_file_get_locale_for_key</a></h6>
+          <div class="docblock">
+            <p>Returns the actual locale which the result of
+<code>g_key_file_get_locale_string()</code> or
+<code>g_key_file_get_locale_string_list()</code> came&nbsp;from.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.56</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_locale_string.html">g_key_file_get_locale_string</a></h6>
+          <div class="docblock">
+            <p>Returns the value associated with <code>key</code> under <code>group_name</code>
+translated in the given <code>locale</code> if&nbsp;available.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_locale_string_list.html">g_key_file_get_locale_string_list</a></h6>
+          <div class="docblock">
+            <p>Returns the values associated with <code>key</code> under <code>group_name</code>
+translated in the given <code>locale</code> if&nbsp;available.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_start_group.html">g_key_file_get_start_group</a></h6>
+          <div class="docblock">
+            <p>Returns the name of the start group of the&nbsp;file.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_string.html">g_key_file_get_string</a></h6>
+          <div class="docblock">
+            <p>Returns the string value associated with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_string_list.html">g_key_file_get_string_list</a></h6>
+          <div class="docblock">
+            <p>Returns the values associated with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_uint64.html">g_key_file_get_uint64</a></h6>
+          <div class="docblock">
+            <p>Returns the value associated with <code>key</code> under <code>group_name</code> as an unsigned
+64-bit&nbsp;integer.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.get_value.html">g_key_file_get_value</a></h6>
+          <div class="docblock">
+            <p>Returns the raw value associated with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.has_group.html">g_key_file_has_group</a></h6>
+          <div class="docblock">
+            <p>Looks whether the key file has the group <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.has_key.html">g_key_file_has_key</a></h6>
+          <div class="docblock">
+            <p>Looks whether the key file has the key <code>key</code> in the group
+<code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.load_from_bytes.html">g_key_file_load_from_bytes</a></h6>
+          <div class="docblock">
+            <p>Loads a key file from the data in <code>bytes</code> into an empty <code>GKeyFile</code>
+structure.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.50</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.load_from_data.html">g_key_file_load_from_data</a></h6>
+          <div class="docblock">
+            <p>Loads a key file from memory into an empty <code>GKeyFile</code> structure.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.load_from_data_dirs.html">g_key_file_load_from_data_dirs</a></h6>
+          <div class="docblock">
+            <p>Looks for a key file named <code>file</code> in the paths returned from
+<code>g_get_user_data_dir()</code> and <code>g_get_system_data_dirs()</code>,
+loads the file into <code>key_file</code> and returns the file’s full path in
+<code>full_path</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.load_from_dirs.html">g_key_file_load_from_dirs</a></h6>
+          <div class="docblock">
+            <p>Looks for a key file named <code>file</code> in the paths specified in <code>search_dirs</code>,
+loads the file into <code>key_file</code> and returns the file’s full path in <code>full_path</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.load_from_file.html">g_key_file_load_from_file</a></h6>
+          <div class="docblock">
+            <p>Loads a key file into an empty <code>GKeyFile</code> structure.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.ref.html">g_key_file_ref</a></h6>
+          <div class="docblock">
+            <p>Increases the reference count of <code>key_file</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.remove_comment.html">g_key_file_remove_comment</a></h6>
+          <div class="docblock">
+            <p>Removes a comment above <code>key</code> from <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.remove_group.html">g_key_file_remove_group</a></h6>
+          <div class="docblock">
+            <p>Removes the specified group, <code>group_name</code>,
+from the key&nbsp;file.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.remove_key.html">g_key_file_remove_key</a></h6>
+          <div class="docblock">
+            <p>Removes <code>key</code> in <code>group_name</code> from the key&nbsp;file.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.save_to_file.html">g_key_file_save_to_file</a></h6>
+          <div class="docblock">
+            <p>Writes the contents of <code>key_file</code> to <code>filename</code> using
+<code>g_file_set_contents()</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_boolean.html">g_key_file_set_boolean</a></h6>
+          <div class="docblock">
+            <p>Associates a new boolean value with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_boolean_list.html">g_key_file_set_boolean_list</a></h6>
+          <div class="docblock">
+            <p>Associates a list of boolean values with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_comment.html">g_key_file_set_comment</a></h6>
+          <div class="docblock">
+            <p>Places a comment above <code>key</code> from <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_double.html">g_key_file_set_double</a></h6>
+          <div class="docblock">
+            <p>Associates a new double value with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_double_list.html">g_key_file_set_double_list</a></h6>
+          <div class="docblock">
+            <p>Associates a list of double values with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_int64.html">g_key_file_set_int64</a></h6>
+          <div class="docblock">
+            <p>Associates a new integer value with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_integer.html">g_key_file_set_integer</a></h6>
+          <div class="docblock">
+            <p>Associates a new integer value with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_integer_list.html">g_key_file_set_integer_list</a></h6>
+          <div class="docblock">
+            <p>Associates a list of integer values with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_list_separator.html">g_key_file_set_list_separator</a></h6>
+          <div class="docblock">
+            <p>Sets the character which is used to separate values in&nbsp;lists.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_locale_string.html">g_key_file_set_locale_string</a></h6>
+          <div class="docblock">
+            <p>Associates a string value for <code>key</code> and <code>locale</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_locale_string_list.html">g_key_file_set_locale_string_list</a></h6>
+          <div class="docblock">
+            <p>Associates a list of string values for <code>key</code> and <code>locale</code> under
+<code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_string.html">g_key_file_set_string</a></h6>
+          <div class="docblock">
+            <p>Associates a new string value with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_string_list.html">g_key_file_set_string_list</a></h6>
+          <div class="docblock">
+            <p>Associates a list of string values for <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_uint64.html">g_key_file_set_uint64</a></h6>
+          <div class="docblock">
+            <p>Associates a new integer value with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.set_value.html">g_key_file_set_value</a></h6>
+          <div class="docblock">
+            <p>Associates a new value with <code>key</code> under <code>group_name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.to_data.html">g_key_file_to_data</a></h6>
+          <div class="docblock">
+            <p>Outputs <code>key_file</code> as a&nbsp;string.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.KeyFile.unref.html">g_key_file_unref</a></h6>
+          <div class="docblock">
+            <p>Decreases the reference count of <code>key_file</code> by&nbsp;1.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.32</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.KeyFile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:05:04 GMT --></html>

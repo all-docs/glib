@@ -1,0 +1,368 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.ThreadPool.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:10:12 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>ThreadPool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.ThreadPool">
+  <meta property="og:description" content="Reference for GLib.ThreadPool">
+  <meta name="twitter:title" content="GLib.ThreadPool">
+  <meta name="twitter:description" content="Reference for GLib.ThreadPool">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> ThreadPool</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gthreadpool.c#L45">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GThreadPool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">GFunc</span><span class="w"> </span><span class="n">func</span><span class="p">;</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">user_data</span><span class="p">;</span>
+<span class="w">  </span><span class="n">gboolean</span><span class="w"> </span><span class="n">exclusive</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GThreadPool</code> struct represents a thread&nbsp;pool.</p>
+<p>A thread pool is useful when you wish to asynchronously fork out the execution of work
+and continue working in your own thread. If that will happen often, the overhead of starting
+and destroying a thread each time might be too high. In such cases reusing already started
+threads seems like a good idea. And it indeed is, but implementing this can be tedious
+and&nbsp;error-prone.</p>
+<p>Therefore GLib provides thread pools for your convenience. An added advantage is, that the
+threads can be shared between the different subsystems of your program, when they are using&nbsp;GLib.</p>
+<p>To create a new thread pool, you use <a href="type_func.ThreadPool.new.html"><code>g_thread_pool_new()</code></a>.
+It is destroyed by <a href="method.ThreadPool.free.html"><code>g_thread_pool_free()</code></a>.</p>
+<p>If you want to execute a certain task within a thread pool, use <a href="method.ThreadPool.push.html"><code>g_thread_pool_push()</code></a>.</p>
+<p>To get the current number of running threads you call <a href="method.ThreadPool.get_num_threads.html"><code>g_thread_pool_get_num_threads()</code></a>.
+To get the number of still unprocessed tasks you call <a href="method.ThreadPool.unprocessed.html"><code>g_thread_pool_unprocessed()</code></a>.
+To control the maximum number of threads for a thread pool, you use
+<a href="method.ThreadPool.get_max_threads.html"><code>g_thread_pool_get_max_threads()</code></a>. and <a href="method.ThreadPool.set_max_threads.html"><code>g_thread_pool_set_max_threads()</code></a>.</p>
+<p>Finally you can control the number of unused threads, that are kept alive by GLib for future use.
+The current number can be fetched with <a href="type_func.ThreadPool.get_num_unused_threads.html"><code>g_thread_pool_get_num_unused_threads()</code></a>.
+The maximum number can be controlled by <a href="type_func.ThreadPool.get_max_unused_threads.html"><code>g_thread_pool_get_max_unused_threads()</code></a> and
+<a href="type_func.ThreadPool.set_max_unused_threads.html"><code>g_thread_pool_set_max_unused_threads()</code></a>. All currently unused threads
+can be stopped by calling <a href="type_func.ThreadPool.stop_unused_threads.html"><code>g_thread_pool_stop_unused_threads()</code></a>.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>func</code></dt>
+              <dd><p>The function to execute in the threads of this&nbsp;pool.</p></dd>
+            
+              <dt><code>user_data</code></dt>
+              <dd><p>The user data for the threads of this&nbsp;pool.</p></dd>
+            
+              <dt><code>exclusive</code></dt>
+              <dd><p>Are all threads exclusive to this&nbsp;pool.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.ThreadPool.get_max_idle_time.html">g_thread_pool_get_max_idle_time</a></h6>
+        <div class="docblock">
+          <p>This function will return the maximum <code>interval</code> that a
+thread will wait in the thread pool for new tasks before
+being&nbsp;stopped.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.10</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ThreadPool.get_max_unused_threads.html">g_thread_pool_get_max_unused_threads</a></h6>
+        <div class="docblock">
+          <p>Returns the maximal allowed number of unused&nbsp;threads.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ThreadPool.get_num_unused_threads.html">g_thread_pool_get_num_unused_threads</a></h6>
+        <div class="docblock">
+          <p>Returns the number of currently unused&nbsp;threads.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ThreadPool.new.html">g_thread_pool_new</a></h6>
+        <div class="docblock">
+          <p>This function creates a new thread&nbsp;pool.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ThreadPool.new_full.html">g_thread_pool_new_full</a></h6>
+        <div class="docblock">
+          <p>This function creates a new thread pool similar to <code>g_thread_pool_new()</code>
+but allowing <code>item_free_func</code> to be specified to free the data passed
+to <code>g_thread_pool_push()</code> in the case that the <code>GThreadPool</code> is stopped
+and freed before all tasks have been&nbsp;executed.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.70</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ThreadPool.set_max_idle_time.html">g_thread_pool_set_max_idle_time</a></h6>
+        <div class="docblock">
+          <p>This function will set the maximum <code>interval</code> that a thread
+waiting in the pool for new tasks can be idle for before
+being stopped. This function is similar to calling
+<code>g_thread_pool_stop_unused_threads()</code> on a regular timeout,
+except this is done on a per thread&nbsp;basis.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.10</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ThreadPool.set_max_unused_threads.html">g_thread_pool_set_max_unused_threads</a></h6>
+        <div class="docblock">
+          <p>Sets the maximal number of unused threads to <code>max_threads</code>.
+If <code>max_threads</code> is -1, no limit is imposed on the number
+of unused&nbsp;threads.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ThreadPool.stop_unused_threads.html">g_thread_pool_stop_unused_threads</a></h6>
+        <div class="docblock">
+          <p>Stops all currently unused threads. This does not change the
+maximal number of unused threads. This function can be used to
+regularly stop all unused threads e.g. from&nbsp;g_timeout_add().</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.ThreadPool.free.html">g_thread_pool_free</a></h6>
+          <div class="docblock">
+            <p>Frees all resources allocated for <code>pool</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.ThreadPool.get_max_threads.html">g_thread_pool_get_max_threads</a></h6>
+          <div class="docblock">
+            <p>Returns the maximal number of threads for <code>pool</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.ThreadPool.get_num_threads.html">g_thread_pool_get_num_threads</a></h6>
+          <div class="docblock">
+            <p>Returns the number of threads currently running in <code>pool</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.ThreadPool.move_to_front.html">g_thread_pool_move_to_front</a></h6>
+          <div class="docblock">
+            <p>Moves the item to the front of the queue of unprocessed
+items, so that it will be processed&nbsp;next.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.46</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.ThreadPool.push.html">g_thread_pool_push</a></h6>
+          <div class="docblock">
+            <p>Inserts <code>data</code> into the list of tasks to be executed by <code>pool</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.ThreadPool.set_max_threads.html">g_thread_pool_set_max_threads</a></h6>
+          <div class="docblock">
+            <p>Sets the maximal allowed number of threads for <code>pool</code>.
+A value of -1 means that the maximal number of threads
+is unlimited. If <code>pool</code> is an exclusive thread pool, setting
+the maximal number of threads to -1 is not&nbsp;allowed.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.ThreadPool.set_sort_function.html">g_thread_pool_set_sort_function</a></h6>
+          <div class="docblock">
+            <p>Sets the function used to sort the list of tasks. This allows the
+tasks to be processed by a priority determined by <code>func</code>, and not
+just in the order in which they were added to the&nbsp;pool.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.10</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.ThreadPool.unprocessed.html">g_thread_pool_unprocessed</a></h6>
+          <div class="docblock">
+            <p>Returns the number of tasks still unprocessed in <code>pool</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.ThreadPool.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:10:22 GMT --></html>

@@ -1,0 +1,177 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.MemVTable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:06:05 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>MemVTable</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.MemVTable">
+  <meta property="og:description" content="Reference for GLib.MemVTable">
+  <meta name="twitter:title" content="GLib.MemVTable">
+  <meta name="twitter:description" content="Reference for GLib.MemVTable">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> MemVTable</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmem.h#L39">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GMemVTable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">malloc</span><span class="p">)</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">gsize</span><span class="w"> </span><span class="n">n_bytes</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">realloc</span><span class="p">)</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">gpointer</span><span class="w"> </span><span class="n">mem</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gsize</span><span class="w"> </span><span class="n">n_bytes</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">free</span><span class="p">)</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">gpointer</span><span class="w"> </span><span class="n">mem</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">calloc</span><span class="p">)</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">gsize</span><span class="w"> </span><span class="n">n_blocks</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gsize</span><span class="w"> </span><span class="n">n_block_bytes</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">try_malloc</span><span class="p">)</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">gsize</span><span class="w"> </span><span class="n">n_bytes</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">try_realloc</span><span class="p">)</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">gpointer</span><span class="w"> </span><span class="n">mem</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gsize</span><span class="w"> </span><span class="n">n_bytes</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>A set of functions used to perform memory allocation. The same <code>GMemVTable</code> must
+be used for all allocations in the same program; a call to g_mem_set_vtable(),
+if it exists, should be prior to any use of&nbsp;GLib.</p>
+<p>This functions related to this has been deprecated in 2.46, and no longer&nbsp;work.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>malloc</code></dt>
+              <dd><p>Function to use for allocating&nbsp;memory.</p></dd>
+            
+              <dt><code>realloc</code></dt>
+              <dd><p>Function to use for reallocating&nbsp;memory.</p></dd>
+            
+              <dt><code>free</code></dt>
+              <dd><p>Function to use to free&nbsp;memory.</p></dd>
+            
+              <dt><code>calloc</code></dt>
+              <dd><p>Function to use for allocating zero-filled&nbsp;memory.</p></dd>
+            
+              <dt><code>try_malloc</code></dt>
+              <dd><p>Function to use for allocating memory without a default error&nbsp;handler.</p></dd>
+            
+              <dt><code>try_realloc</code></dt>
+              <dd><p>Function to use for reallocating memory without a default error&nbsp;handler.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.MemVTable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:06:05 GMT --></html>

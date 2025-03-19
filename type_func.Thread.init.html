@@ -1,0 +1,187 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/type_func.Thread.init.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:38 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>Thread.init</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Thread.init">
+  <meta property="og:description" content="Reference for GLib.Thread.init">
+  <meta name="twitter:title" content="GLib.Thread.init">
+  <meta name="twitter:description" content="Reference for GLib.Thread.init">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a> <a href="struct.Thread.html">Thread</a> init</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/deprecated/gthread.h#L271">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_thread_init</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">vtable</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/deprecated/gthread-deprecated.c#L146">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>If you use GLib from more than one thread, you must initialize the
+thread system by calling&nbsp;g_thread_init().</p>
+<p>Since version 2.24, calling <code>g_thread_init()</code> multiple times is allowed,
+but nothing happens except for the first&nbsp;call.</p>
+<p>Since version 2.32, GLib does not support custom thread implementations
+anymore and the <code>vtable</code> parameter is ignored and you should pass <code>NULL</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>g_thread_init()</code> must not be called directly or indirectly in a
+callback from GLib. Also no mutexes may be currently locked
+while calling&nbsp;g_thread_init().</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To use <code>g_thread_init()</code> in your program, you have to link with
+the libraries that the command <code>pkg-config --libs gthread-2.0</code>
+outputs. This is not the case for all the other thread-related
+functions of GLib. Those can be used without having to link
+with the thread&nbsp;libraries.</p>
+</div>
+      </div>
+
+      <div class="docblock">
+        
+        
+        <div class="admonition deprecation">
+          <p class="admonition-title">Deprecated since: 2.32</p><p>This function is no longer necessary. The GLib
+    threading system is automatically initialized at the start
+    of your&nbsp;program.</p></div>
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>vtable</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>A function table of type <code>GThreadFunctions</code>, that provides
+    the entry points to the thread system to be used. Since 2.32,
+    this parameter is ignored and should always be <code>NULL</code>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/type_func.Thread.init.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:38 GMT --></html>

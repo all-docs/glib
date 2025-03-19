@@ -1,0 +1,203 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/flags.TestTrapFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>TestTrapFlags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.TestTrapFlags">
+  <meta property="og:description" content="Reference for GLib.TestTrapFlags">
+  <meta name="twitter:title" content="GLib.TestTrapFlags">
+  <meta name="twitter:description" content="Reference for GLib.TestTrapFlags">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> TestTrapFlags</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem deprecated">deprecated: 2.38</span>&nbsp;</p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>flags GLib.TestTrapFlags</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtestutils.h#L501">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Flags to pass to <a href="func.test_trap_fork.html"><code>g_test_trap_fork()</code></a> to control input and&nbsp;output.</p>
+<p>Test traps are guards around forked tests. These flags determine what traps to&nbsp;set.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        <div class="admonition deprecation">
+          <p class="admonition-title">Deprecated since: 2.38</p><p><code>GTestTrapFlags</code> is used only with <a href="func.test_trap_fork.html"><code>g_test_trap_fork()</code></a>,
+  which is deprecated. Its replacement, <a href="func.test_trap_subprocess.html"><code>g_test_trap_subprocess()</code></a> uses
+  <a href="flags.TestSubprocessFlags.html"><code>GTestSubprocessFlags</code></a>.</p></div>
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="default">G_TEST_TRAP_DEFAULT</code>
+            <a class="anchor" href="#default"></a>
+          </dt>
+          <dd>
+            <div><p>Default behaviour. Since:&nbsp;2.74.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="silence_stdout">G_TEST_TRAP_SILENCE_STDOUT</code>
+            <a class="anchor" href="#silence_stdout"></a>
+          </dt>
+          <dd>
+            <div><p>Redirect stdout of the test child to
+    <code>/dev/null</code> so it cannot be observed on the console during test
+    runs. The actual output is still captured though to allow later
+    tests with&nbsp;g_test_trap_assert_stdout().</p></div>
+            <ul>
+              <li>Value: <code>128</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="silence_stderr">G_TEST_TRAP_SILENCE_STDERR</code>
+            <a class="anchor" href="#silence_stderr"></a>
+          </dt>
+          <dd>
+            <div><p>Redirect stderr of the test child to
+    <code>/dev/null</code> so it cannot be observed on the console during test
+    runs. The actual output is still captured though to allow later
+    tests with&nbsp;g_test_trap_assert_stderr().</p></div>
+            <ul>
+              <li>Value: <code>256</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="inherit_stdin">G_TEST_TRAP_INHERIT_STDIN</code>
+            <a class="anchor" href="#inherit_stdin"></a>
+          </dt>
+          <dd>
+            <div><p>If this flag is given, stdin of the
+    child process is shared with stdin of its parent process.
+    It is redirected to <code>/dev/null</code> otherwise.</p></div>
+            <ul>
+              <li>Value: <code>512</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/flags.TestTrapFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --></html>

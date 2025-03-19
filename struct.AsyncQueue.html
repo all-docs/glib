@@ -1,0 +1,449 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.AsyncQueue.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:00:49 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>AsyncQueue</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.AsyncQueue">
+  <meta property="og:description" content="Reference for GLib.AsyncQueue">
+  <meta name="twitter:title" content="GLib.AsyncQueue">
+  <meta name="twitter:description" content="Reference for GLib.AsyncQueue">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> AsyncQueue</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gasyncqueue.c#L40">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GAsyncQueue</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>An opaque data structure which represents an asynchronous&nbsp;queue.</p>
+<p>It should only be accessed through the <code>g_async_queue_*</code> functions.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.AsyncQueue.new.html">g_async_queue_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new asynchronous&nbsp;queue.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.AsyncQueue.new_full.html">g_async_queue_new_full</a></h6>
+        <div class="docblock">
+          <p>Creates a new asynchronous queue and sets up a destroy notify
+function that is used to free any remaining queue items when
+the queue is destroyed after the final&nbsp;unref.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.16</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.length.html">g_async_queue_length</a></h6>
+          <div class="docblock">
+            <p>Returns the length of the&nbsp;queue.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.length_unlocked.html">g_async_queue_length_unlocked</a></h6>
+          <div class="docblock">
+            <p>Returns the length of the&nbsp;queue.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.lock.html">g_async_queue_lock</a></h6>
+          <div class="docblock">
+            <p>Acquires the <code>queue</code><span class="quo">‘</span>s lock. If another thread is already
+holding the lock, this call will block until the lock
+becomes&nbsp;available.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.pop.html">g_async_queue_pop</a></h6>
+          <div class="docblock">
+            <p>Pops data from the <code>queue</code>. If <code>queue</code> is empty, this function
+blocks until data becomes&nbsp;available.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.pop_unlocked.html">g_async_queue_pop_unlocked</a></h6>
+          <div class="docblock">
+            <p>Pops data from the <code>queue</code>. If <code>queue</code> is empty, this function
+blocks until data becomes&nbsp;available.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.push.html">g_async_queue_push</a></h6>
+          <div class="docblock">
+            <p>Pushes the <code>data</code> into the <code>queue</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.push_front.html">g_async_queue_push_front</a></h6>
+          <div class="docblock">
+            <p>Pushes the <code>item</code> into the <code>queue</code>. <code>item</code> must not be <code>NULL</code>.
+In contrast to g_async_queue_push(), this function
+pushes the new item ahead of the items already in the queue,
+so that it will be the next one to be popped off the&nbsp;queue.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.46</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.push_front_unlocked.html">g_async_queue_push_front_unlocked</a></h6>
+          <div class="docblock">
+            <p>Pushes the <code>item</code> into the <code>queue</code>. <code>item</code> must not be <code>NULL</code>.
+In contrast to g_async_queue_push_unlocked(), this function
+pushes the new item ahead of the items already in the queue,
+so that it will be the next one to be popped off the&nbsp;queue.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.46</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.push_sorted.html">g_async_queue_push_sorted</a></h6>
+          <div class="docblock">
+            <p>Inserts <code>data</code> into <code>queue</code> using <code>func</code> to determine the new&nbsp;position.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.10</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.push_sorted_unlocked.html">g_async_queue_push_sorted_unlocked</a></h6>
+          <div class="docblock">
+            <p>Inserts <code>data</code> into <code>queue</code> using <code>func</code> to determine the new&nbsp;position.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.10</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.push_unlocked.html">g_async_queue_push_unlocked</a></h6>
+          <div class="docblock">
+            <p>Pushes the <code>data</code> into the <code>queue</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.ref.html">g_async_queue_ref</a></h6>
+          <div class="docblock">
+            <p>Increases the reference count of the asynchronous <code>queue</code> by 1.
+You do not need to hold the lock to call this&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.AsyncQueue.ref_unlocked.html">g_async_queue_ref_unlocked</a></h6>
+          <div class="docblock">
+            <p>Increases the reference count of the asynchronous <code>queue</code> by&nbsp;1.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.8</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.remove.html">g_async_queue_remove</a></h6>
+          <div class="docblock">
+            <p>Remove an item from the&nbsp;queue.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.46</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.remove_unlocked.html">g_async_queue_remove_unlocked</a></h6>
+          <div class="docblock">
+            <p>Remove an item from the&nbsp;queue.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.46</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.sort.html">g_async_queue_sort</a></h6>
+          <div class="docblock">
+            <p>Sorts <code>queue</code> using <code>func</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.10</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.sort_unlocked.html">g_async_queue_sort_unlocked</a></h6>
+          <div class="docblock">
+            <p>Sorts <code>queue</code> using <code>func</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.10</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.AsyncQueue.timed_pop.html">g_async_queue_timed_pop</a></h6>
+          <div class="docblock">
+            <p>Pops data from the <code>queue</code>. If the queue is empty, blocks until
+<code>end_time</code> or until data becomes&nbsp;available.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: Unknown</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.AsyncQueue.timed_pop_unlocked.html">g_async_queue_timed_pop_unlocked</a></h6>
+          <div class="docblock">
+            <p>Pops data from the <code>queue</code>. If the queue is empty, blocks until
+<code>end_time</code> or until data becomes&nbsp;available.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: Unknown</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.timeout_pop.html">g_async_queue_timeout_pop</a></h6>
+          <div class="docblock">
+            <p>Pops data from the <code>queue</code>. If the queue is empty, blocks for
+<code>timeout</code> microseconds, or until data becomes&nbsp;available.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.timeout_pop_unlocked.html">g_async_queue_timeout_pop_unlocked</a></h6>
+          <div class="docblock">
+            <p>Pops data from the <code>queue</code>. If the queue is empty, blocks for
+<code>timeout</code> microseconds, or until data becomes&nbsp;available.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.try_pop.html">g_async_queue_try_pop</a></h6>
+          <div class="docblock">
+            <p>Tries to pop data from the <code>queue</code>. If no data is available,
+<code>NULL</code> is&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.try_pop_unlocked.html">g_async_queue_try_pop_unlocked</a></h6>
+          <div class="docblock">
+            <p>Tries to pop data from the <code>queue</code>. If no data is available,
+<code>NULL</code> is&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.unlock.html">g_async_queue_unlock</a></h6>
+          <div class="docblock">
+            <p>Releases the queue’s&nbsp;lock.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.AsyncQueue.unref.html">g_async_queue_unref</a></h6>
+          <div class="docblock">
+            <p>Decreases the reference count of the asynchronous <code>queue</code> by&nbsp;1.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.AsyncQueue.unref_and_unlock.html">g_async_queue_unref_and_unlock</a></h6>
+          <div class="docblock">
+            <p>Decreases the reference count of the asynchronous <code>queue</code> by 1
+and releases the lock. This function must be called while holding
+the <code>queue</code><span class="quo">‘</span>s lock. If the reference count went to 0, the <code>queue</code>
+will be destroyed and the memory allocated will be&nbsp;freed.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.8</span>&nbsp;</p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.AsyncQueue.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:01:01 GMT --></html>

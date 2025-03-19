@@ -1,0 +1,216 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/i18n.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 12:58:49 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Internationalization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Internationalization">
+  <meta property="og:description" content="Reference for GLib-2.0: Internationalization">
+  <meta name="twitter:title" content="GLib: Internationalization">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Internationalization">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Internationalization
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="internationalization">Internationalization<a class="md-anchor" href="#internationalization" title="Permanent link"></a></h1>
+<p>GLib doesn’t force any particular localization method upon its users. But
+since GLib itself is localized using the <code>gettext()</code> mechanism, it seems
+natural to offer the de-facto standard <code>gettext()</code> support macros in an
+easy-to-use&nbsp;form.</p>
+<p>In order to use these macros in an application, you must include
+<code>&lt;glib/gi18n.h&gt;</code>. For use in a library, you must include <code>&lt;glib/gi18n-lib.h&gt;</code>
+after defining the <code>GETTEXT_PACKAGE</code> macro suitably for your&nbsp;library:</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#define GETTEXT_PACKAGE "gtk4"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;glib/gi18n-lib.h&gt;</span>
+</code></pre></div>
+
+<p>For an application, note that you also have to call <code>bindtextdomain()</code>,
+<code>bind_textdomain_codeset()</code>, <code>textdomain()</code> and <code>setlocale()</code> early on in your
+<code>main()</code> to make <code>gettext()</code> work. For&nbsp;example:</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;glib/gi18n.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;locale.h&gt;</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">setlocale</span><span class="w"> </span><span class="p">(</span><span class="n">LC_ALL</span><span class="p">,</span><span class="w"> </span><span class="s">""</span><span class="p">);</span>
+<span class="w">  </span><span class="n">bindtextdomain</span><span class="w"> </span><span class="p">(</span><span class="n">GETTEXT_PACKAGE</span><span class="p">,</span><span class="w"> </span><span class="n">DATADIR</span><span class="w"> </span><span class="s">"/locale"</span><span class="p">);</span>
+<span class="w">  </span><span class="n">bind_textdomain_codeset</span><span class="w"> </span><span class="p">(</span><span class="n">GETTEXT_PACKAGE</span><span class="p">,</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">);</span>
+<span class="w">  </span><span class="n">textdomain</span><span class="w"> </span><span class="p">(</span><span class="n">GETTEXT_PACKAGE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Rest of your application.</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>where <code>DATADIR</code> is as typically provided by Automake or&nbsp;Meson.</p>
+<p>For a library, you only have to call <code>bindtextdomain()</code> and
+<code>bind_textdomain_codeset()</code> in your initialization function. If your library
+doesn’t have an initialization function, you can call the functions before
+the first translated&nbsp;message.</p>
+<p>The <a href="http://www.gnu.org/software/gettext/manual/gettext.html#Maintainers">gettext
+manual</a>
+covers details of how to integrate gettext into a project’s build system and&nbsp;workflow.</p>
+<h2 id="macros">Macros<a class="md-anchor" href="#macros" title="Permanent link"></a></h2>
+<p>GLib provides various convenience C pre-processor macros that make it easy
+for tools like <a href="https://www.gnu.org/software/gettext/manual/html_node/xgettext-Invocation.html"><code>xgettext</code></a>
+to extract translatable strings from the source of a library or an
+application. These macros are defined when including <code>&lt;glib/gi18n.h&gt;</code> or
+<code>&lt;glib/gi18n-lib.h&gt;</code>.</p>
+<dl>
+<dt><code>_(String)</code></dt>
+<dd>Marks a string for translation. The string will be replaced by its
+translation at run time, if any exists; otherwise, it will be passed
+as&nbsp;is.</dd>
+<dt><code>N_(String)</code></dt>
+<dd>
+<p>Marks a string for translation. Unlike <code>_()</code>, this macro will not
+replace the string with its translation; this is useful when the
+translatable string is inside a <code>struct</code> or array declaration, for&nbsp;instance:</p>
+<div class="codehilite"><pre><span></span><code>static const char *messages[] = {
+  N_("some very meaningful message"),
+  N_("and another one"),
+};
+</code></pre></div>
+
+<p>It is the responsibility of the developer to call <code>gettext()</code> when
+using the string,&nbsp;e.g.:</p>
+<div class="codehilite"><pre><span></span><code>g_print ("%s", idx &gt;= G_N_ELEMENTS (messages)
+         ? _("default message")
+         : gettext (messages[idx]));
+</code></pre></div>
+
+</dd>
+<dt><code>C_(Context, String)</code></dt>
+<dd>
+<p>Uses <code>gettext</code> to get the translation for <code>String</code>. <code>Context</code> is
+used as a context. This is mainly useful for short strings which
+may need different translations, depending on the context in which
+they are used. For&nbsp;instance:</p>
+<div class="codehilite"><pre><span></span><code>label1 = C_("Navigation", "Back");
+label2 = C_("Body part", "Back");
+</code></pre></div>
+
+<p>If you are using the <code>C_()</code> macro, you need to make sure that you
+pass <code>--keyword=C_:1c,2</code> to <code>xgettext</code> when extracting messages.
+This only works with a version of <span class="caps">GNU</span> gettext newer than&nbsp;0.15.</p>
+<p>This macro is available since GLib&nbsp;2.16</p>
+</dd>
+<dt><code>NC_(Context, String)</code></dt>
+<dd>
+<p>Only marks a string for translation, with context. Similar to <code>N_()</code>,
+but allows you to add a context to the translatable string, for&nbsp;instance:</p>
+<div class="codehilite"><pre><span></span><code>static const char *messages[] = {
+  NC_("some context", "some very meaningful message"),
+  NC_("some context", "and another one")
+};
+</code></pre></div>
+
+<p>It is the responsibility of the developer to call <a href="func.dpgettext2.html"><code>g_dpgettext2()</code></a>
+when using the string,&nbsp;e.g.:</p>
+<div class="codehilite"><pre><span></span><code>g_print ("%s", idx &gt;= G_N_ELEMENTS (messages)
+         ? g_dpgettext2 (NULL, "some context", "a default message")
+         : g_dpgettext2 (NULL, "some context", messages[idx]);
+</code></pre></div>
+
+<p>If you are using the <code>NC_()</code> macro, you need to make sure that you pass
+<code>--keyword=NC_:1c,2</code> to <code>xgettext</code> when extracting messages. This only
+works with a version of <span class="caps">GNU</span> gettext newer than 0.15. Intltool has support
+for the <code>NC_()</code> macro since version&nbsp;0.40.1.</p>
+<p>This macro is available since GLib&nbsp;2.18</p>
+</dd>
+<dt><code>Q_(String)</code></dt>
+<dd>
+<p>Like <code>_()</code>, but handles context inside the translatable string. This has
+the advantage that the string can be adorned with a prefix to guarantee
+uniqueness and provide context to the&nbsp;translator.</p>
+<p>The <code>String</code> is made of two parts, separated by the <code>|</code> character. The
+leading part is the prefix, which must not be translated; the trailing
+part is the translatable&nbsp;message.</p>
+<p>One use case given in the gettext manual is <span class="caps">GUI</span> translation, where one
+could e.g. disambiguate two ‘Open’ menu entries as <code>"File|Open"</code> and
+<code>"Printer|Open"</code>. Another use case is the string ‘Russian’ which may
+have to be translated differently depending on whether it’s the name
+of a character set or a language. This could be solved by using
+<code>"charset|Russian"</code> and <code>"language|Russian"</code>.</p>
+<p>See also the <code>C_()</code> macro for a different way to mark up translatable
+strings with&nbsp;context.</p>
+<p>If you are using the <code>Q_()</code> macro, you need to make sure that you pass
+<code>--keyword=Q_</code> to <code>xgettext</code> when extracting messages. If you are using
+a version of <span class="caps">GNU</span> gettext newer than 0.15, you can also use <code>--keyword=Q_:1g</code>
+to let xgettext split the context string off into a <code>msgctxt</code> line in
+the <code>.po</code> file.</p>
+<p>This macro is available since GLib&nbsp;2.4</p>
+</dd>
+</dl>
+    </div>
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/i18n.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 12:58:49 GMT --></html>

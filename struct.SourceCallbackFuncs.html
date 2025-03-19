@@ -1,0 +1,158 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.SourceCallbackFuncs.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:09:15 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>SourceCallbackFuncs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.SourceCallbackFuncs">
+  <meta property="og:description" content="Reference for GLib.SourceCallbackFuncs">
+  <meta name="twitter:title" content="GLib.SourceCallbackFuncs">
+  <meta name="twitter:description" content="Reference for GLib.SourceCallbackFuncs">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> SourceCallbackFuncs</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L89">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GSourceCallbackFuncs</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">ref</span><span class="p">)</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">gpointer</span><span class="w"> </span><span class="n">cb_data</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">unref</span><span class="p">)</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">gpointer</span><span class="w"> </span><span class="n">cb_data</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">get</span><span class="p">)</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">gpointer</span><span class="w"> </span><span class="n">cb_data</span><span class="p">,</span>
+<span class="w">    </span><span class="n">GSource</span><span class="o">*</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<span class="w">    </span><span class="n">GSourceFunc</span><span class="o">*</span><span class="w"> </span><span class="n">func</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gpointer</span><span class="o">*</span><span class="w"> </span><span class="n">data</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GSourceCallbackFuncs</code> struct contains
+functions for managing callback&nbsp;objects.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>ref</code></dt>
+              <dd><p>Called when a reference is added to the callback&nbsp;object.</p></dd>
+            
+              <dt><code>unref</code></dt>
+              <dd><p>Called when a reference to the callback object is&nbsp;dropped.</p></dd>
+            
+              <dt><code>get</code></dt>
+              <dd><p>Called to extract the callback function and data from the
+    callback&nbsp;object.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.SourceCallbackFuncs.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:09:15 GMT --></html>

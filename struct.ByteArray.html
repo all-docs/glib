@@ -1,0 +1,339 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.ByteArray.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:01:34 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>ByteArray</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.ByteArray">
+  <meta property="og:description" content="Reference for GLib.ByteArray">
+  <meta name="twitter:title" content="GLib.ByteArray">
+  <meta name="twitter:description" content="Reference for GLib.ByteArray">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> ByteArray</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/garray.c#L2676">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GByteArray</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">guint8</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>Contains the public fields of a&nbsp;GByteArray.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>data</code></dt>
+              <dd><p>A pointer to the element data. The data may be moved as
+    elements are added to the <code>GByteArray</code>.</p></dd>
+            
+              <dt><code>len</code></dt>
+              <dd><p>The number of elements in the <code>GByteArray</code>.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.append.html">g_byte_array_append</a></h6>
+        <div class="docblock">
+          <p>Adds the given bytes to the end of the <code>GByteArray</code>.
+The array will grow in size automatically if&nbsp;necessary.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.free.html">g_byte_array_free</a></h6>
+        <div class="docblock">
+          <p>Frees the memory allocated by the <code>GByteArray</code>. If <code>free_segment</code> is
+<code>TRUE</code> it frees the actual byte data. If the reference count of
+<code>array</code> is greater than one, the <code>GByteArray</code> wrapper is preserved but
+the size of <code>array</code> will be set to&nbsp;zero.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.free_to_bytes.html">g_byte_array_free_to_bytes</a></h6>
+        <div class="docblock">
+          <p>Transfers the data from the <code>GByteArray</code> into a new immutable <code>GBytes</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.32</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.new.html">g_byte_array_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GByteArray</code> with a reference count of&nbsp;1.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.new_take.html">g_byte_array_new_take</a></h6>
+        <div class="docblock">
+          <p>Creates a byte array containing the <code>data</code>.
+After this call, <code>data</code> belongs to the <code>GByteArray</code> and may no longer be
+modified by the caller. The memory of <code>data</code> has to be dynamically
+allocated and will eventually be freed with&nbsp;g_free().</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.32</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.prepend.html">g_byte_array_prepend</a></h6>
+        <div class="docblock">
+          <p>Adds the given data to the start of the <code>GByteArray</code>.
+The array will grow in size automatically if&nbsp;necessary.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.ref.html">g_byte_array_ref</a></h6>
+        <div class="docblock">
+          <p>Atomically increments the reference count of <code>array</code> by one.
+This function is thread-safe and may be called from any&nbsp;thread.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.22</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.remove_index.html">g_byte_array_remove_index</a></h6>
+        <div class="docblock">
+          <p>Removes the byte at the given index from a <code>GByteArray</code>.
+The following bytes are moved down one&nbsp;place.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.remove_index_fast.html">g_byte_array_remove_index_fast</a></h6>
+        <div class="docblock">
+          <p>Removes the byte at the given index from a <code>GByteArray</code>. The last
+element in the array is used to fill in the space, so this function
+does not preserve the order of the <code>GByteArray</code>. But it is faster
+than&nbsp;g_byte_array_remove_index().</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.remove_range.html">g_byte_array_remove_range</a></h6>
+        <div class="docblock">
+          <p>Removes the given number of bytes starting at the given index from a
+<code>GByteArray</code>.  The following elements are moved to close the&nbsp;gap.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.4</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.set_size.html">g_byte_array_set_size</a></h6>
+        <div class="docblock">
+          <p>Sets the size of the <code>GByteArray</code>, expanding it if&nbsp;necessary.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.sized_new.html">g_byte_array_sized_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GByteArray</code> with <code>reserved_size</code> bytes preallocated.
+This avoids frequent reallocation, if you are going to add many
+bytes to the array. Note however that the size of the array is still&nbsp;0.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.sort.html">g_byte_array_sort</a></h6>
+        <div class="docblock">
+          <p>Sorts a byte array, using <code>compare_func</code> which should be a
+qsort()-style comparison function (returns less than zero for first
+arg is less than second arg, zero for equal, greater than zero if
+first arg is greater than second&nbsp;arg).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.sort_with_data.html">g_byte_array_sort_with_data</a></h6>
+        <div class="docblock">
+          <p>Like g_byte_array_sort(), but the comparison function takes an extra
+user data&nbsp;argument.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.steal.html">g_byte_array_steal</a></h6>
+        <div class="docblock">
+          <p>Frees the data in the array and resets the size to zero, while
+the underlying array is preserved for use elsewhere and returned
+to the&nbsp;caller.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.64</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.ByteArray.unref.html">g_byte_array_unref</a></h6>
+        <div class="docblock">
+          <p>Atomically decrements the reference count of <code>array</code> by one. If the
+reference count drops to 0, all memory allocated by the array is
+released. This function is thread-safe and may be called from any&nbsp;thread.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.22</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.ByteArray.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:01:41 GMT --></html>

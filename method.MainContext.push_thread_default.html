@@ -1,0 +1,167 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.MainContext.push_thread_default.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:46 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>MainContext.push_thread_default</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.MainContext.push_thread_default">
+  <meta priority="og:description" content="Reference for GLib.MainContext.push_thread_default">
+  <meta name="twitter:title" content="GLib.MainContext.push_thread_default">
+  <meta name="twitter:description" content="Reference for GLib.MainContext.push_thread_default">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a> <a href="struct.MainContext.html">MainContext</a> push_thread_default</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.22</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L574">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_main_context_push_thread_default</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GMainContext</span><span class="o">*</span><span class="w"> </span><span class="n">context</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.c#L741">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Acquires <code>context</code> and sets it as the thread-default context for the
+current thread. This will cause certain asynchronous operations
+(such as most <a href="https://docs.gtk.org/gio/index.html">Gio</a>-based I/O) which are
+started in this thread to run under <code>context</code> and deliver their
+results to its main loop, rather than running under the global
+default main context in the main thread. Note that calling this function
+changes the context returned by <a href="type_func.MainContext.get_thread_default.html"><code>g_main_context_get_thread_default()</code></a>,
+not the one returned by <a href="type_func.MainContext.default.html"><code>g_main_context_default()</code></a>, so it does not
+affect the context used by functions like <a href="func.idle_add.html"><code>g_idle_add()</code></a>.</p>
+<p>Normally you would call this function shortly after creating a new
+thread, passing it a <a href="struct.MainContext.html"><code>GMainContext</code></a> which will be run by a
+<a href="struct.MainLoop.html"><code>GMainLoop</code></a> in that thread, to set a new default context for all
+async operations in that thread. In this case you may not need to
+ever call <a href="method.MainContext.pop_thread_default.html"><code>g_main_context_pop_thread_default()</code></a>, assuming you want
+the new <a href="struct.MainContext.html"><code>GMainContext</code></a> to be the default for the whole lifecycle
+of the&nbsp;thread.</p>
+<p>If you don’t have control over how the new thread was created (e.g.
+in the new thread isn’t newly created, or if the thread life
+cycle is managed by a <code>GThreadPool</code>), it is always suggested to wrap
+the logic that needs to use the new <a href="struct.MainContext.html"><code>GMainContext</code></a> inside a
+<a href="method.MainContext.push_thread_default.html"><code>g_main_context_push_thread_default()</code></a> /
+<a href="method.MainContext.pop_thread_default.html"><code>g_main_context_pop_thread_default()</code></a> pair, otherwise threads that
+are re-used will end up never explicitly releasing the
+<a href="struct.MainContext.html"><code>GMainContext</code></a> reference they&nbsp;hold.</p>
+<p>In some cases you may want to schedule a single operation in a
+non-default context, or temporarily use a non-default context in
+the main thread. In that case, you can wrap the call to the
+asynchronous operation inside a
+<a href="method.MainContext.push_thread_default.html"><code>g_main_context_push_thread_default()</code></a> /
+<a href="method.MainContext.pop_thread_default.html"><code>g_main_context_pop_thread_default()</code></a> pair, but it is up to you to
+ensure that no other asynchronous operations accidentally get
+started while the non-default context is&nbsp;active.</p>
+<p>Beware that libraries that predate this function may not correctly
+handle being used from a thread with a thread-default context. Eg,
+see&nbsp;g_file_supports_thread_contexts().</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.22</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.MainContext.push_thread_default.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:46 GMT --></html>

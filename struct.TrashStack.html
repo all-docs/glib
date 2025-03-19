@@ -1,0 +1,205 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.TrashStack.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:10:38 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>TrashStack</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.TrashStack">
+  <meta property="og:description" content="Reference for GLib.TrashStack">
+  <meta name="twitter:title" content="GLib.TrashStack">
+  <meta name="twitter:description" content="Reference for GLib.TrashStack">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> TrashStack</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem deprecated">deprecated: 2.48</span>&nbsp;</p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtrashstack.c#L36">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GTrashStack</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">GTrashStack</span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>A <code>GTrashStack</code> is an efficient way to keep a stack of unused allocated
+memory chunks. Each memory chunk is required to be large enough to hold
+a <code>gpointer</code>. This allows the stack to be maintained without any space
+overhead, since the stack pointers can be stored inside the memory&nbsp;chunks.</p>
+<p>There is no function to create a <code>GTrashStack</code>. A <code>NULL</code> <code>GTrashStack*</code>
+is a perfectly valid empty&nbsp;stack.</p>
+<p>Each piece of memory that is pushed onto the stack is cast to a
+<code>GTrashStack*</code>.</p>
+<p>There is no longer any good reason to use <code>GTrashStack</code>.  If you have
+extra pieces of memory, <code>free()</code> them and allocate them again&nbsp;later.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>next</code></dt>
+              <dd><p>Pointer to the previous element of the stack,
+    gets stored in the first <code>sizeof (gpointer)</code>
+    bytes of the&nbsp;element.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+          <div class="admonition deprecation">
+            <p class="admonition-title">Deprecated since: 2.48.</p><p><code>GTrashStack</code> is deprecated without&nbsp;replacement.</p></div>
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="deprecated">
+        <h6><a href="type_func.TrashStack.height.html">g_trash_stack_height</a></h6>
+        <div class="docblock">
+          <p>Returns the height of a <code>GTrashStack</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.48</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      <div class="deprecated">
+        <h6><a href="type_func.TrashStack.peek.html">g_trash_stack_peek</a></h6>
+        <div class="docblock">
+          <p>Returns the element at the top of a <code>GTrashStack</code>
+which may be <code>NULL</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.48</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      <div class="deprecated">
+        <h6><a href="type_func.TrashStack.pop.html">g_trash_stack_pop</a></h6>
+        <div class="docblock">
+          <p>Pops a piece of memory off a <code>GTrashStack</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.48</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      <div class="deprecated">
+        <h6><a href="type_func.TrashStack.push.html">g_trash_stack_push</a></h6>
+        <div class="docblock">
+          <p>Pushes a piece of memory onto a <code>GTrashStack</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.48</span>&nbsp;</p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.TrashStack.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:10:40 GMT --></html>

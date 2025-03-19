@@ -1,0 +1,192 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.MainContext.pusher_new.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:46 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>MainContext.pusher_new</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.MainContext.pusher_new">
+  <meta priority="og:description" content="Reference for GLib.MainContext.pusher_new">
+  <meta name="twitter:title" content="GLib.MainContext.pusher_new">
+  <meta name="twitter:description" content="Reference for GLib.MainContext.pusher_new">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a> <a href="struct.MainContext.html">MainContext</a> pusher_new</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.64</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L638">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GMainContextPusher</span><span class="o">*</span>
+<span class="n">g_main_context_pusher_new</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GMainContext</span><span class="o">*</span><span class="w"> </span><span class="n">main_context</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L591">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Push <code>main_context</code> as the new thread-default main context for the current
+thread, using <a href="method.MainContext.push_thread_default.html"><code>g_main_context_push_thread_default()</code></a>, and return a
+new <a href="alias.MainContextPusher.html"><code>GMainContextPusher</code></a>. Pop with g_main_context_pusher_free().
+Using <a href="method.MainContext.pop_thread_default.html"><code>g_main_context_pop_thread_default()</code></a> on <code>main_context</code> while a
+<a href="alias.MainContextPusher.html"><code>GMainContextPusher</code></a> exists for it can lead to undefined&nbsp;behaviour.</p>
+<p>Using two <a href="alias.MainContextPusher.html"><code>GMainContextPusher</code></a>s in the same scope is not allowed,
+as it leads to an undefined pop&nbsp;order.</p>
+<p>This is intended to be used with g_autoptr().  Note that <code>g_autoptr()</code>
+is only available when using <span class="caps">GCC</span> or clang, so the following example
+will only work with those&nbsp;compilers:</p>
+<div class="codehilite"><pre><span></span><code>typedef struct
+{
+  ...
+  GMainContext *context;
+  ...
+} MyObject;
+
+static void
+my_object_do_stuff (MyObject *self)
+{
+  g_autoptr(GMainContextPusher) pusher = g_main_context_pusher_new (self-&gt;context);
+
+  // Code with main context as the thread default here
+
+  if (cond)
+    // No need to pop
+    return;
+
+  // Optionally early pop
+  g_clear_pointer (&amp;pusher, g_main_context_pusher_free);
+
+  // Code with main context no longer the thread default here
+}
+</code></pre></div>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.64</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="alias.MainContextPusher.html"><code>GMainContextPusher</code></a></p>
+            <p>A <code>GMainContextPusher</code>.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: full">The caller of the method takes ownership of the returned data, and is responsible for freeing it.</td></tr>
+            
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.MainContext.pusher_new.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:46 GMT --></html>

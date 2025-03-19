@@ -1,0 +1,183 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/method.OptionContext.set_strict_posix.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:47 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>OptionContext.set_strict_posix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta priority="og:title" content="GLib.OptionContext.set_strict_posix">
+  <meta priority="og:description" content="Reference for GLib.OptionContext.set_strict_posix">
+  <meta name="twitter:title" content="GLib.OptionContext.set_strict_posix">
+  <meta name="twitter:description" content="Reference for GLib.OptionContext.set_strict_posix">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index-2.html">GLib</a> <a href="struct.OptionContext.html">OptionContext</a> set_strict_posix</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.44</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/goption.h#L358">[src]</a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_option_context_set_strict_posix</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GOptionContext</span><span class="o">*</span><span class="w"> </span><span class="n">context</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gboolean</span><span class="w"> </span><span class="n">strict_posix</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/goption.c#L342">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Sets strict <span class="caps">POSIX</span>&nbsp;mode.</p>
+<p>By default, this mode is&nbsp;disabled.</p>
+<p>In strict <span class="caps">POSIX</span> mode, the first non-argument parameter encountered
+(eg: filename) terminates argument processing.  Remaining arguments
+are treated as non-options and are not attempted to be&nbsp;parsed.</p>
+<p>If strict <span class="caps">POSIX</span> mode is disabled then parsing is done in the <span class="caps">GNU</span> way
+where option arguments can be freely mixed with&nbsp;non-options.</p>
+<p>As an example, consider “ls foo -l”.  With <span class="caps">GNU</span> style parsing, this
+will list “foo” in long mode.  In strict <span class="caps">POSIX</span> style, this will list
+the files named “foo” and&nbsp;“-l”.</p>
+<p>It may be useful to force strict <span class="caps">POSIX</span> mode when creating “verb
+style” command line tools.  For example, the “gsettings” command line
+tool supports the global option “—schemadir” as well as many
+subcommands (“get”, “set”, etc.) which each have their own set of
+arguments.  Using strict <span class="caps">POSIX</span> mode will allow parsing the global
+options up to the verb name while leaving the remaining options to be
+parsed by the relevant subcommand (which can be determined by
+examining the verb name, which should be present in argv[1] after&nbsp;parsing).</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.44</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>strict_posix</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p>The new&nbsp;value.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/method.OptionContext.set_strict_posix.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:47 GMT --></html>

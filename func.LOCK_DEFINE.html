@@ -1,0 +1,185 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.LOCK_DEFINE.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:30 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>LOCK_DEFINE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.LOCK_DEFINE">
+  <meta property="og:description" content="Reference for GLib.LOCK_DEFINE">
+  <meta name="twitter:title" content="GLib.LOCK_DEFINE">
+  <meta name="twitter:description" content="Reference for GLib.LOCK_DEFINE">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function Macro</h3>
+    <h1><a href="index-2.html">GLib</a> LOCK_DEFINE</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gthread.h#L113">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="cp">#define G_LOCK_DEFINE (</span>
+<span class="w">  </span><span class="n">name</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gthread.c#L128">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>The <code>G_LOCK_</code> macros provide a convenient interface to <code>GMutex</code>.
+<code>G_LOCK_DEFINE</code> defines a lock. It can appear in any place where
+variable definitions may appear in programs, i.e. in the first block
+of a function or outside of functions. The <code>name</code> parameter will be
+mangled to get the name of the <code>GMutex</code>. This means that you
+can use names of existing variables as the parameter - e.g. the name
+of the variable you intend to protect with the lock. Look at our
+<code>give_me_next_number()</code> example using the <code>G_LOCK</code> macros:</p>
+<p>Here is an example for using the <code>G_LOCK</code> convenience&nbsp;macros:</p>
+<div class="highlight"><pre><span></span><span class="w">  </span><span class="n">G_LOCK_DEFINE</span><span class="w"> </span><span class="p">(</span><span class="n">current_number</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">int</span>
+<span class="w">  </span><span class="nf">give_me_next_number</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">current_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret_val</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">G_LOCK</span><span class="w"> </span><span class="p">(</span><span class="n">current_number</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ret_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calc_next_number</span><span class="w"> </span><span class="p">(</span><span class="n">current_number</span><span class="p">);</span>
+<span class="w">    </span><span class="n">G_UNLOCK</span><span class="w"> </span><span class="p">(</span><span class="n">current_number</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret_val</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>name</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>-</code></p>
+            <p>The name of the&nbsp;lock.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.LOCK_DEFINE.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:30 GMT --></html>

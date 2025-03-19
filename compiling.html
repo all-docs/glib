@@ -1,0 +1,144 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/compiling.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 12:58:36 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Compiling GLib Applications</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Compiling GLib Applications">
+  <meta property="og:description" content="Reference for GLib-2.0: Compiling GLib Applications">
+  <meta name="twitter:title" content="GLib: Compiling GLib Applications">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Compiling GLib Applications">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Compiling GLib Applications
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="compiling-glib-applications">Compiling GLib Applications<a class="md-anchor" href="#compiling-glib-applications" title="Permanent link"></a></h1>
+<p>To compile a GLib application, you need to tell the compiler where to find
+the GLib header files and libraries. This is done with the
+<a href="https://www.freedesktop.org/wiki/Software/pkg-config/"><code>pkg-config</code></a>&nbsp;utility.</p>
+<p>The following interactive shell session demonstrates how pkg-config is used
+(the actual output on your system may be&nbsp;different):</p>
+<div class="codehilite"><pre><span></span><code>$ pkg-config --cflags glib-2.0
+-I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include
+$ pkg-config --libs glib-2.0
+-L/usr/lib -lm -lglib-2.0
+</code></pre></div>
+
+<p>See the <code>pkg-config</code> website for more information about <code>pkg-config</code>.</p>
+<p>If your application uses or GObject features, it must be compiled and linked
+with the options returned by the following <code>pkg-config</code> invocation:</p>
+<div class="codehilite"><pre><span></span><code>$ pkg-config --cflags --libs gobject-2.0
+</code></pre></div>
+
+<p>If your application uses modules, it must be compiled and linked with the
+options returned by one of the following pkg-config&nbsp;invocations:</p>
+<div class="codehilite"><pre><span></span><code>$ pkg-config --cflags --libs gmodule-no-export-2.0
+$ pkg-config --cflags --libs gmodule-2.0
+</code></pre></div>
+
+<p>The difference between the two is that <code>gmodule-2.0</code> adds <code>--export-dynamic</code>
+to the linker flags, which is often not&nbsp;needed.</p>
+<p>The simplest way to compile a program is to use the “backticks” feature of
+the shell. If you enclose a command in backticks (not single quotes), then
+its output will be substituted into the command line before execution. So to
+compile a GLib Hello, World, you would type the&nbsp;following:</p>
+<div class="codehilite"><pre><span></span><code>$ cc `pkg-config --cflags glib-2.0` hello.c -o hello `pkg-config --libs glib-2.0`
+</code></pre></div>
+
+<p>Deprecated GLib functions are annotated to make the compiler emit warnings
+when they are used (e.g. with <span class="caps">GCC</span>, you need to use the
+<code>-Wdeprecated-declarations option</code>). If these warnings are problematic, they
+can be turned off by defining the preprocessor symbol
+<code>GLIB_DISABLE_DEPRECATION_WARNINGS</code> by using the commandline option
+<code>-DGLIB_DISABLE_DEPRECATION_WARNINGS</code></p>
+<p>GLib deprecation annotations are versioned; by defining the macros
+<code>GLIB_VERSION_MIN_REQUIRED</code> and <code>GLIB_VERSION_MAX_ALLOWED</code>, you can specify the
+range of GLib versions whose <span class="caps">API</span> you want to use. APIs that were deprecated
+before or introduced after this range will trigger compiler&nbsp;warnings.</p>
+<p>Since GLib 2.62, the older deprecation mechanism of hiding deprecated
+interfaces entirely from the compiler by using the preprocessor symbol
+<code>G_DISABLE_DEPRECATED</code> has been removed. All deprecations are now handled
+using the above&nbsp;mechanism.</p>
+<p>The recommended way of using GLib has always been to only include the
+toplevel headers <code>glib.h</code>, <code>glib-object.h</code>, <code>gio.h</code>. Starting with 2.32, GLib
+enforces this by generating an error when individual headers are directly&nbsp;included.</p>
+<p>Still, there are some exceptions; these headers have to be included&nbsp;separately:</p>
+<ul>
+<li><code>gmodule.h</code></li>
+<li><code>glib-unix.h</code></li>
+<li><code>glib/gi18n-lib.h</code> or <code>glib/gi18n.h</code> (see the section on
+  <a href="i18n.html">Internationalization</a>)</li>
+<li><code>glib/gprintf.h</code> and <code>glib/gstdio.h</code> (we don’t want to pull in all of&nbsp;stdio)</li>
+</ul>
+    </div>
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/compiling.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 12:58:36 GMT --></html>

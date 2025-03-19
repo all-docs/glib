@@ -1,0 +1,384 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.OptionContext.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:06:13 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>OptionContext</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.OptionContext">
+  <meta property="og:description" content="Reference for GLib.OptionContext">
+  <meta name="twitter:title" content="GLib.OptionContext">
+  <meta name="twitter:description" content="Reference for GLib.OptionContext">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> OptionContext</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/goption.h#L33">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GOptionContext</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>A <code>GOptionContext</code> struct defines which options
+are accepted by the commandline option parser. The struct has only private
+fields and should not be directly&nbsp;accessed.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.OptionContext.new.html">g_option_context_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new option&nbsp;context.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.6</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.OptionContext.add_group.html">g_option_context_add_group</a></h6>
+          <div class="docblock">
+            <p>Adds a <code>GOptionGroup</code> to the <code>context</code>, so that parsing with <code>context</code>
+will recognize the options in the group. Note that this will take
+ownership of the <code>group</code> and thus the <code>group</code> should not be&nbsp;freed.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.add_main_entries.html">g_option_context_add_main_entries</a></h6>
+          <div class="docblock">
+            <p>A convenience function which creates a main group if it doesn’t
+exist, adds the <code>entries</code> to it and sets the translation&nbsp;domain.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.free.html">g_option_context_free</a></h6>
+          <div class="docblock">
+            <p>Frees context and all the groups which have been
+added to&nbsp;it.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.get_description.html">g_option_context_get_description</a></h6>
+          <div class="docblock">
+            <p>Returns the description. See&nbsp;g_option_context_set_description().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.get_help.html">g_option_context_get_help</a></h6>
+          <div class="docblock">
+            <p>Returns a formatted, translated help text for the given context.
+To obtain the text produced by <code>--help</code>, call
+<code>g_option_context_get_help (context, TRUE, NULL)</code>.
+To obtain the text produced by <code>--help-all</code>, call
+<code>g_option_context_get_help (context, FALSE, NULL)</code>.
+To obtain the help text for an option group, call
+<code>g_option_context_get_help (context, FALSE, group)</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.get_help_enabled.html">g_option_context_get_help_enabled</a></h6>
+          <div class="docblock">
+            <p>Returns whether automatic <code>--help</code> generation
+is turned on for <code>context</code>. See&nbsp;g_option_context_set_help_enabled().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.get_ignore_unknown_options.html">g_option_context_get_ignore_unknown_options</a></h6>
+          <div class="docblock">
+            <p>Returns whether unknown options are ignored or not. See&nbsp;g_option_context_set_ignore_unknown_options().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.get_main_group.html">g_option_context_get_main_group</a></h6>
+          <div class="docblock">
+            <p>Returns a pointer to the main group of <code>context</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.get_strict_posix.html">g_option_context_get_strict_posix</a></h6>
+          <div class="docblock">
+            <p>Returns whether strict <span class="caps">POSIX</span> code is&nbsp;enabled.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.44</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.get_summary.html">g_option_context_get_summary</a></h6>
+          <div class="docblock">
+            <p>Returns the summary. See&nbsp;g_option_context_set_summary().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.parse.html">g_option_context_parse</a></h6>
+          <div class="docblock">
+            <p>Parses the command line arguments, recognizing options
+which have been added to <code>context</code>. A side-effect of
+calling this function is that <code>g_set_prgname()</code> will be&nbsp;called.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.parse_strv.html">g_option_context_parse_strv</a></h6>
+          <div class="docblock">
+            <p>Parses the command line&nbsp;arguments.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.set_description.html">g_option_context_set_description</a></h6>
+          <div class="docblock">
+            <p>Adds a string to be displayed in <code>--help</code> output after the list
+of options. This text often includes a bug reporting&nbsp;address.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.set_help_enabled.html">g_option_context_set_help_enabled</a></h6>
+          <div class="docblock">
+            <p>Enables or disables automatic generation of <code>--help</code> output.
+By default, <code>g_option_context_parse()</code> recognizes <code>--help</code>, <code>-h</code>,
+<code>-?</code>, <code>--help-all</code> and <code>--help-groupname</code> and creates suitable
+output to&nbsp;stdout.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.set_ignore_unknown_options.html">g_option_context_set_ignore_unknown_options</a></h6>
+          <div class="docblock">
+            <p>Sets whether to ignore unknown options or not. If an argument is
+ignored, it is left in the <code>argv</code> array after parsing. By default,
+<code>g_option_context_parse()</code> treats unknown options as&nbsp;error.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.set_main_group.html">g_option_context_set_main_group</a></h6>
+          <div class="docblock">
+            <p>Sets a <code>GOptionGroup</code> as main group of the <code>context</code>.
+This has the same effect as calling g_option_context_add_group(),
+the only difference is that the options in the main group are
+treated differently when generating <code>--help</code> output.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.6</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.set_strict_posix.html">g_option_context_set_strict_posix</a></h6>
+          <div class="docblock">
+            <p>Sets strict <span class="caps">POSIX</span>&nbsp;mode.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.44</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.set_summary.html">g_option_context_set_summary</a></h6>
+          <div class="docblock">
+            <p>Adds a string to be displayed in <code>--help</code> output before the list
+of options. This is typically a summary of the program&nbsp;functionality.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.set_translate_func.html">g_option_context_set_translate_func</a></h6>
+          <div class="docblock">
+            <p>Sets the function which is used to translate the contexts
+user-visible strings, for <code>--help</code> output. If <code>func</code> is <code>NULL</code>,
+strings are not&nbsp;translated.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.OptionContext.set_translation_domain.html">g_option_context_set_translation_domain</a></h6>
+          <div class="docblock">
+            <p>A convenience function to use <code>gettext()</code> for translating
+user-visible&nbsp;strings.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.OptionContext.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:06:25 GMT --></html>

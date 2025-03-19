@@ -1,0 +1,309 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.StaticRWLock.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:09:24 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>StaticRWLock</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.StaticRWLock">
+  <meta property="og:description" content="Reference for GLib.StaticRWLock">
+  <meta name="twitter:title" content="GLib.StaticRWLock">
+  <meta name="twitter:description" content="Reference for GLib.StaticRWLock">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> StaticRWLock</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/deprecated/gthread-deprecated.c#L851">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GStaticRWLock</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GStaticRWLock</code> struct represents a read-write lock. A read-write
+lock can be used for protecting data that some portions of code only
+read from, while others also write. In such situations it is
+desirable that several readers can read at once, whereas of course
+only one writer may write at a&nbsp;time.</p>
+<p>Take a look at the following&nbsp;example:</p>
+<div class="codehilite"><pre><span></span><code>  GStaticRWLock rwlock = G_STATIC_RW_LOCK_INIT;
+  GPtrArray *array;
+
+  gpointer
+  my_array_get (guint index)
+  {
+    gpointer retval = NULL;
+
+    if (!array)
+      return NULL;
+
+    g_static_rw_lock_reader_lock (&amp;rwlock);
+    if (index &lt; array-&gt;len)
+      retval = g_ptr_array_index (array, index);
+    g_static_rw_lock_reader_unlock (&amp;rwlock);
+
+    return retval;
+  }
+
+  void
+  my_array_set (guint index, gpointer data)
+  {
+    g_static_rw_lock_writer_lock (&amp;rwlock);
+
+    if (!array)
+      array = g_ptr_array_new ();
+
+    if (index &gt;= array-&gt;len)
+      g_ptr_array_set_size (array, index + 1);
+    g_ptr_array_index (array, index) = data;
+
+    g_static_rw_lock_writer_unlock (&amp;rwlock);
+  }
+</code></pre></div>
+
+<p>This example shows an array which can be accessed by many readers
+(the <code>my_array_get()</code> function) simultaneously, whereas the writers
+(the <code>my_array_set()</code> function) will only be allowed once at a time
+and only if no readers currently access the array. This is because
+of the potentially dangerous resizing of the array. Using these
+functions is fully multi-thread safe&nbsp;now.</p>
+<p>Most of the time, writers should have precedence over readers. That
+means, for this implementation, that as soon as a writer wants to
+lock the data, no other reader is allowed to lock the data, whereas,
+of course, the readers that already have locked the data are allowed
+to finish their operation. As soon as the last reader unlocks the
+data, the writer will lock&nbsp;it.</p>
+<p>Even though <code>GStaticRWLock</code> is not opaque, it should only be used
+with the following&nbsp;functions.</p>
+<p>All of the g_static_rw_lock_<em> functions can be used even if
+<code>g_thread_init()</code> has not been called. Then they do nothing, apart
+from g_static_rw_lock_</em>_trylock, which does nothing but returning <code>TRUE</code>.</p>
+<p>A read-write lock has a higher overhead than a mutex. For example, both
+<code>g_static_rw_lock_reader_lock()</code> and <code>g_static_rw_lock_reader_unlock()</code> have
+to lock and unlock a <code>GStaticMutex</code>, so it takes at least twice the time
+to lock and unlock a <code>GStaticRWLock</code> that it does to lock and unlock a
+<code>GStaticMutex</code>. So only data structures that are accessed by multiple
+readers, and which keep the lock for a considerable time justify a
+<code>GStaticRWLock</code>. The above example most probably would fare better with a
+<code>GStaticMutex</code>.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+          <div class="admonition deprecation">
+            <p class="admonition-title">Deprecated since: 2.32.</p><p>Use a <code>GRWLock</code> instead.</p></div>
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="deprecated">
+          <h6><a href="method.StaticRWLock.free.html">g_static_rw_lock_free</a></h6>
+          <div class="docblock">
+            <p>Releases all resources allocated to <code>lock</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.StaticRWLock.init.html">g_static_rw_lock_init</a></h6>
+          <div class="docblock">
+            <p>A <code>GStaticRWLock</code> must be initialized with this function before it
+can be used. Alternatively you can initialize it with
+<code>G_STATIC_RW_LOCK_INIT</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.StaticRWLock.reader_lock.html">g_static_rw_lock_reader_lock</a></h6>
+          <div class="docblock">
+            <p>Locks <code>lock</code> for reading. There may be unlimited concurrent locks for
+reading of a <code>GStaticRWLock</code> at the same time.  If <code>lock</code> is already
+locked for writing by another thread or if another thread is already
+waiting to lock <code>lock</code> for writing, this function will block until
+<code>lock</code> is unlocked by the other writing thread and no other writing
+threads want to lock <code>lock</code>. This lock has to be unlocked by&nbsp;g_static_rw_lock_reader_unlock().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.StaticRWLock.reader_trylock.html">g_static_rw_lock_reader_trylock</a></h6>
+          <div class="docblock">
+            <p>Tries to lock <code>lock</code> for reading. If <code>lock</code> is already locked for
+writing by another thread or if another thread is already waiting to
+lock <code>lock</code> for writing, immediately returns <code>FALSE</code>. Otherwise locks
+<code>lock</code> for reading and returns <code>TRUE</code>. This lock has to be unlocked by&nbsp;g_static_rw_lock_reader_unlock().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.StaticRWLock.reader_unlock.html">g_static_rw_lock_reader_unlock</a></h6>
+          <div class="docblock">
+            <p>Unlocks <code>lock</code>. If a thread waits to lock <code>lock</code> for writing and all
+locks for reading have been unlocked, the waiting thread is woken up
+and can lock <code>lock</code> for&nbsp;writing.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.StaticRWLock.writer_lock.html">g_static_rw_lock_writer_lock</a></h6>
+          <div class="docblock">
+            <p>Locks <code>lock</code> for writing. If <code>lock</code> is already locked for writing or
+reading by other threads, this function will block until <code>lock</code> is
+completely unlocked and then lock <code>lock</code> for writing. While this
+functions waits to lock <code>lock</code>, no other thread can lock <code>lock</code> for
+reading. When <code>lock</code> is locked for writing, no other thread can lock
+<code>lock</code> (neither for reading nor writing). This lock has to be
+unlocked by&nbsp;g_static_rw_lock_writer_unlock().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.StaticRWLock.writer_trylock.html">g_static_rw_lock_writer_trylock</a></h6>
+          <div class="docblock">
+            <p>Tries to lock <code>lock</code> for writing. If <code>lock</code> is already locked (for
+either reading or writing) by another thread, it immediately returns
+<code>FALSE</code>. Otherwise it locks <code>lock</code> for writing and returns <code>TRUE</code>. This
+lock has to be unlocked by&nbsp;g_static_rw_lock_writer_unlock().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.StaticRWLock.writer_unlock.html">g_static_rw_lock_writer_unlock</a></h6>
+          <div class="docblock">
+            <p>Unlocks <code>lock</code>. If a thread is waiting to lock <code>lock</code> for writing and
+all locks for reading have been unlocked, the waiting thread is
+woken up and can lock <code>lock</code> for writing. If no thread is waiting to
+lock <code>lock</code> for writing, and some thread or threads are waiting to
+lock <code>lock</code> for reading, the waiting threads are woken up and can
+lock <code>lock</code> for&nbsp;reading.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.StaticRWLock.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:09:29 GMT --></html>

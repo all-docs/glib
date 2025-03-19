@@ -1,0 +1,201 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.StaticPrivate.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:09:17 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>StaticPrivate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.StaticPrivate">
+  <meta property="og:description" content="Reference for GLib.StaticPrivate">
+  <meta name="twitter:title" content="GLib.StaticPrivate">
+  <meta name="twitter:description" content="Reference for GLib.StaticPrivate">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> StaticPrivate</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/deprecated/gthread-deprecated.c#L1249">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GStaticPrivate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>A <code>GStaticPrivate</code> works almost like a <code>GPrivate</code>, but it has one
+significant advantage. It doesn’t need to be created at run-time
+like a <code>GPrivate</code>, but can be defined at compile-time. This is
+similar to the difference between <code>GMutex</code> and <code>GStaticMutex</code>.</p>
+<p>Now look at our <code>give_me_next_number()</code> example with <code>GStaticPrivate</code>:</p>
+<div class="codehilite"><pre><span></span><code>  int
+  give_me_next_number ()
+  {
+    static GStaticPrivate current_number_key = G_STATIC_PRIVATE_INIT;
+    int *current_number = g_static_private_get (&amp;current_number_key);
+
+    if (!current_number)
+      {
+        current_number = g_new (int, 1);
+        *current_number = 0;
+        g_static_private_set (&amp;current_number_key, current_number, g_free);
+      }
+
+    *current_number = calc_next_number (*current_number);
+
+    return *current_number;
+  }
+</code></pre></div>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.StaticPrivate.free.html">g_static_private_free</a></h6>
+          <div class="docblock">
+            <p>Releases all resources allocated to <code>private_key</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.StaticPrivate.get.html">g_static_private_get</a></h6>
+          <div class="docblock">
+            <p>Works like <code>g_private_get()</code> only for a <code>GStaticPrivate</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.StaticPrivate.init.html">g_static_private_init</a></h6>
+          <div class="docblock">
+            <p>Initializes <code>private_key</code>. Alternatively you can initialize it with
+<code>G_STATIC_PRIVATE_INIT</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.StaticPrivate.set.html">g_static_private_set</a></h6>
+          <div class="docblock">
+            <p>Sets the pointer keyed to <code>private_key</code> for the current thread and
+the function <code>notify</code> to be called with that pointer (<code>NULL</code> or
+non-<code>NULL</code>), whenever the pointer is set again or whenever the
+current thread&nbsp;ends.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.StaticPrivate.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:09:19 GMT --></html>

@@ -1,0 +1,260 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/string-utils.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 12:58:49 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: String Utilities</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: String Utilities">
+  <meta property="og:description" content="Reference for GLib-2.0: String Utilities">
+  <meta name="twitter:title" content="GLib: String Utilities">
+  <meta name="twitter:description" content="Reference for GLib-2.0: String Utilities">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    String Utilities
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="string-utilities">String Utilities<a class="md-anchor" href="#string-utilities" title="Permanent link"></a></h1>
+<p>This section describes a number of utility functions for creating,
+duplicating, and manipulating&nbsp;strings.</p>
+<p>Note that the functions <a href="func.printf.html"><code>g_printf()</code></a>, <a href="func.fprintf.html"><code>g_fprintf()</code></a>,
+<a href="func.sprintf.html"><code>g_sprintf()</code></a>, <a href="func.vprintf.html"><code>g_vprintf()</code></a>, <a href="func.vfprintf.html"><code>g_vfprintf()</code></a>,
+<a href="func.vsprintf.html"><code>g_vsprintf()</code></a> and <a href="func.vasprintf.html"><code>g_vasprintf()</code></a> are declared in the header
+<code>gprintf.h</code> which is not included in <code>glib.h</code>
+(otherwise using <code>glib.h</code> would drag in <code>stdio.h</code>), so you’ll have to
+explicitly include <code>&lt;glib/gprintf.h&gt;</code> in order to use the GLib
+<code>printf()</code> functions.</p>
+<h2 id="string-precision-pitfalls">String precision pitfalls<a class="md-anchor" href="#string-precision-pitfalls" title="Permanent link"></a></h2>
+<p>While you may use the <code>printf()</code> functions to format <span class="caps">UTF</span>-8 strings,
+notice that the precision of a <code>%Ns</code> parameter is interpreted
+as the number of bytes, not characters to print. On top of that,
+the <span class="caps">GNU</span> libc implementation of the <code>printf()</code> functions has the
+‘feature’ that it checks that the string given for the <code>%Ns</code>
+parameter consists of a whole number of characters in the current
+encoding. So, unless you are sure you are always going to be in an
+<span class="caps">UTF</span>-8 locale or your know your text is restricted to <span class="caps">ASCII</span>, avoid
+using <code>%Ns</code>. If your intention is to format strings for a
+certain number of columns, then <code>%Ns</code> is not a correct solution
+anyway, since it fails to take wide characters (see <a href="func.unichar_iswide.html"><code>g_unichar_iswide()</code></a>)
+into&nbsp;account.</p>
+<p>Note also that there are various <code>printf()</code> parameters which are platform
+dependent. GLib provides platform independent macros for these parameters
+which should be used instead. A common example is <a href="const.GUINT64_FORMAT.html"><code>G_GUINT64_FORMAT</code></a>,
+which should be used instead of <code>%llu</code> or similar parameters for formatting
+64-bit integers. These macros are all named <code>G_*_FORMAT</code>; see
+<a href="types.html">Basic Types</a>.</p>
+<h2 id="general-string-manipulation">General String Manipulation<a class="md-anchor" href="#general-string-manipulation" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.strdup.html"><code>g_strdup()</code></a></li>
+<li><a href="func.strndup.html"><code>g_strndup()</code></a></li>
+<li><a href="func.strdupv.html"><code>g_strdupv()</code></a></li>
+<li><a href="func.strnfill.html"><code>g_strnfill()</code></a></li>
+<li><a href="func.stpcpy.html"><code>g_stpcpy()</code></a></li>
+<li><a href="func.strstr_len.html"><code>g_strstr_len()</code></a></li>
+<li><a href="func.strrstr.html"><code>g_strrstr()</code></a></li>
+<li><a href="func.strrstr_len.html"><code>g_strrstr_len()</code></a></li>
+<li><a href="func.str_has_prefix.html"><code>g_str_has_prefix()</code></a></li>
+<li><a href="func.str_has_suffix.html"><code>g_str_has_suffix()</code></a></li>
+<li><a href="func.strcmp0.html"><code>g_strcmp0()</code></a></li>
+<li><a href="func.str_to_ascii.html"><code>g_str_to_ascii()</code></a></li>
+<li><a href="func.str_tokenize_and_fold.html"><code>g_str_tokenize_and_fold()</code></a></li>
+<li><a href="func.str_match_string.html"><code>g_str_match_string()</code></a></li>
+</ul>
+<p>For users of GLib in C, the <code>g_set_str()</code> inline function also exists to set a
+string and handle copying the new value and freeing the old&nbsp;one.</p>
+<h2 id="string-copying">String Copying<a class="md-anchor" href="#string-copying" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.strlcpy.html"><code>g_strlcpy()</code></a></li>
+<li><a href="func.strlcat.html"><code>g_strlcat()</code></a></li>
+</ul>
+<h2 id="printing">Printing<a class="md-anchor" href="#printing" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.strdup_printf.html"><code>g_strdup_printf()</code></a></li>
+<li><a href="func.strdup_vprintf.html"><code>g_strdup_vprintf()</code></a></li>
+<li><a href="func.printf.html"><code>g_printf()</code></a></li>
+<li><a href="func.vprintf.html"><code>g_vprintf()</code></a></li>
+<li><a href="func.fprintf.html"><code>g_fprintf()</code></a></li>
+<li><a href="func.vfprintf.html"><code>g_vfprintf()</code></a></li>
+<li><a href="func.sprintf.html"><code>g_sprintf()</code></a></li>
+<li><a href="func.vsprintf.html"><code>g_vsprintf()</code></a></li>
+<li><a href="func.snprintf.html"><code>g_snprintf()</code></a></li>
+<li><a href="func.vsnprintf.html"><code>g_vsnprintf()</code></a></li>
+<li><a href="func.vasprintf.html"><code>g_vasprintf()</code></a></li>
+<li><a href="func.printf_string_upper_bound.html"><code>g_printf_string_upper_bound()</code></a></li>
+</ul>
+<h2 id="ascii">ASCII<a class="md-anchor" href="#ascii" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.str_is_ascii.html"><code>g_str_is_ascii()</code></a></li>
+<li><a href="func.ascii_isalnum.html"><code>g_ascii_isalnum()</code></a></li>
+<li><a href="func.ascii_isalpha.html"><code>g_ascii_isalpha()</code></a></li>
+<li><a href="func.ascii_iscntrl.html"><code>g_ascii_iscntrl()</code></a></li>
+<li><a href="func.ascii_isdigit.html"><code>g_ascii_isdigit()</code></a></li>
+<li><a href="func.ascii_isgraph.html"><code>g_ascii_isgraph()</code></a></li>
+<li><a href="func.ascii_islower.html"><code>g_ascii_islower()</code></a></li>
+<li><a href="func.ascii_isprint.html"><code>g_ascii_isprint()</code></a></li>
+<li><a href="func.ascii_ispunct.html"><code>g_ascii_ispunct()</code></a></li>
+<li><a href="func.ascii_isspace.html"><code>g_ascii_isspace()</code></a></li>
+<li><a href="func.ascii_isupper.html"><code>g_ascii_isupper()</code></a></li>
+<li><a href="func.ascii_isxdigit.html"><code>g_ascii_isxdigit()</code></a></li>
+</ul>
+<h2 id="ascii-parsing">ASCII Parsing<a class="md-anchor" href="#ascii-parsing" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.ascii_digit_value.html"><code>g_ascii_digit_value()</code></a></li>
+<li><a href="func.ascii_xdigit_value.html"><code>g_ascii_xdigit_value()</code></a></li>
+</ul>
+<h2 id="ascii-comparisons">ASCII Comparisons<a class="md-anchor" href="#ascii-comparisons" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.ascii_strcasecmp.html"><code>g_ascii_strcasecmp()</code></a></li>
+<li><a href="func.ascii_strncasecmp.html"><code>g_ascii_strncasecmp()</code></a></li>
+</ul>
+<h2 id="ascii-case-manipulation">ASCII Case Manipulation<a class="md-anchor" href="#ascii-case-manipulation" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.ascii_strup.html"><code>g_ascii_strup()</code></a></li>
+<li><a href="func.ascii_strdown.html"><code>g_ascii_strdown()</code></a></li>
+<li><a href="func.ascii_tolower.html"><code>g_ascii_tolower()</code></a></li>
+<li><a href="func.ascii_toupper.html"><code>g_ascii_toupper()</code></a></li>
+</ul>
+<h2 id="ascii-string-manipulation">ASCII String Manipulation<a class="md-anchor" href="#ascii-string-manipulation" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.strreverse.html"><code>g_strreverse()</code></a></li>
+</ul>
+<h2 id="ascii-number-manipulation">ASCII Number Manipulation<a class="md-anchor" href="#ascii-number-manipulation" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.ascii_strtoll.html"><code>g_ascii_strtoll()</code></a></li>
+<li><a href="func.ascii_strtoull.html"><code>g_ascii_strtoull()</code></a></li>
+<li><a href="const.ASCII_DTOSTR_BUF_SIZE.html"><code>G_ASCII_DTOSTR_BUF_SIZE</code></a></li>
+<li><a href="func.ascii_strtod.html"><code>g_ascii_strtod()</code></a></li>
+<li><a href="func.ascii_dtostr.html"><code>g_ascii_dtostr()</code></a></li>
+<li><a href="func.ascii_formatd.html"><code>g_ascii_formatd()</code></a></li>
+<li><a href="func.strtod.html"><code>g_strtod()</code></a></li>
+</ul>
+<h2 id="ascii-number-parsing">ASCII Number Parsing<a class="md-anchor" href="#ascii-number-parsing" title="Permanent link"></a></h2>
+<ul>
+<li><a href="error.NumberParserError.html"><code>GNumberParserError</code></a></li>
+<li><a href="func.ascii_string_to_signed.html"><code>g_ascii_string_to_signed()</code></a></li>
+<li><a href="func.ascii_string_to_unsigned.html"><code>g_ascii_string_to_unsigned()</code></a></li>
+</ul>
+<h2 id="whitespace-removal">Whitespace Removal<a class="md-anchor" href="#whitespace-removal" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.strchug.html"><code>g_strchug()</code></a></li>
+<li><a href="func.strchomp.html"><code>g_strchomp()</code></a></li>
+<li><a href="func.strstrip.html"><code>g_strstrip()</code></a></li>
+</ul>
+<h2 id="find-and-replace">Find and Replace<a class="md-anchor" href="#find-and-replace" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.strdelimit.html"><code>g_strdelimit()</code></a></li>
+<li><a href="const.STR_DELIMITERS.html"><code>G_STR_DELIMITERS</code></a></li>
+<li><a href="func.strescape.html"><code>g_strescape()</code></a></li>
+<li><a href="func.strcompress.html"><code>g_strcompress()</code></a></li>
+<li><a href="func.strcanon.html"><code>g_strcanon()</code></a></li>
+</ul>
+<h2 id="splitting-and-joining">Splitting and Joining<a class="md-anchor" href="#splitting-and-joining" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.strsplit.html"><code>g_strsplit()</code></a></li>
+<li><a href="func.strsplit_set.html"><code>g_strsplit_set()</code></a></li>
+<li><a href="func.strconcat.html"><code>g_strconcat()</code></a></li>
+<li><a href="func.strjoin.html"><code>g_strjoin()</code></a></li>
+<li><a href="func.strjoinv.html"><code>g_strjoinv()</code></a></li>
+</ul>
+<h2 id="string-arrays">String Arrays<a class="md-anchor" href="#string-arrays" title="Permanent link"></a></h2>
+<ul>
+<li><a href="alias.Strv.html"><code>GStrv</code></a></li>
+<li><a href="func.strfreev.html"><code>g_strfreev()</code></a></li>
+<li><a href="func.strv_length.html"><code>g_strv_length()</code></a></li>
+<li><a href="func.strv_contains.html"><code>g_strv_contains()</code></a></li>
+<li><a href="func.strv_equal.html"><code>g_strv_equal()</code></a></li>
+</ul>
+<h2 id="string-array-builder">String Array Builder<a class="md-anchor" href="#string-array-builder" title="Permanent link"></a></h2>
+<ul>
+<li><a href="struct.StrvBuilder.html"><code>GStrvBuilder</code></a></li>
+<li><a href="ctor.StrvBuilder.new.html"><code>g_strv_builder_new()</code></a></li>
+<li><a href="method.StrvBuilder.ref.html"><code>g_strv_builder_ref()</code></a></li>
+<li><a href="method.StrvBuilder.unref.html"><code>g_strv_builder_unref()</code></a></li>
+<li><a href="method.StrvBuilder.add.html"><code>g_strv_builder_add()</code></a></li>
+<li><a href="method.StrvBuilder.addv.html"><code>g_strv_builder_addv()</code></a></li>
+<li><a href="method.StrvBuilder.add_many.html"><code>g_strv_builder_add_many()</code></a></li>
+<li><a href="method.StrvBuilder.take.html"><code>g_strv_builder_take()</code></a></li>
+<li><a href="method.StrvBuilder.end.html"><code>g_strv_builder_end()</code></a></li>
+</ul>
+<h2 id="posix-errors">POSIX Errors<a class="md-anchor" href="#posix-errors" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.strerror.html"><code>g_strerror()</code></a></li>
+<li><a href="func.strsignal.html"><code>g_strsignal()</code></a></li>
+</ul>
+<h2 id="deprecated-api">Deprecated API<a class="md-anchor" href="#deprecated-api" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.strup.html"><code>g_strup()</code></a></li>
+<li><a href="func.strdown.html"><code>g_strdown()</code></a></li>
+<li><a href="func.strcasecmp.html"><code>g_strcasecmp()</code></a></li>
+<li><a href="func.strncasecmp.html"><code>g_strncasecmp()</code></a></li>
+</ul>
+    </div>
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/string-utils.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 12:58:54 GMT --></html>

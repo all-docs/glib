@@ -1,0 +1,186 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.atexit.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:18 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>atexit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.atexit">
+  <meta property="og:description" content="Reference for GLib.atexit">
+  <meta name="twitter:title" content="GLib.atexit">
+  <meta name="twitter:description" content="Reference for GLib.atexit">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a> atexit</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem deprecated">deprecated: 2.32</span>&nbsp;</p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gutils.h#L329">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_atexit</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GVoidFunc</span><span class="w"> </span><span class="n">func</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gutils.c#L117">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Specifies a function to be called at normal program&nbsp;termination.</p>
+<p>Since GLib 2.8.2, on Windows <code>g_atexit()</code> actually is a preprocessor
+macro that maps to a call to the <code>atexit()</code> function in the C
+library. This means that in case the code that calls g_atexit(),
+i.e. atexit(), is in a <span class="caps">DLL</span>, the function will be called when the
+<span class="caps">DLL</span> is detached from the program. This typically makes more sense
+than that the function is called when the GLib <span class="caps">DLL</span> is detached,
+which happened earlier when <code>g_atexit()</code> was a function in the GLib
+<span class="caps">DLL</span>.</p>
+<p>The behaviour of <code>atexit()</code> in the context of dynamically loaded
+modules is not formally specified and varies&nbsp;wildly.</p>
+<p>On <span class="caps">POSIX</span> systems, calling <code>g_atexit()</code> (or atexit()) in a dynamically
+loaded module which is unloaded before the program terminates might
+well cause a crash at program&nbsp;exit.</p>
+<p>Some <span class="caps">POSIX</span> systems implement <code>atexit()</code> like Windows, and have each
+dynamically loaded module maintain an own atexit chain that is
+called when the module is&nbsp;unloaded.</p>
+<p>On other <span class="caps">POSIX</span> systems, before a dynamically loaded module is
+unloaded, the registered atexit functions (if any) residing in that
+module are called, regardless where the code that registered them
+resided. This is presumably the most robust&nbsp;approach.</p>
+<p>As can be seen from the above, for portability it’s best to avoid
+calling <code>g_atexit()</code> (or atexit()) except in the main executable of a&nbsp;program.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        <div class="admonition deprecation">
+          <p class="admonition-title">Deprecated since: 2.32</p><p>It is best to avoid&nbsp;g_atexit().</p></div>
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>func</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.VoidFunc.html"><code>GVoidFunc</code></a></p>
+            <p>The function to call on normal program&nbsp;termination.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.atexit.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:18 GMT --></html>

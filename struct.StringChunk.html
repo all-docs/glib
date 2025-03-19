@@ -1,0 +1,231 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.StringChunk.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:09:54 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>StringChunk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.StringChunk">
+  <meta property="og:description" content="Reference for GLib.StringChunk">
+  <meta name="twitter:title" content="GLib.StringChunk">
+  <meta name="twitter:description" content="Reference for GLib.StringChunk">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> StringChunk</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gstringchunk.c#L44">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GStringChunk</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p><code>GStringChunk</code> provides efficient storage of groups of&nbsp;strings</p>
+<p>String chunks are used to store groups of strings. Memory is
+allocated in blocks, and as strings are added to the <code>GStringChunk</code>
+they are copied into the next free position in a block. When a block
+is full a new block is&nbsp;allocated.</p>
+<p>When storing a large number of strings, string chunks are more
+efficient than using <a href="func.strdup.html"><code>g_strdup()</code></a> since fewer calls to <code>malloc()</code>
+are needed, and less memory is wasted in memory allocation&nbsp;overheads.</p>
+<p>By adding strings with <a href="method.StringChunk.insert_const.html"><code>g_string_chunk_insert_const()</code></a> it is also
+possible to remove&nbsp;duplicates.</p>
+<p>To create a new <code>GStringChunk</code> use <a href="type_func.StringChunk.new.html"><code>g_string_chunk_new()</code></a>.</p>
+<p>To add strings to a <code>GStringChunk</code> use <a href="method.StringChunk.insert.html"><code>g_string_chunk_insert()</code></a>.</p>
+<p>To add strings to a <code>GStringChunk</code>, but without duplicating strings
+which are already in the <code>GStringChunk</code>, use <a href="method.StringChunk.insert_const.html"><code>g_string_chunk_insert_const()</code></a>.</p>
+<p>To free the entire <code>GStringChunk</code> use <a href="method.StringChunk.free.html"><code>g_string_chunk_free()</code></a>.
+It is not possible to free individual&nbsp;strings.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.StringChunk.new.html">g_string_chunk_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GStringChunk</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.StringChunk.clear.html">g_string_chunk_clear</a></h6>
+          <div class="docblock">
+            <p>Frees all strings contained within the <code>GStringChunk</code>.
+After calling <code>g_string_chunk_clear()</code> it is not safe to
+access any of the strings which were contained within&nbsp;it.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.StringChunk.free.html">g_string_chunk_free</a></h6>
+          <div class="docblock">
+            <p>Frees all memory allocated by the <code>GStringChunk</code>.
+After calling <code>g_string_chunk_free()</code> it is not safe to
+access any of the strings which were contained within&nbsp;it.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.StringChunk.insert.html">g_string_chunk_insert</a></h6>
+          <div class="docblock">
+            <p>Adds a copy of <code>string</code> to the <code>GStringChunk</code>.
+It returns a pointer to the new copy of the string
+in the <code>GStringChunk</code>. The characters in the string
+can be changed, if necessary, though you should not
+change anything after the end of the&nbsp;string.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.StringChunk.insert_const.html">g_string_chunk_insert_const</a></h6>
+          <div class="docblock">
+            <p>Adds a copy of <code>string</code> to the <code>GStringChunk</code>, unless the same
+string has already been added to the <code>GStringChunk</code> with&nbsp;g_string_chunk_insert_const().</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.StringChunk.insert_len.html">g_string_chunk_insert_len</a></h6>
+          <div class="docblock">
+            <p>Adds a copy of the first <code>len</code> bytes of <code>string</code> to the <code>GStringChunk</code>.
+The copy is&nbsp;nul-terminated.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.4</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.StringChunk.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:09:58 GMT --></html>

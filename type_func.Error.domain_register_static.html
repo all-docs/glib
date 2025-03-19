@@ -1,0 +1,272 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/type_func.Error.domain_register_static.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:43 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>Error.domain_register_static</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Error.domain_register_static">
+  <meta property="og:description" content="Reference for GLib.Error.domain_register_static">
+  <meta name="twitter:title" content="GLib.Error.domain_register_static">
+  <meta name="twitter:description" content="Reference for GLib.Error.domain_register_static">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a> <a href="struct.Error.html">Error</a> domain_register_static</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.68</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gerror.h#L178">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GQuark</span>
+<span class="n">g_error_domain_register_static</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">error_type_name</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gsize</span><span class="w"> </span><span class="n">error_type_private_size</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GErrorInitFunc</span><span class="w"> </span><span class="n">error_type_init</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GErrorCopyFunc</span><span class="w"> </span><span class="n">error_type_copy</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GErrorClearFunc</span><span class="w"> </span><span class="n">error_type_clear</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gerror.c#L105">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>This function registers an extended <code>GError</code> domain.</p>
+<p><code>error_type_name</code> should not be freed. <code>error_type_private_size</code> must
+be greater than&nbsp;0.</p>
+<p><code>error_type_init</code> receives an initialized <code>GError</code> and should then initialize
+the private&nbsp;data.</p>
+<p><code>error_type_copy</code> is a function that receives both original and a copy
+<code>GError</code> and should copy the fields of the private error data. The standard
+<code>GError</code> fields are already&nbsp;handled.</p>
+<p><code>error_type_clear</code> receives the pointer to the error, and it should free the
+fields of the private error data. It should not free the struct itself&nbsp;though.</p>
+<p>Normally, it is better to use G_DEFINE_EXTENDED_ERROR(), as it
+already takes care of passing valid information to this&nbsp;function.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.68</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>error_type_name</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const char*</code></p>
+            <p>Static string to create a <code>GQuark</code> from.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>error_type_private_size</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gsize</code></p>
+            <p>Size of the private error data in&nbsp;bytes.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>error_type_init</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.ErrorInitFunc.html"><code>GErrorInitFunc</code></a></p>
+            <p>Function initializing fields of the private error&nbsp;data.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>error_type_copy</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.ErrorCopyFunc.html"><code>GErrorCopyFunc</code></a></p>
+            <p>Function copying fields of the private error&nbsp;data.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>error_type_clear</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.ErrorClearFunc.html"><code>GErrorClearFunc</code></a></p>
+            <p>Function freeing fields of the private error&nbsp;data.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="alias.Quark.html"><code>GQuark</code></a></p>
+            <p><code>GQuark</code> representing the error&nbsp;domain.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/type_func.Error.domain_register_static.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:43 GMT --></html>

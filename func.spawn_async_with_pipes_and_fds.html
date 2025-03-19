@@ -1,0 +1,645 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.spawn_async_with_pipes_and_fds.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:25 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>spawn_async_with_pipes_and_fds</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.spawn_async_with_pipes_and_fds">
+  <meta property="og:description" content="Reference for GLib.spawn_async_with_pipes_and_fds">
+  <meta name="twitter:title" content="GLib.spawn_async_with_pipes_and_fds">
+  <meta name="twitter:description" content="Reference for GLib.spawn_async_with_pipes_and_fds">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a> spawn_async_with_pipes_and_fds</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.68</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gspawn.h#L252">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">gboolean</span>
+<span class="n">g_spawn_async_with_pipes_and_fds</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">working_directory</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">envp</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GSpawnFlags</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GSpawnChildSetupFunc</span><span class="w"> </span><span class="n">child_setup</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">user_data</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="w"> </span><span class="n">stdin_fd</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="w"> </span><span class="n">stdout_fd</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="w"> </span><span class="n">stderr_fd</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gint</span><span class="o">*</span><span class="w"> </span><span class="n">source_fds</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gint</span><span class="o">*</span><span class="w"> </span><span class="n">target_fds</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gsize</span><span class="w"> </span><span class="n">n_fds</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GPid</span><span class="o">*</span><span class="w"> </span><span class="n">child_pid_out</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="o">*</span><span class="w"> </span><span class="n">stdin_pipe_out</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="o">*</span><span class="w"> </span><span class="n">stdout_pipe_out</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gint</span><span class="o">*</span><span class="w"> </span><span class="n">stderr_pipe_out</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GError</span><span class="o">**</span><span class="w"> </span><span class="n">error</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gspawn.c#L208">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Executes a child program asynchronously (your program will not
+block waiting for the child to&nbsp;exit).</p>
+<p>The child program is specified by the only argument that must be
+provided, <code>argv</code>. <code>argv</code> should be a <code>NULL</code>-terminated array of strings,
+to be passed as the argument vector for the child. The first string
+in <code>argv</code> is of course the name of the program to execute. By default,
+the name of the program must be a full path. If <code>flags</code> contains the
+<code>G_SPAWN_SEARCH_PATH</code> flag, the <code>PATH</code> environment variable is used to
+search for the executable. If <code>flags</code> contains the
+<code>G_SPAWN_SEARCH_PATH_FROM_ENVP</code> flag, the <code>PATH</code> variable from <code>envp</code>
+is used to search for the executable. If both the
+<code>G_SPAWN_SEARCH_PATH</code> and <code>G_SPAWN_SEARCH_PATH_FROM_ENVP</code> flags are
+set, the <code>PATH</code> variable from <code>envp</code> takes precedence over the
+environment&nbsp;variable.</p>
+<p>If the program name is not a full path and <code>G_SPAWN_SEARCH_PATH</code> flag
+is not used, then the program will be run from the current directory
+(or <code>working_directory</code>, if specified); this might be unexpected or even
+dangerous in some cases when the current directory is&nbsp;world-writable.</p>
+<p>On Windows, note that all the string or string vector arguments to
+this function and the other <code>g_spawn*()</code> functions are in <span class="caps">UTF</span>-8, the
+GLib file name encoding. Unicode characters that are not part of
+the system codepage passed in these arguments will be correctly
+available in the spawned program only if it uses wide character <span class="caps">API</span>
+to retrieve its command line. For C programs built with Microsoft’s
+tools it is enough to make the program have a <code>wmain()</code> instead of
+<code>main()</code>. <code>wmain()</code> has a wide character argument vector as&nbsp;parameter.</p>
+<p>At least currently, mingw doesn’t support <code>wmain()</code>, so if you use
+mingw to develop the spawned program, it should call
+<code>g_win32_get_command_line()</code> to get arguments in <span class="caps">UTF</span>-8.</p>
+<p>On Windows the low-level child process creation <span class="caps">API</span> <code>CreateProcess()</code>
+doesn’t use argument vectors, but a command line. The C runtime
+library’s <code>spawn*()</code> family of functions (which <code>g_spawn_async_with_pipes()</code>
+eventually calls) paste the argument vector elements together into
+a command line, and the C runtime startup code does a corresponding
+reconstruction of an argument vector from the command line, to be
+passed to <code>main()</code>. Complications arise when you have argument vector
+elements that contain spaces or double quotes. The <code>spawn*()</code> functions
+don’t do any quoting or escaping, but on the other hand the startup
+code does do unquoting and unescaping in order to enable receiving
+arguments with embedded spaces or double quotes. To work around this
+asymmetry, <code>g_spawn_async_with_pipes()</code> will do quoting and escaping on
+argument vector elements that need it before calling the C runtime
+<code>spawn()</code> function.</p>
+<p>The returned <code>child_pid</code> on Windows is a handle to the child
+process, not its identifier. Process handles and process
+identifiers are different concepts on&nbsp;Windows.</p>
+<p><code>envp</code> is a <code>NULL</code>-terminated array of strings, where each string
+has the form <code>KEY=VALUE</code>. This will become the child’s environment.
+If <code>envp</code> is <code>NULL</code>, the child inherits its parent’s&nbsp;environment.</p>
+<p><code>flags</code> should be the bitwise <span class="caps">OR</span> of any flags you want to affect the
+function’s behaviour. The <code>G_SPAWN_DO_NOT_REAP_CHILD</code> means that the
+child will not automatically be reaped; you must use a child watch
+(g_child_watch_add()) to be notified about the death of the child process,
+otherwise it will stay around as a zombie process until this process exits.
+Eventually you must call <code>g_spawn_close_pid()</code> on the <code>child_pid</code>, in order to
+free resources which may be associated with the child process. (On Unix,
+using a child watch is equivalent to calling <code>waitpid()</code> or handling
+the <code>SIGCHLD</code> signal manually. On Windows, calling <code>g_spawn_close_pid()</code>
+is equivalent to calling <code>CloseHandle()</code> on the process handle returned
+in <code>child_pid</code>). See&nbsp;g_child_watch_add().</p>
+<p>Open <span class="caps">UNIX</span> file descriptors marked as <code>FD_CLOEXEC</code> will be automatically
+closed in the child process. <code>G_SPAWN_LEAVE_DESCRIPTORS_OPEN</code> means that
+other open file descriptors will be inherited by the child; otherwise all
+descriptors except stdin/stdout/stderr will be closed before calling <code>exec()</code>
+in the child. <code>G_SPAWN_SEARCH_PATH</code> means that <code>argv</code>[0] need not be an
+absolute path, it will be looked for in the <code>PATH</code> environment
+variable. <code>G_SPAWN_SEARCH_PATH_FROM_ENVP</code> means need not be an
+absolute path, it will be looked for in the <code>PATH</code> variable from
+<code>envp</code>. If both <code>G_SPAWN_SEARCH_PATH</code> and <code>G_SPAWN_SEARCH_PATH_FROM_ENVP</code>
+are used, the value from <code>envp</code> takes precedence over the&nbsp;environment.</p>
+<p><code>G_SPAWN_CHILD_INHERITS_STDIN</code> means that the child will inherit the parent’s
+standard input (by default, the child’s standard input is attached to
+<code>/dev/null</code>). <code>G_SPAWN_STDIN_FROM_DEV_NULL</code> explicitly imposes the default
+behavior. Both flags cannot be enabled at the same time and, in both cases,
+the <code>stdin_pipe_out</code> argument is&nbsp;ignored.</p>
+<p><code>G_SPAWN_STDOUT_TO_DEV_NULL</code> means that the child’s standard output
+will be discarded (by default, it goes to the same location as the parent’s
+standard output). <code>G_SPAWN_CHILD_INHERITS_STDOUT</code> explicitly imposes the
+default behavior. Both flags cannot be enabled at the same time and, in
+both cases, the <code>stdout_pipe_out</code> argument is&nbsp;ignored.</p>
+<p><code>G_SPAWN_STDERR_TO_DEV_NULL</code> means that the child’s standard error
+will be discarded (by default, it goes to the same location as the parent’s
+standard error). <code>G_SPAWN_CHILD_INHERITS_STDERR</code> explicitly imposes the
+default behavior. Both flags cannot be enabled at the same time and, in
+both cases, the <code>stderr_pipe_out</code> argument is&nbsp;ignored.</p>
+<p>It is valid to pass the same <span class="caps">FD</span> in multiple parameters (e.g. you can pass
+a single <span class="caps">FD</span> for both <code>stdout_fd</code> and <code>stderr_fd</code>, and include it in
+<code>source_fds</code> too).</p>
+<p><code>source_fds</code> and <code>target_fds</code> allow zero or more FDs from this process to be
+remapped to different FDs in the spawned process. If <code>n_fds</code> is greater than
+zero, <code>source_fds</code> and <code>target_fds</code> must both be non-<code>NULL</code> and the same length.
+Each <span class="caps">FD</span> in <code>source_fds</code> is remapped to the <span class="caps">FD</span> number at the same index in
+<code>target_fds</code>. The source and target <span class="caps">FD</span> may be equal to simply propagate an <span class="caps">FD</span>
+to the spawned process. <span class="caps">FD</span> remappings are processed after standard FDs, so
+any target FDs which equal <code>stdin_fd</code>, <code>stdout_fd</code> or <code>stderr_fd</code> will overwrite
+them in the spawned&nbsp;process.</p>
+<p><code>source_fds</code> is supported on Windows since&nbsp;2.72.</p>
+<p><code>G_SPAWN_FILE_AND_ARGV_ZERO</code> means that the first element of <code>argv</code> is
+the file to execute, while the remaining elements are the actual
+argument vector to pass to the file. Normally <code>g_spawn_async_with_pipes()</code>
+uses <code>argv</code>[0] as the file to execute, and passes all of <code>argv</code> to the&nbsp;child.</p>
+<p><code>child_setup</code> and <code>user_data</code> are a function and user data. On <span class="caps">POSIX</span>
+platforms, the function is called in the child after GLib has
+performed all the setup it plans to perform (including creating
+pipes, closing file descriptors, etc.) but before calling <code>exec()</code>.
+That is, <code>child_setup</code> is called just before calling <code>exec()</code> in the
+child. Obviously actions taken in this function will only affect
+the child, not the&nbsp;parent.</p>
+<p>On Windows, there is no separate <code>fork()</code> and <code>exec()</code> functionality.
+Child processes are created and run with a single <span class="caps">API</span> call,
+<code>CreateProcess()</code>. There is no sensible thing <code>child_setup</code>
+could be used for on Windows so it is ignored and not&nbsp;called.</p>
+<p>If non-<code>NULL</code>, <code>child_pid</code> will on Unix be filled with the child’s
+process <span class="caps">ID</span>. You can use the process <span class="caps">ID</span> to send signals to the child,
+or to use <code>g_child_watch_add()</code> (or <code>waitpid()</code>) if you specified the
+<code>G_SPAWN_DO_NOT_REAP_CHILD</code> flag. On Windows, <code>child_pid</code> will be
+filled with a handle to the child process only if you specified the
+<code>G_SPAWN_DO_NOT_REAP_CHILD</code> flag. You can then access the child
+process using the Win32 <span class="caps">API</span>, for example wait for its termination
+with the <code>WaitFor*()</code> functions, or examine its exit code with
+<code>GetExitCodeProcess()</code>. You should close the handle with <code>CloseHandle()</code>
+or <code>g_spawn_close_pid()</code> when you no longer need&nbsp;it.</p>
+<p>If non-<code>NULL</code>, the <code>stdin_pipe_out</code>, <code>stdout_pipe_out</code>, <code>stderr_pipe_out</code>
+locations will be filled with file descriptors for writing to the child’s
+standard input or reading from its standard output or standard error.
+The caller of <code>g_spawn_async_with_pipes()</code> must close these file descriptors
+when they are no longer in use. If these parameters are <code>NULL</code>, the
+corresponding pipe won’t be&nbsp;created.</p>
+<p>If <code>stdin_pipe_out</code> is <code>NULL</code>, the child’s standard input is attached to
+<code>/dev/null</code> unless <code>G_SPAWN_CHILD_INHERITS_STDIN</code> is&nbsp;set.</p>
+<p>If <code>stderr_pipe_out</code> is <span class="caps">NULL</span>, the child’s standard error goes to the same
+location as the parent’s standard error unless <code>G_SPAWN_STDERR_TO_DEV_NULL</code>
+is&nbsp;set.</p>
+<p>If <code>stdout_pipe_out</code> is <span class="caps">NULL</span>, the child’s standard output goes to the same
+location as the parent’s standard output unless <code>G_SPAWN_STDOUT_TO_DEV_NULL</code>
+is&nbsp;set.</p>
+<p><code>error</code> can be <code>NULL</code> to ignore errors, or non-<code>NULL</code> to report errors.
+If an error is set, the function returns <code>FALSE</code>. Errors are reported
+even if they occur in the child (for example if the executable in
+<code>`argv</code>[0]<code>is not found). Typically the</code>message<code>field of returned
+errors should be displayed to users. Possible errors are those from
+the</code>G_SPAWN_ERROR`&nbsp;domain.</p>
+<p>If an error occurs, <code>child_pid</code>, <code>stdin_pipe_out</code>, <code>stdout_pipe_out</code>,
+and <code>stderr_pipe_out</code> will not be filled with valid&nbsp;values.</p>
+<p>If <code>child_pid</code> is not <code>NULL</code> and an error does not occur then the returned
+process reference must be closed using&nbsp;g_spawn_close_pid().</p>
+<p>On modern <span class="caps">UNIX</span> platforms, GLib can use an efficient process launching
+codepath driven internally by <code>posix_spawn()</code>. This has the advantage of
+avoiding the fork-time performance costs of cloning the parent process
+address space, and avoiding associated memory overcommit checks that are
+not relevant in the context of immediately executing a distinct process.
+This optimized codepath will be used provided that the following conditions
+are&nbsp;met:</p>
+<ol>
+<li><code>G_SPAWN_DO_NOT_REAP_CHILD</code> is&nbsp;set</li>
+<li><code>G_SPAWN_LEAVE_DESCRIPTORS_OPEN</code> is&nbsp;set</li>
+<li><code>G_SPAWN_SEARCH_PATH_FROM_ENVP</code> is not&nbsp;set</li>
+<li><code>working_directory</code> is <code>NULL</code></li>
+<li><code>child_setup</code> is <code>NULL</code></li>
+<li>The program is of a recognised binary format, or has a shebang.
+   Otherwise, GLib will have to execute the program through the
+   shell, which is not done using the optimized&nbsp;codepath.</li>
+</ol>
+<p>If you are writing a <span class="caps">GTK</span> application, and the program you are spawning is a
+graphical application too, then to ensure that the spawned program opens its
+windows on the right screen, you may want to use <code>GdkAppLaunchContext</code>,
+<code>GAppLaunchContext</code>, or set the <code>DISPLAY</code> environment&nbsp;variable.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.68</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>working_directory</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>Child’s current working
+    directory, or <code>NULL</code> to inherit parent’s, in the GLib file name&nbsp;encoding.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a platform-native string, using the preferred OS encoding on Unix and UTF-8 on Windows.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>argv</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>filename</code></p>
+            <p>Child’s argument
+    vector, in the GLib file name encoding; it must be non-empty and <code>NULL</code>-terminated.</p>
+            <table>
+            
+            
+            
+            
+            <tbody><tr><td>The array must be <code>NULL</code>-terminated.</td></tr>
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>Each element is a platform-native string, using the preferred OS encoding on Unix and UTF-8 on Windows..</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>envp</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>filename</code></p>
+            <div class="codehilite"><pre><span></span><code>child's environment, or `NULL` to inherit parent's, in the GLib file
+name encoding.
+</code></pre></div>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            <tr><td>The array must be <code>NULL</code>-terminated.</td></tr>
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>Each element is a platform-native string, using the preferred OS encoding on Unix and UTF-8 on Windows..</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>flags</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="flags.SpawnFlags.html"><code>GSpawnFlags</code></a></p>
+            <p>Flags from <code>GSpawnFlags</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>child_setup</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.SpawnChildSetupFunc.html"><code>GSpawnChildSetupFunc</code></a></p>
+            <p>Function to run
+    in the child just before <code>exec()</code>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>user_data</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>User data for <code>child_setup</code>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>stdin_fd</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint</code></p>
+            <p>File descriptor to use for child’s stdin, or <code>-1</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>stdout_fd</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint</code></p>
+            <p>File descriptor to use for child’s stdout, or <code>-1</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>stderr_fd</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint</code></p>
+            <p>File descriptor to use for child’s stderr, or <code>-1</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>source_fds</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>gint</code></p>
+            <p>Array of FDs from the parent
+   process to make available in the child&nbsp;process.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            <tr><td>The length of the array is specified in the <code>n_fds</code> argument.</td></tr>
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>target_fds</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>gint</code></p>
+            <p>Array of FDs to remap
+   <code>source_fds</code> to in the child&nbsp;process.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            <tr><td>The length of the array is specified in the <code>n_fds</code> argument.</td></tr>
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>n_fds</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gsize</code></p>
+            <p>Number of FDs in <code>source_fds</code> and <code>target_fds</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>child_pid_out</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="alias.Pid.html"><code>GPid</code></a></p>
+            <p>Return location for child process <span class="caps">ID</span>, or <code>NULL</code>.</p>
+            <table>
+            <tbody><tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            <tr><td title="transfer: full">The caller of the function takes ownership of the returned data, and is responsible for freeing it.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>stdin_pipe_out</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint*</code></p>
+            <p>Return location for file descriptor to write to child’s stdin, or <code>NULL</code>.</p>
+            <table>
+            <tbody><tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>stdout_pipe_out</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint*</code></p>
+            <p>Return location for file descriptor to read child’s stdout, or <code>NULL</code>.</p>
+            <table>
+            <tbody><tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>stderr_pipe_out</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gint*</code></p>
+            <p>Return location for file descriptor to read child’s stderr, or <code>NULL</code>.</p>
+            <table>
+            <tbody><tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+          <dt class="arg-name"><code>error</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="javascript:void(0)" data-namespace="GLib" data-link="struct.Error.html" class="external"><code>GError **</code></a></p>
+            <p>The return location for <a href="error-reporting.html#rules-for-use-of-gerror">a recoverable error</a>.</p>
+            <table>
+              <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+              <tr><td>If the return location is not <code>NULL</code>, then you must initialize it to a <code>NULL</code> <code>GError*</code>.</td></tr>
+              <tr><td>The argument will be left initialized to <code>NULL</code> by the function if there are no errors.</td></tr>
+              <tr><td>In case of error, the argument will be set to a newly allocated <code>GError</code>; the caller will take ownership of the data, and be responsible for freeing it.</td></tr>
+            </tbody></table>
+          </dd>
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p><code>TRUE</code> on success, <code>FALSE</code> if an error was&nbsp;set.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.spawn_async_with_pipes_and_fds.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:25 GMT --></html>

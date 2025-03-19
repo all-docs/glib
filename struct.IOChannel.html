@@ -1,0 +1,568 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.IOChannel.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:04:06 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>IOChannel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.IOChannel">
+  <meta property="og:description" content="Reference for GLib.IOChannel">
+  <meta name="twitter:title" content="GLib.IOChannel">
+  <meta name="twitter:description" content="Reference for GLib.IOChannel">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> IOChannel</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/giochannel.c#L46">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GIOChannel</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GIOChannel</code> data type aims to provide a portable method for
+using file descriptors, pipes, and sockets, and integrating them
+into the main event loop (see <a href="struct.MainContext.html"><code>GMainContext</code></a>). Currently,
+full support is available on <span class="caps">UNIX</span> platforms; support for Windows
+is only partially&nbsp;complete.</p>
+<p>To create a new <code>GIOChannel</code> on <span class="caps">UNIX</span> systems use
+<a href="ctor.IOChannel.unix_new.html"><code>g_io_channel_unix_new()</code></a>. This works for plain file descriptors,
+pipes and sockets. Alternatively, a channel can be created for a
+file in a system independent manner using <a href="ctor.IOChannel.new_file.html"><code>g_io_channel_new_file()</code></a>.</p>
+<p>Once a <code>GIOChannel</code> has been created, it can be used in a generic
+manner with the functions <a href="method.IOChannel.read_chars.html"><code>g_io_channel_read_chars()</code></a>,
+<a href="method.IOChannel.write_chars.html"><code>g_io_channel_write_chars()</code></a>, <a href="method.IOChannel.seek_position.html"><code>g_io_channel_seek_position()</code></a>,
+and <a href="method.IOChannel.shutdown.html"><code>g_io_channel_shutdown()</code></a>.</p>
+<p>To add a <code>GIOChannel</code> to the main event loop, use <a href="func.io_add_watch.html"><code>g_io_add_watch()</code></a> or
+<a href="func.io_add_watch_full.html"><code>g_io_add_watch_full()</code></a>. Here you specify which events you are
+interested in on the <code>GIOChannel</code>, and provide a function to be called
+whenever these events&nbsp;occur.</p>
+<p><code>GIOChannel</code> instances are created with an initial reference count of 1.
+<a href="method.IOChannel.ref.html"><code>g_io_channel_ref()</code></a> and <a href="method.IOChannel.unref.html"><code>g_io_channel_unref()</code></a> can be used to
+increment or decrement the reference count respectively. When the
+reference count falls to 0, the <code>GIOChannel</code> is freed. (Though it
+isn’t closed automatically, unless it was created using
+<a href="ctor.IOChannel.new_file.html"><code>g_io_channel_new_file()</code></a>.) Using <a href="func.io_add_watch.html"><code>g_io_add_watch()</code></a> or
+<a href="func.io_add_watch_full.html"><code>g_io_add_watch_full()</code></a> increments a channel’s reference&nbsp;count.</p>
+<p>The new functions <a href="method.IOChannel.read_chars.html"><code>g_io_channel_read_chars()</code></a>,
+<a href="method.IOChannel.read_line.html"><code>g_io_channel_read_line()</code></a>, <a href="method.IOChannel.read_line_string.html"><code>g_io_channel_read_line_string()</code></a>,
+<a href="method.IOChannel.read_to_end.html"><code>g_io_channel_read_to_end()</code></a>, <a href="method.IOChannel.write_chars.html"><code>g_io_channel_write_chars()</code></a>,
+<a href="method.IOChannel.seek_position.html"><code>g_io_channel_seek_position()</code></a>, and <a href="method.IOChannel.flush.html"><code>g_io_channel_flush()</code></a>
+should not be mixed with the deprecated functions
+<a href="method.IOChannel.read.html"><code>g_io_channel_read()</code></a>, <a href="method.IOChannel.write.html"><code>g_io_channel_write()</code></a>, and
+<a href="method.IOChannel.seek.html"><code>g_io_channel_seek()</code></a> on the same&nbsp;channel.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.IOChannel.new_file.html">g_io_channel_new_file</a></h6>
+          <div class="docblock">
+            <p>Open a file <code>filename</code> as a <code>GIOChannel</code> using mode <code>mode</code>. This
+channel will be closed when the last reference to it is dropped,
+so there is no need to call <code>g_io_channel_close()</code> (though doing
+so will not cause problems, as long as no attempt is made to
+access the channel after it is&nbsp;closed).</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.IOChannel.unix_new.html">g_io_channel_unix_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new <code>GIOChannel</code> given a file descriptor. On <span class="caps">UNIX</span> systems
+this works for plain files, pipes, and&nbsp;sockets.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.IOChannel.error_from_errno.html">g_io_channel_error_from_errno</a></h6>
+        <div class="docblock">
+          <p>Converts an <code>errno</code> error number to a <code>GIOChannelError</code>.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.IOChannel.error_quark.html">g_io_channel_error_quark</a></h6>
+        <div class="docblock">
+          No description available.
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="deprecated">
+          <h6><a href="method.IOChannel.close.html">g_io_channel_close</a></h6>
+          <div class="docblock">
+            <p>Close an <span class="caps">IO</span> channel. Any pending data to be written will be
+flushed, ignoring errors. The channel will not be freed until the
+last reference is dropped using&nbsp;g_io_channel_unref().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.2</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.flush.html">g_io_channel_flush</a></h6>
+          <div class="docblock">
+            <p>Flushes the write buffer for the&nbsp;GIOChannel.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.get_buffer_condition.html">g_io_channel_get_buffer_condition</a></h6>
+          <div class="docblock">
+            <p>This function returns a <code>GIOCondition</code> depending on whether there
+is data to be read/space to write data in the internal buffers in
+the <code>GIOChannel</code>. Only the flags <code>G_IO_IN</code> and <code>G_IO_OUT</code> may be&nbsp;set.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.get_buffer_size.html">g_io_channel_get_buffer_size</a></h6>
+          <div class="docblock">
+            <p>Gets the buffer&nbsp;size.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.get_buffered.html">g_io_channel_get_buffered</a></h6>
+          <div class="docblock">
+            <p>Returns whether <code>channel</code> is&nbsp;buffered.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.get_close_on_unref.html">g_io_channel_get_close_on_unref</a></h6>
+          <div class="docblock">
+            <p>Returns whether the file/socket/whatever associated with <code>channel</code>
+will be closed when <code>channel</code> receives its final unref and is
+destroyed. The default value of this is <code>TRUE</code> for channels created
+by g_io_channel_new_file (), and <code>FALSE</code> for all other&nbsp;channels.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.get_encoding.html">g_io_channel_get_encoding</a></h6>
+          <div class="docblock">
+            <p>Gets the encoding for the input/output of the channel.
+The internal encoding is always <span class="caps">UTF</span>-8. The encoding <code>NULL</code>
+makes the channel safe for binary&nbsp;data.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.get_flags.html">g_io_channel_get_flags</a></h6>
+          <div class="docblock">
+            <p>Gets the current flags for a <code>GIOChannel</code>, including read-only
+flags such as <code>G_IO_FLAG_IS_READABLE</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.get_line_term.html">g_io_channel_get_line_term</a></h6>
+          <div class="docblock">
+            <p>This returns the string that <code>GIOChannel</code> uses to determine
+where in the file a line break occurs. A value of <code>NULL</code>
+indicates autodetection. Since 2.84, the return value is always&nbsp;nul-terminated.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.init.html">g_io_channel_init</a></h6>
+          <div class="docblock">
+            <p>Initializes a <code>GIOChannel</code> struct.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.IOChannel.read.html">g_io_channel_read</a></h6>
+          <div class="docblock">
+            <p>Reads data from a <code>GIOChannel</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.2</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.read_chars.html">g_io_channel_read_chars</a></h6>
+          <div class="docblock">
+            <p>Replacement for <code>g_io_channel_read()</code> with the new <span class="caps">API</span>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.read_line.html">g_io_channel_read_line</a></h6>
+          <div class="docblock">
+            <p>Reads a line, including the terminating character(s),
+from a <code>GIOChannel</code> into a newly-allocated string.
+<code>str_return</code> will contain allocated memory if the return
+is <code>G_IO_STATUS_NORMAL</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.read_line_string.html">g_io_channel_read_line_string</a></h6>
+          <div class="docblock">
+            <p>Reads a line from a <code>GIOChannel</code>, using a <code>GString</code> as a&nbsp;buffer.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.read_to_end.html">g_io_channel_read_to_end</a></h6>
+          <div class="docblock">
+            <p>Reads all the remaining data from the&nbsp;file.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.read_unichar.html">g_io_channel_read_unichar</a></h6>
+          <div class="docblock">
+            <p>Reads a Unicode character from <code>channel</code>.
+This function cannot be called on a channel with <code>NULL</code> encoding.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.ref.html">g_io_channel_ref</a></h6>
+          <div class="docblock">
+            <p>Increments the reference count of a <code>GIOChannel</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.IOChannel.seek.html">g_io_channel_seek</a></h6>
+          <div class="docblock">
+            <p>Sets the current position in the <code>GIOChannel</code>, similar to the standard
+library function&nbsp;fseek().</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.2</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.seek_position.html">g_io_channel_seek_position</a></h6>
+          <div class="docblock">
+            <p>Replacement for <code>g_io_channel_seek()</code> with the new <span class="caps">API</span>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.set_buffer_size.html">g_io_channel_set_buffer_size</a></h6>
+          <div class="docblock">
+            <p>Sets the buffer&nbsp;size.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.set_buffered.html">g_io_channel_set_buffered</a></h6>
+          <div class="docblock">
+            <p>The buffering state can only be set if the channel’s encoding
+is <code>NULL</code>. For any other encoding, the channel must be&nbsp;buffered.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.set_close_on_unref.html">g_io_channel_set_close_on_unref</a></h6>
+          <div class="docblock">
+            <p>Whether to close the channel on the final unref of the <code>GIOChannel</code>
+data structure. The default value of this is <code>TRUE</code> for channels
+created by g_io_channel_new_file (), and <code>FALSE</code> for all other&nbsp;channels.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.set_encoding.html">g_io_channel_set_encoding</a></h6>
+          <div class="docblock">
+            <p>Sets the encoding for the input/output of the channel.
+The internal encoding is always <span class="caps">UTF</span>-8. The default encoding
+for the external file is <span class="caps">UTF</span>-8.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.set_flags.html">g_io_channel_set_flags</a></h6>
+          <div class="docblock">
+            <p>Sets the (writeable) flags in <code>channel</code> to (<code>flags</code> <span class="amp">&amp;</span> <code>G_IO_FLAG_SET_MASK</code>).</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.set_line_term.html">g_io_channel_set_line_term</a></h6>
+          <div class="docblock">
+            <p>This sets the string that <code>GIOChannel</code> uses to determine
+where in the file a line break&nbsp;occurs.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.shutdown.html">g_io_channel_shutdown</a></h6>
+          <div class="docblock">
+            <p>Close an <span class="caps">IO</span> channel. Any pending data to be written will be
+flushed if <code>flush</code> is <code>TRUE</code>. The channel will not be freed until the
+last reference is dropped using&nbsp;g_io_channel_unref().</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.unix_get_fd.html">g_io_channel_unix_get_fd</a></h6>
+          <div class="docblock">
+            <p>Returns the file descriptor of the <code>GIOChannel</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.unref.html">g_io_channel_unref</a></h6>
+          <div class="docblock">
+            <p>Decrements the reference count of a <code>GIOChannel</code>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.IOChannel.write.html">g_io_channel_write</a></h6>
+          <div class="docblock">
+            <p>Writes data to a <code>GIOChannel</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.2</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.write_chars.html">g_io_channel_write_chars</a></h6>
+          <div class="docblock">
+            <p>Replacement for <code>g_io_channel_write()</code> with the new <span class="caps">API</span>.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.IOChannel.write_unichar.html">g_io_channel_write_unichar</a></h6>
+          <div class="docblock">
+            <p>Writes a Unicode character to <code>channel</code>.
+This function cannot be called on a channel with <code>NULL</code> encoding.</p>
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.IOChannel.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:04:29 GMT --></html>

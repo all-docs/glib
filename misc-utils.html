@@ -1,0 +1,193 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/misc-utils.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 12:58:58 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>GLib – 2.0: Miscellaneous Utilities</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib: Miscellaneous Utilities">
+  <meta property="og:description" content="Reference for GLib-2.0: Miscellaneous Utilities">
+  <meta name="twitter:title" content="GLib: Miscellaneous Utilities">
+  <meta name="twitter:description" content="Reference for GLib-2.0: Miscellaneous Utilities">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  
+  <h4 id="title" style="display:flex;">
+    Miscellaneous Utilities
+    <a href="#title" class="anchor"></a>
+    
+  </h4>
+  
+  <section>
+    <div class="docblock">
+    <h1 id="miscellaneous-utilities">Miscellaneous Utilities<a class="md-anchor" href="#miscellaneous-utilities" title="Permanent link"></a></h1>
+<p>These are portable utility&nbsp;functions.</p>
+<h2 id="application-name-and-environment">Application Name and Environment<a class="md-anchor" href="#application-name-and-environment" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.get_application_name.html"><code>g_get_application_name()</code></a></li>
+<li><a href="func.set_application_name.html"><code>g_set_application_name()</code></a></li>
+<li><a href="func.get_prgname.html"><code>g_get_prgname()</code></a></li>
+<li><a href="func.set_prgname.html"><code>g_set_prgname()</code></a></li>
+<li><a href="func.get_environ.html"><code>g_get_environ()</code></a></li>
+<li><a href="func.environ_getenv.html"><code>g_environ_getenv()</code></a></li>
+<li><a href="func.environ_setenv.html"><code>g_environ_setenv()</code></a></li>
+<li><a href="func.environ_unsetenv.html"><code>g_environ_unsetenv()</code></a></li>
+<li><a href="func.getenv.html"><code>g_getenv()</code></a></li>
+<li><a href="func.setenv.html"><code>g_setenv()</code></a></li>
+<li><a href="func.unsetenv.html"><code>g_unsetenv()</code></a></li>
+<li><a href="func.listenv.html"><code>g_listenv()</code></a></li>
+<li><a href="func.get_user_name.html"><code>g_get_user_name()</code></a></li>
+<li><a href="func.get_real_name.html"><code>g_get_real_name()</code></a></li>
+</ul>
+<h2 id="system-directories">System Directories<a class="md-anchor" href="#system-directories" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.get_user_cache_dir.html"><code>g_get_user_cache_dir()</code></a></li>
+<li><a href="func.get_user_data_dir.html"><code>g_get_user_data_dir()</code></a></li>
+<li><a href="func.get_user_config_dir.html"><code>g_get_user_config_dir()</code></a></li>
+<li><a href="func.get_user_state_dir.html"><code>g_get_user_state_dir()</code></a></li>
+<li><a href="func.get_user_runtime_dir.html"><code>g_get_user_runtime_dir()</code></a></li>
+<li><a href="func.get_user_special_dir.html"><code>g_get_user_special_dir()</code></a></li>
+<li><a href="func.get_system_data_dirs.html"><code>g_get_system_data_dirs()</code></a></li>
+<li><a href="func.get_system_config_dirs.html"><code>g_get_system_config_dirs()</code></a></li>
+<li><a href="func.reload_user_special_dirs_cache.html"><code>g_reload_user_special_dirs_cache()</code></a></li>
+</ul>
+<h2 id="os-info">OS Info<a class="md-anchor" href="#os-info" title="Permanent link"></a></h2>
+<p>Information about the current <span class="caps">OS</span> can be retrieved by calling
+<a href="func.get_os_info.html"><code>g_get_os_info()</code></a> and passing it one of the following keys (this list may
+grow in&nbsp;future):</p>
+<ul>
+<li><code>G_OS_INFO_KEY_NAME</code></li>
+<li><code>G_OS_INFO_KEY_PRETTY_NAME</code></li>
+<li><code>G_OS_INFO_KEY_VERSION</code></li>
+<li><code>G_OS_INFO_KEY_VERSION_CODENAME</code></li>
+<li><code>G_OS_INFO_KEY_VERSION_ID</code></li>
+<li><code>G_OS_INFO_KEY_ID</code></li>
+<li><code>G_OS_INFO_KEY_HOME_URL</code></li>
+<li><code>G_OS_INFO_KEY_DOCUMENTATION_URL</code></li>
+<li><code>G_OS_INFO_KEY_SUPPORT_URL</code></li>
+<li><code>G_OS_INFO_KEY_BUG_REPORT_URL</code></li>
+<li><code>G_OS_INFO_KEY_PRIVACY_POLICY_URL</code></li>
+</ul>
+<h2 id="paths">Paths<a class="md-anchor" href="#paths" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.get_host_name.html"><code>g_get_host_name()</code></a></li>
+<li><a href="func.get_home_dir.html"><code>g_get_home_dir()</code></a></li>
+<li><a href="func.get_tmp_dir.html"><code>g_get_tmp_dir()</code></a></li>
+<li><a href="func.get_current_dir.html"><code>g_get_current_dir()</code></a></li>
+<li><a href="func.canonicalize_filename.html"><code>g_canonicalize_filename()</code></a></li>
+<li><a href="func.path_is_absolute.html"><code>g_path_is_absolute()</code></a></li>
+<li><a href="func.path_skip_root.html"><code>g_path_skip_root()</code></a></li>
+<li><a href="func.path_get_basename.html"><code>g_path_get_basename()</code></a></li>
+<li><a href="func.path_get_dirname.html"><code>g_path_get_dirname()</code></a></li>
+<li><a href="func.build_filename.html"><code>g_build_filename()</code></a></li>
+<li><a href="func.build_filenamev.html"><code>g_build_filenamev()</code></a></li>
+<li><a href="func.build_filename_valist.html"><code>g_build_filename_valist()</code></a></li>
+<li><a href="func.build_path.html"><code>g_build_path()</code></a></li>
+<li><a href="func.build_pathv.html"><code>g_build_pathv()</code></a></li>
+</ul>
+<h2 id="size-formatting">Size Formatting<a class="md-anchor" href="#size-formatting" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.format_size.html"><code>g_format_size()</code></a></li>
+<li><a href="func.format_size_full.html"><code>g_format_size_full()</code></a></li>
+<li><a href="func.format_size_for_display.html"><code>g_format_size_for_display()</code></a></li>
+</ul>
+<h2 id="executables">Executables<a class="md-anchor" href="#executables" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.find_program_in_path.html"><code>g_find_program_in_path()</code></a></li>
+</ul>
+<h2 id="bit-manipulation">Bit Manipulation<a class="md-anchor" href="#bit-manipulation" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.bit_nth_lsf.html"><code>g_bit_nth_lsf()</code></a></li>
+<li><a href="func.bit_nth_msf.html"><code>g_bit_nth_msf()</code></a></li>
+<li><a href="func.bit_storage.html"><code>g_bit_storage()</code></a></li>
+</ul>
+<h2 id="primes">Primes<a class="md-anchor" href="#primes" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.spaced_primes_closest.html"><code>g_spaced_primes_closest()</code></a></li>
+</ul>
+<h2 id="process-lifetime">Process Lifetime<a class="md-anchor" href="#process-lifetime" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.abort.html"><code>g_abort()</code></a></li>
+</ul>
+<h2 id="debug">Debug<a class="md-anchor" href="#debug" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.parse_debug_string.html"><code>g_parse_debug_string()</code></a></li>
+</ul>
+<h2 id="sorting">Sorting<a class="md-anchor" href="#sorting" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.qsort_with_data.html"><code>g_qsort_with_data()</code></a></li>
+</ul>
+<h2 id="pointers">Pointers<a class="md-anchor" href="#pointers" title="Permanent link"></a></h2>
+<ul>
+<li><a href="func.nullify_pointer.html"><code>g_nullify_pointer()</code></a></li>
+</ul>
+<h2 id="deprecated-api">Deprecated API<a class="md-anchor" href="#deprecated-api" title="Permanent link"></a></h2>
+<ul>
+<li><a href="callback.VoidFunc.html"><code>GVoidFunc</code></a></li>
+<li><a href="callback.FreeFunc.html"><code>GFreeFunc</code></a></li>
+<li><a href="func.atexit.html"><code>g_atexit()</code></a></li>
+</ul>
+    </div>
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/misc-utils.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 12:58:58 GMT --></html>

@@ -1,0 +1,243 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.child_watch_add.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:19 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>child_watch_add</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.child_watch_add">
+  <meta property="og:description" content="Reference for GLib.child_watch_add">
+  <meta name="twitter:title" content="GLib.child_watch_add">
+  <meta name="twitter:description" content="Reference for GLib.child_watch_add">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a> child_watch_add</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.4</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L959">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">guint</span>
+<span class="n">g_child_watch_add</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">GPid</span><span class="w"> </span><span class="n">pid</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GChildWatchFunc</span><span class="w"> </span><span class="n">function</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">data</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.c#L6201">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Sets a function to be called when the child indicated by <code>pid</code>
+exits, at a default priority, <a href="const.PRIORITY_DEFAULT.html"><code>G_PRIORITY_DEFAULT</code></a>.</p>
+<p>If you obtain <code>pid</code> from <a href="func.spawn_async.html"><code>g_spawn_async()</code></a> or
+<a href="func.spawn_async_with_pipes.html"><code>g_spawn_async_with_pipes()</code></a> you will need to pass
+<code>G_SPAWN_DO_NOT_REAP_CHILD</code> as flag to the spawn function for the child
+watching to&nbsp;work.</p>
+<p>Note that on platforms where <code>GPid</code> must be explicitly closed
+(see <a href="func.spawn_close_pid.html"><code>g_spawn_close_pid()</code></a>) <code>pid</code> must not be closed while the
+source is still active. Typically, you will want to call
+<a href="func.spawn_close_pid.html"><code>g_spawn_close_pid()</code></a> in the callback function for the&nbsp;source.</p>
+<p>GLib supports only a single callback per process id.
+On <span class="caps">POSIX</span> platforms, the same restrictions mentioned for
+<a href="func.child_watch_source_new.html"><code>g_child_watch_source_new()</code></a> apply to this&nbsp;function.</p>
+<p>This internally creates a main loop source using
+<a href="func.child_watch_source_new.html"><code>g_child_watch_source_new()</code></a> and attaches it to the main loop context
+using <a href="method.Source.attach.html"><code>g_source_attach()</code></a>. You can do these steps manually if you
+need greater&nbsp;control.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.4</p>
+        
+        
+        <p>This function is not directly available to language bindings.</p>
+        
+        <p>The implementation of this function is provided by <a href="func.child_watch_add_full.html"><code>g_child_watch_add_full()</code></a> in language bindings.</p>
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>pid</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="alias.Pid.html"><code>GPid</code></a></p>
+            <p>Process id to watch. On <span class="caps">POSIX</span> the positive pid of a child
+  process. On Windows a handle for a process (which doesn’t have
+  to be a&nbsp;child).</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>function</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.ChildWatchFunc.html"><code>GChildWatchFunc</code></a></p>
+            <p>Function to&nbsp;call.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>data</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>Data to pass to <code>function</code>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>guint</code></p>
+            <p>The <span class="caps">ID</span> (greater than 0) of the event&nbsp;source.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            
+            
+            
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.child_watch_add.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:19 GMT --></html>

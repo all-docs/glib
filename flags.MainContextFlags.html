@@ -1,0 +1,169 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/flags.MainContextFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>MainContextFlags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.MainContextFlags">
+  <meta property="og:description" content="Reference for GLib.MainContextFlags">
+  <meta name="twitter:title" content="GLib.MainContextFlags">
+  <meta name="twitter:description" content="Reference for GLib.MainContextFlags">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> MainContextFlags</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.72</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>flags GLib.MainContextFlags</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmain.h#L43">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Flags to pass to <a href="ctor.MainContext.new_with_flags.html"><code>g_main_context_new_with_flags()</code></a> which affect the
+behaviour of a <a href="struct.MainContext.html"><code>GMainContext</code></a>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        <p>Available since: 2.72</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="none">G_MAIN_CONTEXT_FLAGS_NONE</code>
+            <a class="anchor" href="#none"></a>
+          </dt>
+          <dd>
+            <div><p>Default&nbsp;behaviour.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.72</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="ownerless_polling">G_MAIN_CONTEXT_FLAGS_OWNERLESS_POLLING</code>
+            <a class="anchor" href="#ownerless_polling"></a>
+          </dt>
+          <dd>
+            <div><p>Assume that polling for events will
+free the thread to process other jobs. That’s useful if you’re using
+<code>g_main_context_{prepare,query,check,dispatch}</code> to integrate GMainContext in
+other event&nbsp;loops.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.72</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/flags.MainContextFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --></html>

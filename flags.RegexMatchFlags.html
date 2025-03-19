@@ -1,0 +1,390 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/flags.RegexMatchFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>RegexMatchFlags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.RegexMatchFlags">
+  <meta property="og:description" content="Reference for GLib.RegexMatchFlags">
+  <meta name="twitter:title" content="GLib.RegexMatchFlags">
+  <meta name="twitter:description" content="Reference for GLib.RegexMatchFlags">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> RegexMatchFlags</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.14</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>flags GLib.RegexMatchFlags</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gregex.h#L327">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Flags specifying match-time&nbsp;options.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        <p>Available since: 2.14</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="default">G_REGEX_MATCH_DEFAULT</code>
+            <a class="anchor" href="#default"></a>
+          </dt>
+          <dd>
+            <div><p>No special options set. Since:&nbsp;2.74.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="anchored">G_REGEX_MATCH_ANCHORED</code>
+            <a class="anchor" href="#anchored"></a>
+          </dt>
+          <dd>
+            <div><p>The pattern is forced to be “anchored”, that is,
+    it is constrained to match only at the first matching point in the
+    string that is being searched. This effect can also be achieved by
+    appropriate constructs in the pattern itself such as the “^”&nbsp;metacharacter.</p></div>
+            <ul>
+              <li>Value: <code>16</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="notbol">G_REGEX_MATCH_NOTBOL</code>
+            <a class="anchor" href="#notbol"></a>
+          </dt>
+          <dd>
+            <div><p>Specifies that first character of the string is
+    not the beginning of a line, so the circumflex metacharacter should
+    not match before it. Setting this without <code>G_REGEX_MULTILINE</code> (at
+    compile time) causes circumflex never to match. This option affects
+    only the behaviour of the circumflex metacharacter, it does not
+    affect&nbsp;“\A”.</p></div>
+            <ul>
+              <li>Value: <code>128</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="noteol">G_REGEX_MATCH_NOTEOL</code>
+            <a class="anchor" href="#noteol"></a>
+          </dt>
+          <dd>
+            <div><p>Specifies that the end of the subject string is
+    not the end of a line, so the dollar metacharacter should not match
+    it nor (except in multiline mode) a newline immediately before it.
+    Setting this without <code>G_REGEX_MULTILINE</code> (at compile time) causes
+    dollar never to match. This option affects only the behaviour of
+    the dollar metacharacter, it does not affect “\Z” or&nbsp;“\z”.</p></div>
+            <ul>
+              <li>Value: <code>256</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="notempty">G_REGEX_MATCH_NOTEMPTY</code>
+            <a class="anchor" href="#notempty"></a>
+          </dt>
+          <dd>
+            <div><p>An empty string is not considered to be a valid
+    match if this option is set. If there are alternatives in the pattern,
+    they are tried. If all the alternatives match the empty string, the
+    entire match fails. For example, if the pattern “a?b?” is applied to
+    a string not beginning with “a” or “b”, it matches the empty string
+    at the start of the string. With this flag set, this match is not
+    valid, so GRegex searches further into the string for occurrences
+    of “a” or&nbsp;“b”.</p></div>
+            <ul>
+              <li>Value: <code>1024</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="partial">G_REGEX_MATCH_PARTIAL</code>
+            <a class="anchor" href="#partial"></a>
+          </dt>
+          <dd>
+            <div><p>Turns on the partial matching feature, for more
+    documentation on partial matching see&nbsp;g_match_info_is_partial_match().</p></div>
+            <ul>
+              <li>Value: <code>32768</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="newline_cr">G_REGEX_MATCH_NEWLINE_CR</code>
+            <a class="anchor" href="#newline_cr"></a>
+          </dt>
+          <dd>
+            <div><p>Overrides the newline definition set when
+    creating a new <code>GRegex</code>, setting the ‘\r’ character as line&nbsp;terminator.</p></div>
+            <ul>
+              <li>Value: <code>1048576</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="newline_lf">G_REGEX_MATCH_NEWLINE_LF</code>
+            <a class="anchor" href="#newline_lf"></a>
+          </dt>
+          <dd>
+            <div><p>Overrides the newline definition set when
+    creating a new <code>GRegex</code>, setting the ‘\n’ character as line&nbsp;terminator.</p></div>
+            <ul>
+              <li>Value: <code>2097152</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="newline_crlf">G_REGEX_MATCH_NEWLINE_CRLF</code>
+            <a class="anchor" href="#newline_crlf"></a>
+          </dt>
+          <dd>
+            <div><p>Overrides the newline definition set when
+    creating a new <code>GRegex</code>, setting the ‘\r\n’ characters sequence as line&nbsp;terminator.</p></div>
+            <ul>
+              <li>Value: <code>3145728</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="newline_any">G_REGEX_MATCH_NEWLINE_ANY</code>
+            <a class="anchor" href="#newline_any"></a>
+          </dt>
+          <dd>
+            <div><p>Overrides the newline definition set when
+    creating a new <code>GRegex</code>, any Unicode newline sequence
+    is recognised as a newline. These are ‘\r’, ‘\n’ and ‘\rn’, and the
+    single characters U+000B <span class="caps">LINE</span> <span class="caps">TABULATION</span>, U+000C <span class="caps">FORM</span> <span class="caps">FEED</span> (<span class="caps">FF</span>),
+    U+0085 <span class="caps">NEXT</span> <span class="caps">LINE</span> (<span class="caps">NEL</span>), U+2028 <span class="caps">LINE</span> <span class="caps">SEPARATOR</span> and
+    U+2029 <span class="caps">PARAGRAPH</span> <span class="caps">SEPARATOR</span>.</p></div>
+            <ul>
+              <li>Value: <code>4194304</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="newline_anycrlf">G_REGEX_MATCH_NEWLINE_ANYCRLF</code>
+            <a class="anchor" href="#newline_anycrlf"></a>
+          </dt>
+          <dd>
+            <div><p>Overrides the newline definition set when
+    creating a new <code>GRegex</code>; any ‘\r’, ‘\n’, or ‘\r\n’ character sequence
+    is recognized as a newline. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>5242880</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="bsr_anycrlf">G_REGEX_MATCH_BSR_ANYCRLF</code>
+            <a class="anchor" href="#bsr_anycrlf"></a>
+          </dt>
+          <dd>
+            <div><p>Overrides the newline definition for “\R” set when
+    creating a new <code>GRegex</code>; only ‘\r’, ‘\n’, or ‘\r\n’ character sequences
+    are recognized as a newline by “\R”. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>8388608</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="bsr_any">G_REGEX_MATCH_BSR_ANY</code>
+            <a class="anchor" href="#bsr_any"></a>
+          </dt>
+          <dd>
+            <div><p>Overrides the newline definition for “\R” set when
+    creating a new <code>GRegex</code>; any Unicode newline character or character sequence
+    are recognized as a newline by “\R”. These are ‘\r’, ‘\n’ and ‘\rn’, and the
+    single characters U+000B <span class="caps">LINE</span> <span class="caps">TABULATION</span>, U+000C <span class="caps">FORM</span> <span class="caps">FEED</span> (<span class="caps">FF</span>),
+    U+0085 <span class="caps">NEXT</span> <span class="caps">LINE</span> (<span class="caps">NEL</span>), U+2028 <span class="caps">LINE</span> <span class="caps">SEPARATOR</span> and
+    U+2029 <span class="caps">PARAGRAPH</span> <span class="caps">SEPARATOR</span>. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>16777216</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="partial_soft">G_REGEX_MATCH_PARTIAL_SOFT</code>
+            <a class="anchor" href="#partial_soft"></a>
+          </dt>
+          <dd>
+            <div><p>An alias for <code>G_REGEX_MATCH_PARTIAL</code>. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>32768</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="partial_hard">G_REGEX_MATCH_PARTIAL_HARD</code>
+            <a class="anchor" href="#partial_hard"></a>
+          </dt>
+          <dd>
+            <div><p>Turns on the partial matching feature. In contrast to
+    to <code>G_REGEX_MATCH_PARTIAL_SOFT</code>, this stops matching as soon as a partial match
+    is found, without continuing to search for a possible complete match. See
+    <code>g_match_info_is_partial_match()</code> for more information. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>134217728</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="notempty_atstart">G_REGEX_MATCH_NOTEMPTY_ATSTART</code>
+            <a class="anchor" href="#notempty_atstart"></a>
+          </dt>
+          <dd>
+            <div><p>Like <code>G_REGEX_MATCH_NOTEMPTY</code>, but only applied to
+    the start of the matched string. For anchored
+    patterns this can only happen for pattern containing “\K”. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>268435456</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/flags.RegexMatchFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --></html>

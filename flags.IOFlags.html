@@ -1,0 +1,278 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/flags.IOFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:15 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>IOFlags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.IOFlags">
+  <meta property="og:description" content="Reference for GLib.IOFlags">
+  <meta name="twitter:title" content="GLib.IOFlags">
+  <meta name="twitter:description" content="Reference for GLib.IOFlags">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> IOFlags</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>flags GLib.IOFlags</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/giochannel.c#L942">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Specifies properties of a <code>GIOChannel</code>. Some of the flags can only be
+read with g_io_channel_get_flags(), but not changed with&nbsp;g_io_channel_set_flags().</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="none">G_IO_FLAG_NONE</code>
+            <a class="anchor" href="#none"></a>
+          </dt>
+          <dd>
+            <div><p>No special flags set. Since:&nbsp;2.74.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="append">G_IO_FLAG_APPEND</code>
+            <a class="anchor" href="#append"></a>
+          </dt>
+          <dd>
+            <div><p>Turns on append mode, corresponds to <code>O_APPEND</code>
+    (see the documentation of the <span class="caps">UNIX</span> <code>open()</code> syscall).</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nonblock">G_IO_FLAG_NONBLOCK</code>
+            <a class="anchor" href="#nonblock"></a>
+          </dt>
+          <dd>
+            <div><p>Turns on nonblocking mode, corresponds to
+    <code>O_NONBLOCK</code>/<code>O_NDELAY</code> (see the documentation of the <span class="caps">UNIX</span> <code>open()</code>
+    syscall).</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="is_readable">G_IO_FLAG_IS_READABLE</code>
+            <a class="anchor" href="#is_readable"></a>
+          </dt>
+          <dd>
+            <div><p>Indicates that the io channel is readable.
+    This flag cannot be&nbsp;changed.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="is_writable">G_IO_FLAG_IS_WRITABLE</code>
+            <a class="anchor" href="#is_writable"></a>
+          </dt>
+          <dd>
+            <div><p>Indicates that the io channel is writable.
+    This flag cannot be&nbsp;changed.</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="is_writeable">G_IO_FLAG_IS_WRITEABLE</code>
+            <a class="anchor" href="#is_writeable"></a>
+          </dt>
+          <dd>
+            <div><p>A misspelled version of <code>G_IO_FLAG_IS_WRITABLE</code>
+    that existed before the spelling was fixed in GLib 2.30. It is kept
+    here for compatibility reasons. Deprecated since&nbsp;2.30.</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="is_seekable">G_IO_FLAG_IS_SEEKABLE</code>
+            <a class="anchor" href="#is_seekable"></a>
+          </dt>
+          <dd>
+            <div><p>Indicates that the io channel is seekable,
+    i.e. that <code>g_io_channel_seek_position()</code> can be used on it.
+    This flag cannot be&nbsp;changed.</p></div>
+            <ul>
+              <li>Value: <code>16</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="mask">G_IO_FLAG_MASK</code>
+            <a class="anchor" href="#mask"></a>
+          </dt>
+          <dd>
+            <div><p>The mask that specifies all the valid&nbsp;flags.</p></div>
+            <ul>
+              <li>Value: <code>31</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="get_mask">G_IO_FLAG_GET_MASK</code>
+            <a class="anchor" href="#get_mask"></a>
+          </dt>
+          <dd>
+            <div><p>The mask of the flags that are returned from&nbsp;g_io_channel_get_flags().</p></div>
+            <ul>
+              <li>Value: <code>31</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="set_mask">G_IO_FLAG_SET_MASK</code>
+            <a class="anchor" href="#set_mask"></a>
+          </dt>
+          <dd>
+            <div><p>The mask of the flags that the user can modify
+    with&nbsp;g_io_channel_set_flags().</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/flags.IOFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:15 GMT --></html>

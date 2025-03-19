@@ -1,0 +1,300 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/ctor.Variant.new_from_data.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:58 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>Variant.new_from_data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Variant.new_from_data">
+  <meta property="og:description" content="Reference for GLib.Variant.new_from_data">
+  <meta name="twitter:title" content="GLib.Variant.new_from_data">
+  <meta name="twitter:description" content="Reference for GLib.Variant.new_from_data">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function</h3>
+    <h1><a href="index-2.html">GLib</a> <a href="struct.Variant.html">Variant</a> new_from_data</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.24</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.h#L263">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="n">GVariant</span><span class="o">*</span>
+<span class="n">g_variant_new_from_data</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">GVariantType</span><span class="o">*</span><span class="w"> </span><span class="n">type</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gconstpointer</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gsize</span><span class="w"> </span><span class="n">size</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gboolean</span><span class="w"> </span><span class="n">trusted</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GDestroyNotify</span><span class="w"> </span><span class="n">notify</span><span class="p">,</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="w"> </span><span class="n">user_data</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.c#L6228">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Creates a new <code>GVariant</code> instance from serialized&nbsp;data.</p>
+<p><code>type</code> is the type of <code>GVariant</code> instance that will be constructed.
+The interpretation of <code>data</code> depends on knowing the&nbsp;type.</p>
+<p><code>data</code> is not modified by this function and must remain valid with an
+unchanging value until such a time as <code>notify</code> is called with
+<code>user_data</code>.  If the contents of <code>data</code> change before that time then
+the result is&nbsp;undefined.</p>
+<p>If <code>data</code> is trusted to be serialized data in normal form then
+<code>trusted</code> should be <code>TRUE</code>.  This applies to serialized data created
+within this process or read from a trusted location on the disk (such
+as a file installed in /usr/lib alongside your application).  You
+should set trusted to <code>FALSE</code> if <code>data</code> is read from the network, a
+file in the user’s home directory,&nbsp;etc.</p>
+<p>If <code>data</code> was not stored in this machine’s native endianness, any multi-byte
+numeric values in the returned variant will also be in non-native
+endianness. <code>g_variant_byteswap()</code> can be used to recover the original&nbsp;values.</p>
+<p><code>notify</code> will be called with <code>user_data</code> when <code>data</code> is no longer
+needed.  The exact time of this call is unspecified and might even be
+before this function&nbsp;returns.</p>
+<p>Note: <code>data</code> must be backed by memory that is aligned appropriately for the
+<code>type</code> being loaded. Otherwise this function will internally create a copy of
+the memory (since GLib 2.60) or (in older versions) fail and exit the&nbsp;process.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.24</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>type</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.VariantType.html"><code>GVariantType</code></a></p>
+            <p>A definite <code>GVariantType</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>data</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;An array of&nbsp;<code>guint8</code></p>
+            <p>The serialized&nbsp;data.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td>The length of the array is specified in the <code>size</code> argument.</td></tr>
+            
+            
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>size</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gsize</code></p>
+            <p>The size of <code>data</code>.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>trusted</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gboolean</code></p>
+            <p><code>TRUE</code> if <code>data</code> is definitely in normal&nbsp;form.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>notify</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="callback.DestroyNotify.html"><code>GDestroyNotify</code></a></p>
+            <p>Function to call when <code>data</code> is no longer&nbsp;needed.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>user_data</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gpointer</code></p>
+            <p>Data for <code>notify</code>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+    <div class="return-value toggle-wrapper">
+      <h4 id="return-value">
+        Return value
+        <a href="#return-value" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.Variant.html"><code>GVariant</code></a></p>
+            <p>A new floating <code>GVariant</code> of type <code>type</code>.</p>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the called function.</td></tr>
+            
+            
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/ctor.Variant.new_from_data.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:58 GMT --></html>

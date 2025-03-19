@@ -1,0 +1,485 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Sequence.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:08:23 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>Sequence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Sequence">
+  <meta property="og:description" content="Reference for GLib.Sequence">
+  <meta name="twitter:title" content="GLib.Sequence">
+  <meta name="twitter:description" content="Reference for GLib.Sequence">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> Sequence</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gsequence.c#L52">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GSequence</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>The <code>GSequence</code> struct is an opaque data type representing a
+<a href="data-structures.html#scalable-lists">sequence</a> data&nbsp;type.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.foreach_range.html">g_sequence_foreach_range</a></h6>
+        <div class="docblock">
+          <p>Calls <code>func</code> for each item in the range (<code>begin</code>, <code>end</code>) passing
+<code>user_data</code> to the function. <code>func</code> must not modify the sequence&nbsp;itself.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.get.html">g_sequence_get</a></h6>
+        <div class="docblock">
+          <p>Returns the data that <code>iter</code> points&nbsp;to.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.insert_before.html">g_sequence_insert_before</a></h6>
+        <div class="docblock">
+          <p>Inserts a new item just before the item pointed to by <code>iter</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.move.html">g_sequence_move</a></h6>
+        <div class="docblock">
+          <p>Moves the item pointed to by <code>src</code> to the position indicated by <code>dest</code>.
+After calling this function <code>dest</code> will point to the position immediately
+after <code>src</code>. It is allowed for <code>src</code> and <code>dest</code> to point into different&nbsp;sequences.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.move_range.html">g_sequence_move_range</a></h6>
+        <div class="docblock">
+          <p>Inserts the (<code>begin</code>, <code>end</code>) range at the destination pointed to by <code>dest</code>.
+The <code>begin</code> and <code>end</code> iters must point into the same sequence. It is
+allowed for <code>dest</code> to point to a different sequence than the one pointed
+into by <code>begin</code> and <code>end</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.new.html">g_sequence_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new GSequence. The <code>data_destroy</code> function, if non-<code>NULL</code> will
+be called on all items when the sequence is destroyed and on items that
+are removed from the&nbsp;sequence.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.range_get_midpoint.html">g_sequence_range_get_midpoint</a></h6>
+        <div class="docblock">
+          <p>Finds an iterator somewhere in the range (<code>begin</code>, <code>end</code>). This
+iterator will be close to the middle of the range, but is not
+guaranteed to be exactly in the&nbsp;middle.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.remove.html">g_sequence_remove</a></h6>
+        <div class="docblock">
+          <p>Removes the item pointed to by <code>iter</code>. It is an error to pass the
+end iterator to this&nbsp;function.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.remove_range.html">g_sequence_remove_range</a></h6>
+        <div class="docblock">
+          <p>Removes all items in the (<code>begin</code>, <code>end</code>)&nbsp;range.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.set.html">g_sequence_set</a></h6>
+        <div class="docblock">
+          <p>Changes the data for the item pointed to by <code>iter</code> to be <code>data</code>. If
+the sequence has a data destroy function associated with it, that
+function is called on the existing data that <code>iter</code> pointed&nbsp;to.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.sort_changed.html">g_sequence_sort_changed</a></h6>
+        <div class="docblock">
+          <p>Moves the data pointed to by <code>iter</code> to a new position as indicated by
+<code>cmp_func</code>. This
+function should be called for items in a sequence already sorted according
+to <code>cmp_func</code> whenever some aspect of an item changes so that <code>cmp_func</code>
+may return different values for that&nbsp;item.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.sort_changed_iter.html">g_sequence_sort_changed_iter</a></h6>
+        <div class="docblock">
+          <p>Like g_sequence_sort_changed(), but uses
+a <code>GSequenceIterCompareFunc</code> instead of a <code>GCompareDataFunc</code> as
+the compare&nbsp;function.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Sequence.swap.html">g_sequence_swap</a></h6>
+        <div class="docblock">
+          <p>Swaps the items pointed to by <code>a</code> and <code>b</code>. It is allowed for <code>a</code> and <code>b</code>
+to point into difference&nbsp;sequences.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Sequence.append.html">g_sequence_append</a></h6>
+          <div class="docblock">
+            <p>Adds a new item to the end of <code>seq</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.foreach.html">g_sequence_foreach</a></h6>
+          <div class="docblock">
+            <p>Calls <code>func</code> for each item in the sequence passing <code>user_data</code>
+to the function. <code>func</code> must not modify the sequence&nbsp;itself.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.free.html">g_sequence_free</a></h6>
+          <div class="docblock">
+            <p>Frees the memory allocated for <code>seq</code>. If <code>seq</code> has a data destroy
+function associated with it, that function is called on all items
+in <code>seq</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.get_begin_iter.html">g_sequence_get_begin_iter</a></h6>
+          <div class="docblock">
+            <p>Returns the begin iterator for <code>seq</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.get_end_iter.html">g_sequence_get_end_iter</a></h6>
+          <div class="docblock">
+            <p>Returns the end iterator for <code>seg</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.get_iter_at_pos.html">g_sequence_get_iter_at_pos</a></h6>
+          <div class="docblock">
+            <p>Returns the iterator at position <code>pos</code>. If <code>pos</code> is negative or larger
+than the number of items in <code>seq</code>, the end iterator is&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.get_length.html">g_sequence_get_length</a></h6>
+          <div class="docblock">
+            <p>Returns the positive length (&gt;= 0) of <code>seq</code>. Note that this method is
+O(h) where <code>h' is the height of the tree. It is thus more efficient
+to use</code>g_sequence_is_empty()` when comparing the length to&nbsp;zero.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.insert_sorted.html">g_sequence_insert_sorted</a></h6>
+          <div class="docblock">
+            <p>Inserts <code>data</code> into <code>seq</code> using <code>cmp_func</code> to determine the new
+position. The sequence must already be sorted according to <code>cmp_func</code>;
+otherwise the new position of <code>data</code> is&nbsp;undefined.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.insert_sorted_iter.html">g_sequence_insert_sorted_iter</a></h6>
+          <div class="docblock">
+            <p>Like g_sequence_insert_sorted(), but uses
+a <code>GSequenceIterCompareFunc</code> instead of a <code>GCompareDataFunc</code> as
+the compare&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.is_empty.html">g_sequence_is_empty</a></h6>
+          <div class="docblock">
+            <p>Returns <code>TRUE</code> if the sequence contains zero&nbsp;items.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.48</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.lookup.html">g_sequence_lookup</a></h6>
+          <div class="docblock">
+            <p>Returns an iterator pointing to the position of the first item found
+equal to <code>data</code> according to <code>cmp_func</code> and <code>cmp_data</code>. If more than one
+item is equal, it is not guaranteed that it is the first which is
+returned. In that case, you can use <code>g_sequence_iter_next()</code> and
+<code>g_sequence_iter_prev()</code> to get&nbsp;others.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.28</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.lookup_iter.html">g_sequence_lookup_iter</a></h6>
+          <div class="docblock">
+            <p>Like g_sequence_lookup(), but uses a <code>GSequenceIterCompareFunc</code>
+instead of a <code>GCompareDataFunc</code> as the compare&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.28</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.prepend.html">g_sequence_prepend</a></h6>
+          <div class="docblock">
+            <p>Adds a new item to the front of <code>seq</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.search.html">g_sequence_search</a></h6>
+          <div class="docblock">
+            <p>Returns an iterator pointing to the position where <code>data</code> would
+be inserted according to <code>cmp_func</code> and <code>cmp_data</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.search_iter.html">g_sequence_search_iter</a></h6>
+          <div class="docblock">
+            <p>Like g_sequence_search(), but uses a <code>GSequenceIterCompareFunc</code>
+instead of a <code>GCompareDataFunc</code> as the compare&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.sort.html">g_sequence_sort</a></h6>
+          <div class="docblock">
+            <p>Sorts <code>seq</code> using <code>cmp_func</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.Sequence.sort_iter.html">g_sequence_sort_iter</a></h6>
+          <div class="docblock">
+            <p>Like g_sequence_sort(), but uses a <code>GSequenceIterCompareFunc</code> instead
+of a <code>GCompareDataFunc</code> as the compare&nbsp;function.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.14</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Sequence.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:08:38 GMT --></html>

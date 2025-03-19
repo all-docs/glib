@@ -1,0 +1,596 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.PtrArray.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:06:47 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>PtrArray</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.PtrArray">
+  <meta property="og:description" content="Reference for GLib.PtrArray">
+  <meta name="twitter:title" content="GLib.PtrArray">
+  <meta name="twitter:description" content="Reference for GLib.PtrArray">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> PtrArray</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/garray.c#L1086">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GPtrArray</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">gpointer</span><span class="o">*</span><span class="w"> </span><span class="n">pdata</span><span class="p">;</span>
+<span class="w">  </span><span class="n">guint</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>Contains the public fields of a pointer&nbsp;array.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>pdata</code></dt>
+              <dd><p>Points to the array of pointers, which may be moved when the
+    array&nbsp;grows.</p></dd>
+            
+              <dt><code>len</code></dt>
+              <dd><p>Number of pointers in the&nbsp;array.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.add.html">g_ptr_array_add</a></h6>
+        <div class="docblock">
+          <p>Adds a pointer to the end of the pointer array. The array will grow
+in size automatically if&nbsp;necessary.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.copy.html">g_ptr_array_copy</a></h6>
+        <div class="docblock">
+          <p>Makes a full (deep) copy of a <code>GPtrArray</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.62</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.extend.html">g_ptr_array_extend</a></h6>
+        <div class="docblock">
+          <p>Adds all pointers of <code>array</code> to the end of the array <code>array_to_extend</code>.
+The array will grow in size automatically if needed. <code>array_to_extend</code> is
+modified&nbsp;in-place.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.62</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.extend_and_steal.html">g_ptr_array_extend_and_steal</a></h6>
+        <div class="docblock">
+          <p>Adds all the pointers in <code>array</code> to the end of <code>array_to_extend</code>, transferring
+ownership of each element from <code>array</code> to <code>array_to_extend</code> and modifying
+<code>array_to_extend</code> in-place. <code>array</code> is then&nbsp;freed.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.62</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.find.html">g_ptr_array_find</a></h6>
+        <div class="docblock">
+          <p>Checks whether <code>needle</code> exists in <code>haystack</code>. If the element is found, <code>TRUE</code> is
+returned and the element’s index is returned in <code>index_</code> (if non-<code>NULL</code>).
+Otherwise, <code>FALSE</code> is returned and <code>index_</code> is undefined. If <code>needle</code> exists
+multiple times in <code>haystack</code>, the index of the first instance is&nbsp;returned.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.54</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.find_with_equal_func.html">g_ptr_array_find_with_equal_func</a></h6>
+        <div class="docblock">
+          <p>Checks whether <code>needle</code> exists in <code>haystack</code>, using the given <code>equal_func</code>.
+If the element is found, <code>TRUE</code> is returned and the element’s index is
+returned in <code>index_</code> (if non-<code>NULL</code>). Otherwise, <code>FALSE</code> is returned and <code>index_</code>
+is undefined. If <code>needle</code> exists multiple times in <code>haystack</code>, the index of
+the first instance is&nbsp;returned.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.54</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.foreach.html">g_ptr_array_foreach</a></h6>
+        <div class="docblock">
+          <p>Calls a function for each element of a <code>GPtrArray</code>. <code>func</code> must not
+add elements to or remove elements from the&nbsp;array.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.4</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.free.html">g_ptr_array_free</a></h6>
+        <div class="docblock">
+          <p>Frees the memory allocated for the <code>GPtrArray</code>. If <code>free_segment</code> is <code>TRUE</code>
+it frees the memory block holding the elements as well. Pass <code>FALSE</code>
+if you want to free the <code>GPtrArray</code> wrapper but preserve the
+underlying array for use elsewhere. If the reference count of <code>array</code>
+is greater than one, the <code>GPtrArray</code> wrapper is preserved but the
+size of <code>array</code> will be set to&nbsp;zero.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.insert.html">g_ptr_array_insert</a></h6>
+        <div class="docblock">
+          <p>Inserts an element into the pointer array at the given index. The
+array will grow in size automatically if&nbsp;necessary.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.40</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.is_null_terminated.html">g_ptr_array_is_null_terminated</a></h6>
+        <div class="docblock">
+          <p>Gets whether the <code>array</code> was constructed as <code>NULL</code>-terminated.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.74</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.new.html">g_ptr_array_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GPtrArray</code> with a reference count of&nbsp;1.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.new_from_array.html">g_ptr_array_new_from_array</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GPtrArray</code>, copying <code>len</code> pointers from <code>data</code>, and setting
+the array’s reference count to&nbsp;1.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.new_from_null_terminated_array.html">g_ptr_array_new_from_null_terminated_array</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GPtrArray</code> copying the pointers from <code>data</code> after having
+computed the length of it and with a reference count of 1.
+This avoids having to manually add each element one by one.
+If <code>copy_func</code> is provided, then it is used to copy the data in the new
+array.
+It also set <code>element_free_func</code> for freeing each element when the array is
+destroyed either via g_ptr_array_unref(), when <code>g_ptr_array_free()</code> is called
+with <code>free_segment</code> set to <code>TRUE</code> or when removing&nbsp;elements.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.new_full.html">g_ptr_array_new_full</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GPtrArray</code> with <code>reserved_size</code> pointers preallocated
+and a reference count of 1. This avoids frequent reallocation, if
+you are going to add many pointers to the array. Note however that
+the size of the array is still 0. It also set <code>element_free_func</code>
+for freeing each element when the array is destroyed either via
+g_ptr_array_unref(), when <code>g_ptr_array_free()</code> is called with
+<code>free_segment</code> set to <code>TRUE</code> or when removing&nbsp;elements.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.30</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.new_null_terminated.html">g_ptr_array_new_null_terminated</a></h6>
+        <div class="docblock">
+          <p>Like <code>g_ptr_array_new_full()</code> but also allows to set the array to
+be <code>NULL</code> terminated. A <code>NULL</code> terminated pointer array has an
+additional <code>NULL</code> pointer after the last element, beyond the
+current&nbsp;length.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.74</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.new_take.html">g_ptr_array_new_take</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GPtrArray</code> with <code>data</code> as pointers, <code>len</code> as length and a
+reference count of&nbsp;1.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.new_take_null_terminated.html">g_ptr_array_new_take_null_terminated</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GPtrArray</code> with <code>data</code> as pointers, computing the length of it
+and setting the reference count to&nbsp;1.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.new_with_free_func.html">g_ptr_array_new_with_free_func</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GPtrArray</code> with a reference count of 1 and use
+<code>element_free_func</code> for freeing each element when the array is destroyed
+either via g_ptr_array_unref(), when <code>g_ptr_array_free()</code> is called with
+<code>free_segment</code> set to <code>TRUE</code> or when removing&nbsp;elements.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.22</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.ref.html">g_ptr_array_ref</a></h6>
+        <div class="docblock">
+          <p>Atomically increments the reference count of <code>array</code> by one.
+This function is thread-safe and may be called from any&nbsp;thread.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.22</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.remove.html">g_ptr_array_remove</a></h6>
+        <div class="docblock">
+          <p>Removes the first occurrence of the given pointer from the pointer
+array. The following elements are moved down one place. If <code>array</code>
+has a non-<code>NULL</code> <code>GDestroyNotify</code> function it is called for the
+removed&nbsp;element.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.remove_fast.html">g_ptr_array_remove_fast</a></h6>
+        <div class="docblock">
+          <p>Removes the first occurrence of the given pointer from the pointer
+array. The last element in the array is used to fill in the space,
+so this function does not preserve the order of the array. But it
+is faster than g_ptr_array_remove(). If <code>array</code> has a non-<code>NULL</code>
+<code>GDestroyNotify</code> function it is called for the removed&nbsp;element.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.remove_index.html">g_ptr_array_remove_index</a></h6>
+        <div class="docblock">
+          <p>Removes the pointer at the given index from the pointer array.
+The following elements are moved down one place. If <code>array</code> has
+a non-<code>NULL</code> <code>GDestroyNotify</code> function it is called for the removed
+element. If so, the return value from this function will potentially point
+to freed memory (depending on the <code>GDestroyNotify</code> implementation).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.remove_index_fast.html">g_ptr_array_remove_index_fast</a></h6>
+        <div class="docblock">
+          <p>Removes the pointer at the given index from the pointer array.
+The last element in the array is used to fill in the space, so
+this function does not preserve the order of the array. But it
+is faster than g_ptr_array_remove_index(). If <code>array</code> has a non-<code>NULL</code>
+<code>GDestroyNotify</code> function it is called for the removed element. If so, the
+return value from this function will potentially point to freed memory
+(depending on the <code>GDestroyNotify</code> implementation).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.remove_range.html">g_ptr_array_remove_range</a></h6>
+        <div class="docblock">
+          <p>Removes the given number of pointers starting at the given index
+from a <code>GPtrArray</code>. The following elements are moved to close the
+gap. If <code>array</code> has a non-<code>NULL</code> <code>GDestroyNotify</code> function it is
+called for the removed&nbsp;elements.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.4</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.set_free_func.html">g_ptr_array_set_free_func</a></h6>
+        <div class="docblock">
+          <p>Sets a function for freeing each element when <code>array</code> is destroyed
+either via g_ptr_array_unref(), when <code>g_ptr_array_free()</code> is called
+with <code>free_segment</code> set to <code>TRUE</code> or when removing&nbsp;elements.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.22</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.set_size.html">g_ptr_array_set_size</a></h6>
+        <div class="docblock">
+          <p>Sets the size of the array. When making the array larger,
+newly-added elements will be set to <code>NULL</code>. When making it smaller,
+if <code>array</code> has a non-<code>NULL</code> <code>GDestroyNotify</code> function then it will be
+called for the removed&nbsp;elements.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.sized_new.html">g_ptr_array_sized_new</a></h6>
+        <div class="docblock">
+          <p>Creates a new <code>GPtrArray</code> with <code>reserved_size</code> pointers preallocated
+and a reference count of 1. This avoids frequent reallocation, if
+you are going to add many pointers to the array. Note however that
+the size of the array is still&nbsp;0.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.sort.html">g_ptr_array_sort</a></h6>
+        <div class="docblock">
+          <p>Sorts the array, using <code>compare_func</code> which should be a qsort()-style
+comparison function (returns less than zero for first arg is less
+than second arg, zero for equal, greater than zero if first arg is
+greater than second&nbsp;arg).</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.sort_values.html">g_ptr_array_sort_values</a></h6>
+        <div class="docblock">
+          <p>Sorts the array, using <code>compare_func</code> which should be a qsort()-style
+comparison function (returns less than zero for first arg is less
+than second arg, zero for equal, greater than zero if first arg is
+greater than second&nbsp;arg).</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.sort_values_with_data.html">g_ptr_array_sort_values_with_data</a></h6>
+        <div class="docblock">
+          <p>Like g_ptr_array_sort_values(), but the comparison function has an extra
+user data&nbsp;argument.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.76</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.sort_with_data.html">g_ptr_array_sort_with_data</a></h6>
+        <div class="docblock">
+          <p>Like g_ptr_array_sort(), but the comparison function has an extra
+user data&nbsp;argument.</p>
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.steal.html">g_ptr_array_steal</a></h6>
+        <div class="docblock">
+          <p>Frees the data in the array and resets the size to zero, while
+the underlying array is preserved for use elsewhere and returned
+to the&nbsp;caller.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.64</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.steal_index.html">g_ptr_array_steal_index</a></h6>
+        <div class="docblock">
+          <p>Removes the pointer at the given index from the pointer array.
+The following elements are moved down one place. The <code>GDestroyNotify</code> for
+<code>array</code> is <em>not</em> called on the removed element; ownership is transferred to
+the caller of this&nbsp;function.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.58</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.steal_index_fast.html">g_ptr_array_steal_index_fast</a></h6>
+        <div class="docblock">
+          <p>Removes the pointer at the given index from the pointer array.
+The last element in the array is used to fill in the space, so
+this function does not preserve the order of the array. But it
+is faster than g_ptr_array_steal_index(). The <code>GDestroyNotify</code> for <code>array</code> is
+<em>not</em> called on the removed element; ownership is transferred to the caller
+of this&nbsp;function.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.58</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.PtrArray.unref.html">g_ptr_array_unref</a></h6>
+        <div class="docblock">
+          <p>Atomically decrements the reference count of <code>array</code> by one. If the
+reference count drops to 0, the effect is the same as calling
+<code>g_ptr_array_free()</code> with <code>free_segment</code> set to <code>TRUE</code>. This function
+is thread-safe and may be called from any&nbsp;thread.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.22</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.PtrArray.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:07:05 GMT --></html>

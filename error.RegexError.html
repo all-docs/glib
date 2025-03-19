@@ -1,0 +1,922 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/error.RegexError.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>RegexError</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.RegexError">
+  <meta property="og:description" content="Reference for GLib.RegexError">
+  <meta name="twitter:title" content="GLib.RegexError">
+  <meta name="twitter:description" content="Reference for GLib.RegexError">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> RegexError</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.14</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>error-domain GLib.RegexError</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gregex.h#L35">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Error codes returned by regular expressions&nbsp;functions.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        <p>Available since: 2.14</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="compile">G_REGEX_ERROR_COMPILE</code>
+            <a class="anchor" href="#compile"></a>
+          </dt>
+          <dd>
+            <div><p>Compilation of the regular expression&nbsp;failed.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="optimize">G_REGEX_ERROR_OPTIMIZE</code>
+            <a class="anchor" href="#optimize"></a>
+          </dt>
+          <dd>
+            <div><p>Optimization of the regular expression&nbsp;failed.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="replace">G_REGEX_ERROR_REPLACE</code>
+            <a class="anchor" href="#replace"></a>
+          </dt>
+          <dd>
+            <div><p>Replacement failed due to an ill-formed replacement&nbsp;string.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="match">G_REGEX_ERROR_MATCH</code>
+            <a class="anchor" href="#match"></a>
+          </dt>
+          <dd>
+            <div><p>The match process&nbsp;failed.</p></div>
+            <ul>
+              <li>Value: <code>3</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="internal">G_REGEX_ERROR_INTERNAL</code>
+            <a class="anchor" href="#internal"></a>
+          </dt>
+          <dd>
+            <div><p>Internal error of the regular expression engine.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="stray_backslash">G_REGEX_ERROR_STRAY_BACKSLASH</code>
+            <a class="anchor" href="#stray_backslash"></a>
+          </dt>
+          <dd>
+            <div><p><span class="dquo">“</span>" at end of pattern. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>101</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="missing_control_char">G_REGEX_ERROR_MISSING_CONTROL_CHAR</code>
+            <a class="anchor" href="#missing_control_char"></a>
+          </dt>
+          <dd>
+            <div><p><span class="dquo">“</span>\c” at end of pattern. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>102</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unrecognized_escape">G_REGEX_ERROR_UNRECOGNIZED_ESCAPE</code>
+            <a class="anchor" href="#unrecognized_escape"></a>
+          </dt>
+          <dd>
+            <div><p>Unrecognized character follows “".
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>103</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="quantifiers_out_of_order">G_REGEX_ERROR_QUANTIFIERS_OUT_OF_ORDER</code>
+            <a class="anchor" href="#quantifiers_out_of_order"></a>
+          </dt>
+          <dd>
+            <div><p>Numbers out of order in “{}”
+    quantifier. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>104</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="quantifier_too_big">G_REGEX_ERROR_QUANTIFIER_TOO_BIG</code>
+            <a class="anchor" href="#quantifier_too_big"></a>
+          </dt>
+          <dd>
+            <div><p>Number too big in “{}” quantifier.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>105</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unterminated_character_class">G_REGEX_ERROR_UNTERMINATED_CHARACTER_CLASS</code>
+            <a class="anchor" href="#unterminated_character_class"></a>
+          </dt>
+          <dd>
+            <div><p>Missing terminating “]” for
+    character class. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>106</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="invalid_escape_in_character_class">G_REGEX_ERROR_INVALID_ESCAPE_IN_CHARACTER_CLASS</code>
+            <a class="anchor" href="#invalid_escape_in_character_class"></a>
+          </dt>
+          <dd>
+            <div><p>Invalid escape sequence
+    in character class. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>107</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="range_out_of_order">G_REGEX_ERROR_RANGE_OUT_OF_ORDER</code>
+            <a class="anchor" href="#range_out_of_order"></a>
+          </dt>
+          <dd>
+            <div><p>Range out of order in character class.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>108</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="nothing_to_repeat">G_REGEX_ERROR_NOTHING_TO_REPEAT</code>
+            <a class="anchor" href="#nothing_to_repeat"></a>
+          </dt>
+          <dd>
+            <div><p>Nothing to repeat. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>109</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unrecognized_character">G_REGEX_ERROR_UNRECOGNIZED_CHARACTER</code>
+            <a class="anchor" href="#unrecognized_character"></a>
+          </dt>
+          <dd>
+            <div><p>Unrecognized character after “(?”,
+    “(?&lt;” or “(?P”. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>112</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="posix_named_class_outside_class">G_REGEX_ERROR_POSIX_NAMED_CLASS_OUTSIDE_CLASS</code>
+            <a class="anchor" href="#posix_named_class_outside_class"></a>
+          </dt>
+          <dd>
+            <div><p><span class="caps">POSIX</span> named classes are
+    supported only within a class. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>113</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unmatched_parenthesis">G_REGEX_ERROR_UNMATCHED_PARENTHESIS</code>
+            <a class="anchor" href="#unmatched_parenthesis"></a>
+          </dt>
+          <dd>
+            <div><p>Missing terminating “)” or “)”
+    without opening “(“. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>114</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="inexistent_subpattern_reference">G_REGEX_ERROR_INEXISTENT_SUBPATTERN_REFERENCE</code>
+            <a class="anchor" href="#inexistent_subpattern_reference"></a>
+          </dt>
+          <dd>
+            <div><p>Reference to non-existent
+    subpattern. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>115</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unterminated_comment">G_REGEX_ERROR_UNTERMINATED_COMMENT</code>
+            <a class="anchor" href="#unterminated_comment"></a>
+          </dt>
+          <dd>
+            <div><p>Missing terminating “)” after comment.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>118</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="expression_too_large">G_REGEX_ERROR_EXPRESSION_TOO_LARGE</code>
+            <a class="anchor" href="#expression_too_large"></a>
+          </dt>
+          <dd>
+            <div><p>Regular expression too large.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>120</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="memory_error">G_REGEX_ERROR_MEMORY_ERROR</code>
+            <a class="anchor" href="#memory_error"></a>
+          </dt>
+          <dd>
+            <div><p>Failed to get memory. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>121</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="variable_length_lookbehind">G_REGEX_ERROR_VARIABLE_LENGTH_LOOKBEHIND</code>
+            <a class="anchor" href="#variable_length_lookbehind"></a>
+          </dt>
+          <dd>
+            <div><p>Lookbehind assertion is not
+    fixed length. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>125</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="malformed_condition">G_REGEX_ERROR_MALFORMED_CONDITION</code>
+            <a class="anchor" href="#malformed_condition"></a>
+          </dt>
+          <dd>
+            <div><p>Malformed number or name after “(?(“.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>126</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="too_many_conditional_branches">G_REGEX_ERROR_TOO_MANY_CONDITIONAL_BRANCHES</code>
+            <a class="anchor" href="#too_many_conditional_branches"></a>
+          </dt>
+          <dd>
+            <div><p>Conditional group contains
+    more than two branches. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>127</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="assertion_expected">G_REGEX_ERROR_ASSERTION_EXPECTED</code>
+            <a class="anchor" href="#assertion_expected"></a>
+          </dt>
+          <dd>
+            <div><p>Assertion expected after “(?(“.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>128</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unknown_posix_class_name">G_REGEX_ERROR_UNKNOWN_POSIX_CLASS_NAME</code>
+            <a class="anchor" href="#unknown_posix_class_name"></a>
+          </dt>
+          <dd>
+            <div><p>Unknown <span class="caps">POSIX</span> class name.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>130</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="posix_collating_elements_not_supported">G_REGEX_ERROR_POSIX_COLLATING_ELEMENTS_NOT_SUPPORTED</code>
+            <a class="anchor" href="#posix_collating_elements_not_supported"></a>
+          </dt>
+          <dd>
+            <div><p><span class="caps">POSIX</span> collating
+    elements are not supported. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>131</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="hex_code_too_large">G_REGEX_ERROR_HEX_CODE_TOO_LARGE</code>
+            <a class="anchor" href="#hex_code_too_large"></a>
+          </dt>
+          <dd>
+            <div><p>Character value in “\x{…}” sequence
+    is too large. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>134</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="invalid_condition">G_REGEX_ERROR_INVALID_CONDITION</code>
+            <a class="anchor" href="#invalid_condition"></a>
+          </dt>
+          <dd>
+            <div><p>Invalid condition “(?(0)”. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>135</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="single_byte_match_in_lookbehind">G_REGEX_ERROR_SINGLE_BYTE_MATCH_IN_LOOKBEHIND</code>
+            <a class="anchor" href="#single_byte_match_in_lookbehind"></a>
+          </dt>
+          <dd>
+            <div><p>\C not allowed in
+    lookbehind assertion. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>136</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="infinite_loop">G_REGEX_ERROR_INFINITE_LOOP</code>
+            <a class="anchor" href="#infinite_loop"></a>
+          </dt>
+          <dd>
+            <div><p>Recursive call could loop indefinitely.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>140</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="missing_subpattern_name_terminator">G_REGEX_ERROR_MISSING_SUBPATTERN_NAME_TERMINATOR</code>
+            <a class="anchor" href="#missing_subpattern_name_terminator"></a>
+          </dt>
+          <dd>
+            <div><p>Missing terminator
+    in subpattern name. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>142</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="duplicate_subpattern_name">G_REGEX_ERROR_DUPLICATE_SUBPATTERN_NAME</code>
+            <a class="anchor" href="#duplicate_subpattern_name"></a>
+          </dt>
+          <dd>
+            <div><p>Two named subpatterns have
+    the same name. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>143</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="malformed_property">G_REGEX_ERROR_MALFORMED_PROPERTY</code>
+            <a class="anchor" href="#malformed_property"></a>
+          </dt>
+          <dd>
+            <div><p>Malformed “\P” or “\p” sequence.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>146</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unknown_property">G_REGEX_ERROR_UNKNOWN_PROPERTY</code>
+            <a class="anchor" href="#unknown_property"></a>
+          </dt>
+          <dd>
+            <div><p>Unknown property name after “\P” or
+    “\p”. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>147</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="subpattern_name_too_long">G_REGEX_ERROR_SUBPATTERN_NAME_TOO_LONG</code>
+            <a class="anchor" href="#subpattern_name_too_long"></a>
+          </dt>
+          <dd>
+            <div><p>Subpattern name is too long
+    (maximum 32 characters). Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>148</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="too_many_subpatterns">G_REGEX_ERROR_TOO_MANY_SUBPATTERNS</code>
+            <a class="anchor" href="#too_many_subpatterns"></a>
+          </dt>
+          <dd>
+            <div><p>Too many named subpatterns (maximum
+    10,000). Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>149</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="invalid_octal_value">G_REGEX_ERROR_INVALID_OCTAL_VALUE</code>
+            <a class="anchor" href="#invalid_octal_value"></a>
+          </dt>
+          <dd>
+            <div><p>Octal value is greater than “\377”.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>151</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="too_many_branches_in_define">G_REGEX_ERROR_TOO_MANY_BRANCHES_IN_DEFINE</code>
+            <a class="anchor" href="#too_many_branches_in_define"></a>
+          </dt>
+          <dd>
+            <div><p><span class="dquo">“</span><span class="caps">DEFINE</span>” group contains more
+    than one branch. Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>154</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="define_repetion">G_REGEX_ERROR_DEFINE_REPETION</code>
+            <a class="anchor" href="#define_repetion"></a>
+          </dt>
+          <dd>
+            <div><p>Repeating a “<span class="caps">DEFINE</span>” group is not allowed.
+    This error is never raised. Since: 2.16 Deprecated:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>155</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="inconsistent_newline_options">G_REGEX_ERROR_INCONSISTENT_NEWLINE_OPTIONS</code>
+            <a class="anchor" href="#inconsistent_newline_options"></a>
+          </dt>
+          <dd>
+            <div><p>Inconsistent newline options.
+    Since&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>156</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="missing_back_reference">G_REGEX_ERROR_MISSING_BACK_REFERENCE</code>
+            <a class="anchor" href="#missing_back_reference"></a>
+          </dt>
+          <dd>
+            <div><p><span class="dquo">“</span>\g” is not followed by a braced,
+     angle-bracketed, or quoted name or number, or by a plain number. Since:&nbsp;2.16.</p></div>
+            <ul>
+              <li>Value: <code>157</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="invalid_relative_reference">G_REGEX_ERROR_INVALID_RELATIVE_REFERENCE</code>
+            <a class="anchor" href="#invalid_relative_reference"></a>
+          </dt>
+          <dd>
+            <div><p>Relative reference must not be zero. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>158</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="backtracking_control_verb_argument_forbidden">G_REGEX_ERROR_BACKTRACKING_CONTROL_VERB_ARGUMENT_FORBIDDEN</code>
+            <a class="anchor" href="#backtracking_control_verb_argument_forbidden"></a>
+          </dt>
+          <dd>
+            <div><p>The backtracing
+    control verb used does not allow an argument. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>159</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="unknown_backtracking_control_verb">G_REGEX_ERROR_UNKNOWN_BACKTRACKING_CONTROL_VERB</code>
+            <a class="anchor" href="#unknown_backtracking_control_verb"></a>
+          </dt>
+          <dd>
+            <div><p>Unknown backtracing
+    control verb. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>160</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="number_too_big">G_REGEX_ERROR_NUMBER_TOO_BIG</code>
+            <a class="anchor" href="#number_too_big"></a>
+          </dt>
+          <dd>
+            <div><p>Number is too big in escape sequence. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>161</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="missing_subpattern_name">G_REGEX_ERROR_MISSING_SUBPATTERN_NAME</code>
+            <a class="anchor" href="#missing_subpattern_name"></a>
+          </dt>
+          <dd>
+            <div><p>Missing subpattern name. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>162</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="missing_digit">G_REGEX_ERROR_MISSING_DIGIT</code>
+            <a class="anchor" href="#missing_digit"></a>
+          </dt>
+          <dd>
+            <div><p>Missing digit. Since&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>163</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="invalid_data_character">G_REGEX_ERROR_INVALID_DATA_CHARACTER</code>
+            <a class="anchor" href="#invalid_data_character"></a>
+          </dt>
+          <dd>
+            <div><p>In JavaScript compatibility mode,
+    “[” is an invalid data character. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>164</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="extra_subpattern_name">G_REGEX_ERROR_EXTRA_SUBPATTERN_NAME</code>
+            <a class="anchor" href="#extra_subpattern_name"></a>
+          </dt>
+          <dd>
+            <div><p>Different names for subpatterns of the
+    same number are not allowed. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>165</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="backtracking_control_verb_argument_required">G_REGEX_ERROR_BACKTRACKING_CONTROL_VERB_ARGUMENT_REQUIRED</code>
+            <a class="anchor" href="#backtracking_control_verb_argument_required"></a>
+          </dt>
+          <dd>
+            <div><p>The backtracing control
+    verb requires an argument. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>166</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="invalid_control_char">G_REGEX_ERROR_INVALID_CONTROL_CHAR</code>
+            <a class="anchor" href="#invalid_control_char"></a>
+          </dt>
+          <dd>
+            <div><p><span class="dquo">“</span>\c” must be followed by an <span class="caps">ASCII</span>
+    character. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>168</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="missing_name">G_REGEX_ERROR_MISSING_NAME</code>
+            <a class="anchor" href="#missing_name"></a>
+          </dt>
+          <dd>
+            <div><p><span class="dquo">“</span>\k” is not followed by a braced, angle-bracketed, or
+    quoted name. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>169</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="not_supported_in_class">G_REGEX_ERROR_NOT_SUPPORTED_IN_CLASS</code>
+            <a class="anchor" href="#not_supported_in_class"></a>
+          </dt>
+          <dd>
+            <div><p><span class="dquo">“</span>\N” is not supported in a class. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>171</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="too_many_forward_references">G_REGEX_ERROR_TOO_MANY_FORWARD_REFERENCES</code>
+            <a class="anchor" href="#too_many_forward_references"></a>
+          </dt>
+          <dd>
+            <div><p>Too many forward references. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>172</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="name_too_long">G_REGEX_ERROR_NAME_TOO_LONG</code>
+            <a class="anchor" href="#name_too_long"></a>
+          </dt>
+          <dd>
+            <div><p>The name is too long in “(<em><span class="caps">MARK</span>)”, “(</em><span class="caps">PRUNE</span>)”,
+    “(<em><span class="caps">SKIP</span>)”, or “(</em><span class="caps">THEN</span>)”. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>175</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="character_value_too_large">G_REGEX_ERROR_CHARACTER_VALUE_TOO_LARGE</code>
+            <a class="anchor" href="#character_value_too_large"></a>
+          </dt>
+          <dd>
+            <div><p>The character value in the \u sequence is
+    too large. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>176</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/error.RegexError.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --></html>

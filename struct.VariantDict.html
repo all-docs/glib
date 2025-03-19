@@ -1,0 +1,345 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.VariantDict.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:12:17 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>VariantDict</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.VariantDict">
+  <meta property="og:description" content="Reference for GLib.VariantDict">
+  <meta name="twitter:title" content="GLib.VariantDict">
+  <meta name="twitter:description" content="Reference for GLib.VariantDict">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> VariantDict</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem available">since: 2.40</span></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gvariant.c#L3843">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GVariantDict</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p><code>GVariantDict</code> is a mutable interface to <code>GVariant</code> dictionaries.</p>
+<p>It can be used for doing a sequence of dictionary lookups in an
+efficient way on an existing <code>GVariant</code> dictionary or it can be used
+to construct new dictionaries with a hashtable-like interface.  It
+can also be used for taking existing dictionaries and modifying them
+in order to create new&nbsp;ones.</p>
+<p><code>GVariantDict</code> can only be used with <code>G_VARIANT_TYPE_VARDICT</code>
+dictionaries.</p>
+<p>It is possible to use <code>GVariantDict</code> allocated on the stack or on the
+heap.  When using a stack-allocated <code>GVariantDict</code>, you begin with a
+call to <code>g_variant_dict_init()</code> and free the resources with a call to&nbsp;g_variant_dict_clear().</p>
+<p>Heap-allocated <code>GVariantDict</code> follows normal refcounting rules: you
+allocate it with <code>g_variant_dict_new()</code> and use <code>g_variant_dict_ref()</code>
+and&nbsp;g_variant_dict_unref().</p>
+<p><code>g_variant_dict_end()</code> is used to convert the <code>GVariantDict</code> back into a
+dictionary-type <code>GVariant</code>.  When used with stack-allocated instances,
+this also implicitly frees all associated memory, but for
+heap-allocated instances, you must still call <code>g_variant_dict_unref()</code>
+afterwards.</p>
+<p>You will typically want to use a heap-allocated <code>GVariantDict</code> when
+you expose it as part of an <span class="caps">API</span>.  For most other uses, the
+stack-allocated form will be more&nbsp;convenient.</p>
+<p>Consider the following two examples that do the same thing in each
+style: take an existing dictionary and look up the “count” uint32
+key, adding 1 to it if it is found, or returning an error if the
+key is not found.  Each returns the new dictionary as a floating
+<code>GVariant</code>.</p>
+<h2 id="using-a-stack-allocated-gvariantdict">Using a stack-allocated GVariantDict<a class="md-anchor" href="#using-a-stack-allocated-gvariantdict" title="Permanent link"></a></h2>
+<div class="highlight"><pre><span></span><span class="w">  </span><span class="n">GVariant</span><span class="w"> </span><span class="o">*</span>
+<span class="w">  </span><span class="nf">add_to_count</span><span class="w"> </span><span class="p">(</span><span class="n">GVariant</span><span class="w">  </span><span class="o">*</span><span class="n">orig</span><span class="p">,</span>
+<span class="w">                </span><span class="n">GError</span><span class="w">   </span><span class="o">**</span><span class="n">error</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">GVariantDict</span><span class="w"> </span><span class="n">dict</span><span class="p">;</span>
+<span class="w">    </span><span class="n">guint32</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">g_variant_dict_init</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">dict</span><span class="p">,</span><span class="w"> </span><span class="n">orig</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_variant_dict_lookup</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">dict</span><span class="p">,</span><span class="w"> </span><span class="s">"count"</span><span class="p">,</span><span class="w"> </span><span class="s">"u"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">))</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">g_set_error</span><span class="w"> </span><span class="p">(...);</span>
+<span class="w">        </span><span class="n">g_variant_dict_clear</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">dict</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">g_variant_dict_insert</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">dict</span><span class="p">,</span><span class="w"> </span><span class="s">"count"</span><span class="p">,</span><span class="w"> </span><span class="s">"u"</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">g_variant_dict_end</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">dict</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+
+<h2 id="using-heap-allocated-gvariantdict">Using heap-allocated GVariantDict<a class="md-anchor" href="#using-heap-allocated-gvariantdict" title="Permanent link"></a></h2>
+<div class="highlight"><pre><span></span><span class="w">  </span><span class="n">GVariant</span><span class="w"> </span><span class="o">*</span>
+<span class="w">  </span><span class="nf">add_to_count</span><span class="w"> </span><span class="p">(</span><span class="n">GVariant</span><span class="w">  </span><span class="o">*</span><span class="n">orig</span><span class="p">,</span>
+<span class="w">                </span><span class="n">GError</span><span class="w">   </span><span class="o">**</span><span class="n">error</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">GVariantDict</span><span class="w"> </span><span class="o">*</span><span class="n">dict</span><span class="p">;</span>
+<span class="w">    </span><span class="n">GVariant</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">;</span>
+<span class="w">    </span><span class="n">guint32</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_variant_dict_new</span><span class="w"> </span><span class="p">(</span><span class="n">orig</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_variant_dict_lookup</span><span class="w"> </span><span class="p">(</span><span class="n">dict</span><span class="p">,</span><span class="w"> </span><span class="s">"count"</span><span class="p">,</span><span class="w"> </span><span class="s">"u"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">))</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">g_variant_dict_insert</span><span class="w"> </span><span class="p">(</span><span class="n">dict</span><span class="p">,</span><span class="w"> </span><span class="s">"count"</span><span class="p">,</span><span class="w"> </span><span class="s">"u"</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_variant_dict_end</span><span class="w"> </span><span class="p">(</span><span class="n">dict</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">g_set_error</span><span class="w"> </span><span class="p">(...);</span>
+<span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">g_variant_dict_unref</span><span class="w"> </span><span class="p">(</span><span class="n">dict</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          <p>Available since: 2.40</p>
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.VariantDict.new.html">g_variant_dict_new</a></h6>
+          <div class="docblock">
+            <p>Allocates and initialises a new <code>GVariantDict</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.VariantDict.clear.html">g_variant_dict_clear</a></h6>
+          <div class="docblock">
+            <p>Releases all memory associated with a <code>GVariantDict</code> without freeing
+the <code>GVariantDict</code> structure&nbsp;itself.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.contains.html">g_variant_dict_contains</a></h6>
+          <div class="docblock">
+            <p>Checks if <code>key</code> exists in <code>dict</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.end.html">g_variant_dict_end</a></h6>
+          <div class="docblock">
+            <p>Returns the current value of <code>dict</code> as a <code>GVariant</code> of type
+<code>G_VARIANT_TYPE_VARDICT</code>, clearing it in the&nbsp;process.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.init.html">g_variant_dict_init</a></h6>
+          <div class="docblock">
+            <p>Initialises a <code>GVariantDict</code> structure.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.insert.html">g_variant_dict_insert</a></h6>
+          <div class="docblock">
+            <p>Inserts a value into a <code>GVariantDict</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.insert_value.html">g_variant_dict_insert_value</a></h6>
+          <div class="docblock">
+            <p>Inserts (or replaces) a key in a <code>GVariantDict</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.lookup.html">g_variant_dict_lookup</a></h6>
+          <div class="docblock">
+            <p>Looks up a value in a <code>GVariantDict</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.lookup_value.html">g_variant_dict_lookup_value</a></h6>
+          <div class="docblock">
+            <p>Looks up a value in a <code>GVariantDict</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.ref.html">g_variant_dict_ref</a></h6>
+          <div class="docblock">
+            <p>Increases the reference count on <code>dict</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.remove.html">g_variant_dict_remove</a></h6>
+          <div class="docblock">
+            <p>Removes a key and its associated value from a <code>GVariantDict</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.VariantDict.unref.html">g_variant_dict_unref</a></h6>
+          <div class="docblock">
+            <p>Decreases the reference count on <code>dict</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.40</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.VariantDict.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:12:25 GMT --></html>

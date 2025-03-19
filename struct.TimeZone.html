@@ -1,0 +1,312 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.TimeZone.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:10:29 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>TimeZone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.TimeZone">
+  <meta property="og:description" content="Reference for GLib.TimeZone">
+  <meta name="twitter:title" content="GLib.TimeZone">
+  <meta name="twitter:description" content="Reference for GLib.TimeZone">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> TimeZone</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem available">since: 2.26</span></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gtimezone.c#L53">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GTimeZone</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>A <code>GTimeZone</code> represents a time zone, at no particular point in&nbsp;time.</p>
+<p>The <code>GTimeZone</code> struct is refcounted and&nbsp;immutable.</p>
+<p>Each time zone has an identifier (for example, ‘Europe/London’) which is
+platform dependent. See <a href="ctor.TimeZone.new.html"><code>g_time_zone_new()</code></a> for information on the
+identifier formats. The identifier of a time zone can be retrieved using
+<a href="method.TimeZone.get_identifier.html"><code>g_time_zone_get_identifier()</code></a>.</p>
+<p>A time zone contains a number of intervals. Each interval has an abbreviation
+to describe it (for example, ‘<span class="caps">PDT</span>’), an offset to <span class="caps">UTC</span> and a flag indicating
+if the daylight savings time is in effect during that interval. A time zone
+always has at least one interval — interval 0. Note that interval abbreviations
+are not the same as time zone identifiers (apart from ‘<span class="caps">UTC</span>’), and cannot be
+passed to <a href="ctor.TimeZone.new.html"><code>g_time_zone_new()</code></a>.</p>
+<p>Every <span class="caps">UTC</span> time is contained within exactly one interval, but a given
+local time may be contained within zero, one or two intervals (due to
+incontinuities associated with daylight savings&nbsp;time).</p>
+<p>An interval may refer to a specific period of time (eg: the duration
+of daylight savings time during 2010) or it may refer to many periods
+of time that share the same properties (eg: all periods of daylight
+savings time).  It is also possible (usually for political reasons)
+that some properties (like the abbreviation) change between intervals
+without other properties&nbsp;changing.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          <p>Available since: 2.26</p>
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="deprecated">
+          <h6><a href="ctor.TimeZone.new.html">g_time_zone_new</a></h6>
+          <div class="docblock">
+            <p>A version of <code>g_time_zone_new_identifier()</code> which returns the <span class="caps">UTC</span> time zone
+if <code>identifier</code> could not be parsed or&nbsp;loaded.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.68</span>&nbsp;<span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.TimeZone.new_identifier.html">g_time_zone_new_identifier</a></h6>
+          <div class="docblock">
+            <p>Creates a <code>GTimeZone</code> corresponding to <code>identifier</code>. If <code>identifier</code> cannot be
+parsed or loaded, <code>NULL</code> is&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.68</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.TimeZone.new_local.html">g_time_zone_new_local</a></h6>
+          <div class="docblock">
+            <p>Creates a <code>GTimeZone</code> corresponding to local time.  The local time
+zone may change between invocations to this function; for example,
+if the system administrator changes&nbsp;it.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.TimeZone.new_offset.html">g_time_zone_new_offset</a></h6>
+          <div class="docblock">
+            <p>Creates a <code>GTimeZone</code> corresponding to the given constant offset from <span class="caps">UTC</span>,
+in&nbsp;seconds.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.58</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="ctor.TimeZone.new_utc.html">g_time_zone_new_utc</a></h6>
+          <div class="docblock">
+            <p>Creates a <code>GTimeZone</code> corresponding to <span class="caps">UTC</span>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.TimeZone.adjust_time.html">g_time_zone_adjust_time</a></h6>
+          <div class="docblock">
+            <p>Finds an interval within <code>tz</code> that corresponds to the given <code>time_</code>,
+possibly adjusting <code>time_</code> if required to fit into an interval.
+The meaning of <code>time_</code> depends on <code>type</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.TimeZone.find_interval.html">g_time_zone_find_interval</a></h6>
+          <div class="docblock">
+            <p>Finds an interval within <code>tz</code> that corresponds to the given <code>time_</code>.
+The meaning of <code>time_</code> depends on <code>type</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.TimeZone.get_abbreviation.html">g_time_zone_get_abbreviation</a></h6>
+          <div class="docblock">
+            <p>Determines the time zone abbreviation to be used during a particular
+<code>interval</code> of time in the time zone <code>tz</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.TimeZone.get_identifier.html">g_time_zone_get_identifier</a></h6>
+          <div class="docblock">
+            <p>Get the identifier of this <code>GTimeZone</code>, as passed to g_time_zone_new().
+If the identifier passed at construction time was not recognised, <code>UTC</code> will
+be returned. If it was <code>NULL</code>, the identifier of the local timezone at
+construction time will be&nbsp;returned.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.58</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.TimeZone.get_offset.html">g_time_zone_get_offset</a></h6>
+          <div class="docblock">
+            <p>Determines the offset to <span class="caps">UTC</span> in effect during a particular <code>interval</code>
+of time in the time zone <code>tz</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.TimeZone.is_dst.html">g_time_zone_is_dst</a></h6>
+          <div class="docblock">
+            <p>Determines if daylight savings time is in effect during a particular
+<code>interval</code> of time in the time zone <code>tz</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.TimeZone.ref.html">g_time_zone_ref</a></h6>
+          <div class="docblock">
+            <p>Increases the reference count on <code>tz</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.TimeZone.unref.html">g_time_zone_unref</a></h6>
+          <div class="docblock">
+            <p>Decreases the reference count on <code>tz</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.26</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.TimeZone.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:10:38 GMT --></html>

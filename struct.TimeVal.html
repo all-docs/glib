@@ -1,0 +1,209 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.TimeVal.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:10:27 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>TimeVal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.TimeVal">
+  <meta property="og:description" content="Reference for GLib.TimeVal">
+  <meta name="twitter:title" content="GLib.TimeVal">
+  <meta name="twitter:description" content="Reference for GLib.TimeVal">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> TimeVal</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem deprecated">deprecated: 2.62</span>&nbsp;</p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gdate.c#L121">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GTimeVal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">glong</span><span class="w"> </span><span class="n">tv_sec</span><span class="p">;</span>
+<span class="w">  </span><span class="n">glong</span><span class="w"> </span><span class="n">tv_usec</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>Represents a precise time, with seconds and&nbsp;microseconds.</p>
+<p>Similar to the struct timeval returned by the <code>gettimeofday()</code>
+<span class="caps">UNIX</span> system&nbsp;call.</p>
+<p>GLib is attempting to unify around the use of 64-bit integers to
+represent microsecond-precision time. As such, this type will be
+removed from a future version of GLib. A consequence of using <code>glong</code> for
+<code>tv_sec</code> is that on 32-bit systems <code>GTimeVal</code> is subject to the year 2038&nbsp;problem.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>tv_sec</code></dt>
+              <dd><p>Seconds.</p></dd>
+            
+              <dt><code>tv_usec</code></dt>
+              <dd><p>Microseconds.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          
+          <div class="admonition deprecation">
+            <p class="admonition-title">Deprecated since: 2.62.</p><p>Use <code>GDateTime</code> or #guint64&nbsp;instead.</p></div>
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="deprecated">
+        <h6><a href="type_func.TimeVal.from_iso8601.html">g_time_val_from_iso8601</a></h6>
+        <div class="docblock">
+          <p>Converts a string containing an <span class="caps">ISO</span> 8601 encoded date and time
+to a <code>GTimeVal</code> and puts it into <code>time_</code>.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem deprecated">deprecated: 2.62</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="deprecated">
+          <h6><a href="method.TimeVal.add.html">g_time_val_add</a></h6>
+          <div class="docblock">
+            <p>Adds the given number of microseconds to <code>time_</code>. <code>microseconds</code> can
+also be negative to decrease the value of <code>time_</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.62</span>&nbsp;</p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.TimeVal.to_iso8601.html">g_time_val_to_iso8601</a></h6>
+          <div class="docblock">
+            <p>Converts <code>time_</code> into an <span class="caps">RFC</span> 3339 encoded string, relative to the
+Coordinated Universal Time (<span class="caps">UTC</span>). This is one of the many formats
+allowed by <span class="caps">ISO</span>&nbsp;8601.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.62</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.TimeVal.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:10:29 GMT --></html>

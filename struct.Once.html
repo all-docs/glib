@@ -1,0 +1,248 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.Once.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:06:09 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>Once</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.Once">
+  <meta property="og:description" content="Reference for GLib.Once">
+  <meta name="twitter:title" content="GLib.Once">
+  <meta name="twitter:description" content="Reference for GLib.Once">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> Once</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem available">since: 2.4</span></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gthread.c#L530">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GOnce</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">volatile</span><span class="w"> </span><span class="n">GOnceStatus</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">  </span><span class="k">volatile</span><span class="w"> </span><span class="n">gpointer</span><span class="w"> </span><span class="n">retval</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p>A <code>GOnce</code> struct controls a one-time initialization function. Any
+one-time initialization function must have its own unique <code>GOnce</code>
+struct.</p>
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <dl>
+            
+              <dt><code>status</code></dt>
+              <dd><p>The status of the <code>GOnce</code>.</p></dd>
+            
+              <dt><code>retval</code></dt>
+              <dd><p>The value returned by the call to the function, if <code>status</code>
+         is <code>G_ONCE_STATUS_READY</code>.</p></dd>
+            
+            </dl>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          
+          
+          <p>Available since: 2.4</p>
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.Once.init_enter.html">g_once_init_enter</a></h6>
+        <div class="docblock">
+          <p>Function to be called when starting a critical initialization
+section. The argument <code>location</code> must point to a static
+0-initialized variable that will be set to a value other than 0 at
+the end of the initialization section. In combination with
+<code>g_once_init_leave()</code> and the unique address <code>value_location</code>, it can
+be ensured that an initialization section will be executed only once
+during a program’s life time, and that concurrent threads are
+blocked until initialization completed. To be used in constructs
+like&nbsp;this:.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Once.init_enter_impl.html">g_once_init_enter_impl</a></h6>
+        <div class="docblock">
+          No description available.
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Once.init_enter_pointer.html">g_once_init_enter_pointer</a></h6>
+        <div class="docblock">
+          <p>This functions behaves in the same way as g_once_init_enter(), but can
+can be used to initialize pointers (or #guintptr) instead of&nbsp;#gsize.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.80</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Once.init_leave.html">g_once_init_leave</a></h6>
+        <div class="docblock">
+          <p>Counterpart to g_once_init_enter(). Expects a location of a static
+0-initialized initialization variable, and an initialization value
+other than 0. Sets the variable to the initialization value, and
+releases concurrent threads blocking in <code>g_once_init_enter()</code> on this
+initialization&nbsp;variable.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.14</span></p>
+        </div>
+      </div>
+      
+      <div class="">
+        <h6><a href="type_func.Once.init_leave_pointer.html">g_once_init_leave_pointer</a></h6>
+        <div class="docblock">
+          <p>Counterpart to g_once_init_enter_pointer(). Expects a location of a static
+<code>NULL</code>-initialized initialization variable, and an initialization value
+other than <code>NULL</code>. Sets the variable to the initialization value, and
+releases concurrent threads blocking in <code>g_once_init_enter_pointer()</code> on this
+initialization&nbsp;variable.</p>
+        </div>
+        <div class="docblock">
+          <p><span class="emblem available">since: 2.80</span></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.Once.impl.html">g_once_impl</a></h6>
+          <div class="docblock">
+            No description available.
+          </div>
+          <div class="docblock">
+            <p></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.Once.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:06:13 GMT --></html>

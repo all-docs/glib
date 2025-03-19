@@ -1,0 +1,713 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/struct.BookmarkFile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:01:01 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>BookmarkFile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.BookmarkFile">
+  <meta property="og:description" content="Reference for GLib.BookmarkFile">
+  <meta name="twitter:title" content="GLib.BookmarkFile">
+  <meta name="twitter:description" content="Reference for GLib.BookmarkFile">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index-2.html">GLib</a> BookmarkFile</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="docblock">
+        <p><span class="emblem available">since: 2.12</span></p>
+      </div>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+          <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gbookmarkfile.h#L75">[src]</a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GBookmarkFile</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* No available fields */</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          <p><code>GBookmarkFile</code> lets you parse, edit or create files containing&nbsp;bookmarks.</p>
+<p>Bookmarks refer to a <span class="caps">URI</span>, along with some meta-data about the resource
+pointed by the <span class="caps">URI</span> like its <span class="caps">MIME</span> type, the application that is registering
+the bookmark and the icon that should be used to represent the bookmark.
+The data is stored using the
+<a href="https://www.freedesktop.org/wiki/Specifications/desktop-bookmark-spec/">Desktop Bookmark Specification</a>.</p>
+<p>The syntax of the bookmark files is described in detail inside the
+Desktop Bookmark Specification, here is a quick summary: bookmark
+files use a sub-class of the <span class="caps">XML</span> Bookmark Exchange Language
+specification, consisting of valid <span class="caps">UTF</span>-8 encoded <span class="caps">XML</span>, under the
+<code>&lt;xbel&gt;</code> root element; each bookmark is stored inside a
+<code>&lt;bookmark&gt;</code> element, using its <span class="caps">URI</span>: no relative paths can
+be used inside a bookmark file. The bookmark may have a user defined
+title and description, to be used instead of the <span class="caps">URI</span>. Under the
+<code>&lt;metadata&gt;</code> element, with its owner attribute set to
+<code>http://freedesktop.org</code>, is stored the meta-data about a resource
+pointed by its <span class="caps">URI</span>. The meta-data consists of the resource’s <span class="caps">MIME</span>
+type; the applications that have registered a bookmark; the groups
+to which a bookmark belongs to; a visibility flag, used to set the
+bookmark as “private” to the applications and groups that has it
+registered; the <span class="caps">URI</span> and <span class="caps">MIME</span> type of an icon, to be used when
+displaying the bookmark inside a <span class="caps">GUI</span>.</p>
+<p>Here is an example of a bookmark file:
+<a href="https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/glib/tests/bookmarks.xbel">bookmarks.xbel</a></p>
+<p>A bookmark file might contain more than one bookmark; each bookmark
+is accessed through its <span class="caps">URI</span>.</p>
+<p>The important caveat of bookmark files is that when you add a new
+bookmark you must also add the application that is registering it, using
+<a href="method.BookmarkFile.add_application.html"><code>g_bookmark_file_add_application()</code></a> or <a href="method.BookmarkFile.set_application_info.html"><code>g_bookmark_file_set_application_info()</code></a>.
+If a bookmark has no applications then it won’t be dumped when creating
+the on disk representation, using <a href="method.BookmarkFile.to_data.html"><code>g_bookmark_file_to_data()</code></a> or
+<a href="method.BookmarkFile.to_file.html"><code>g_bookmark_file_to_file()</code></a>.</p>
+        </div>
+
+        
+
+        <div class="docblock">
+          
+          
+          <p>Available since: 2.12</p>
+          
+          
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.BookmarkFile.new.html">g_bookmark_file_new</a></h6>
+          <div class="docblock">
+            <p>Creates a new empty <code>GBookmarkFile</code> object.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.BookmarkFile.error_quark.html">g_bookmark_file_error_quark</a></h6>
+        <div class="docblock">
+          No description available.
+        </div>
+        <div class="docblock">
+          <p></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.add_application.html">g_bookmark_file_add_application</a></h6>
+          <div class="docblock">
+            <p>Adds the application with <code>name</code> and <code>exec</code> to the list of
+applications that have registered a bookmark for <code>uri</code> into
+<code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.add_group.html">g_bookmark_file_add_group</a></h6>
+          <div class="docblock">
+            <p>Adds <code>group</code> to the list of groups to which the bookmark for <code>uri</code>
+belongs&nbsp;to.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.copy.html">g_bookmark_file_copy</a></h6>
+          <div class="docblock">
+            <p>Deeply copies a <code>bookmark</code> <code>GBookmarkFile</code> object to a new&nbsp;one.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.76</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.free.html">g_bookmark_file_free</a></h6>
+          <div class="docblock">
+            <p>Frees a <code>GBookmarkFile</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.BookmarkFile.get_added.html">g_bookmark_file_get_added</a></h6>
+          <div class="docblock">
+            <p>Gets the time the bookmark for <code>uri</code> was added to <code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.66</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_added_date_time.html">g_bookmark_file_get_added_date_time</a></h6>
+          <div class="docblock">
+            <p>Gets the time the bookmark for <code>uri</code> was added to <code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.BookmarkFile.get_app_info.html">g_bookmark_file_get_app_info</a></h6>
+          <div class="docblock">
+            <p>Gets the registration information of <code>app_name</code> for the bookmark for
+<code>uri</code>.  See <code>g_bookmark_file_set_application_info()</code> for more information about
+the returned&nbsp;data.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.66</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_application_info.html">g_bookmark_file_get_application_info</a></h6>
+          <div class="docblock">
+            <p>Gets the registration information of <code>app_name</code> for the bookmark for
+<code>uri</code>.  See <code>g_bookmark_file_set_application_info()</code> for more information about
+the returned&nbsp;data.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_applications.html">g_bookmark_file_get_applications</a></h6>
+          <div class="docblock">
+            <p>Retrieves the names of the applications that have registered the
+bookmark for <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_description.html">g_bookmark_file_get_description</a></h6>
+          <div class="docblock">
+            <p>Retrieves the description of the bookmark for <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_groups.html">g_bookmark_file_get_groups</a></h6>
+          <div class="docblock">
+            <p>Retrieves the list of group names of the bookmark for <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_icon.html">g_bookmark_file_get_icon</a></h6>
+          <div class="docblock">
+            <p>Gets the icon of the bookmark for <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_is_private.html">g_bookmark_file_get_is_private</a></h6>
+          <div class="docblock">
+            <p>Gets whether the private flag of the bookmark for <code>uri</code> is&nbsp;set.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_mime_type.html">g_bookmark_file_get_mime_type</a></h6>
+          <div class="docblock">
+            <p>Retrieves the <span class="caps">MIME</span> type of the resource pointed by <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.BookmarkFile.get_modified.html">g_bookmark_file_get_modified</a></h6>
+          <div class="docblock">
+            <p>Gets the time when the bookmark for <code>uri</code> was last&nbsp;modified.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.66</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_modified_date_time.html">g_bookmark_file_get_modified_date_time</a></h6>
+          <div class="docblock">
+            <p>Gets the time when the bookmark for <code>uri</code> was last&nbsp;modified.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_size.html">g_bookmark_file_get_size</a></h6>
+          <div class="docblock">
+            <p>Gets the number of bookmarks inside <code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_title.html">g_bookmark_file_get_title</a></h6>
+          <div class="docblock">
+            <p>Returns the title of the bookmark for <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_uris.html">g_bookmark_file_get_uris</a></h6>
+          <div class="docblock">
+            <p>Returns all URIs of the bookmarks in the bookmark file <code>bookmark</code>.
+The array of returned URIs will be <code>NULL</code>-terminated, so <code>length</code> may
+optionally be <code>NULL</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.BookmarkFile.get_visited.html">g_bookmark_file_get_visited</a></h6>
+          <div class="docblock">
+            <p>Gets the time the bookmark for <code>uri</code> was last&nbsp;visited.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.66</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.get_visited_date_time.html">g_bookmark_file_get_visited_date_time</a></h6>
+          <div class="docblock">
+            <p>Gets the time the bookmark for <code>uri</code> was last&nbsp;visited.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.has_application.html">g_bookmark_file_has_application</a></h6>
+          <div class="docblock">
+            <p>Checks whether the bookmark for <code>uri</code> inside <code>bookmark</code> has been
+registered by application <code>name</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.has_group.html">g_bookmark_file_has_group</a></h6>
+          <div class="docblock">
+            <p>Checks whether <code>group</code> appears in the list of groups to which
+the bookmark for <code>uri</code> belongs&nbsp;to.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.has_item.html">g_bookmark_file_has_item</a></h6>
+          <div class="docblock">
+            <p>Looks whether the desktop bookmark has an item with its <span class="caps">URI</span> set to <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.load_from_data.html">g_bookmark_file_load_from_data</a></h6>
+          <div class="docblock">
+            <p>Loads a bookmark file from memory into an empty <code>GBookmarkFile</code>
+structure.  If the object cannot be created then <code>error</code> is set to a
+<code>GBookmarkFileError</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.load_from_data_dirs.html">g_bookmark_file_load_from_data_dirs</a></h6>
+          <div class="docblock">
+            <p>This function looks for a desktop bookmark file named <code>file</code> in the
+paths returned from <code>g_get_user_data_dir()</code> and g_get_system_data_dirs(),
+loads the file into <code>bookmark</code> and returns the file’s full path in
+<code>full_path</code>.  If the file could not be loaded then <code>error</code> is
+set to either a <code>GFileError</code> or <code>GBookmarkFileError</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.load_from_file.html">g_bookmark_file_load_from_file</a></h6>
+          <div class="docblock">
+            <p>Loads a desktop bookmark file into an empty <code>GBookmarkFile</code> structure.
+If the file could not be loaded then <code>error</code> is set to either a <code>GFileError</code>
+or <code>GBookmarkFileError</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.move_item.html">g_bookmark_file_move_item</a></h6>
+          <div class="docblock">
+            <p>Changes the <span class="caps">URI</span> of a bookmark item from <code>old_uri</code> to <code>new_uri</code>.  Any
+existing bookmark for <code>new_uri</code> will be overwritten.  If <code>new_uri</code> is
+<code>NULL</code>, then the bookmark is&nbsp;removed.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.remove_application.html">g_bookmark_file_remove_application</a></h6>
+          <div class="docblock">
+            <p>Removes application registered with <code>name</code> from the list of applications
+that have registered a bookmark for <code>uri</code> inside <code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.remove_group.html">g_bookmark_file_remove_group</a></h6>
+          <div class="docblock">
+            <p>Removes <code>group</code> from the list of groups to which the bookmark
+for <code>uri</code> belongs&nbsp;to.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.remove_item.html">g_bookmark_file_remove_item</a></h6>
+          <div class="docblock">
+            <p>Removes the bookmark for <code>uri</code> from the bookmark file <code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.BookmarkFile.set_added.html">g_bookmark_file_set_added</a></h6>
+          <div class="docblock">
+            <p>Sets the time the bookmark for <code>uri</code> was added into <code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.66</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_added_date_time.html">g_bookmark_file_set_added_date_time</a></h6>
+          <div class="docblock">
+            <p>Sets the time the bookmark for <code>uri</code> was added into <code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.BookmarkFile.set_app_info.html">g_bookmark_file_set_app_info</a></h6>
+          <div class="docblock">
+            <p>Sets the meta-data of application <code>name</code> inside the list of
+applications that have registered a bookmark for <code>uri</code> inside
+<code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.66</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_application_info.html">g_bookmark_file_set_application_info</a></h6>
+          <div class="docblock">
+            <p>Sets the meta-data of application <code>name</code> inside the list of
+applications that have registered a bookmark for <code>uri</code> inside
+<code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_description.html">g_bookmark_file_set_description</a></h6>
+          <div class="docblock">
+            <p>Sets <code>description</code> as the description of the bookmark for <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_groups.html">g_bookmark_file_set_groups</a></h6>
+          <div class="docblock">
+            <p>Sets a list of group names for the item with <span class="caps">URI</span> <code>uri</code>.  Each previously
+set group name list is&nbsp;removed.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_icon.html">g_bookmark_file_set_icon</a></h6>
+          <div class="docblock">
+            <p>Sets the icon for the bookmark for <code>uri</code>. If <code>href</code> is <code>NULL</code>, unsets
+the currently set icon. <code>href</code> can either be a full <span class="caps">URL</span> for the icon
+file or the icon name following the Icon Naming&nbsp;specification.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_is_private.html">g_bookmark_file_set_is_private</a></h6>
+          <div class="docblock">
+            <p>Sets the private flag of the bookmark for <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_mime_type.html">g_bookmark_file_set_mime_type</a></h6>
+          <div class="docblock">
+            <p>Sets <code>mime_type</code> as the <span class="caps">MIME</span> type of the bookmark for <code>uri</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.BookmarkFile.set_modified.html">g_bookmark_file_set_modified</a></h6>
+          <div class="docblock">
+            <p>Sets the last time the bookmark for <code>uri</code> was last&nbsp;modified.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.66</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_modified_date_time.html">g_bookmark_file_set_modified_date_time</a></h6>
+          <div class="docblock">
+            <p>Sets the last time the bookmark for <code>uri</code> was last&nbsp;modified.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_title.html">g_bookmark_file_set_title</a></h6>
+          <div class="docblock">
+            <p>Sets <code>title</code> as the title of the bookmark for <code>uri</code> inside the
+bookmark file <code>bookmark</code>.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="deprecated">
+          <h6><a href="method.BookmarkFile.set_visited.html">g_bookmark_file_set_visited</a></h6>
+          <div class="docblock">
+            <p>Sets the time the bookmark for <code>uri</code> was last&nbsp;visited.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem deprecated">deprecated: 2.66</span>&nbsp;<span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.set_visited_date_time.html">g_bookmark_file_set_visited_date_time</a></h6>
+          <div class="docblock">
+            <p>Sets the time the bookmark for <code>uri</code> was last&nbsp;visited.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.66</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.to_data.html">g_bookmark_file_to_data</a></h6>
+          <div class="docblock">
+            <p>This function outputs <code>bookmark</code> as a&nbsp;string.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+        <div class="">
+          <h6><a href="method.BookmarkFile.to_file.html">g_bookmark_file_to_file</a></h6>
+          <div class="docblock">
+            <p>This function outputs <code>bookmark</code> into a file.  The write process is
+guaranteed to be atomic by using <code>g_file_set_contents()</code> internally.</p>
+          </div>
+          <div class="docblock">
+            <p><span class="emblem available">since: 2.12</span></p>
+          </div>
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/struct.BookmarkFile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:01:34 GMT --></html>

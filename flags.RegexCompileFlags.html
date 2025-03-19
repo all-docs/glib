@@ -1,0 +1,439 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/flags.RegexCompileFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>RegexCompileFlags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.RegexCompileFlags">
+  <meta property="og:description" content="Reference for GLib.RegexCompileFlags">
+  <meta name="twitter:title" content="GLib.RegexCompileFlags">
+  <meta name="twitter:description" content="Reference for GLib.RegexCompileFlags">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> RegexCompileFlags</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.14</span></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>flags GLib.RegexCompileFlags</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gregex.h#L219">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Flags specifying compile-time&nbsp;options.</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        <p>Available since: 2.14</p>
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="default">G_REGEX_DEFAULT</code>
+            <a class="anchor" href="#default"></a>
+          </dt>
+          <dd>
+            <div><p>No special options set. Since:&nbsp;2.74.</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="caseless">G_REGEX_CASELESS</code>
+            <a class="anchor" href="#caseless"></a>
+          </dt>
+          <dd>
+            <div><p>Letters in the pattern match both upper- and
+    lowercase letters. This option can be changed within a pattern
+    by a “(?i)” option&nbsp;setting.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="multiline">G_REGEX_MULTILINE</code>
+            <a class="anchor" href="#multiline"></a>
+          </dt>
+          <dd>
+            <div><p>By default, GRegex treats the strings as consisting
+    of a single line of characters (even if it actually contains
+    newlines). The “start of line” metacharacter (“^”) matches only
+    at the start of the string, while the “end of line” metacharacter
+    (“$”) matches only at the end of the string, or before a terminating
+    newline (unless <code>G_REGEX_DOLLAR_ENDONLY</code> is set). When
+    <code>G_REGEX_MULTILINE</code> is set, the “start of line” and “end of line”
+    constructs match immediately following or immediately before any
+    newline in the string, respectively, as well as at the very start
+    and end. This can be changed within a pattern by a “(?m)” option&nbsp;setting.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="dotall">G_REGEX_DOTALL</code>
+            <a class="anchor" href="#dotall"></a>
+          </dt>
+          <dd>
+            <div><p>A dot metacharacter (“.”) in the pattern matches all
+    characters, including newlines. Without it, newlines are excluded.
+    This option can be changed within a pattern by a (“?s”) option&nbsp;setting.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="extended">G_REGEX_EXTENDED</code>
+            <a class="anchor" href="#extended"></a>
+          </dt>
+          <dd>
+            <div><p>Whitespace data characters in the pattern are
+    totally ignored except when escaped or inside a character class.
+    Whitespace does not include the <span class="caps">VT</span> character (code 11). In addition,
+    characters between an unescaped “#” outside a character class and
+    the next newline character, inclusive, are also ignored. This can
+    be changed within a pattern by a “(?x)” option&nbsp;setting.</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="anchored">G_REGEX_ANCHORED</code>
+            <a class="anchor" href="#anchored"></a>
+          </dt>
+          <dd>
+            <div><p>The pattern is forced to be “anchored”, that is,
+    it is constrained to match only at the first matching point in the
+    string that is being searched. This effect can also be achieved by
+    appropriate constructs in the pattern itself such as the “^”&nbsp;metacharacter.</p></div>
+            <ul>
+              <li>Value: <code>16</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="dollar_endonly">G_REGEX_DOLLAR_ENDONLY</code>
+            <a class="anchor" href="#dollar_endonly"></a>
+          </dt>
+          <dd>
+            <div><p>A dollar metacharacter (“$”) in the pattern
+    matches only at the end of the string. Without this option, a
+    dollar also matches immediately before the final character if
+    it is a newline (but not before any other newlines). This option
+    is ignored if <code>G_REGEX_MULTILINE</code> is&nbsp;set.</p></div>
+            <ul>
+              <li>Value: <code>32</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="ungreedy">G_REGEX_UNGREEDY</code>
+            <a class="anchor" href="#ungreedy"></a>
+          </dt>
+          <dd>
+            <div><p>Inverts the “greediness” of the quantifiers so that
+    they are not greedy by default, but become greedy if followed by “?”.
+    It can also be set by a “(?U)” option setting within the&nbsp;pattern.</p></div>
+            <ul>
+              <li>Value: <code>512</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="raw">G_REGEX_RAW</code>
+            <a class="anchor" href="#raw"></a>
+          </dt>
+          <dd>
+            <div><p>Usually strings must be valid <span class="caps">UTF</span>-8 strings, using this
+    flag they are considered as a raw sequence of&nbsp;bytes.</p></div>
+            <ul>
+              <li>Value: <code>2048</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="no_auto_capture">G_REGEX_NO_AUTO_CAPTURE</code>
+            <a class="anchor" href="#no_auto_capture"></a>
+          </dt>
+          <dd>
+            <div><p>Disables the use of numbered capturing
+    parentheses in the pattern. Any opening parenthesis that is not
+    followed by “?” behaves as if it were followed by “?:” but named
+    parentheses can still be used for capturing (and they acquire numbers
+    in the usual&nbsp;way).</p></div>
+            <ul>
+              <li>Value: <code>4096</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="optimize">G_REGEX_OPTIMIZE</code>
+            <a class="anchor" href="#optimize"></a>
+          </dt>
+          <dd>
+            <div><p>Since 2.74 and the port to pcre2, requests <span class="caps">JIT</span>
+    compilation, which, if the just-in-time compiler is available, further
+    processes a compiled pattern into machine code that executes much
+    faster. However, it comes at the cost of extra processing before the
+    match is performed, so it is most beneficial to use this when the same
+    compiled pattern is used for matching many times. Before 2.74 this
+    option used the built-in non-<span class="caps">JIT</span> optimizations in&nbsp;pcre1.</p></div>
+            <ul>
+              <li>Value: <code>8192</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="firstline">G_REGEX_FIRSTLINE</code>
+            <a class="anchor" href="#firstline"></a>
+          </dt>
+          <dd>
+            <div><p>Limits an unanchored pattern to match before (or at) the
+    first newline. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>262144</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="dupnames">G_REGEX_DUPNAMES</code>
+            <a class="anchor" href="#dupnames"></a>
+          </dt>
+          <dd>
+            <div><p>Names used to identify capturing subpatterns need not
+    be unique. This can be helpful for certain types of pattern when it
+    is known that only one instance of the named subpattern can ever be&nbsp;matched.</p></div>
+            <ul>
+              <li>Value: <code>524288</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="newline_cr">G_REGEX_NEWLINE_CR</code>
+            <a class="anchor" href="#newline_cr"></a>
+          </dt>
+          <dd>
+            <div><p>Usually any newline character or character sequence is
+    recognized. If this option is set, the only recognized newline character
+    is&nbsp;‘\r’.</p></div>
+            <ul>
+              <li>Value: <code>1048576</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="newline_lf">G_REGEX_NEWLINE_LF</code>
+            <a class="anchor" href="#newline_lf"></a>
+          </dt>
+          <dd>
+            <div><p>Usually any newline character or character sequence is
+    recognized. If this option is set, the only recognized newline character
+    is&nbsp;‘\n’.</p></div>
+            <ul>
+              <li>Value: <code>2097152</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="newline_crlf">G_REGEX_NEWLINE_CRLF</code>
+            <a class="anchor" href="#newline_crlf"></a>
+          </dt>
+          <dd>
+            <div><p>Usually any newline character or character sequence is
+    recognized. If this option is set, the only recognized newline character
+    sequence is&nbsp;‘\r\n’.</p></div>
+            <ul>
+              <li>Value: <code>3145728</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="newline_anycrlf">G_REGEX_NEWLINE_ANYCRLF</code>
+            <a class="anchor" href="#newline_anycrlf"></a>
+          </dt>
+          <dd>
+            <div><p>Usually any newline character or character sequence
+    is recognized. If this option is set, the only recognized newline character
+    sequences are ‘\r’, ‘\n’, and ‘\r\n’. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>5242880</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="bsr_anycrlf">G_REGEX_BSR_ANYCRLF</code>
+            <a class="anchor" href="#bsr_anycrlf"></a>
+          </dt>
+          <dd>
+            <div><p>Usually any newline character or character sequence
+    is recognised. If this option is set, then “\R” only recognizes the newline
+   characters ‘\r’, ‘\n’ and ‘\r\n’. Since:&nbsp;2.34.</p></div>
+            <ul>
+              <li>Value: <code>8388608</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="javascript_compat">G_REGEX_JAVASCRIPT_COMPAT</code>
+            <a class="anchor" href="#javascript_compat"></a>
+          </dt>
+          <dd>
+            <div><p>Changes behaviour so that it is compatible with
+    JavaScript rather than <span class="caps">PCRE</span>. Since GLib 2.74 this is no longer supported,
+    as libpcre2 does not support it. Since: 2.34 Deprecated:&nbsp;2.74.</p></div>
+            <ul>
+              <li>Value: <code>33554432</code></li>
+              
+              <li>Available since: 2.14</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/flags.RegexCompileFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:16 GMT --></html>

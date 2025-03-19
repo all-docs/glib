@@ -1,0 +1,210 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/func.log_variant.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:22 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>log_variant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.log_variant">
+  <meta property="og:description" content="Reference for GLib.log_variant">
+  <meta name="twitter:title" content="GLib.log_variant">
+  <meta name="twitter:description" content="Reference for GLib.log_variant">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index-2.html">GLib</a> log_variant</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p><span class="emblem available">since: 2.50</span></p>
+    </div>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.h#L212">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="n">g_log_variant</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"> </span><span class="n">log_domain</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GLogLevelFlags</span><span class="w"> </span><span class="n">log_level</span><span class="p">,</span>
+<span class="w">  </span><span class="n">GVariant</span><span class="o">*</span><span class="w"> </span><span class="n">fields</span>
+<span class="p">)</span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gmessages.c#L1707">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Log a message with structured data, accepting the data within a <a href="struct.Variant.html"><code>GVariant</code></a>.</p>
+<p>This version is especially useful for use in other languages, via&nbsp;introspection.</p>
+<p>The only mandatory item in the <code>fields</code> dictionary is the <code>"MESSAGE"</code> which must
+contain the text shown to the&nbsp;user.</p>
+<p>The values in the <code>fields</code> dictionary are likely to be of type <code>G_VARIANT_TYPE_STRING</code>.
+Array of bytes (<code>G_VARIANT_TYPE_BYTESTRING</code>) is also
+supported. In this case the message is handled as binary and will be forwarded
+to the log writer as such. The size of the array should not be higher than
+<code>G_MAXSSIZE</code>. Otherwise it will be truncated to this size. For other types
+<a href="method.Variant.print.html"><code>g_variant_print()</code></a> will be used to convert the value into a&nbsp;string.</p>
+<p>For more details on its usage and about the parameters, see <a href="func.log_structured.html"><code>g_log_structured()</code></a>.</p>
+      </div>
+
+      <div class="docblock">
+        
+        <p>Available since: 2.50</p>
+        
+        
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="arguments">
+          
+          <dt class="arg-name"><code>log_domain</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const gchar*</code></p>
+            <p>Log domain, usually <code>G_LOG_DOMAIN</code>.</p>
+            <table>
+            
+            <tbody><tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </tbody></table>
+          </dd>
+          
+          <dt class="arg-name"><code>log_level</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="flags.LogLevelFlags.html"><code>GLogLevelFlags</code></a></p>
+            <p>Log level, either from <a href="flags.LogLevelFlags.html"><code>GLogLevelFlags</code></a>, or a user-defined&nbsp;level.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
+          
+          <dt class="arg-name"><code>fields</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<a href="struct.Variant.html"><code>GVariant</code></a></p>
+            <p>A dictionary (<a href="struct.Variant.html"><code>GVariant</code></a> of the type <code>G_VARIANT_TYPE_VARDICT</code>)
+containing the key-value pairs of message&nbsp;data.</p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            <tbody><tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            
+            </tbody></table>
+          </dd>
+          
+
+          
+        </dl>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/func.log_variant.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:22 GMT --></html>

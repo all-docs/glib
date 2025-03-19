@@ -1,0 +1,224 @@
+<!--
+SPDX-FileCopyrightText: GLib Development Team
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+--><!DOCTYPE html><html lang="en"><!-- Mirrored from docs.gtk.org/glib/flags.FormatSizeFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:15 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+  <title>FormatSizeFlags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+
+  
+  <meta property="og:type" content="website">
+
+  
+
+  
+  <meta property="og:title" content="GLib.FormatSizeFlags">
+  <meta property="og:description" content="Reference for GLib.FormatSizeFlags">
+  <meta name="twitter:title" content="GLib.FormatSizeFlags">
+  <meta name="twitter:description" content="Reference for GLib.FormatSizeFlags">
+
+
+  
+  <meta name="twitter:card" content="summary">
+
+  
+  
+  
+  <link rel="search" type="application/opensearchdescription+xml" title="GLib" href="opensearch.xml">
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  
+
+  
+  <script src="urlmap.js"></script>
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+
+  
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    
+
+    
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Enumeration</h3>
+    <h1><a href="index-2.html">GLib</a> FormatSizeFlags</h1>
+  </header>
+
+  <section>
+    <div class="docblock">
+      <p></p>
+    </div>
+
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code>flags GLib.FormatSizeFlags</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+        <a class="srclink" title="go to source location" href="https://gitlab.gnome.org/GNOME/glib/-/blob/main/glib/gutils.c#L2909">[src]</a>
+        
+      </h4>
+
+      <div class="docblock">
+      <p>Flags to modify the format of the string returned by&nbsp;g_format_size_full().</p>
+      </div>
+
+      <div class="docblock">
+        
+        
+        
+      </div>
+
+      
+    </div>
+
+    <div class="members toggle-wrapper">
+      <h4 id="members">
+        Members
+        <a href="#members" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <dl class="enum-members">
+        
+          <dt>
+            <code id="default">G_FORMAT_SIZE_DEFAULT</code>
+            <a class="anchor" href="#default"></a>
+          </dt>
+          <dd>
+            <div><p>Behave the same as&nbsp;g_format_size().</p></div>
+            <ul>
+              <li>Value: <code>0</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="long_format">G_FORMAT_SIZE_LONG_FORMAT</code>
+            <a class="anchor" href="#long_format"></a>
+          </dt>
+          <dd>
+            <div><p>Include the exact number of bytes as part
+    of the returned string.  For example, “45.6 kB (45,612&nbsp;bytes)”.</p></div>
+            <ul>
+              <li>Value: <code>1</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="iec_units">G_FORMAT_SIZE_IEC_UNITS</code>
+            <a class="anchor" href="#iec_units"></a>
+          </dt>
+          <dd>
+            <div><p>Use <span class="caps">IEC</span> (base 1024) units with “KiB”-style
+    suffixes. <span class="caps">IEC</span> units should only be used for reporting things with
+    a strong “power of 2” basis, like <span class="caps">RAM</span> sizes or <span class="caps">RAID</span> stripe sizes.
+    Network and storage sizes should be reported in the normal <span class="caps">SI</span>&nbsp;units.</p></div>
+            <ul>
+              <li>Value: <code>2</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="bits">G_FORMAT_SIZE_BITS</code>
+            <a class="anchor" href="#bits"></a>
+          </dt>
+          <dd>
+            <div><p>Set the size as a quantity in bits, rather than
+    bytes, and return units in bits. For example, ‘Mbit’ rather than ‘<span class="caps">MB</span>’.</p></div>
+            <ul>
+              <li>Value: <code>4</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="only_value">G_FORMAT_SIZE_ONLY_VALUE</code>
+            <a class="anchor" href="#only_value"></a>
+          </dt>
+          <dd>
+            <div><p>Return only value, without unit; this should
+    not be used together with <code>G_FORMAT_SIZE_LONG_FORMAT</code>
+    nor <code>G_FORMAT_SIZE_ONLY_UNIT</code>. Since:&nbsp;2.74.</p></div>
+            <ul>
+              <li>Value: <code>8</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+          <dt>
+            <code id="only_unit">G_FORMAT_SIZE_ONLY_UNIT</code>
+            <a class="anchor" href="#only_unit"></a>
+          </dt>
+          <dd>
+            <div><p>Return only unit, without value; this should
+    not be used together with <code>G_FORMAT_SIZE_LONG_FORMAT</code>
+    nor <code>G_FORMAT_SIZE_ONLY_VALUE</code>. Since:&nbsp;2.74.</p></div>
+            <ul>
+              <li>Value: <code>16</code></li>
+              
+              <li>Available since: 2.0</li>
+            </ul>
+          </dd>
+        
+        </dl>
+      </div>
+    </div>
+
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+
+
+
+</body><!-- Mirrored from docs.gtk.org/glib/flags.FormatSizeFlags.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 13:13:15 GMT --></html>
